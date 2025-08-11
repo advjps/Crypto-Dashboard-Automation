@@ -1,0 +1,33 @@
+name: Fetch Crypto Data
+
+on:
+  workflow_dispatch: # Allows you to run it manually from the Actions tab
+  schedule:
+    - cron: '*/10 * * * *' # Runs every 10 minutes
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Script to Fetch Data
+        run: python run_automation.py
+
+      - name: Commit and Push if changed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "Automated data refresh" || exit 0
+          git push
