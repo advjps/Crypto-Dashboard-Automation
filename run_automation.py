@@ -69,10 +69,29 @@ def calc_market_trend(closes):
 
 # --- Data Fetching ---
 def fetch_top_volume_coins(limit=70):
-    url = "https://fapi.binance.com/fapi/v1/ticker/24hr"
-    data = requests.get(url).json()
-    usdt_pairs = [t for t in data if t['symbol'].endswith('USDT')]
-    return [c['symbol'] for c in sorted(usdt_pairs, key=lambda x: float(x['quoteVolume']), reverse=True)[:limit]]
+    """Fetches the top coins by 24h trading volume from Binance Futures."""
+    try:
+        url = "https://fapi.binance.com/fapi/v1/ticker/24hr"
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()  # This will catch HTTP errors like 403 or 451
+        data = response.json()
+
+        # Check if the data is in the expected list-of-dictionaries format
+        if not isinstance(data, list) or not data or 'symbol' not in data[0]:
+            print(f"Error: Binance API returned an unexpected data format.")
+            return [] # Return an empty list to avoid crashing
+
+        usdt_pairs = [t for t in data if t['symbol'].endswith('USDT')]
+        sorted_coins = sorted(usdt_pairs, key=lambda x: float(x['quoteVolume']), reverse=True)
+        
+        return [coin['symbol'] for coin in sorted_coins[:limit]]
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching top coins (Network issue): {e}")
+        return [] # Return an empty list
+    except json.JSONDecodeError:
+        print(f"Error: Failed to decode JSON from Binance. Response was not valid JSON.")
+        return [] # Return an empty list
 
 def fetch_binance_data(symbol, timeframe='5m', limit=100):
     url = f"https://api.binance.com/api/v3/klines?symbol={symbol}&interval={timeframe}&limit={limit}"
@@ -157,4 +176,5 @@ if __name__ == "__main__":
         
         with open(archive_filepath, 'w') as f:
             json.dump(all_results, f, indent=2)
+
         print(f"SUCCESS: Archive file saved to {archive_filepath}")
