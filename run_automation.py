@@ -175,7 +175,7 @@ def analyze_data(symbol, data5m, market_trend):
                       "ema50_5m": latest_ema50 }
     }
 
-# --- Main Execution Block (Corrected for Futures Symbols) ---
+# --- Main Execution Block (1000x logic removed) ---
 if __name__ == "__main__":
     print("Starting automated data fetch...")
     
@@ -185,14 +185,15 @@ if __name__ == "__main__":
     
     print(f"Found {len(top_coins)} coins to analyze.")
     
-    # Use BTC Futures data for market trend for consistency
+    # Market trend uses BTC Futures data for consistency
     btc_data = fetch_binance_data("BTCUSDT")
     market_trend = calc_market_trend([d[3] for d in btc_data]) # index 3 is close
     print(f"Market Trend determined: {market_trend}")
 
-    all_results, strong_signals = [], []
+    all_results = []
+    strong_signals = []
     for coin in top_coins:
-        # This section is now corrected. It uses the original `coin` name directly.
+        # This section is now corrected to use the original futures symbol directly.
         print(f" - Analyzing {coin}...")
         time.sleep(0.2)
         
@@ -205,9 +206,11 @@ if __name__ == "__main__":
             if "Strong" in result['signal']:
                 strong_signals.append(result)
 
-    if strong_signals:
-        print(f"\nFound {len(strong_signals)} strong signals. Saving file...")
-        timestamp = datetime.now().strftime("%Y-m-%d_%H-%M-%S")
+    if all_results:
+        print(f"\nAnalysis complete. Found {len(strong_signals)} strong signals.")
+        print("Saving full analysis file...")
+
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         
         file_suffix = "_STRONG" if strong_signals else ""
         archive_filename = f"signals_{timestamp}{file_suffix}.json"
@@ -223,4 +226,4 @@ if __name__ == "__main__":
             json.dump(all_results, f, indent=2)
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
-        print("\nNo strong signals found. No file will be saved.")
+        print("\nNo results generated. No file will be saved.")
