@@ -90,7 +90,8 @@ def calc_vol_profile(closes, highs, lows, volumes):
         price_range = max(highs) - min(lows)
         if price_range == 0:
             return {'bullish_score': 0, 'bearish_score': 0}
-        poc = df.groupby(pd.cut(df['price'], bins=10))['volume'].sum().idxmax().mid
+        # This line is updated with observed=False to silence the warning
+        poc = df.groupby(pd.cut(df['price'], bins=10), observed=False)['volume'].sum().idxmax().mid
         current_price = closes[-1]
         if current_price > poc: return {'bullish_score': 3, 'bearish_score': 0}
         if current_price < poc: return {'bullish_score': 0, 'bearish_score': 3}
@@ -261,3 +262,4 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo strong signals found. No file will be saved.")
+
