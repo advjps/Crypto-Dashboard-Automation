@@ -72,7 +72,10 @@ def calc_cci(highs, lows, closes, period=20):
     if len(highs) < period: return None
     tp_series = pd.Series([(h + l + c) / 3 for h, l, c in zip(highs, lows, closes)])
     mean = tp_series.rolling(window=period).mean().iloc[-1]
-    mean_dev = tp_series.rolling(window=period).apply(lambda x: pd.Series(x).mad(), raw=False).iloc[-1]
+    
+    # This line is updated to use the modern calculation for Mean Absolute Deviation
+    mean_dev = tp_series.rolling(window=period).apply(lambda x: (x - x.mean()).abs().mean(), raw=False).iloc[-1]
+    
     if mean_dev == 0: return 0
     return (tp_series.iloc[-1] - mean) / (0.015 * mean_dev)
 
@@ -192,4 +195,5 @@ if __name__ == "__main__":
             json.dump(all_results, f, indent=2)
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
+
         print("\nNo strong signals found. No file will be saved.")
