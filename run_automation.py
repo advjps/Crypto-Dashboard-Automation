@@ -1,10 +1,11 @@
-# run_automation.py (V8 - Futures API Final)
+# run_automation.py (V11 - IST Timestamps)
 import pandas as pd
 import requests
 import json
 from datetime import datetime
 import time
 import os
+import pytz # <-- New import for time zones
 
 # --- PROXY CONFIGURATION ---
 PROXY_IP = "217.180.42.139"
@@ -19,7 +20,7 @@ proxies = { "http": proxy_url, "https": proxy_url } if "YOUR_IP" not in PROXY_IP
 LIVE_FILENAME = "live_signals.json"
 ARCHIVE_FOLDER = "data_archive"
 
-# --- Indicator Calculation Functions (No Changes) ---
+# --- [All indicator and data fetching functions remain the same] ---
 def calc_ema(values, period):
     if not isinstance(values, list) or len(values) < period: return [None] * len(values)
     return pd.Series(values).ewm(span=period, adjust=False).mean().tolist()
@@ -32,12 +33,13 @@ def calc_rsi(values, period=14):
     rs = gain / loss
     return (100 - (100 / (1 + rs))).tolist()
 def calc_macd(values, fast=12, slow=26, signal=9):
-    ema_fast = pd.Series(values).ewm(span=fast, adjust=False).mean()
-    ema_slow = pd.Series(values).ewm(span=slow, adjust=False).mean()
+    series = pd.Series(values)
+    ema_fast = series.ewm(span=fast, adjust=False).mean()
+    ema_slow = series.ewm(span=slow, adjust=False).mean()
     macd_line = (ema_fast - ema_slow)
     signal_line = macd_line.ewm(span=signal, adjust=False).mean()
-    histogram = (macd_line - signal_line).tolist()
-    return {'macd': macd_line.iloc[-1], 'signal': signal_line.iloc[-1], 'histogram': histogram[-1]}
+    histogram = (macd_line - signal_line)
+    return {'macd': macd_line.iloc[-1], 'signal': signal_line.iloc[-1], 'histogram': histogram.iloc[-1]}
 def calc_bollinger(values, period=20, mult=2):
     if len(values) < period: return {'upper': None, 'middle': None, 'lower': None}
     series = pd.Series(values)
@@ -46,9 +48,10 @@ def calc_bollinger(values, period=20, mult=2):
     return {'upper': mean + (mult * std), 'middle': mean, 'lower': mean - (mult * std)}
 def calc_atr(highs, lows, closes, period=14):
     if len(highs) < period + 1: return None
-    high_low = pd.Series(highs) - pd.Series(lows)
-    high_close = (pd.Series(highs) - pd.Series(closes).shift()).abs()
-    low_close = (pd.Series(lows) - pd.Series(closes).shift()).abs()
+    df = pd.DataFrame({'high': highs, 'low': lows, 'close': closes})
+    high_low = df['high'] - df['low']
+    high_close = (df['high'] - df['close'].shift()).abs()
+    low_close = (df['low'] - df['close'].shift()).abs()
     tr = pd.concat([high_low, high_close, low_close], axis=1).max(axis=1)
     return tr.ewm(alpha=1/period, adjust=False).mean().iloc[-1]
 def calc_cci(highs, lows, closes, period=20):
@@ -79,8 +82,6 @@ def calc_vol_profile(closes, highs, lows, volumes):
         return {'bullish_score': 5, 'bearish_score': 5}
     except:
         return {'bullish_score': 1, 'bearish_score': 1}
-
-# --- Data Fetching Functions ---
 def fetch_top_volume_coins(limit=70):
     try:
         url = "https://fapi.binance.com/fapi/v1/ticker/24hr"
@@ -92,32 +93,29 @@ def fetch_top_volume_coins(limit=70):
     except Exception as e:
         print(f"Error fetching top coins: {e}")
         return []
-
 def fetch_binance_data(symbol, timeframe='5m', limit=100):
     try:
-        # **UPDATED to use the Futures API endpoint**
         url = f"https://fapi.binance.com/fapi/v1/klines?symbol={symbol}&interval={timeframe}&limit={limit}"
         response = requests.get(url, proxies=proxies, timeout=30)
         response.raise_for_status()
         data = response.json()
-        return [(float(d[1]), float(d[2]), float(d[3]), float(d[4]), float(d[5])) for d in data] # open, high, low, close, volume
+        return [(float(d[1]), float(d[2]), float(d[3]), float(d[4]), float(d[5])) for d in data]
     except Exception as e:
         print(f"  - Could not fetch data for {symbol}: {e}")
         return []
-
-# --- Core Analysis Function (No Changes) ---
 def analyze_data(symbol, data5m, market_trend):
-    # This entire function remains the same as the previous version
+    # [This function remains the same as the complete version from the last fix]
+    # ...
     if len(data5m) < 50: return None
     opens, highs, lows, closes, volumes = [list(c) for c in zip(*data5m)]
     current_price = closes[-1]
-    latest_rsi = calc_rsi(closes)[-1]
+    latest_rsi = calc_rsi(closes)[-1] if calc_rsi(closes) else None
     latest_boll = calc_bollinger(closes)
     latest_cci = calc_cci(highs, lows, closes)
     latest_macd_obj = calc_macd(closes)
     latest_atr = calc_atr(highs, lows, closes)
     latest_vol_profile = calc_vol_profile(closes, highs, lows, volumes)
-    latest_ema50 = calc_ema(closes, 50)[-1]
+    latest_ema50 = calc_ema(closes, 50)[-1] if calc_ema(closes, 50) else None
     buy_score, sell_score, veto_applied = 0, 0, False
     if latest_boll.get('lower') and current_price <= latest_boll['lower']: buy_score += 35
     if latest_rsi and latest_rsi <= 30: buy_score += 30
@@ -175,7 +173,8 @@ def analyze_data(symbol, data5m, market_trend):
                       "ema50_5m": latest_ema50 }
     }
 
-# --- Main Execution Block (1000x logic removed) ---
+
+# --- Main Execution Block ---
 if __name__ == "__main__":
     print("Starting automated data fetch...")
     
@@ -185,15 +184,12 @@ if __name__ == "__main__":
     
     print(f"Found {len(top_coins)} coins to analyze.")
     
-    # Market trend uses BTC Futures data for consistency
     btc_data = fetch_binance_data("BTCUSDT")
-    market_trend = calc_market_trend([d[3] for d in btc_data]) # index 3 is close
+    market_trend = calc_market_trend([d[3] for d in btc_data])
     print(f"Market Trend determined: {market_trend}")
 
     all_results = []
-    strong_signals = []
     for coin in top_coins:
-        # This section is now corrected to use the original futures symbol directly.
         print(f" - Analyzing {coin}...")
         time.sleep(0.2)
         
@@ -203,17 +199,20 @@ if __name__ == "__main__":
         result = analyze_data(coin, data_5m, market_trend)
         if result:
             all_results.append(result)
-            if "Strong" in result['signal']:
-                strong_signals.append(result)
 
     if all_results:
+        strong_signals = [s for s in all_results if "Strong" in s.get('signal', '')]
         print(f"\nAnalysis complete. Found {len(strong_signals)} strong signals.")
         print("Saving full analysis file...")
 
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        # **UPDATED LOGIC for IST Timestamps**
+        utc_now = datetime.now(pytz.utc)
+        ist_tz = pytz.timezone("Asia/Kolkata")
+        ist_now = utc_now.astimezone(ist_tz)
+        timestamp_str = ist_now.strftime("%Y-%m-%d_%H-%M-%S")
         
         file_suffix = "_STRONG" if strong_signals else ""
-        archive_filename = f"signals_{timestamp}{file_suffix}.json"
+        archive_filename = f"signals_{timestamp_str}{file_suffix}.json"
         
         os.makedirs(ARCHIVE_FOLDER, exist_ok=True)
         archive_filepath = os.path.join(ARCHIVE_FOLDER, archive_filename)
