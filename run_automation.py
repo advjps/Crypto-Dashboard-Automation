@@ -108,8 +108,9 @@ def fetch_binance_data(symbol, timeframe='5m', limit=100):
 
 # --- Core Analysis Function ("The 2nd Amendment") ---
 def analyze_data(symbol, data5m, market_trend):
+    """Core analysis function with V2.3 logic."""
     if len(data5m) < 50: return None
-    opens, highs, lows, closes, volumes = [list(c) for c in zip(*data5m)]
+    highs, lows, closes = [list(c) for c in zip(*data5m)]
     current_price = closes[-1]
 
     # Calculate Indicators
@@ -118,7 +119,7 @@ def analyze_data(symbol, data5m, market_trend):
     latest_cci = calc_cci(highs, lows, closes)
     latest_macd_obj = calc_macd(closes)
     latest_atr = calc_atr(highs, lows, closes)
-    latest_vol_profile = calc_vol_profile(closes, highs, lows, volumes)
+    latest_vol_profile = calc_vol_profile(closes, highs, lows, [d[4] for d in data5m]) # volumes are at index 4
     latest_ema50 = calc_ema(closes, 50)[-1]
     
     buy_score, sell_score, veto_applied = 0, 0, False
@@ -151,17 +152,24 @@ def analyze_data(symbol, data5m, market_trend):
     if latest_macd_obj['histogram'] and latest_macd_obj['histogram'] > 0 and sell_score > buy_score:
         sell_score -= 45; veto_applied = True
     
-    # 4. Final Signal Determination
-    total_score = buy_score - sell_score
+    # 4. FINAL SIGNAL DETERMINATION (V2.3 Logic)
     signal_type = "Neutral"
-    if total_score >= 25: signal_type = "Strong Buy"
-    elif total_score <= -25: signal_type = "Strong Sell"
-    elif total_score > 0: signal_type = "Buy"
-    elif total_score < 0: signal_type = "Sell"
-    
+    STRONG_THRESHOLD = 25
+
+    if buy_score > sell_score: # Bullish case
+        if buy_score >= STRONG_THRESHOLD:
+            signal_type = "Strong Buy"
+        elif buy_score > 0:
+            signal_type = "Buy"
+    elif sell_score > buy_score: # Bearish case
+        if sell_score >= STRONG_THRESHOLD:
+            signal_type = "Strong Sell"
+        elif sell_score > 0:
+            signal_type = "Sell"
+
     if veto_applied and "Strong" in signal_type:
         signal_type = "Buy" if signal_type == "Strong Buy" else "Sell"
-
+    
     # 5. TP/SL, Leverage, and Profit Calculation
     sl_factor, tp_factor = 1.5, 1.5
     effective_atr = latest_atr if latest_atr and latest_atr > 0 else current_price * 0.002
@@ -198,7 +206,6 @@ def analyze_data(symbol, data5m, market_trend):
                       "cci5m": latest_cci, "marketTrend": market_trend, "volProfile": latest_vol_profile,
                       "ema50_5m": latest_ema50 }
     }
-
 # --- Main Execution Block ---
 if __name__ == "__main__":
     print("Starting automated data fetch...")
@@ -242,3 +249,4 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo strong signals found. No file will be saved.")
+
