@@ -8,10 +8,10 @@ import os
 
 # --- PROXY CONFIGURATION ---
 # Replace these placeholders with your actual proxy details if you are using one.
-PROXY_IP = "YOUR_IP_ADDRESS"
-PROXY_PORT = "YOUR_PORT"
-PROXY_USER = "YOUR_USERNAME"
-PROXY_PASS = "YOUR_PASSWORD"
+PROXY_IP = "217.180.42.139"
+PROXY_PORT = "48642"
+PROXY_USER = "NQOgprvOa4fgcWw"
+PROXY_PASS = "Nx8gIuzPunYu7P1"
 
 # Format for the requests library - LEAVE AS IS IF NOT USING A PROXY
 proxy_url = f"http://{PROXY_USER}:{PROXY_PASS}@{PROXY_IP}:{PROXY_PORT}"
@@ -249,4 +249,5 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo strong signals found. No file will be saved.")
+
 
