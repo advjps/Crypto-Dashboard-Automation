@@ -177,7 +177,12 @@ def analyze_data(symbol, data5m, market_trend):
     elif "Sell" in signal_type: pop = min(100, round((sell_score / (abs(buy_score) + sell_score or 1)) * 100))
     
     leverage = 5
-    if pop >= 80: leverage = 9; elif pop >= 65: leverage = 7; elif pop >= 50: leverage = 6
+if pop >= 80:
+    leverage = 9
+elif pop >= 65:
+    leverage = 7
+elif pop >= 50:
+    leverage = 6
     
     sl_factor, tp_factor = 1.5, 1.5
     effective_atr = latest_atr if latest_atr and latest_atr > 0 else current_price * 0.002
@@ -246,3 +251,4 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo strong signals found. No file will be saved.")
+
