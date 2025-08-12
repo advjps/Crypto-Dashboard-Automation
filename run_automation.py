@@ -175,7 +175,7 @@ def analyze_data(symbol, data5m, market_trend):
                       "ema50_5m": latest_ema50 }
     }
 
-# --- Main Execution Block (Updated) ---
+# --- Main Execution Block (Updated with conditional filename) ---
 if __name__ == "__main__":
     print("Starting automated data fetch...")
     
@@ -185,18 +185,21 @@ if __name__ == "__main__":
     
     print(f"Found {len(top_coins)} coins to analyze.")
     
-    # Market trend still uses BTC Spot data, which is standard
     btc_spot_data = requests.get("https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=5m&limit=100", proxies=proxies, timeout=30).json()
     market_trend = calc_market_trend([float(d[4]) for d in btc_spot_data])
     print(f"Market Trend determined: {market_trend}")
 
-    all_results, strong_signals = [], []
+    all_results = []
+    strong_signals = []
     for coin in top_coins:
-        print(f" - Analyzing {coin}...")
+        spot_symbol = coin
+        if spot_symbol.startswith('1000'):
+            spot_symbol = spot_symbol[4:]
+        
+        print(f" - Analyzing {coin} (using spot symbol: {spot_symbol})...")
         time.sleep(0.2)
         
-        # Now we use the original futures symbol directly
-        data_5m = fetch_binance_data(coin)
+        data_5m = fetch_binance_data(spot_symbol)
         if not data_5m: continue
         
         result = analyze_data(coin, data_5m, market_trend)
@@ -205,10 +208,15 @@ if __name__ == "__main__":
             if "Strong" in result['signal']:
                 strong_signals.append(result)
 
-    if strong_signals:
-        print(f"\nFound {len(strong_signals)} strong signals. Saving file...")
+    if all_results:
+        print(f"\nAnalysis complete. Found {len(strong_signals)} strong signals.")
+        print("Saving full analysis file...")
+
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        archive_filename = f"signals_{timestamp}.json"
+        
+        # New logic to add a suffix if strong signals are present
+        file_suffix = "_STRONG" if strong_signals else ""
+        archive_filename = f"signals_{timestamp}{file_suffix}.json"
         
         os.makedirs(ARCHIVE_FOLDER, exist_ok=True)
         archive_filepath = os.path.join(ARCHIVE_FOLDER, archive_filename)
@@ -221,4 +229,4 @@ if __name__ == "__main__":
             json.dump(all_results, f, indent=2)
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
-        print("\nNo strong signals found. No file will be saved.")
+        print("\nNo results generated. No file will be saved.")
