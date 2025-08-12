@@ -1,4 +1,4 @@
-# run_automation.py (V4 - Proxy Enabled)
+# run_automation.py (V5 - Full Data Payload)
 import pandas as pd
 import requests
 import json
@@ -7,18 +7,15 @@ import time
 import os
 
 # --- PROXY CONFIGURATION ---
-# Replace these placeholders with your actual proxy details. Keep the quotes.
-PROXY_IP = "217.180.42.139"
-PROXY_PORT = "48642"
-PROXY_USER = "NQOgprvOa4fgcWw"
-PROXY_PASS = "Nx8gIuzPunYu7P1"
+# Replace these placeholders with your actual proxy details if you are using one.
+PROXY_IP = "YOUR_IP_ADDRESS"
+PROXY_PORT = "YOUR_PORT"
+PROXY_USER = "YOUR_USERNAME"
+PROXY_PASS = "YOUR_PASSWORD"
 
-# Format for the requests library
+# Format for the requests library - LEAVE AS IS IF NOT USING A PROXY
 proxy_url = f"http://{PROXY_USER}:{PROXY_PASS}@{PROXY_IP}:{PROXY_PORT}"
-proxies = {
-    "http": proxy_url,
-    "https": proxy_url,
-}
+proxies = { "http": proxy_url, "https": proxy_url } if "YOUR_IP" not in PROXY_IP else None
 
 # --- General Configuration ---
 LIVE_FILENAME = "live_signals.json"
@@ -27,55 +24,42 @@ ARCHIVE_FOLDER = "data_archive"
 # --- Indicator Calculation Functions ---
 def calc_ema(values, period):
     if not values or len(values) < period: return [None] * len(values)
-    k = 2 / (period + 1)
-    ema_array = [sum(values[:period]) / period]
-    for i in range(period, len(values)):
-        if ema_array[-1] is not None:
-            ema = (values[i] * k) + (ema_array[-1] * (1 - k))
-            ema_array.append(ema)
-        else: # Handle gaps in data
-            ema_array.append(None)
-    return [None] * (len(values) - len(ema_array)) + ema_array
+    return pd.Series(values).ewm(span=period, adjust=False).mean().tolist()
 
 def calc_rsi(values, period=14):
     if len(values) < period + 1: return [None] * len(values)
     series = pd.Series(values)
     delta = series.diff()
-    gain = (delta.where(delta > 0, 0)).rolling(window=period).mean()
-    loss = (-delta.where(delta < 0, 0)).rolling(window=period).mean()
+    gain = (delta.where(delta > 0, 0)).ewm(alpha=1/period, adjust=False).mean()
+    loss = (-delta.where(delta < 0, 0)).ewm(alpha=1/period, adjust=False).mean()
     rs = gain / loss
     return (100 - (100 / (1 + rs))).tolist()
 
 def calc_macd(values, fast=12, slow=26, signal=9):
-    ema_fast = calc_ema(values, fast)
-    ema_slow = calc_ema(values, slow)
-    macd_line = [f - s if f is not None and s is not None else None for f, s in zip(ema_fast, ema_slow)]
-    
-    valid_macd_line = [v for v in macd_line if v is not None]
-    if not valid_macd_line: return {'histogram': None}
-    
-    signal_line = calc_ema(valid_macd_line, signal)
-    if not signal_line or signal_line[-1] is None: return {'histogram': None}
-    
-    latest_macd = valid_macd_line[-1]
-    latest_signal = signal_line[-1]
-    return {'histogram': latest_macd - latest_signal}
+    ema_fast = pd.Series(values).ewm(span=fast, adjust=False).mean()
+    ema_slow = pd.Series(values).ewm(span=slow, adjust=False).mean()
+    macd_line = (ema_fast - ema_slow).tolist()
+    signal_line = pd.Series(macd_line).ewm(span=signal, adjust=False).mean().tolist()
+    histogram = [(m - s) if m is not None and s is not None else None for m, s in zip(macd_line, signal_line)]
+    return {'macd': macd_line[-1], 'signal': signal_line[-1], 'histogram': histogram[-1]}
 
 def calc_bollinger(values, period=20, mult=2):
-    if len(values) < period: return {'upper': None, 'lower': None}
+    if len(values) < period: return {'upper': None, 'middle': None, 'lower': None}
     series = pd.Series(values)
     mean = series.rolling(window=period).mean().iloc[-1]
     std = series.rolling(window=period).std().iloc[-1]
-    return {'upper': mean + (mult * std), 'lower': mean - (mult * std)}
+    return {'upper': mean + (mult * std), 'middle': mean, 'lower': mean - (mult * std)}
+    
+def calc_atr(highs, lows, closes, period=14):
+    if len(highs) < period: return None
+    tr_series = [max(h - l, abs(h - c_prev), abs(l - c_prev)) for h, l, c_prev in zip(highs[1:], lows[1:], closes[:-1])]
+    return pd.Series(tr_series).ewm(alpha=1/period, adjust=False).mean().iloc[-1]
 
 def calc_cci(highs, lows, closes, period=20):
     if len(highs) < period: return None
     tp_series = pd.Series([(h + l + c) / 3 for h, l, c in zip(highs, lows, closes)])
     mean = tp_series.rolling(window=period).mean().iloc[-1]
-    
-    # This line is updated to use the modern calculation for Mean Absolute Deviation
-    mean_dev = tp_series.rolling(window=period).apply(lambda x: (x - x.mean()).abs().mean(), raw=False).iloc[-1]
-    
+    mean_dev = tp_series.rolling(window=period).apply(lambda x: pd.Series(x).mad(), raw=False).iloc[-1]
     if mean_dev == 0: return 0
     return (tp_series.iloc[-1] - mean) / (0.015 * mean_dev)
 
@@ -88,6 +72,15 @@ def calc_market_trend(closes):
     if ema20 < ema50 and closes[-1] < ema20: return -10
     if ema20 < ema50: return -5
     return 0
+
+def calc_vol_profile(closes, highs, lows, volumes): # Simplified version
+    price_range = max(highs) - min(lows)
+    if price_range == 0: return {'bullish_score': 0, 'bearish_score': 0}
+    poc = pd.Series(volumes, index=pd.Series(closes)).groupby(pd.cut(pd.Series(closes), bins=10)).sum().idxmax().mid
+    current_price = closes[-1]
+    if current_price > poc: return {'bullish_score': 3, 'bearish_score': 0}
+    if current_price < poc: return {'bullish_score': 0, 'bearish_score': 3}
+    return {'bullish_score': 5, 'bearish_score': 5}
 
 # --- Data Fetching Functions ---
 def fetch_top_volume_coins(limit=70):
@@ -108,51 +101,103 @@ def fetch_binance_data(symbol, timeframe='5m', limit=100):
         response = requests.get(url, proxies=proxies, timeout=30)
         response.raise_for_status()
         data = response.json()
-        return [(float(d[2]), float(d[3]), float(d[4])) for d in data]
+        return [(float(d[1]), float(d[2]), float(d[3]), float(d[4]), float(d[5])) for d in data] # open, high, low, close, volume
     except Exception as e:
         print(f"  - Could not fetch data for {symbol}: {e}")
         return []
 
-# --- Core Analysis Function ---
+# --- Core Analysis Function ("The 2nd Amendment") ---
 def analyze_data(symbol, data5m, market_trend):
     if len(data5m) < 50: return None
-    highs, lows, closes = [list(c) for c in zip(*data5m)]
+    opens, highs, lows, closes, volumes = [list(c) for c in zip(*data5m)]
     current_price = closes[-1]
 
-    latest_rsi5m = calc_rsi(closes)[-1]
-    latest_boll5m = calc_bollinger(closes)
-    latest_cci5m = calc_cci(highs, lows, closes)
-    latest_macd_hist5m = calc_macd(closes)['histogram']
-
+    # Calculate Indicators
+    latest_rsi = calc_rsi(closes)[-1]
+    latest_boll = calc_bollinger(closes)
+    latest_cci = calc_cci(highs, lows, closes)
+    latest_macd_obj = calc_macd(closes)
+    latest_atr = calc_atr(highs, lows, closes)
+    latest_vol_profile = calc_vol_profile(closes, highs, lows, volumes)
+    latest_ema50 = calc_ema(closes, 50)[-1]
+    
     buy_score, sell_score, veto_applied = 0, 0, False
 
-    if latest_boll5m['lower'] and current_price <= latest_boll5m['lower']: buy_score += 35
-    if latest_rsi5m and latest_rsi5m <= 30: buy_score += 30
-    elif latest_rsi5m and 30 < latest_rsi5m <= 40: buy_score += 15
-    if latest_cci5m and latest_cci5m >= 100: buy_score += 25
+    # 1. Core Mean-Reversion Scoring
+    if latest_boll['lower'] and current_price <= latest_boll['lower']: buy_score += 35
+    if latest_rsi and latest_rsi <= 30: buy_score += 30
+    elif latest_rsi and 30 < latest_rsi <= 40: buy_score += 15
+    if latest_cci and latest_cci >= 100: buy_score += 25
 
-    if latest_boll5m['upper'] and current_price >= latest_boll5m['upper']: sell_score += 35
-    if latest_rsi5m and latest_rsi5m >= 70: sell_score += 30
-    elif latest_rsi5m and 60 <= latest_rsi5m < 70: sell_score += 15
-    if latest_cci5m and latest_cci5m <= -100: sell_score += 25
+    if latest_boll['upper'] and current_price >= latest_boll['upper']: sell_score += 35
+    if latest_rsi and latest_rsi >= 70: sell_score += 30
+    elif latest_rsi and 60 <= latest_rsi < 70: sell_score += 15
+    if latest_cci and latest_cci <= -100: sell_score += 25
+    
+    # 2. Negligible Scores
+    if latest_ema50 and current_price > latest_ema50: buy_score += 1
+    if latest_ema50 and current_price < latest_ema50: sell_score += 1
 
+    # 3. Advanced Veto Filters
     if market_trend <= -10: buy_score = -999; veto_applied = True
     elif market_trend >= 10: sell_score = -999; veto_applied = True
     elif market_trend <= -5: sell_score += 15; buy_score -= 10
     elif market_trend >= 5: buy_score += 15; sell_score -= 10
     
-    if latest_macd_hist5m and latest_macd_hist5m > 0 and sell_score > buy_score:
-        sell_score -= 45; veto_applied = True
+    vol_profile_score = latest_vol_profile['bullish_score'] if buy_score > sell_score else latest_vol_profile['bearish_score']
+    if vol_profile_score == 0:
+        buy_score -= 50; sell_score -= 50; veto_applied = True
 
+    if latest_macd_obj['histogram'] and latest_macd_obj['histogram'] > 0 and sell_score > buy_score:
+        sell_score -= 45; veto_applied = True
+    
+    # 4. Final Signal Determination
     total_score = buy_score - sell_score
     signal_type = "Neutral"
     if total_score >= 25: signal_type = "Strong Buy"
     elif total_score <= -25: signal_type = "Strong Sell"
+    elif total_score > 0: signal_type = "Buy"
+    elif total_score < 0: signal_type = "Sell"
     
     if veto_applied and "Strong" in signal_type:
         signal_type = "Buy" if signal_type == "Strong Buy" else "Sell"
+
+    # 5. TP/SL, Leverage, and Profit Calculation
+    sl_factor, tp_factor = 1.5, 1.5
+    effective_atr = latest_atr if latest_atr and latest_atr > 0 else current_price * 0.002
     
-    return {"coin": symbol, "price": current_price, "signal": signal_type}
+    tp, sl = current_price, current_price
+    if "Buy" in signal_type:
+        tp = current_price + (effective_atr * tp_factor)
+        sl = current_price - (effective_atr * sl_factor)
+    elif "Sell" in signal_type:
+        tp = current_price - (effective_atr * tp_factor)
+        sl = current_price + (effective_atr * sl_factor)
+
+    pop = 50
+    if "Buy" in signal_type: pop = min(100, round((buy_score / (buy_score + abs(sell_score) or 1)) * 100))
+    elif "Sell" in signal_type: pop = min(100, round((sell_score / (abs(buy_score) + sell_score or 1)) * 100))
+    
+    leverage = 5
+    if pop >= 80: leverage = 9
+    elif pop >= 65: leverage = 7
+    elif pop >= 50: leverage = 6
+    
+    profit_pct = abs(((tp - current_price) / current_price) * 100 * leverage) if current_price > 0 else 0
+
+    # 6. Final Veto based on Profit %
+    if profit_pct > 7.0 and "Strong" in signal_type:
+        signal_type = "Neutral"
+
+    return {
+      "coin": symbol, "price": current_price, "tp": f"{tp:.4f}", "sl": f"{sl:.4f}",
+      "leverage": f"{leverage}x", "pop": max(0, pop), "rsi": latest_rsi,
+      "estimated_profit": f"{profit_pct:.2f}%", "signal": signal_type,
+      "volProfile": latest_vol_profile,
+      "indicators": { "rsi5m": latest_rsi, "macd5m": latest_macd_obj, "boll5m": latest_boll,
+                      "cci5m": latest_cci, "marketTrend": market_trend, "volProfile": latest_vol_profile,
+                      "ema50_5m": latest_ema50 }
+    }
 
 # --- Main Execution Block ---
 if __name__ == "__main__":
@@ -164,7 +209,7 @@ if __name__ == "__main__":
     print(f"Found {len(top_coins)} coins to analyze.")
     
     btc_data = fetch_binance_data("BTCUSDT")
-    market_trend = calc_market_trend([d[2] for d in btc_data])
+    market_trend = calc_market_trend([d[3] for d in btc_data]) # index 3 is close
     print(f"Market Trend determined: {market_trend}")
 
     all_results, strong_signals = [], []
@@ -173,6 +218,7 @@ if __name__ == "__main__":
         time.sleep(0.2)
         data_5m = fetch_binance_data(coin)
         if not data_5m: continue
+        
         result = analyze_data(coin, data_5m, market_trend)
         if result:
             all_results.append(result)
@@ -195,5 +241,4 @@ if __name__ == "__main__":
             json.dump(all_results, f, indent=2)
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
-
         print("\nNo strong signals found. No file will be saved.")
