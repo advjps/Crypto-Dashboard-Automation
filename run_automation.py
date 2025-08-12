@@ -1,4 +1,4 @@
-# run_automation.py (V5 - Full Data Payload)
+# run_automation.py (V6 - Final Consolidated Version)
 import pandas as pd
 import requests
 import json
@@ -7,7 +7,7 @@ import time
 import os
 
 # --- PROXY CONFIGURATION ---
-# Replace these placeholders with your actual proxy details if you are using one.
+# Replace these placeholders with your actual proxy details. Keep the quotes.
 PROXY_IP = "217.180.42.139"
 PROXY_PORT = "48642"
 PROXY_USER = "NQOgprvOa4fgcWw"
@@ -23,11 +23,11 @@ ARCHIVE_FOLDER = "data_archive"
 
 # --- Indicator Calculation Functions ---
 def calc_ema(values, period):
-    if not values or len(values) < period: return [None] * len(values)
+    if not isinstance(values, list) or len(values) < period: return [None] * len(values)
     return pd.Series(values).ewm(span=period, adjust=False).mean().tolist()
 
 def calc_rsi(values, period=14):
-    if len(values) < period + 1: return [None] * len(values)
+    if not isinstance(values, list) or len(values) < period + 1: return [None] * len(values)
     series = pd.Series(values)
     delta = series.diff()
     gain = (delta.where(delta > 0, 0)).ewm(alpha=1/period, adjust=False).mean()
@@ -38,10 +38,10 @@ def calc_rsi(values, period=14):
 def calc_macd(values, fast=12, slow=26, signal=9):
     ema_fast = pd.Series(values).ewm(span=fast, adjust=False).mean()
     ema_slow = pd.Series(values).ewm(span=slow, adjust=False).mean()
-    macd_line = (ema_fast - ema_slow).tolist()
-    signal_line = pd.Series(macd_line).ewm(span=signal, adjust=False).mean().tolist()
-    histogram = [(m - s) if m is not None and s is not None else None for m, s in zip(macd_line, signal_line)]
-    return {'macd': macd_line[-1], 'signal': signal_line[-1], 'histogram': histogram[-1]}
+    macd_line = (ema_fast - ema_slow)
+    signal_line = macd_line.ewm(span=signal, adjust=False).mean()
+    histogram = (macd_line - signal_line).tolist()
+    return {'macd': macd_line.iloc[-1], 'signal': signal_line.iloc[-1], 'histogram': histogram[-1]}
 
 def calc_bollinger(values, period=20, mult=2):
     if len(values) < period: return {'upper': None, 'middle': None, 'lower': None}
@@ -51,15 +51,18 @@ def calc_bollinger(values, period=20, mult=2):
     return {'upper': mean + (mult * std), 'middle': mean, 'lower': mean - (mult * std)}
     
 def calc_atr(highs, lows, closes, period=14):
-    if len(highs) < period: return None
-    tr_series = [max(h - l, abs(h - c_prev), abs(l - c_prev)) for h, l, c_prev in zip(highs[1:], lows[1:], closes[:-1])]
-    return pd.Series(tr_series).ewm(alpha=1/period, adjust=False).mean().iloc[-1]
+    if len(highs) < period + 1: return None
+    high_low = pd.Series(highs) - pd.Series(lows)
+    high_close = (pd.Series(highs) - pd.Series(closes).shift()).abs()
+    low_close = (pd.Series(lows) - pd.Series(closes).shift()).abs()
+    tr = pd.concat([high_low, high_close, low_close], axis=1).max(axis=1)
+    return tr.ewm(alpha=1/period, adjust=False).mean().iloc[-1]
 
 def calc_cci(highs, lows, closes, period=20):
     if len(highs) < period: return None
     tp_series = pd.Series([(h + l + c) / 3 for h, l, c in zip(highs, lows, closes)])
     mean = tp_series.rolling(window=period).mean().iloc[-1]
-    mean_dev = tp_series.rolling(window=period).apply(lambda x: pd.Series(x).mad(), raw=False).iloc[-1]
+    mean_dev = tp_series.rolling(window=period).apply(lambda x: (x - x.mean()).abs().mean(), raw=False).iloc[-1]
     if mean_dev == 0: return 0
     return (tp_series.iloc[-1] - mean) / (0.015 * mean_dev)
 
@@ -73,14 +76,18 @@ def calc_market_trend(closes):
     if ema20 < ema50: return -5
     return 0
 
-def calc_vol_profile(closes, highs, lows, volumes): # Simplified version
-    price_range = max(highs) - min(lows)
-    if price_range == 0: return {'bullish_score': 0, 'bearish_score': 0}
-    poc = pd.Series(volumes, index=pd.Series(closes)).groupby(pd.cut(pd.Series(closes), bins=10)).sum().idxmax().mid
-    current_price = closes[-1]
-    if current_price > poc: return {'bullish_score': 3, 'bearish_score': 0}
-    if current_price < poc: return {'bullish_score': 0, 'bearish_score': 3}
-    return {'bullish_score': 5, 'bearish_score': 5}
+def calc_vol_profile(closes, highs, lows, volumes):
+    try:
+        df = pd.DataFrame({'price': closes, 'volume': volumes})
+        price_range = max(highs) - min(lows)
+        if price_range == 0: return {'bullish_score': 0, 'bearish_score': 0}
+        poc = df.groupby(pd.cut(df['price'], bins=10))['volume'].sum().idxmax().mid
+        current_price = closes[-1]
+        if current_price > poc: return {'bullish_score': 3, 'bearish_score': 0}
+        if current_price < poc: return {'bullish_score': 0, 'bearish_score': 3}
+        return {'bullish_score': 5, 'bearish_score': 5}
+    except:
+        return {'bullish_score': 1, 'bearish_score': 1} # Default on error
 
 # --- Data Fetching Functions ---
 def fetch_top_volume_coins(limit=70):
@@ -89,7 +96,7 @@ def fetch_top_volume_coins(limit=70):
         response = requests.get(url, proxies=proxies, timeout=30)
         response.raise_for_status()
         data = response.json()
-        usdt_pairs = [t for t in data if t['symbol'].endswith('USDT')]
+        usdt_pairs = [t for t in data if 'symbol' in t and t['symbol'].endswith('USDT')]
         return [c['symbol'] for c in sorted(usdt_pairs, key=lambda x: float(x['quoteVolume']), reverse=True)[:limit]]
     except Exception as e:
         print(f"Error fetching top coins: {e}")
@@ -108,9 +115,8 @@ def fetch_binance_data(symbol, timeframe='5m', limit=100):
 
 # --- Core Analysis Function ("The 2nd Amendment") ---
 def analyze_data(symbol, data5m, market_trend):
-    """Core analysis function with V2.3 logic."""
     if len(data5m) < 50: return None
-    highs, lows, closes = [list(c) for c in zip(*data5m)]
+    opens, highs, lows, closes, volumes = [list(c) for c in zip(*data5m)]
     current_price = closes[-1]
 
     # Calculate Indicators
@@ -119,18 +125,18 @@ def analyze_data(symbol, data5m, market_trend):
     latest_cci = calc_cci(highs, lows, closes)
     latest_macd_obj = calc_macd(closes)
     latest_atr = calc_atr(highs, lows, closes)
-    latest_vol_profile = calc_vol_profile(closes, highs, lows, [d[4] for d in data5m]) # volumes are at index 4
+    latest_vol_profile = calc_vol_profile(closes, highs, lows, volumes)
     latest_ema50 = calc_ema(closes, 50)[-1]
     
     buy_score, sell_score, veto_applied = 0, 0, False
 
     # 1. Core Mean-Reversion Scoring
-    if latest_boll['lower'] and current_price <= latest_boll['lower']: buy_score += 35
+    if latest_boll.get('lower') and current_price <= latest_boll['lower']: buy_score += 35
     if latest_rsi and latest_rsi <= 30: buy_score += 30
     elif latest_rsi and 30 < latest_rsi <= 40: buy_score += 15
     if latest_cci and latest_cci >= 100: buy_score += 25
 
-    if latest_boll['upper'] and current_price >= latest_boll['upper']: sell_score += 35
+    if latest_boll.get('upper') and current_price >= latest_boll['upper']: sell_score += 35
     if latest_rsi and latest_rsi >= 70: sell_score += 30
     elif latest_rsi and 60 <= latest_rsi < 70: sell_score += 15
     if latest_cci and latest_cci <= -100: sell_score += 25
@@ -149,47 +155,38 @@ def analyze_data(symbol, data5m, market_trend):
     if vol_profile_score == 0:
         buy_score -= 50; sell_score -= 50; veto_applied = True
 
-    if latest_macd_obj['histogram'] and latest_macd_obj['histogram'] > 0 and sell_score > buy_score:
+    if latest_macd_obj.get('histogram') and latest_macd_obj['histogram'] > 0 and sell_score > buy_score:
         sell_score -= 45; veto_applied = True
     
-    # 4. FINAL SIGNAL DETERMINATION (V2.3 Logic)
+    # 4. Final Signal Determination
     signal_type = "Neutral"
     STRONG_THRESHOLD = 25
-
-    if buy_score > sell_score: # Bullish case
-        if buy_score >= STRONG_THRESHOLD:
-            signal_type = "Strong Buy"
-        elif buy_score > 0:
-            signal_type = "Buy"
-    elif sell_score > buy_score: # Bearish case
-        if sell_score >= STRONG_THRESHOLD:
-            signal_type = "Strong Sell"
-        elif sell_score > 0:
-            signal_type = "Sell"
+    if buy_score > sell_score:
+        if buy_score >= STRONG_THRESHOLD: signal_type = "Strong Buy"
+        elif buy_score > 0: signal_type = "Buy"
+    elif sell_score > buy_score:
+        if sell_score >= STRONG_THRESHOLD: signal_type = "Strong Sell"
+        elif sell_score > 0: signal_type = "Sell"
 
     if veto_applied and "Strong" in signal_type:
         signal_type = "Buy" if signal_type == "Strong Buy" else "Sell"
     
     # 5. TP/SL, Leverage, and Profit Calculation
-    sl_factor, tp_factor = 1.5, 1.5
-    effective_atr = latest_atr if latest_atr and latest_atr > 0 else current_price * 0.002
-    
-    tp, sl = current_price, current_price
-    if "Buy" in signal_type:
-        tp = current_price + (effective_atr * tp_factor)
-        sl = current_price - (effective_atr * sl_factor)
-    elif "Sell" in signal_type:
-        tp = current_price - (effective_atr * tp_factor)
-        sl = current_price + (effective_atr * sl_factor)
-
     pop = 50
     if "Buy" in signal_type: pop = min(100, round((buy_score / (buy_score + abs(sell_score) or 1)) * 100))
     elif "Sell" in signal_type: pop = min(100, round((sell_score / (abs(buy_score) + sell_score or 1)) * 100))
     
     leverage = 5
-    if pop >= 80: leverage = 9
-    elif pop >= 65: leverage = 7
-    elif pop >= 50: leverage = 6
+    if pop >= 80: leverage = 9; elif pop >= 65: leverage = 7; elif pop >= 50: leverage = 6
+    
+    sl_factor, tp_factor = 1.5, 1.5
+    effective_atr = latest_atr if latest_atr and latest_atr > 0 else current_price * 0.002
+    
+    tp, sl = current_price, current_price
+    if "Buy" in signal_type:
+        tp, sl = current_price + (effective_atr * tp_factor), current_price - (effective_atr * sl_factor)
+    elif "Sell" in signal_type:
+        tp, sl = current_price - (effective_atr * tp_factor), current_price + (effective_atr * sl_factor)
     
     profit_pct = abs(((tp - current_price) / current_price) * 100 * leverage) if current_price > 0 else 0
 
@@ -206,15 +203,15 @@ def analyze_data(symbol, data5m, market_trend):
                       "cci5m": latest_cci, "marketTrend": market_trend, "volProfile": latest_vol_profile,
                       "ema50_5m": latest_ema50 }
     }
+
 # --- Main Execution Block ---
 if __name__ == "__main__":
     print("Starting automated data fetch...")
     top_coins = fetch_top_volume_coins()
     if not top_coins:
-        print("Could not fetch top coins. Exiting.")
-        exit()
-    print(f"Found {len(top_coins)} coins to analyze.")
+        print("Could not fetch top coins. Exiting."); exit()
     
+    print(f"Found {len(top_coins)} coins to analyze.")
     btc_data = fetch_binance_data("BTCUSDT")
     market_trend = calc_market_trend([d[3] for d in btc_data]) # index 3 is close
     print(f"Market Trend determined: {market_trend}")
@@ -240,14 +237,12 @@ if __name__ == "__main__":
         os.makedirs(ARCHIVE_FOLDER, exist_ok=True)
         archive_filepath = os.path.join(ARCHIVE_FOLDER, archive_filename)
         
-        with open(archive_filepath, 'w') as f:
+        with open(archive_filepath, 'w', encoding='utf-8') as f:
             json.dump(all_results, f, indent=2)
         print(f"SUCCESS: Archive file saved to {archive_filepath}")
         
-        with open(LIVE_FILENAME, 'w') as f:
+        with open(LIVE_FILENAME, 'w', encoding='utf-8') as f:
             json.dump(all_results, f, indent=2)
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo strong signals found. No file will be saved.")
-
-
