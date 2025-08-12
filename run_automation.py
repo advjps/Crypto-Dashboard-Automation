@@ -169,23 +169,31 @@ def analyze_data(symbol, data5m, market_trend):
     if latest_macd_obj.get('histogram') and latest_macd_obj['histogram'] > 0 and sell_score > buy_score:
         sell_score -= 45; veto_applied = True
     
-    # 4. Final Signal Determination
+   # 4. Final Signal Determination (V2.3 Logic)
     signal_type = "Neutral"
     STRONG_THRESHOLD = 25
-    if buy_score > sell_score:
-        if buy_score >= STRONG_THRESHOLD: signal_type = "Strong Buy"
-        elif buy_score > 0: signal_type = "Buy"
-    elif sell_score > buy_score:
-        if sell_score >= STRONG_THRESHOLD: signal_type = "Strong Sell"
-        elif sell_score > 0: signal_type = "Sell"
+
+    if buy_score > sell_score: # Bullish case
+        if buy_score >= STRONG_THRESHOLD:
+            signal_type = "Strong Buy"
+        elif buy_score > 0:
+            signal_type = "Buy"
+    elif sell_score > buy_score: # Bearish case
+        if sell_score >= STRONG_THRESHOLD:
+            signal_type = "Strong Sell"
+        elif sell_score > 0:
+            signal_type = "Sell"
 
     if veto_applied and "Strong" in signal_type:
         signal_type = "Buy" if signal_type == "Strong Buy" else "Sell"
     
     # 5. TP/SL, Leverage, and Profit Calculation
     pop = 50
-    if "Buy" in signal_type: pop = min(100, round((buy_score / (buy_score + abs(sell_score) or 1)) * 100))
-    elif "Sell" in signal_type: pop = min(100, round((sell_score / (abs(buy_score) + sell_score or 1)) * 100))
+    if "Buy" in signal_type:
+        pop = min(100, round((buy_score / (buy_score + abs(sell_score) or 1)) * 100))
+    elif "Sell" in signal_type:
+        pop = min(100, round((sell_score / (abs(buy_score) + sell_score or 1)) * 100))
+    pop = max(0, pop) # Ensure pop is never negative
     
     leverage = 5
     if pop >= 80:
@@ -209,7 +217,7 @@ def analyze_data(symbol, data5m, market_trend):
     # 6. Final Veto based on Profit %
     if profit_pct > 7.0 and "Strong" in signal_type:
         signal_type = "Neutral"
-
+        
     return {
       "coin": symbol, "price": current_price, "tp": f"{tp:.4f}", "sl": f"{sl:.4f}",
       "leverage": f"{leverage}x", "pop": max(0, pop), "rsi": latest_rsi,
@@ -262,4 +270,5 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo strong signals found. No file will be saved.")
+
 
