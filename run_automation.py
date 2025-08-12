@@ -242,11 +242,19 @@ if __name__ == "__main__":
 
     all_results, strong_signals = [], []
     for coin in top_coins:
-        print(f" - Analyzing {coin}...")
+        # This is the new logic to handle '1000x' coins
+        spot_symbol = coin
+        if spot_symbol.startswith('1000'):
+            spot_symbol = spot_symbol[4:] # Removes the '1000' prefix
+        
+        print(f" - Analyzing {coin} (using spot symbol: {spot_symbol})...")
         time.sleep(0.2)
-        data_5m = fetch_binance_data(coin)
+        
+        # We use the corrected spot_symbol to fetch data
+        data_5m = fetch_binance_data(spot_symbol)
         if not data_5m: continue
         
+        # We pass the original `coin` name so the JSON output is clear
         result = analyze_data(coin, data_5m, market_trend)
         if result:
             all_results.append(result)
