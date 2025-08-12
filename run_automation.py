@@ -23,11 +23,13 @@ ARCHIVE_FOLDER = "data_archive"
 
 # --- Indicator Calculation Functions ---
 def calc_ema(values, period):
-    if not isinstance(values, list) or len(values) < period: return [None] * len(values)
+    if not isinstance(values, list) or len(values) < period:
+        return [None] * len(values)
     return pd.Series(values).ewm(span=period, adjust=False).mean().tolist()
 
 def calc_rsi(values, period=14):
-    if not isinstance(values, list) or len(values) < period + 1: return [None] * len(values)
+    if not isinstance(values, list) or len(values) < period + 1:
+        return [None] * len(values)
     series = pd.Series(values)
     delta = series.diff()
     gain = (delta.where(delta > 0, 0)).ewm(alpha=1/period, adjust=False).mean()
@@ -44,14 +46,16 @@ def calc_macd(values, fast=12, slow=26, signal=9):
     return {'macd': macd_line.iloc[-1], 'signal': signal_line.iloc[-1], 'histogram': histogram[-1]}
 
 def calc_bollinger(values, period=20, mult=2):
-    if len(values) < period: return {'upper': None, 'middle': None, 'lower': None}
+    if len(values) < period:
+        return {'upper': None, 'middle': None, 'lower': None}
     series = pd.Series(values)
     mean = series.rolling(window=period).mean().iloc[-1]
     std = series.rolling(window=period).std().iloc[-1]
     return {'upper': mean + (mult * std), 'middle': mean, 'lower': mean - (mult * std)}
     
 def calc_atr(highs, lows, closes, period=14):
-    if len(highs) < period + 1: return None
+    if len(highs) < period + 1:
+        return None
     high_low = pd.Series(highs) - pd.Series(lows)
     high_close = (pd.Series(highs) - pd.Series(closes).shift()).abs()
     low_close = (pd.Series(lows) - pd.Series(closes).shift()).abs()
@@ -59,17 +63,21 @@ def calc_atr(highs, lows, closes, period=14):
     return tr.ewm(alpha=1/period, adjust=False).mean().iloc[-1]
 
 def calc_cci(highs, lows, closes, period=20):
-    if len(highs) < period: return None
+    if len(highs) < period:
+        return None
     tp_series = pd.Series([(h + l + c) / 3 for h, l, c in zip(highs, lows, closes)])
     mean = tp_series.rolling(window=period).mean().iloc[-1]
     mean_dev = tp_series.rolling(window=period).apply(lambda x: (x - x.mean()).abs().mean(), raw=False).iloc[-1]
-    if mean_dev == 0: return 0
+    if mean_dev == 0:
+        return 0
     return (tp_series.iloc[-1] - mean) / (0.015 * mean_dev)
 
 def calc_market_trend(closes):
-    if len(closes) < 50: return 0
+    if len(closes) < 50:
+        return 0
     ema20, ema50 = calc_ema(closes, 20)[-1], calc_ema(closes, 50)[-1]
-    if ema20 is None or ema50 is None: return 0
+    if ema20 is None or ema50 is None:
+        return 0
     if ema20 > ema50 and closes[-1] > ema20: return 10
     if ema20 > ema50: return 5
     if ema20 < ema50 and closes[-1] < ema20: return -10
@@ -80,14 +88,15 @@ def calc_vol_profile(closes, highs, lows, volumes):
     try:
         df = pd.DataFrame({'price': closes, 'volume': volumes})
         price_range = max(highs) - min(lows)
-        if price_range == 0: return {'bullish_score': 0, 'bearish_score': 0}
+        if price_range == 0:
+            return {'bullish_score': 0, 'bearish_score': 0}
         poc = df.groupby(pd.cut(df['price'], bins=10))['volume'].sum().idxmax().mid
         current_price = closes[-1]
         if current_price > poc: return {'bullish_score': 3, 'bearish_score': 0}
         if current_price < poc: return {'bullish_score': 0, 'bearish_score': 3}
         return {'bullish_score': 5, 'bearish_score': 5}
     except:
-        return {'bullish_score': 1, 'bearish_score': 1} # Default on error
+        return {'bullish_score': 1, 'bearish_score': 1}
 
 # --- Data Fetching Functions ---
 def fetch_top_volume_coins(limit=70):
@@ -108,14 +117,15 @@ def fetch_binance_data(symbol, timeframe='5m', limit=100):
         response = requests.get(url, proxies=proxies, timeout=30)
         response.raise_for_status()
         data = response.json()
-        return [(float(d[1]), float(d[2]), float(d[3]), float(d[4]), float(d[5])) for d in data] # open, high, low, close, volume
+        return [(float(d[1]), float(d[2]), float(d[3]), float(d[4]), float(d[5])) for d in data]
     except Exception as e:
         print(f"  - Could not fetch data for {symbol}: {e}")
         return []
 
 # --- Core Analysis Function ("The 2nd Amendment") ---
 def analyze_data(symbol, data5m, market_trend):
-    if len(data5m) < 50: return None
+    if len(data5m) < 50:
+        return None
     opens, highs, lows, closes, volumes = [list(c) for c in zip(*data5m)]
     current_price = closes[-1]
 
@@ -177,12 +187,12 @@ def analyze_data(symbol, data5m, market_trend):
     elif "Sell" in signal_type: pop = min(100, round((sell_score / (abs(buy_score) + sell_score or 1)) * 100))
     
     leverage = 5
-if pop >= 80:
-    leverage = 9
-elif pop >= 65:
-    leverage = 7
-elif pop >= 50:
-    leverage = 6
+    if pop >= 80:
+        leverage = 9
+    elif pop >= 65:
+        leverage = 7
+    elif pop >= 50:
+        leverage = 6
     
     sl_factor, tp_factor = 1.5, 1.5
     effective_atr = latest_atr if latest_atr and latest_atr > 0 else current_price * 0.002
@@ -251,4 +261,3 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo strong signals found. No file will be saved.")
-
