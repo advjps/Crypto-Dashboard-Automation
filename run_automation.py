@@ -166,6 +166,13 @@ def analyze_data(symbol, data5m, market_trend):
     latest_ema50 = get_last_valid_value(calc_ema(closes, 50))
     latest_macd_hist = macd_obj["histogram"]
 
+    # Place this block immediately after the "Indicator Calculation" section
+    # --- NEW: Data Quality Check ---
+    # If essential indicators failed to calculate, bypass the coin entirely.
+    if latest_rsi is None or latest_cci is None or boll.get("lower") is None:
+        print(f"    - Bypassing {symbol} due to insufficient indicator data.")
+        return None # Return None to skip this coin
+
     # ==================================================================
     # ### SCORING SYSTEM V3.0 ('The 3rd Amendment') ###
     # ==================================================================
@@ -367,6 +374,7 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
 
