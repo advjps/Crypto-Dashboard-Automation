@@ -99,7 +99,17 @@ def fetch_binance_data(symbol, timeframe='5m', limit=100):
         response = requests.get(url, proxies=proxies, timeout=30)
         response.raise_for_status()
         data = response.json()
-        return [(float(d[1]), float(d[2]), float(d[3]), float(d[4]), float(d[5])) for d in data]
+        # This is the corrected line that returns a list of dictionaries
+return [
+    {
+        "open": float(d[1]),
+        "high": float(d[2]),
+        "low": float(d[3]),
+        "close": float(d[4]),
+        "volume": float(d[5])
+    }
+    for d in data
+]
     except Exception as e:
         print(f"  - Could not fetch data for {symbol}: {e}")
         return []
@@ -337,4 +347,5 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
