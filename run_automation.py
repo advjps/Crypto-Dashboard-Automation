@@ -93,23 +93,30 @@ def fetch_top_volume_coins(limit=70):
     except Exception as e:
         print(f"Error fetching top coins: {e}")
         return []
+# In run_automation.py
+
 def fetch_binance_data(symbol, timeframe='5m', limit=100):
+    """Fetches and formats kline data from Binance Futures."""
     try:
         url = f"https://fapi.binance.com/fapi/v1/klines?symbol={symbol}&interval={timeframe}&limit={limit}"
-        response = requests.get(url, proxies=proxies, timeout=30)
+        # Make sure proxies are defined if you need them
+        response = requests.get(url, proxies=proxies, timeout=30) 
         response.raise_for_status()
         data = response.json()
-        # This is the corrected line that returns a list of dictionaries
-return [
-    {
-        "open": float(d[1]),
-        "high": float(d[2]),
-        "low": float(d[3]),
-        "close": float(d[4]),
-        "volume": float(d[5])
-    }
-    for d in data
-]
+        
+        # --- CORRECTED SECTION ---
+        # This entire block must be indented inside the 'try'
+        return [
+            {
+                "open": float(d[1]),
+                "high": float(d[2]),
+                "low": float(d[3]),
+                "close": float(d[4]),
+                "volume": float(d[5])
+            }
+            for d in data
+        ]
+    # The 'except' must be at the same indentation level as 'try'
     except Exception as e:
         print(f"  - Could not fetch data for {symbol}: {e}")
         return []
@@ -347,5 +354,6 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
