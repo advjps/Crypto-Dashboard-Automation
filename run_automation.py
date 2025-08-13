@@ -104,75 +104,186 @@ def fetch_binance_data(symbol, timeframe='5m', limit=100):
         print(f"  - Could not fetch data for {symbol}: {e}")
         return []
 def analyze_data(symbol, data5m, market_trend):
-    # [This function remains the same as the complete version from the last fix]
-    # ...
-    if len(data5m) < 50: return None
-    opens, highs, lows, closes, volumes = [list(c) for c in zip(*data5m)]
-    current_price = closes[-1]
-    latest_rsi = calc_rsi(closes)[-1] if calc_rsi(closes) else None
-    latest_boll = calc_bollinger(closes)
-    latest_cci = calc_cci(highs, lows, closes)
-    latest_macd_obj = calc_macd(closes)
-    latest_atr = calc_atr(highs, lows, closes)
-    latest_vol_profile = calc_vol_profile(closes, highs, lows, volumes)
-    latest_ema50 = calc_ema(closes, 50)[-1] if calc_ema(closes, 50) else None
-    buy_score, sell_score, veto_applied = 0, 0, False
-    if latest_boll.get('lower') and current_price <= latest_boll['lower']: buy_score += 35
-    if latest_rsi and latest_rsi <= 30: buy_score += 30
-    elif latest_rsi and 30 < latest_rsi <= 40: buy_score += 15
-    if latest_cci and latest_cci >= 100: buy_score += 25
-    if latest_boll.get('upper') and current_price >= latest_boll['upper']: sell_score += 35
-    if latest_rsi and latest_rsi >= 70: sell_score += 30
-    elif latest_rsi and 60 <= latest_rsi < 70: sell_score += 15
-    if latest_cci and latest_cci <= -100: sell_score += 25
-    if latest_ema50 and current_price > latest_ema50: buy_score += 1
-    if latest_ema50 and current_price < latest_ema50: sell_score += 1
-    if market_trend <= -10: buy_score = -999; veto_applied = True
-    elif market_trend >= 10: sell_score = -999; veto_applied = True
-    elif market_trend <= -5: sell_score += 15; buy_score -= 10
-    elif market_trend >= 5: buy_score += 15; sell_score -= 10
-    vol_profile_score = latest_vol_profile['bullish_score'] if buy_score > sell_score else latest_vol_profile['bearish_score']
-    if vol_profile_score == 0:
-        buy_score -= 50; sell_score -= 50; veto_applied = True
-    if latest_macd_obj.get('histogram') and latest_macd_obj['histogram'] > 0 and sell_score > buy_score:
-        sell_score -= 45; veto_applied = True
-    signal_type = "Neutral"
-    STRONG_THRESHOLD = 25
-    if buy_score > sell_score:
-        if buy_score >= STRONG_THRESHOLD: signal_type = "Strong Buy"
-        elif buy_score > 0: signal_type = "Buy"
-    elif sell_score > buy_score:
-        if sell_score >= STRONG_THRESHOLD: signal_type = "Strong Sell"
-        elif sell_score > 0: signal_type = "Sell"
-    if veto_applied and "Strong" in signal_type:
-        signal_type = "Buy" if signal_type == "Strong Buy" else "Sell"
-    pop = 50
-    if "Buy" in signal_type: pop = min(100, round((buy_score / (buy_score + abs(sell_score) or 1)) * 100))
-    elif "Sell" in signal_type: pop = min(100, round((sell_score / (abs(buy_score) + sell_score or 1)) * 100))
-    leverage = 5
-    if pop >= 80: leverage = 9
-    elif pop >= 65: leverage = 7
-    elif pop >= 50: leverage = 6
-    sl_factor, tp_factor = 1.5, 1.5
-    effective_atr = latest_atr if latest_atr and latest_atr > 0 else current_price * 0.002
-    tp, sl = current_price, current_price
-    if "Buy" in signal_type:
-        tp, sl = current_price + (effective_atr * tp_factor), current_price - (effective_atr * sl_factor)
-    elif "Sell" in signal_type:
-        tp, sl = current_price - (effective_atr * tp_factor), current_price + (effective_atr * sl_factor)
-    profit_pct = abs(((tp - current_price) / current_price) * 100 * leverage) if current_price > 0 else 0
-    if profit_pct > 7.0 and "Strong" in signal_type:
-        signal_type = "Neutral"
-    return {
-      "coin": symbol, "price": current_price, "tp": f"{tp:.4f}", "sl": f"{sl:.4f}",
-      "leverage": f"{leverage}x", "pop": max(0, pop), "rsi": latest_rsi,
-      "estimated_profit": f"{profit_pct:.2f}%", "signal": signal_type,
-      "volProfile": latest_vol_profile,
-      "indicators": { "rsi5m": latest_rsi, "macd5m": latest_macd_obj, "boll5m": latest_boll,
-                      "cci5m": latest_cci, "marketTrend": market_trend, "volProfile": latest_vol_profile,
-                      "ema50_5m": latest_ema50 }
-    }
+    # --- Data Extraction & Initial Checks ---
+    if not data5m or len(data5m) < 50:
+        return {
+            "coin": symbol,
+            "signal": "Neutral",
+            "pop": 50,
+            "ema_boost_applied": False
+        }
 
+    current_price = data5m[-1]["close"]
+    if not current_price:
+        return {
+            "coin": symbol,
+            "signal": "Neutral",
+            "pop": 50,
+            "ema_boost_applied": False
+        }
+
+    closes = [d["close"] for d in data5m]
+    highs = [d["high"] for d in data5m]
+    lows = [d["low"] for d in data5m]
+    volumes = [d["volume"] for d in data5m]
+
+    # --- Indicator Calculation ---
+    latest_rsi = get_last_valid_value(calc_rsi(closes, 14))
+    macd_obj = calc_macd(closes, 12, 26, 9)
+    boll = calc_bollinger(closes, 20, 2)
+    atr = calc_atr(highs, lows, closes, 14)
+    latest_cci = calc_cci(highs, lows, closes, 20)
+    vol_profile_scores = calc_volume_profile(closes, highs, lows, volumes)
+    latest_ema50 = get_last_valid_value(calc_ema(closes, 50))
+    latest_macd_hist = macd_obj["latest"]["histogram"]
+
+    # ==================================================================
+    # ### SCORING SYSTEM V3.0 ('The 3rd Amendment') ###
+    # ==================================================================
+
+    # --- 1. Initial Scoring ---
+    buy_score = 0
+    sell_score = 0
+
+    if current_price <= boll["lower"]:
+        buy_score += 35
+    if latest_rsi <= 30:
+        buy_score += 30
+    elif 30 < latest_rsi <= 40:
+        buy_score += 15
+    if latest_cci >= 100:
+        buy_score += 25
+
+    if current_price >= boll["upper"]:
+        sell_score += 35
+    if latest_rsi >= 70:
+        sell_score += 30
+    elif 60 <= latest_rsi < 70:
+        sell_score += 15
+    if latest_cci <= -100:
+        sell_score += 25
+
+    # Market trend influence
+    if market_trend <= -5:
+        sell_score += 15
+        buy_score -= 10
+    elif market_trend >= 5:
+        buy_score += 15
+        sell_score -= 10
+
+    # --- 2. Strong Gating & Hard Vetoes ---
+    signal_type = "Neutral"
+    is_strong = False
+    BASE_SCORE_THRESHOLD = 20
+
+    if buy_score > sell_score and buy_score > 0:
+        signal_type = "Buy"
+
+        buy_confluence = (
+            (latest_rsi <= 30)
+            + (current_price <= boll["lower"])
+            + (latest_cci >= 100)
+        ) >= 2
+
+        passes_buy_vetoes = (
+            buy_score >= BASE_SCORE_THRESHOLD
+            and vol_profile_scores["bullish_score"] > 0
+            and market_trend >= 0  # block counter-trend
+        )
+
+        if buy_confluence and passes_buy_vetoes:
+            is_strong = True
+            signal_type = "Strong Buy"
+
+    elif sell_score > buy_score and sell_score > 0:
+        signal_type = "Sell"
+
+        sell_confluence = (
+            (latest_rsi >= 70)
+            + (current_price >= boll["upper"])
+            + (latest_cci <= -100)
+        ) >= 2
+
+        passes_sell_vetoes = (
+            sell_score >= BASE_SCORE_THRESHOLD
+            and vol_profile_scores["bearish_score"] > 0
+            and market_trend <= 0  # block counter-trend
+            and latest_macd_hist <= 0  # block if MACD bullish
+        )
+
+        if sell_confluence and passes_sell_vetoes:
+            is_strong = True
+            signal_type = "Strong Sell"
+
+    # --- 3. Risk Management ---
+    tp_factor = 1.8
+    sl_factor = 1.8
+    effective_atr = atr if atr and atr > 0 else current_price * 0.002
+
+    if "Buy" in signal_type:
+        tp = current_price + (effective_atr * tp_factor)
+        sl = current_price - (effective_atr * sl_factor)
+    else:
+        tp = current_price - (effective_atr * tp_factor)
+        sl = current_price + (effective_atr * sl_factor)
+
+    leverage = 5  # default
+    profit_pct = abs(((tp - current_price) / current_price) * 100 * leverage)
+
+    # --- 4. Profit Ceiling Veto ---
+    if is_strong and profit_pct > 5.0:
+        signal_type = signal_type.replace("Strong ", "")
+        is_strong = False
+
+    # --- 5. POP Calculation ---
+    if "Buy" in signal_type:
+        pop = min(100, round((buy_score / ((buy_score + abs(sell_score)) or 1)) * 100))
+    elif "Sell" in signal_type:
+        pop = min(100, round((sell_score / ((abs(buy_score) + sell_score) or 1)) * 100))
+    else:
+        pop = 50
+
+    pop = max(0, pop)
+
+    # --- 6. EMA50 POP Boost (Experimental) ---
+    ema_boost_applied = False
+    if is_strong:
+        if "Buy" in signal_type and current_price > latest_ema50:
+            pop = min(100, round(pop * 1.10))
+            ema_boost_applied = True
+        elif "Sell" in signal_type and current_price < latest_ema50:
+            pop = min(100, round(pop * 1.10))
+            ema_boost_applied = True
+
+    # --- 7. Leverage after Boost ---
+    if pop >= 80:
+        leverage = 9
+    elif pop >= 65:
+        leverage = 7
+    elif pop >= 50:
+        leverage = 6
+
+    # --- 8. Return Object ---
+    return {
+        "coin": symbol,
+        "price": round(current_price, 4),
+        "tp": round(tp, 4),
+        "sl": round(sl, 4),
+        "leverage": f"{leverage}x",
+        "pop": pop,
+        "signal": signal_type,
+        "ema_boost_applied": ema_boost_applied,
+        "estimated_profit": f"{profit_pct:.2f}%",
+        "indicators": {
+            "rsi5m": latest_rsi,
+            "macd5m": macd_obj["latest"],
+            "boll5m": boll,
+            "cci5m": latest_cci,
+            "marketTrend": market_trend,
+            "volProfile": vol_profile_scores,
+            "ema50_5m": latest_ema50
+        }
+    }
 
 # --- Main Execution Block ---
 if __name__ == "__main__":
@@ -226,3 +337,4 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
