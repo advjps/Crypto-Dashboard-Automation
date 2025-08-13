@@ -33,13 +33,17 @@ def calc_rsi(values, period=14):
     loss = (-delta.where(delta < 0, 0)).ewm(alpha=1/period, adjust=False).mean()
     rs = gain / loss
     return (100 - (100 / (1 + rs))).tolist()
+# In run_automation.py
 def get_last_valid_value(values):
     """Iterates backwards through a list to find the last valid number."""
+    # The 'for' loop starts a new block
     for value in reversed(values):
-    # Check if the value is a valid number (not None or NaN)
-    if value is not None and not math.isnan(value):
-    return value
-    return None # Return None if no valid number is found
+        # This 'if' statement MUST be indented to be inside the loop
+        if value is not None and not math.isnan(value):
+            # This 'return' must be indented to be inside the 'if'
+            return value
+    # This 'return' is outside the loop and runs if no valid value was found
+    return None
 def calc_macd(values, fast=12, slow=26, signal=9):
     series = pd.Series(values)
     ema_fast = series.ewm(span=fast, adjust=False).mean()
@@ -363,6 +367,7 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
 
