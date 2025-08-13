@@ -313,7 +313,8 @@ if __name__ == "__main__":
     print(f"Found {len(top_coins)} coins to analyze.")
     
     btc_data = fetch_binance_data("BTCUSDT")
-    market_trend = calc_market_trend([d[3] for d in btc_data])
+    # This is the corrected line using the dictionary key
+market_trend = calc_market_trend([d["close"] for d in btc_data])
     print(f"Market Trend determined: {market_trend}")
 
     all_results = []
@@ -354,6 +355,7 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
 
