@@ -164,7 +164,7 @@ def analyze_data(symbol, data5m, market_trend):
     latest_cci = calc_cci(highs, lows, closes, 20)
     vol_profile_scores = calc_vol_profile(closes, highs, lows, volumes)
     latest_ema50 = get_last_valid_value(calc_ema(closes, 50))
-    latest_macd_hist = macd_obj["latest"]["histogram"]
+    latest_macd_hist = macd_obj["histogram"]
 
     # ==================================================================
     # ### SCORING SYSTEM V3.0 ('The 3rd Amendment') ###
@@ -367,6 +367,7 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
 
