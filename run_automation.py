@@ -5,6 +5,7 @@ import json
 from datetime import datetime
 import time
 import os
+import math
 import pytz # <-- New import for time zones
 
 # --- PROXY CONFIGURATION ---
@@ -32,6 +33,13 @@ def calc_rsi(values, period=14):
     loss = (-delta.where(delta < 0, 0)).ewm(alpha=1/period, adjust=False).mean()
     rs = gain / loss
     return (100 - (100 / (1 + rs))).tolist()
+def get_last_valid_value(values):
+    """Iterates backwards through a list to find the last valid number."""
+    for value in reversed(values):
+    # Check if the value is a valid number (not None or NaN)
+    if value is not None and not math.isnan(value):
+    return value
+    return None # Return None if no valid number is found
 def calc_macd(values, fast=12, slow=26, signal=9):
     series = pd.Series(values)
     ema_fast = series.ewm(span=fast, adjust=False).mean()
@@ -355,6 +363,7 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
 
