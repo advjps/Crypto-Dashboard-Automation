@@ -305,7 +305,7 @@ def analyze_data(symbol, data5m, market_trend):
         "estimated_profit": f"{profit_pct:.2f}%",
         "indicators": {
             "rsi5m": latest_rsi,
-            "macd5m": macd_obj["latest"],
+            "macd5m": macd_obj,
             "boll5m": boll,
             "cci5m": latest_cci,
             "marketTrend": market_trend,
@@ -367,6 +367,7 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
 
