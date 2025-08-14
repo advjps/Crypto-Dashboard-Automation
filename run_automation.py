@@ -132,24 +132,20 @@ def fetch_binance_data(symbol, timeframe='5m', limit=100):
     except Exception as e:
         print(f"  - Could not fetch data for {symbol}: {e}")
         return []
+
+
 def analyze_data(symbol, data5m, market_trend):
+    """
+    Analyzes market data to generate a trading signal based on the "3rd Amendment"
+    strategy, now with enhanced logging for detailed backtest analysis.
+    """
     # --- Data Extraction & Initial Checks ---
     if not data5m or len(data5m) < 50:
-        return {
-            "coin": symbol,
-            "signal": "Neutral",
-            "pop": 50,
-            "ema_boost_applied": False
-        }
+        return None
 
     current_price = data5m[-1]["close"]
     if not current_price:
-        return {
-            "coin": symbol,
-            "signal": "Neutral",
-            "pop": 50,
-            "ema_boost_applied": False
-        }
+        return None
 
     closes = [d["close"] for d in data5m]
     highs = [d["high"] for d in data5m]
@@ -164,124 +160,136 @@ def analyze_data(symbol, data5m, market_trend):
     latest_cci = calc_cci(highs, lows, closes, 20)
     vol_profile_scores = calc_vol_profile(closes, highs, lows, volumes)
     latest_ema50 = get_last_valid_value(calc_ema(closes, 50))
-    latest_macd_hist = macd_obj["histogram"]
+    latest_macd_hist = macd_obj.get("histogram")
 
-    # Place this block immediately after the "Indicator Calculation" section
-    # --- NEW: Data Quality Check ---
-    # If essential indicators failed to calculate, bypass the coin entirely.
-    if latest_rsi is None or latest_cci is None or boll.get("lower") is None:
+    # --- Data Quality Check ---
+    if any(v is None for v in [latest_rsi, latest_cci, boll.get("lower"), latest_macd_hist]):
         print(f"    - Bypassing {symbol} due to insufficient indicator data.")
-        return None # Return None to skip this coin
+        return None
 
     # ==================================================================
-    # ### SCORING SYSTEM V3.0 ('The 3rd Amendment') ###
+    # ### ENHANCED LOGGING & ANALYSIS ###
     # ==================================================================
+    
+    analysis_log = {}
+    downgrade_reasons = []
 
     # --- 1. Initial Scoring ---
     buy_score = 0
     sell_score = 0
 
-    if current_price <= boll["lower"]:
-        buy_score += 35
-    if latest_rsi <= 30:
-        buy_score += 30
-    elif 30 < latest_rsi <= 40:
-        buy_score += 15
-    if latest_cci >= 100:
-        buy_score += 25
+    if current_price <= boll["lower"]: buy_score += 35
+    if latest_rsi <= 30: buy_score += 30
+    elif 30 < latest_rsi <= 40: buy_score += 15
+    if latest_cci >= 100: buy_score += 25
 
-    if current_price >= boll["upper"]:
-        sell_score += 35
-    if latest_rsi >= 70:
-        sell_score += 30
-    elif 60 <= latest_rsi < 70:
-        sell_score += 15
-    if latest_cci <= -100:
-        sell_score += 25
+    if current_price >= boll["upper"]: sell_score += 35
+    if latest_rsi >= 70: sell_score += 30
+    elif 60 <= latest_rsi < 70: sell_score += 15
+    if latest_cci <= -100: sell_score += 25
 
-    # Market trend influence
     if market_trend <= -5:
         sell_score += 15
         buy_score -= 10
     elif market_trend >= 5:
         buy_score += 15
         sell_score -= 10
+    
+    analysis_log['buy_score'] = round(buy_score)
+    analysis_log['sell_score'] = round(sell_score)
 
-    # --- 2. Strong Gating & Hard Vetoes ---
+    # --- 2. Gating, Vetoes & Detailed Logging ---
     signal_type = "Neutral"
     is_strong = False
     BASE_SCORE_THRESHOLD = 20
 
     if buy_score > sell_score and buy_score > 0:
         signal_type = "Buy"
+        analysis_log['initial_signal'] = "Buy"
 
-        buy_confluence = (
-            (latest_rsi <= 30)
-            + (current_price <= boll["lower"])
-            + (latest_cci >= 100)
-        ) >= 2
+        passes_base_score = buy_score >= BASE_SCORE_THRESHOLD
+        passes_confluence = ((latest_rsi <= 30) + (current_price <= boll["lower"]) + (latest_cci >= 100)) >= 2
+        passes_vol_profile = vol_profile_scores["bullish_score"] > 0
+        passes_market_trend = market_trend >= 0
 
-        passes_buy_vetoes = (
-            buy_score >= BASE_SCORE_THRESHOLD
-            and vol_profile_scores["bullish_score"] > 0
-            and market_trend >= 0  # block counter-trend
-        )
+        analysis_log['base_score_ok'] = passes_base_score
+        analysis_log['confluence_ok'] = passes_confluence
+        analysis_log['vol_profile_ok'] = passes_vol_profile
+        analysis_log['market_trend_ok'] = passes_market_trend
 
-        if buy_confluence and passes_buy_vetoes:
+        if passes_base_score and passes_confluence and passes_vol_profile and passes_market_trend:
             is_strong = True
             signal_type = "Strong Buy"
+            analysis_log['initial_signal'] = "Strong Buy"
 
     elif sell_score > buy_score and sell_score > 0:
         signal_type = "Sell"
+        analysis_log['initial_signal'] = "Sell"
 
-        sell_confluence = (
-            (latest_rsi >= 70)
-            + (current_price >= boll["upper"])
-            + (latest_cci <= -100)
-        ) >= 2
+        passes_base_score = sell_score >= BASE_SCORE_THRESHOLD
+        passes_confluence = ((latest_rsi >= 70) + (current_price >= boll["upper"]) + (latest_cci <= -100)) >= 2
+        passes_vol_profile = vol_profile_scores["bearish_score"] > 0
+        passes_market_trend = market_trend <= 0
+        passes_macd_conflict = latest_macd_hist <= 0
 
-        passes_sell_vetoes = (
-            sell_score >= BASE_SCORE_THRESHOLD
-            and vol_profile_scores["bearish_score"] > 0
-            and market_trend <= 0  # block counter-trend
-            and latest_macd_hist <= 0  # block if MACD bullish
-        )
+        analysis_log['base_score_ok'] = passes_base_score
+        analysis_log['confluence_ok'] = passes_confluence
+        analysis_log['vol_profile_ok'] = passes_vol_profile
+        analysis_log['market_trend_ok'] = passes_market_trend
+        analysis_log['macd_conflict_ok'] = passes_macd_conflict
 
-        if sell_confluence and passes_sell_vetoes:
+        if passes_base_score and passes_confluence and passes_vol_profile and passes_market_trend and passes_macd_conflict:
             is_strong = True
             signal_type = "Strong Sell"
+            analysis_log['initial_signal'] = "Strong Sell"
 
-    # --- 3. Risk Management ---
+    # --- 3. Risk Management & Profit Veto ---
     tp_factor = 1.8
     sl_factor = 1.8
+    leverage = 5
     effective_atr = atr if atr and atr > 0 else current_price * 0.002
-
+    
+    tp, sl = current_price, current_price
     if "Buy" in signal_type:
         tp = current_price + (effective_atr * tp_factor)
         sl = current_price - (effective_atr * sl_factor)
-    else:
+    elif "Sell" in signal_type:
         tp = current_price - (effective_atr * tp_factor)
         sl = current_price + (effective_atr * sl_factor)
+    
+    profit_pct = abs(((tp - current_price) / current_price) * 100 * leverage) if current_price > 0 else 0
+    passes_profit_ceiling = profit_pct <= 5.0
+    analysis_log['profit_ceiling_ok'] = passes_profit_ceiling
 
-    leverage = 5  # default
-    profit_pct = abs(((tp - current_price) / current_price) * 100 * leverage)
-
-    # --- 4. Profit Ceiling Veto ---
-    if is_strong and profit_pct > 5.0:
+    if is_strong and not passes_profit_ceiling:
         signal_type = signal_type.replace("Strong ", "")
         is_strong = False
+        downgrade_reasons.append("Profit Ceiling Veto")
 
-    # --- 5. POP Calculation ---
+    # --- 4. Populate Downgrade Reason ---
+    # Find the first check that failed to provide the primary reason
+    if analysis_log.get('initial_signal', 'Neutral') == 'Strong Buy' and not is_strong:
+        if not analysis_log.get('base_score_ok'): downgrade_reasons.append("Failed Base Score")
+        if not analysis_log.get('confluence_ok'): downgrade_reasons.append("Failed Confluence")
+        if not analysis_log.get('vol_profile_ok'): downgrade_reasons.append("Failed Vol Profile")
+        if not analysis_log.get('market_trend_ok'): downgrade_reasons.append("Failed Market Trend")
+    elif analysis_log.get('initial_signal', 'Neutral') == 'Strong Sell' and not is_strong:
+        if not analysis_log.get('base_score_ok'): downgrade_reasons.append("Failed Base Score")
+        if not analysis_log.get('confluence_ok'): downgrade_reasons.append("Failed Confluence")
+        if not analysis_log.get('vol_profile_ok'): downgrade_reasons.append("Failed Vol Profile")
+        if not analysis_log.get('market_trend_ok'): downgrade_reasons.append("Failed Market Trend")
+        if not analysis_log.get('macd_conflict_ok'): downgrade_reasons.append("Failed MACD Conflict")
+        
+    analysis_log['downgrade_reason'] = ", ".join(downgrade_reasons) if downgrade_reasons else "N/A"
+
+    # --- 5. POP Score & Final Leverage Calculation ---
+    pop = 50
     if "Buy" in signal_type:
         pop = min(100, round((buy_score / ((buy_score + abs(sell_score)) or 1)) * 100))
     elif "Sell" in signal_type:
         pop = min(100, round((sell_score / ((abs(buy_score) + sell_score) or 1)) * 100))
-    else:
-        pop = 50
-
     pop = max(0, pop)
 
-    # --- 6. EMA50 POP Boost (Experimental) ---
     ema_boost_applied = False
     if is_strong:
         if "Buy" in signal_type and current_price > latest_ema50:
@@ -290,16 +298,12 @@ def analyze_data(symbol, data5m, market_trend):
         elif "Sell" in signal_type and current_price < latest_ema50:
             pop = min(100, round(pop * 1.10))
             ema_boost_applied = True
+    
+    if pop >= 80: leverage = 9
+    elif pop >= 65: leverage = 7
+    elif pop >= 50: leverage = 6
 
-    # --- 7. Leverage after Boost ---
-    if pop >= 80:
-        leverage = 9
-    elif pop >= 65:
-        leverage = 7
-    elif pop >= 50:
-        leverage = 6
-
-    # --- 8. Return Object ---
+    # --- 6. Final Return Object ---
     return {
         "coin": symbol,
         "price": round(current_price, 4),
@@ -310,6 +314,7 @@ def analyze_data(symbol, data5m, market_trend):
         "signal": signal_type,
         "ema_boost_applied": ema_boost_applied,
         "estimated_profit": f"{profit_pct:.2f}%",
+        "analysis_log": analysis_log, # <-- NEW LOG OBJECT
         "indicators": {
             "rsi5m": latest_rsi,
             "macd5m": macd_obj,
@@ -374,6 +379,7 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
 
