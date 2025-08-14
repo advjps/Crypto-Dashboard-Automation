@@ -133,7 +133,6 @@ def fetch_binance_data(symbol, timeframe='5m', limit=100):
         print(f"  - Could not fetch data for {symbol}: {e}")
         return []
 
-
 def analyze_data(symbol, data5m, market_trend):
     """
     Analyzes market data to generate a trading signal based on the "3rd Amendment"
@@ -217,7 +216,6 @@ def analyze_data(symbol, data5m, market_trend):
         analysis_log['vol_profile_ok'] = bool(passes_vol_profile)
         analysis_log['market_trend_ok'] = bool(passes_market_trend)
 
-
         if passes_base_score and passes_confluence and passes_vol_profile and passes_market_trend:
             is_strong = True
             signal_type = "Strong Buy"
@@ -238,7 +236,6 @@ def analyze_data(symbol, data5m, market_trend):
         analysis_log['vol_profile_ok'] = bool(passes_vol_profile)
         analysis_log['market_trend_ok'] = bool(passes_market_trend)
         analysis_log['macd_conflict_ok'] = bool(passes_macd_conflict)
-
 
         if passes_base_score and passes_confluence and passes_vol_profile and passes_market_trend and passes_macd_conflict:
             is_strong = True
@@ -262,7 +259,6 @@ def analyze_data(symbol, data5m, market_trend):
     profit_pct = abs(((tp - current_price) / current_price) * 100 * leverage) if current_price > 0 else 0
     passes_profit_ceiling = profit_pct <= 5.0
     analysis_log['profit_ceiling_ok'] = bool(passes_profit_ceiling)
-    
 
     if is_strong and not passes_profit_ceiling:
         signal_type = signal_type.replace("Strong ", "")
@@ -270,19 +266,14 @@ def analyze_data(symbol, data5m, market_trend):
         downgrade_reasons.append("Profit Ceiling Veto")
 
     # --- 4. Populate Downgrade Reason ---
-    # Find the first check that failed to provide the primary reason
-    if analysis_log.get('initial_signal', 'Neutral') == 'Strong Buy' and not is_strong:
+    if analysis_log.get('initial_signal', 'Neutral').startswith('Strong') and not is_strong:
         if not analysis_log.get('base_score_ok'): downgrade_reasons.append("Failed Base Score")
         if not analysis_log.get('confluence_ok'): downgrade_reasons.append("Failed Confluence")
         if not analysis_log.get('vol_profile_ok'): downgrade_reasons.append("Failed Vol Profile")
         if not analysis_log.get('market_trend_ok'): downgrade_reasons.append("Failed Market Trend")
-    elif analysis_log.get('initial_signal', 'Neutral') == 'Strong Sell' and not is_strong:
-        if not analysis_log.get('base_score_ok'): downgrade_reasons.append("Failed Base Score")
-        if not analysis_log.get('confluence_ok'): downgrade_reasons.append("Failed Confluence")
-        if not analysis_log.get('vol_profile_ok'): downgrade_reasons.append("Failed Vol Profile")
-        if not analysis_log.get('market_trend_ok'): downgrade_reasons.append("Failed Market Trend")
-        if not analysis_log.get('macd_conflict_ok'): downgrade_reasons.append("Failed MACD Conflict")
-        
+        if analysis_log.get('initial_signal') == 'Strong Sell' and not analysis_log.get('macd_conflict_ok', True):
+            downgrade_reasons.append("Failed MACD Conflict")
+            
     analysis_log['downgrade_reason'] = ", ".join(downgrade_reasons) if downgrade_reasons else "N/A"
 
     # --- 5. POP Score & Final Leverage Calculation ---
@@ -293,20 +284,21 @@ def analyze_data(symbol, data5m, market_trend):
         pop = min(100, round((sell_score / ((abs(buy_score) + sell_score) or 1)) * 100))
     pop = max(0, pop)
 
-    ema_boost_applied = False # Keep this
-if is_strong:
-    if "Buy" in signal_type and current_price > latest_ema50:
-        pop = min(100, round(pop * 1.10))
-        ema_boost_applied = True # This is fine as it's a standard bool
-    elif "Sell" in signal_type and current_price < latest_ema50:
-        pop = min(100, round(pop * 1.10))
-        ema_boost_applied = True # This is also fine
+    ema_boost_applied = False
+    if is_strong:
+        if "Buy" in signal_type and current_price > latest_ema50:
+            pop = min(100, round(pop * 1.10))
+            ema_boost_applied = True
+        elif "Sell" in signal_type and current_price < latest_ema50:
+            pop = min(100, round(pop * 1.10))
+            ema_boost_applied = True
     
     if pop >= 80: leverage = 9
     elif pop >= 65: leverage = 7
     elif pop >= 50: leverage = 6
 
     # --- 6. Final Return Object ---
+    # This whole block must be indented to be inside the function
     return {
         "coin": symbol,
         "price": round(current_price, 4),
@@ -317,7 +309,7 @@ if is_strong:
         "signal": signal_type,
         "ema_boost_applied": bool(ema_boost_applied),
         "estimated_profit": f"{profit_pct:.2f}%",
-        "analysis_log": analysis_log, # <-- NEW LOG OBJECT
+        "analysis_log": analysis_log,
         "indicators": {
             "rsi5m": latest_rsi,
             "macd5m": macd_obj,
@@ -382,6 +374,7 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
 
