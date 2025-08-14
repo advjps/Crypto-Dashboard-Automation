@@ -261,7 +261,8 @@ def analyze_data(symbol, data5m, market_trend):
     
     profit_pct = abs(((tp - current_price) / current_price) * 100 * leverage) if current_price > 0 else 0
     passes_profit_ceiling = profit_pct <= 5.0
-    analysis_log['profit_ceiling_ok'] = passes_profit_ceiling
+    analysis_log['profit_ceiling_ok'] = bool(passes_profit_ceiling)
+    
 
     if is_strong and not passes_profit_ceiling:
         signal_type = signal_type.replace("Strong ", "")
@@ -292,14 +293,14 @@ def analyze_data(symbol, data5m, market_trend):
         pop = min(100, round((sell_score / ((abs(buy_score) + sell_score) or 1)) * 100))
     pop = max(0, pop)
 
-    ema_boost_applied = False
-    if is_strong:
-        if "Buy" in signal_type and current_price > latest_ema50:
-            pop = min(100, round(pop * 1.10))
-            ema_boost_applied = True
-        elif "Sell" in signal_type and current_price < latest_ema50:
-            pop = min(100, round(pop * 1.10))
-            ema_boost_applied = True
+    ema_boost_applied = False # Keep this
+if is_strong:
+    if "Buy" in signal_type and current_price > latest_ema50:
+        pop = min(100, round(pop * 1.10))
+        ema_boost_applied = True # This is fine as it's a standard bool
+    elif "Sell" in signal_type and current_price < latest_ema50:
+        pop = min(100, round(pop * 1.10))
+        ema_boost_applied = True # This is also fine
     
     if pop >= 80: leverage = 9
     elif pop >= 65: leverage = 7
@@ -314,7 +315,7 @@ def analyze_data(symbol, data5m, market_trend):
         "leverage": f"{leverage}x",
         "pop": pop,
         "signal": signal_type,
-        "ema_boost_applied": ema_boost_applied,
+        "ema_boost_applied": bool(ema_boost_applied),
         "estimated_profit": f"{profit_pct:.2f}%",
         "analysis_log": analysis_log, # <-- NEW LOG OBJECT
         "indicators": {
@@ -381,6 +382,7 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
 
