@@ -212,10 +212,11 @@ def analyze_data(symbol, data5m, market_trend):
         passes_vol_profile = vol_profile_scores["bullish_score"] > 0
         passes_market_trend = market_trend >= 0
 
-        analysis_log['base_score_ok'] = passes_base_score
-        analysis_log['confluence_ok'] = passes_confluence
-        analysis_log['vol_profile_ok'] = passes_vol_profile
-        analysis_log['market_trend_ok'] = passes_market_trend
+        analysis_log['base_score_ok'] = bool(passes_base_score)
+        analysis_log['confluence_ok'] = bool(passes_confluence)
+        analysis_log['vol_profile_ok'] = bool(passes_vol_profile)
+        analysis_log['market_trend_ok'] = bool(passes_market_trend)
+
 
         if passes_base_score and passes_confluence and passes_vol_profile and passes_market_trend:
             is_strong = True
@@ -232,11 +233,12 @@ def analyze_data(symbol, data5m, market_trend):
         passes_market_trend = market_trend <= 0
         passes_macd_conflict = latest_macd_hist <= 0
 
-        analysis_log['base_score_ok'] = passes_base_score
-        analysis_log['confluence_ok'] = passes_confluence
-        analysis_log['vol_profile_ok'] = passes_vol_profile
-        analysis_log['market_trend_ok'] = passes_market_trend
-        analysis_log['macd_conflict_ok'] = passes_macd_conflict
+        analysis_log['base_score_ok'] = bool(passes_base_score)
+        analysis_log['confluence_ok'] = bool(passes_confluence)
+        analysis_log['vol_profile_ok'] = bool(passes_vol_profile)
+        analysis_log['market_trend_ok'] = bool(passes_market_trend)
+        analysis_log['macd_conflict_ok'] = bool(passes_macd_conflict)
+
 
         if passes_base_score and passes_confluence and passes_vol_profile and passes_market_trend and passes_macd_conflict:
             is_strong = True
@@ -379,6 +381,7 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
 
