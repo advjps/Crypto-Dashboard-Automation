@@ -1,0 +1,37 @@
+name: Merge Backtest Reports
+
+on:
+  workflow_dispatch: # Allows you to run this manually from the Actions tab
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checks out your repository to access the 'backtest_reports' folder
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      # Step 2: Sets up the Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      
+      # Step 3: Install pytz (the only external library needed)
+      - name: Install dependencies
+        run: pip install pytz
+
+      # Step 4: Runs your merge script
+      - name: Run merge script
+        run: python merge_reports.py
+
+      # Step 5: Automatically commits the new combined report back to your repo
+      - name: Commit merged report
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Create new merged backtest report"
+          file_pattern: merged_reports/*.txt # Only commit text files in the new folder
+          commit_user_name: GitHub Actions Bot
+          commit_user_email: actions@github.com
+          commit_author: GitHub Actions Bot <actions@github.com>
