@@ -1,35 +1,44 @@
-# merge_reports.py (V2 - with Timestamp)
+# merge_reports.py (V3 - GitHub Actions Ready)
 import os
 import glob
 from datetime import datetime
+import pytz
 
 def merge_reports():
     """
-    Finds all .txt files in the 'reports' folder and merges them
-    into a single, timestamped text file for analysis.
+    Finds all .txt files in the 'backtest_reports' folder and merges them
+    into a single, timestamped text file in the 'merged_reports' folder.
     """
-    reports_folder = 'reports'
-    
-    # Create a timestamp for the output filename
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    output_filename = f'All_Reports_Combined_{timestamp}.txt'
+    # --- UPDATED: Define source and output folders ---
+    REPORTS_FOLDER = 'backtest_reports'
+    MERGED_REPORTS_FOLDER = 'merged_reports'
 
-    if not os.path.isdir(reports_folder):
-        print(f"Error: The '{reports_folder}' directory was not found.")
+    # --- NEW: Create the output folder if it doesn't exist ---
+    os.makedirs(MERGED_REPORTS_FOLDER, exist_ok=True)
+    
+    # Use IST for the timestamp in the filename
+    ist_tz = pytz.timezone("Asia/Kolkata")
+    timestamp = datetime.now(ist_tz).strftime("%Y-%m-%d_%H-%M-%S")
+    output_filename = f'All_Reports_Combined_{timestamp}.txt'
+    
+    # --- UPDATED: Construct the full output path ---
+    output_filepath = os.path.join(MERGED_REPORTS_FOLDER, output_filename)
+
+    if not os.path.isdir(REPORTS_FOLDER):
+        print(f"Error: The '{REPORTS_FOLDER}' directory was not found.")
         return
 
-    report_files = glob.glob(os.path.join(reports_folder, '*.txt'))
+    report_files = glob.glob(os.path.join(REPORTS_FOLDER, '*.txt'))
 
     if not report_files:
-        print(f"No .txt report files found in the '{reports_folder}' folder.")
+        print(f"No .txt report files found in the '{REPORTS_FOLDER}' folder.")
         return
 
-    print(f"Found {len(report_files)} reports. Merging into '{output_filename}'...")
+    print(f"Found {len(report_files)} reports. Merging into '{output_filepath}'...")
 
-    # Sort files to ensure a consistent order
     report_files.sort()
 
-    with open(output_filename, 'w', encoding='utf-8') as outfile:
+    with open(output_filepath, 'w', encoding='utf-8') as outfile:
         for filename in report_files:
             outfile.write(f"============================================================\n")
             outfile.write(f"====== CONTENTS OF: {os.path.basename(filename)} ======\n")
@@ -39,7 +48,7 @@ def merge_reports():
                 outfile.write(infile.read())
                 outfile.write("\n\n")
 
-    print(f"SUCCESS! All reports have been combined into '{output_filename}'.")
+    print(f"SUCCESS! All reports have been combined into '{output_filepath}'.")
 
 if __name__ == "__main__":
     merge_reports()
