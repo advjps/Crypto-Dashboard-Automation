@@ -3,7 +3,7 @@ name: Fetch Crypto Data
 on:
   workflow_dispatch: # Allows you to run it manually from the Actions tab
   schedule:
-    - cron: '*/10 * * * *' # Runs every 10 minutes
+    - cron: '*/30 * * * *' # Runs every 10 minutes
 
 jobs:
   build:
