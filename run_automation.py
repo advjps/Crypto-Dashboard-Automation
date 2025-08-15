@@ -133,16 +133,18 @@ def fetch_binance_data(symbol, timeframe='5m', limit=100):
         print(f"  - Could not fetch data for {symbol}: {e}")
         return []
 
+
+# In run_automation.py
+
 def analyze_data(symbol, data5m, market_trend):
     """
-    Analyzes market data to generate a trading signal based on the "3rd Amendment"
-    strategy, now with enhanced logging for detailed backtest analysis.
+    Analyzes market data to generate a trading signal based on the "4th Amendment"
+    strategy with enhanced logging.
     """
     # --- Data Extraction & Initial Checks ---
     if not data5m or len(data5m) < 50:
         return None
-
-    current_price = data5m[-1]["close"]
+    current_price = data5m[-1].get("close")
     if not current_price:
         return None
 
@@ -167,7 +169,7 @@ def analyze_data(symbol, data5m, market_trend):
         return None
 
     # ==================================================================
-    # ### ENHANCED LOGGING & ANALYSIS ###
+    # ### SCORING SYSTEM V4.0 ('The 4th Amendment') ###
     # ==================================================================
     
     analysis_log = {}
@@ -206,10 +208,12 @@ def analyze_data(symbol, data5m, market_trend):
         signal_type = "Buy"
         analysis_log['initial_signal'] = "Buy"
 
+        # --- RELAXED CONFLUENCE RULE ---
+        passes_confluence = (latest_rsi <= 30) or (current_price <= boll["lower"])
+        
         passes_base_score = buy_score >= BASE_SCORE_THRESHOLD
-        passes_confluence = ((latest_rsi <= 30) + (current_price <= boll["lower"]) + (latest_cci >= 100)) >= 2
         passes_vol_profile = vol_profile_scores["bullish_score"] > 0
-        passes_market_trend = market_trend >= 0
+        passes_market_trend = market_trend > -5 # Softened Veto
 
         analysis_log['base_score_ok'] = bool(passes_base_score)
         analysis_log['confluence_ok'] = bool(passes_confluence)
@@ -225,10 +229,11 @@ def analyze_data(symbol, data5m, market_trend):
         signal_type = "Sell"
         analysis_log['initial_signal'] = "Sell"
 
+        passes_confluence = (latest_rsi >= 70) or (current_price >= boll["upper"])
+        
         passes_base_score = sell_score >= BASE_SCORE_THRESHOLD
-        passes_confluence = ((latest_rsi >= 70) + (current_price >= boll["upper"]) + (latest_cci <= -100)) >= 2
         passes_vol_profile = vol_profile_scores["bearish_score"] > 0
-        passes_market_trend = market_trend <= 0
+        passes_market_trend = market_trend < 5 # Softened Veto
         passes_macd_conflict = latest_macd_hist <= 0
 
         analysis_log['base_score_ok'] = bool(passes_base_score)
@@ -242,7 +247,7 @@ def analyze_data(symbol, data5m, market_trend):
             signal_type = "Strong Sell"
             analysis_log['initial_signal'] = "Strong Sell"
 
-    # --- 3. Risk Management & Profit Veto ---
+    # --- 3. Risk Management & Profit Vetoes (Run BEFORE POP Score) ---
     tp_factor = 1.8
     sl_factor = 1.8
     leverage = 5
@@ -257,16 +262,25 @@ def analyze_data(symbol, data5m, market_trend):
         sl = current_price + (effective_atr * sl_factor)
     
     profit_pct = abs(((tp - current_price) / current_price) * 100 * leverage) if current_price > 0 else 0
-    passes_profit_ceiling = profit_pct <= 5.0
+    
+    # --- ADJUSTED VETOES ---
+    passes_profit_ceiling = profit_pct <= 7.0
+    passes_min_profit = profit_pct >= 2.0
     analysis_log['profit_ceiling_ok'] = bool(passes_profit_ceiling)
+    analysis_log['min_profit_ok'] = bool(passes_min_profit)
 
     if is_strong and not passes_profit_ceiling:
         signal_type = signal_type.replace("Strong ", "")
         is_strong = False
-        downgrade_reasons.append("Profit Ceiling Veto")
+        downgrade_reasons.append("Profit Ceiling Veto (>7%)")
+    
+    if is_strong and not passes_min_profit:
+        signal_type = signal_type.replace("Strong ", "")
+        is_strong = False
+        downgrade_reasons.append("Min Profit Veto (<2%)")
 
     # --- 4. Populate Downgrade Reason ---
-    if analysis_log.get('initial_signal', 'Neutral').startswith('Strong') and not is_strong:
+    if analysis_log.get('initial_signal', '').startswith('Strong') and not is_strong:
         if not analysis_log.get('base_score_ok'): downgrade_reasons.append("Failed Base Score")
         if not analysis_log.get('confluence_ok'): downgrade_reasons.append("Failed Confluence")
         if not analysis_log.get('vol_profile_ok'): downgrade_reasons.append("Failed Vol Profile")
@@ -276,7 +290,7 @@ def analyze_data(symbol, data5m, market_trend):
             
     analysis_log['downgrade_reason'] = ", ".join(downgrade_reasons) if downgrade_reasons else "N/A"
 
-    # --- 5. POP Score & Final Leverage Calculation ---
+    # --- 5. POP Score & Final Leverage ---
     pop = 50
     if "Buy" in signal_type:
         pop = min(100, round((buy_score / ((buy_score + abs(sell_score)) or 1)) * 100))
@@ -298,7 +312,6 @@ def analyze_data(symbol, data5m, market_trend):
     elif pop >= 50: leverage = 6
 
     # --- 6. Final Return Object ---
-    # This whole block must be indented to be inside the function
     return {
         "coin": symbol,
         "price": round(current_price, 4),
@@ -320,7 +333,6 @@ def analyze_data(symbol, data5m, market_trend):
             "ema50_5m": latest_ema50
         }
     }
-
 # --- Main Execution Block ---
 if __name__ == "__main__":
     print("Starting automated data fetch...")
@@ -374,6 +386,7 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
 
