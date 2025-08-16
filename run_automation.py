@@ -133,13 +133,12 @@ def fetch_binance_data(symbol, timeframe='5m', limit=100):
         print(f"  - Could not fetch data for {symbol}: {e}")
         return []
 
-
 # In run_automation.py
 
 def analyze_data(symbol, data5m, market_trend):
     """
     Analyzes market data to generate a trading signal based on the "4th Amendment"
-    strategy with enhanced logging.
+    strategy, now with enhanced logging for detailed backtest analysis.
     """
     # --- Data Extraction & Initial Checks ---
     if not data5m or len(data5m) < 50:
@@ -208,7 +207,7 @@ def analyze_data(symbol, data5m, market_trend):
         signal_type = "Buy"
         analysis_log['initial_signal'] = "Buy"
 
-        # --- RELAXED CONFLUENCE RULE ---
+        # --- RELAXED CONFLUENCE: 1 of 2 "Major" signals needed ---
         passes_confluence = (latest_rsi <= 30) or (current_price <= boll["lower"])
         
         passes_base_score = buy_score >= BASE_SCORE_THRESHOLD
@@ -229,6 +228,7 @@ def analyze_data(symbol, data5m, market_trend):
         signal_type = "Sell"
         analysis_log['initial_signal'] = "Sell"
 
+        # --- RELAXED CONFLUENCE: 1 of 2 "Major" signals needed ---
         passes_confluence = (latest_rsi >= 70) or (current_price >= boll["upper"])
         
         passes_base_score = sell_score >= BASE_SCORE_THRESHOLD
@@ -333,6 +333,7 @@ def analyze_data(symbol, data5m, market_trend):
             "ema50_5m": latest_ema50
         }
     }
+    
 # --- Main Execution Block ---
 if __name__ == "__main__":
     print("Starting automated data fetch...")
@@ -386,6 +387,7 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
 
