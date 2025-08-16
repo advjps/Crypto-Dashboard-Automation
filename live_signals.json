@@ -1,0 +1,2714 @@
+[
+  {
+    "coin": "ETHUSDT",
+    "price": 4396.01,
+    "tp": 4373.3375,
+    "sl": 4418.6825,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.58%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 35.605033801757926,
+      "macd5m": {
+        "macd": -13.78637419095412,
+        "signal": -11.088246917577708,
+        "histogram": -2.6981272733764126
+      },
+      "boll5m": {
+        "upper": 4477.492889216577,
+        "middle": 4421.5795,
+        "lower": 4365.6661107834225
+      },
+      "cci5m": -63.144875584344234,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 4427.213151489534
+    }
+  },
+  {
+    "coin": "BTCUSDT",
+    "price": 117240.9,
+    "tp": 117062.2961,
+    "sl": 117419.5039,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "0.76%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": false,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 36.1768439041971,
+      "macd5m": {
+        "macd": -80.46577625631471,
+        "signal": -61.633567321348,
+        "histogram": -18.832208934966708
+      },
+      "boll5m": {
+        "upper": 117770.42504132888,
+        "middle": 117426.76000000001,
+        "lower": 117083.09495867114
+      },
+      "cci5m": -76.38320759536282,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 117450.60286053765
+    }
+  },
+  {
+    "coin": "SOLUSDT",
+    "price": 186.0,
+    "tp": 184.9882,
+    "sl": 187.0118,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.72%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 35.85859614381536,
+      "macd5m": {
+        "macd": -0.5418006819743084,
+        "signal": -0.45705558607842744,
+        "histogram": -0.08474509589588097
+      },
+      "boll5m": {
+        "upper": 188.91837650659397,
+        "middle": 187.0,
+        "lower": 185.08162349340603
+      },
+      "cci5m": -71.1353451787757,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 187.28582476676024
+    }
+  },
+  {
+    "coin": "XRPUSDT",
+    "price": 3.1274,
+    "tp": 3.1115,
+    "sl": 3.1433,
+    "leverage": "9x",
+    "pop": 80,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.54%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 44.75004780069235,
+      "macd5m": {
+        "macd": 6.924452107615053e-05,
+        "signal": 0.002504119068692217,
+        "histogram": -0.0024348745476160663
+      },
+      "boll5m": {
+        "upper": 3.1546926140408478,
+        "middle": 3.13874,
+        "lower": 3.122787385959152
+      },
+      "cci5m": -135.73559193527288,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 3.1278862473191014
+    }
+  },
+  {
+    "coin": "DOGEUSDT",
+    "price": 0.2302,
+    "tp": 0.2286,
+    "sl": 0.2319,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.56%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 33.70449107271921,
+      "macd5m": {
+        "macd": -0.000654270245006916,
+        "signal": -0.0003459368027075941,
+        "histogram": -0.0003083334422993219
+      },
+      "boll5m": {
+        "upper": 0.23559632412199533,
+        "middle": 0.232482,
+        "lower": 0.22936767587800466
+      },
+      "cci5m": -109.53076798181448,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.23224146211548635
+    }
+  },
+  {
+    "coin": "ADAUSDT",
+    "price": 0.9067,
+    "tp": 0.917,
+    "sl": 0.8964,
+    "leverage": "6x",
+    "pop": 57,
+    "signal": "Buy",
+    "ema_boost_applied": false,
+    "estimated_profit": "5.70%",
+    "analysis_log": {
+      "buy_score": 20,
+      "sell_score": 15,
+      "initial_signal": "Buy",
+      "base_score_ok": true,
+      "confluence_ok": true,
+      "vol_profile_ok": false,
+      "market_trend_ok": false,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 18.879007898030892,
+      "macd5m": {
+        "macd": -0.01317512197635895,
+        "signal": -0.010633912867637813,
+        "histogram": -0.002541209108721137
+      },
+      "boll5m": {
+        "upper": 0.9713091940394813,
+        "middle": 0.9318249999999999,
+        "lower": 0.8923408059605185
+      },
+      "cci5m": -96.1555022451868,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.9413555599655322
+    }
+  },
+  {
+    "coin": "ENAUSDT",
+    "price": 0.7193,
+    "tp": 0.7134,
+    "sl": 0.7252,
+    "leverage": "6x",
+    "pop": 60,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "4.07%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": false,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 44.429957883406615,
+      "macd5m": {
+        "macd": -0.0013161375906421968,
+        "signal": -0.0016835310167723245,
+        "histogram": 0.00036739342613012764
+      },
+      "boll5m": {
+        "upper": 0.7234701736646925,
+        "middle": 0.72,
+        "lower": 0.7165298263353075
+      },
+      "cci5m": -34.64474456841369,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.723352277633611
+    }
+  },
+  {
+    "coin": "XNYUSDT",
+    "price": 0.0253,
+    "tp": 0.0244,
+    "sl": 0.0261,
+    "leverage": "6x",
+    "pop": 60,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "16.34%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": false,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 43.06214361145029,
+      "macd5m": {
+        "macd": -0.0003834661039677015,
+        "signal": -0.00036758727201670176,
+        "histogram": -1.5878831950999722e-05
+      },
+      "boll5m": {
+        "upper": 0.02669430653691799,
+        "middle": 0.025560500000000003,
+        "lower": 0.024426693463082016
+      },
+      "cci5m": -47.34064541759938,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.02592652190102272
+    }
+  },
+  {
+    "coin": "SUIUSDT",
+    "price": 3.6908,
+    "tp": 3.6692,
+    "sl": 3.7124,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.93%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 36.99047596825743,
+      "macd5m": {
+        "macd": -0.007310292029210963,
+        "signal": -0.004164748595126452,
+        "histogram": -0.003145543434084511
+      },
+      "boll5m": {
+        "upper": 3.7530893131544203,
+        "middle": 3.7154499999999997,
+        "lower": 3.677810686845579
+      },
+      "cci5m": -95.1503746987547,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 3.713904479696043
+    }
+  },
+  {
+    "coin": "1000PEPEUSDT",
+    "price": 0.0108,
+    "tp": 0.0107,
+    "sl": 0.0109,
+    "leverage": "9x",
+    "pop": 80,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.94%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 40.89154818302994,
+      "macd5m": {
+        "macd": -5.390347694663941e-06,
+        "signal": 3.3870114289583003e-06,
+        "histogram": -8.777359123622242e-06
+      },
+      "boll5m": {
+        "upper": 0.0109325579065041,
+        "middle": 0.01086901,
+        "lower": 0.0108054620934959
+      },
+      "cci5m": -166.27139817688362,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.010854040677163767
+    }
+  },
+  {
+    "coin": "MYXUSDT",
+    "price": 1.9797,
+    "tp": 1.9797,
+    "sl": 1.9797,
+    "leverage": "6x",
+    "pop": 50,
+    "signal": "Neutral",
+    "ema_boost_applied": false,
+    "estimated_profit": "0.00%",
+    "analysis_log": {
+      "buy_score": 15,
+      "sell_score": 15,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": false,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 59.185150838339666,
+      "macd5m": {
+        "macd": 0.010999860136214679,
+        "signal": 0.01279036633957753,
+        "histogram": -0.0017905062033628516
+      },
+      "boll5m": {
+        "upper": 1.9846558729415675,
+        "middle": 1.970535,
+        "lower": 1.9564141270584323
+      },
+      "cci5m": 114.72868217054001,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 3,
+        "bearish_score": 0
+      },
+      "ema50_5m": 1.9423635014454228
+    }
+  },
+  {
+    "coin": "ALPINEUSDT",
+    "price": 2.1685,
+    "tp": 2.1045,
+    "sl": 2.2325,
+    "leverage": "9x",
+    "pop": 81,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "14.75%",
+    "analysis_log": {
+      "buy_score": 15,
+      "sell_score": 65,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": true,
+      "vol_profile_ok": false,
+      "market_trend_ok": true,
+      "macd_conflict_ok": false,
+      "profit_ceiling_ok": false,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 67.28332415295695,
+      "macd5m": {
+        "macd": 0.015181590277546508,
+        "signal": 0.012240501993005677,
+        "histogram": 0.0029410882845408316
+      },
+      "boll5m": {
+        "upper": 2.1488850655241105,
+        "middle": 2.11293,
+        "lower": 2.0769749344758894
+      },
+      "cci5m": 280.2094408090122,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 3,
+        "bearish_score": 0
+      },
+      "ema50_5m": 2.088345448967096
+    }
+  },
+  {
+    "coin": "BNBUSDT",
+    "price": 827.48,
+    "tp": 824.9081,
+    "sl": 830.0519,
+    "leverage": "7x",
+    "pop": 67,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "1.55%",
+    "analysis_log": {
+      "buy_score": 20,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": false,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 27.637024177101168,
+      "macd5m": {
+        "macd": -2.0010523894393373,
+        "signal": -1.5112943909845427,
+        "histogram": -0.4897579984547946
+      },
+      "boll5m": {
+        "upper": 838.585574661002,
+        "middle": 832.008,
+        "lower": 825.430425338998
+      },
+      "cci5m": -102.78626098103568,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 832.987959393457
+    }
+  },
+  {
+    "coin": "LINKUSDT",
+    "price": 21.469,
+    "tp": 21.3355,
+    "sl": 21.6025,
+    "leverage": "7x",
+    "pop": 67,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.11%",
+    "analysis_log": {
+      "buy_score": 20,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 28.667446281806164,
+      "macd5m": {
+        "macd": -0.08911200660255858,
+        "signal": -0.07128446817292218,
+        "histogram": -0.0178275384296364
+      },
+      "boll5m": {
+        "upper": 21.941976399202545,
+        "middle": 21.6614,
+        "lower": 21.380823600797456
+      },
+      "cci5m": -101.31986889892477,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 21.717825371072998
+    }
+  },
+  {
+    "coin": "AVAXUSDT",
+    "price": 23.574,
+    "tp": 23.7094,
+    "sl": 23.4386,
+    "leverage": "6x",
+    "pop": 57,
+    "signal": "Buy",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.87%",
+    "analysis_log": {
+      "buy_score": 20,
+      "sell_score": 15,
+      "initial_signal": "Buy",
+      "base_score_ok": true,
+      "confluence_ok": true,
+      "vol_profile_ok": false,
+      "market_trend_ok": false,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 29.743002198330174,
+      "macd5m": {
+        "macd": -0.08966477858993827,
+        "signal": -0.0652326193875734,
+        "histogram": -0.02443215920236487
+      },
+      "boll5m": {
+        "upper": 24.162824387587015,
+        "middle": 23.80265,
+        "lower": 23.442475612412984
+      },
+      "cci5m": -94.21859380206564,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 23.82026775656035
+    }
+  },
+  {
+    "coin": "FARTCOINUSDT",
+    "price": 0.9296,
+    "tp": 0.9397,
+    "sl": 0.9195,
+    "leverage": "6x",
+    "pop": 57,
+    "signal": "Buy",
+    "ema_boost_applied": false,
+    "estimated_profit": "5.44%",
+    "analysis_log": {
+      "buy_score": 20,
+      "sell_score": 15,
+      "initial_signal": "Buy",
+      "base_score_ok": true,
+      "confluence_ok": true,
+      "vol_profile_ok": false,
+      "market_trend_ok": false,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 29.473550992518,
+      "macd5m": {
+        "macd": -0.0071043146334413,
+        "signal": -0.005971188845675606,
+        "histogram": -0.0011331257877656943
+      },
+      "boll5m": {
+        "upper": 0.9671666869057188,
+        "middle": 0.94382,
+        "lower": 0.9204733130942812
+      },
+      "cci5m": -83.84698776521641,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.9485077734066287
+    }
+  },
+  {
+    "coin": "HYPEUSDT",
+    "price": 46.58,
+    "tp": 46.2796,
+    "sl": 46.8804,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.22%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 33.62584311864681,
+      "macd5m": {
+        "macd": -0.17862141483097105,
+        "signal": -0.14566598947433596,
+        "histogram": -0.03295542535663509
+      },
+      "boll5m": {
+        "upper": 47.513608389091175,
+        "middle": 46.9345,
+        "lower": 46.355391610908825
+      },
+      "cci5m": -82.50881942735303,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 47.09498469136019
+    }
+  },
+  {
+    "coin": "TRUMPUSDT",
+    "price": 9.089,
+    "tp": 9.0435,
+    "sl": 9.1345,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.50%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 33.92540119282047,
+      "macd5m": {
+        "macd": -0.017595069306244326,
+        "signal": -0.008463782737336167,
+        "histogram": -0.009131286568908159
+      },
+      "boll5m": {
+        "upper": 9.240870691183414,
+        "middle": 9.1538,
+        "lower": 9.066729308816587
+      },
+      "cci5m": -111.67041198501947,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 9.14823758182716
+    }
+  },
+  {
+    "coin": "SKLUSDT",
+    "price": 0.0353,
+    "tp": 0.035,
+    "sl": 0.0357,
+    "leverage": "6x",
+    "pop": 60,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "5.53%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": false,
+      "market_trend_ok": true,
+      "macd_conflict_ok": false,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 56.96775481847316,
+      "macd5m": {
+        "macd": -2.7189068514274495e-05,
+        "signal": -8.503005512590761e-05,
+        "histogram": 5.784098661163312e-05
+      },
+      "boll5m": {
+        "upper": 0.03549739954932327,
+        "middle": 0.035098000000000004,
+        "lower": 0.034698600450676735
+      },
+      "cci5m": 95.59854219231904,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 3,
+        "bearish_score": 0
+      },
+      "ema50_5m": 0.03541028835712357
+    }
+  },
+  {
+    "coin": "ARBUSDT",
+    "price": 0.4768,
+    "tp": 0.4733,
+    "sl": 0.4803,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.70%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 37.02806678048932,
+      "macd5m": {
+        "macd": -0.00185578610417797,
+        "signal": -0.001663487862640881,
+        "histogram": -0.00019229824153708898
+      },
+      "boll5m": {
+        "upper": 0.4868153307707472,
+        "middle": 0.48017000000000004,
+        "lower": 0.4735246692292529
+      },
+      "cci5m": -71.77425359243695,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.48154601312611234
+    }
+  },
+  {
+    "coin": "LTCUSDT",
+    "price": 117.92,
+    "tp": 117.92,
+    "sl": 117.92,
+    "leverage": "6x",
+    "pop": 50,
+    "signal": "Neutral",
+    "ema_boost_applied": false,
+    "estimated_profit": "0.00%",
+    "analysis_log": {
+      "buy_score": 40,
+      "sell_score": 40,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": false,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 35.780596877383715,
+      "macd5m": {
+        "macd": -0.12326355367036967,
+        "signal": -0.06193930850929236,
+        "histogram": -0.06132424516107732
+      },
+      "boll5m": {
+        "upper": 118.96153541522652,
+        "middle": 118.48800000000001,
+        "lower": 118.0144645847735
+      },
+      "cci5m": -224.5748395089529,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 118.62540926316026
+    }
+  },
+  {
+    "coin": "WIFUSDT",
+    "price": 0.8735,
+    "tp": 0.8677,
+    "sl": 0.8793,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.32%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 39.47355562286993,
+      "macd5m": {
+        "macd": -0.0014960950821883978,
+        "signal": -0.0009566252708825688,
+        "histogram": -0.000539469811305829
+      },
+      "boll5m": {
+        "upper": 0.8866278944497088,
+        "middle": 0.8789100000000001,
+        "lower": 0.8711921055502914
+      },
+      "cci5m": -107.36022646850863,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.8789267992859553
+    }
+  },
+  {
+    "coin": "PENGUUSDT",
+    "price": 0.0322,
+    "tp": 0.032,
+    "sl": 0.0324,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.52%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 35.55054538287301,
+      "macd5m": {
+        "macd": -7.203562059510116e-05,
+        "signal": -4.076762284372596e-05,
+        "histogram": -3.12679977513752e-05
+      },
+      "boll5m": {
+        "upper": 0.03281718985110507,
+        "middle": 0.0324966,
+        "lower": 0.03217601014889493
+      },
+      "cci5m": -133.64992085312474,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.032493933924163255
+    }
+  },
+  {
+    "coin": "UNIUSDT",
+    "price": 10.848,
+    "tp": 10.7893,
+    "sl": 10.9067,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.71%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 35.174861494243515,
+      "macd5m": {
+        "macd": -0.034424651375298154,
+        "signal": -0.03013656842293911,
+        "histogram": -0.004288082952359044
+      },
+      "boll5m": {
+        "upper": 11.025463226985535,
+        "middle": 10.91245,
+        "lower": 10.799436773014465
+      },
+      "cci5m": -82.9472608294743,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 10.933495380381956
+    }
+  },
+  {
+    "coin": "PUMPUSDT",
+    "price": 0.0034,
+    "tp": 0.0034,
+    "sl": 0.0034,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "4.40%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 32.59089851517274,
+      "macd5m": {
+        "macd": -1.7060488326334396e-05,
+        "signal": -1.5519120002124894e-05,
+        "histogram": -1.5413683242095018e-06
+      },
+      "boll5m": {
+        "upper": 0.0034923407277170776,
+        "middle": 0.00344265,
+        "lower": 0.003392959272282922
+      },
+      "cci5m": -81.42116950407029,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.0034591190406213306
+    }
+  },
+  {
+    "coin": "MAGICUSDT",
+    "price": 0.2462,
+    "tp": 0.2442,
+    "sl": 0.2482,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "4.11%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 39.35929953485361,
+      "macd5m": {
+        "macd": -0.0005742689507311216,
+        "signal": -0.0005416628170522519,
+        "histogram": -3.260613367886975e-05
+      },
+      "boll5m": {
+        "upper": 0.24943993178470972,
+        "middle": 0.247405,
+        "lower": 0.2453700682152903
+      },
+      "cci5m": -81.60676532769746,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.248009064710614
+    }
+  },
+  {
+    "coin": "1000BONKUSDT",
+    "price": 0.0238,
+    "tp": 0.0236,
+    "sl": 0.0239,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.22%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 37.29468054098252,
+      "macd5m": {
+        "macd": -4.140423906946744e-05,
+        "signal": -2.3183305652274546e-05,
+        "histogram": -1.8220933417192896e-05
+      },
+      "boll5m": {
+        "upper": 0.024118853964052944,
+        "middle": 0.02393005,
+        "lower": 0.02374124603594706
+      },
+      "cci5m": -142.02352941176662,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.023927818649452533
+    }
+  },
+  {
+    "coin": "AAVEUSDT",
+    "price": 291.94,
+    "tp": 290.4313,
+    "sl": 293.4487,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.58%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": false,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 30.896112125883235,
+      "macd5m": {
+        "macd": -1.3641255367177223,
+        "signal": -1.3797643142594986,
+        "histogram": 0.01563877754177634
+      },
+      "boll5m": {
+        "upper": 296.9569601584428,
+        "middle": 293.7,
+        "lower": 290.44303984155715
+      },
+      "cci5m": -80.5135533837347,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 295.81760160793607
+    }
+  },
+  {
+    "coin": "PROVEUSDT",
+    "price": 1.2944,
+    "tp": 1.2779,
+    "sl": 1.3109,
+    "leverage": "6x",
+    "pop": 60,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "6.39%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 40.87910619714169,
+      "macd5m": {
+        "macd": -0.006826158648452596,
+        "signal": -0.006629915328109957,
+        "histogram": -0.00019624332034263916
+      },
+      "boll5m": {
+        "upper": 1.3218025768664257,
+        "middle": 1.3025,
+        "lower": 1.2831974231335743
+      },
+      "cci5m": -67.3223419305702,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 1.3084254175798529
+    }
+  },
+  {
+    "coin": "DOTUSDT",
+    "price": 3.902,
+    "tp": 3.8797,
+    "sl": 3.9243,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.86%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 36.01954373674269,
+      "macd5m": {
+        "macd": -0.007716563323126202,
+        "signal": -0.0036373349456144187,
+        "histogram": -0.004079228377511783
+      },
+      "boll5m": {
+        "upper": 3.9702240527710893,
+        "middle": 3.9309999999999996,
+        "lower": 3.89177594722891
+      },
+      "cci5m": -112.66201395812456,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 3.9264238248042664
+    }
+  },
+  {
+    "coin": "LAUSDT",
+    "price": 0.3758,
+    "tp": 0.365,
+    "sl": 0.3866,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "14.41%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": false,
+      "profit_ceiling_ok": false,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 31.0018657346386,
+      "macd5m": {
+        "macd": -0.008078835372827775,
+        "signal": -0.008879576793490024,
+        "histogram": 0.0008007414206622487
+      },
+      "boll5m": {
+        "upper": 0.3986127855391463,
+        "middle": 0.38461500000000004,
+        "lower": 0.37061721446085377
+      },
+      "cci5m": -115.0704566773103,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.4002918684567937
+    }
+  },
+  {
+    "coin": "TRXUSDT",
+    "price": 0.3523,
+    "tp": 0.3517,
+    "sl": 0.353,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "0.93%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": false,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 35.97795175095075,
+      "macd5m": {
+        "macd": -0.0003275980363530162,
+        "signal": -0.00019707864219164855,
+        "histogram": -0.00013051939416136766
+      },
+      "boll5m": {
+        "upper": 0.35463065610856875,
+        "middle": 0.3532535,
+        "lower": 0.35187634389143124
+      },
+      "cci5m": -104.52299505890926,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.35325499861541715
+    }
+  },
+  {
+    "coin": "LDOUSDT",
+    "price": 1.3754,
+    "tp": 1.3642,
+    "sl": 1.3866,
+    "leverage": "6x",
+    "pop": 60,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "4.06%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": false,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 43.036619690489395,
+      "macd5m": {
+        "macd": -0.004492153376641106,
+        "signal": -0.004969668634528473,
+        "histogram": 0.00047751525788736725
+      },
+      "boll5m": {
+        "upper": 1.3931509975008936,
+        "middle": 1.37863,
+        "lower": 1.3641090024991065
+      },
+      "cci5m": -27.13425433935595,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 1.3867465458572645
+    }
+  },
+  {
+    "coin": "XLMUSDT",
+    "price": 0.4254,
+    "tp": 0.4232,
+    "sl": 0.4276,
+    "leverage": "7x",
+    "pop": 67,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.58%",
+    "analysis_log": {
+      "buy_score": 20,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 29.403023649741186,
+      "macd5m": {
+        "macd": -0.0008622633761337095,
+        "signal": -0.0002582404557678793,
+        "histogram": -0.0006040229203658303
+      },
+      "boll5m": {
+        "upper": 0.4343684533518136,
+        "middle": 0.42960000000000004,
+        "lower": 0.42483154664818645
+      },
+      "cci5m": -136.09419813036436,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.42869793402357254
+    }
+  },
+  {
+    "coin": "AIOUSDT",
+    "price": 0.0852,
+    "tp": 0.0827,
+    "sl": 0.0876,
+    "leverage": "6x",
+    "pop": 60,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "14.67%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": false,
+      "profit_ceiling_ok": false,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 46.39326107967034,
+      "macd5m": {
+        "macd": -0.0009620645105705566,
+        "signal": -0.0012525387930960388,
+        "histogram": 0.00029047428252548216
+      },
+      "boll5m": {
+        "upper": 0.08754425790238161,
+        "middle": 0.085009,
+        "lower": 0.08247374209761839
+      },
+      "cci5m": 0.6390421095122726,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.08741795039557285
+    }
+  },
+  {
+    "coin": "NEARUSDT",
+    "price": 2.695,
+    "tp": 2.679,
+    "sl": 2.711,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.97%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 34.9435388737639,
+      "macd5m": {
+        "macd": -0.007242500404034846,
+        "signal": -0.005720589125637193,
+        "histogram": -0.001521911278397653
+      },
+      "boll5m": {
+        "upper": 2.737174965657464,
+        "middle": 2.71275,
+        "lower": 2.6883250343425362
+      },
+      "cci5m": -102.01550387597112,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 2.71729368445715
+    }
+  },
+  {
+    "coin": "OPUSDT",
+    "price": 0.7163,
+    "tp": 0.712,
+    "sl": 0.7206,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.97%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 36.96019970700086,
+      "macd5m": {
+        "macd": -0.0017191466978290215,
+        "signal": -0.0013670605177809763,
+        "histogram": -0.0003520861800480452
+      },
+      "boll5m": {
+        "upper": 0.7274514685609367,
+        "middle": 0.7204849999999999,
+        "lower": 0.7135185314390632
+      },
+      "cci5m": -86.97234352256449,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.7216608172120128
+    }
+  },
+  {
+    "coin": "TIAUSDT",
+    "price": 1.7655,
+    "tp": 1.7532,
+    "sl": 1.7778,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.49%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 35.34270864957155,
+      "macd5m": {
+        "macd": -0.005947725274398463,
+        "signal": -0.0047145121812380225,
+        "histogram": -0.0012332130931604407
+      },
+      "boll5m": {
+        "upper": 1.7985105058488742,
+        "middle": 1.778735,
+        "lower": 1.7589594941511257
+      },
+      "cci5m": -97.91787533036722,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 1.78233148005895
+    }
+  },
+  {
+    "coin": "USELESSUSDT",
+    "price": 0.3146,
+    "tp": 0.3052,
+    "sl": 0.324,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "14.93%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": false,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 35.08196981677817,
+      "macd5m": {
+        "macd": -0.006445759389500871,
+        "signal": -0.005602292248319943,
+        "histogram": -0.0008434671411809286
+      },
+      "boll5m": {
+        "upper": 0.3477002106691477,
+        "middle": 0.32482500000000003,
+        "lower": 0.30194978933085237
+      },
+      "cci5m": -64.51343158774955,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.3274920205058785
+    }
+  },
+  {
+    "coin": "1000SHIBUSDT",
+    "price": 0.0128,
+    "tp": 0.0128,
+    "sl": 0.0129,
+    "leverage": "7x",
+    "pop": 67,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.59%",
+    "analysis_log": {
+      "buy_score": 20,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 29.464443681657016,
+      "macd5m": {
+        "macd": -3.474891334126484e-05,
+        "signal": -2.314238613151222e-05,
+        "histogram": -1.160652720975262e-05
+      },
+      "boll5m": {
+        "upper": 0.013077109305238616,
+        "middle": 0.0129428,
+        "lower": 0.012808490694761386
+      },
+      "cci5m": -109.85063339005609,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.012949485650776532
+    }
+  },
+  {
+    "coin": "HBARUSDT",
+    "price": 0.2481,
+    "tp": 0.2467,
+    "sl": 0.2495,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.89%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 34.99014589642945,
+      "macd5m": {
+        "macd": -0.0004292719784441956,
+        "signal": -0.0001284719018012333,
+        "histogram": -0.0003008000766429623
+      },
+      "boll5m": {
+        "upper": 0.2524391408666045,
+        "middle": 0.250077,
+        "lower": 0.2477148591333955
+      },
+      "cci5m": -141.06384900207706,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.24971297588459015
+    }
+  },
+  {
+    "coin": "CRVUSDT",
+    "price": 0.856,
+    "tp": 0.8491,
+    "sl": 0.8629,
+    "leverage": "6x",
+    "pop": 60,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "4.05%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": false,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 46.87097912857488,
+      "macd5m": {
+        "macd": -0.0012410031652086984,
+        "signal": -0.0017450204044154674,
+        "histogram": 0.000504017239206769
+      },
+      "boll5m": {
+        "upper": 0.8610127944031134,
+        "middle": 0.85625,
+        "lower": 0.8514872055968865
+      },
+      "cci5m": 6.018054162482264,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.8598003351185681
+    }
+  },
+  {
+    "coin": "WLDUSDT",
+    "price": 0.9763,
+    "tp": 0.9699,
+    "sl": 0.9827,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.26%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 35.36463248855945,
+      "macd5m": {
+        "macd": -0.0022401851050799504,
+        "signal": -0.001392708817123729,
+        "histogram": -0.0008474762879562214
+      },
+      "boll5m": {
+        "upper": 0.9933565732769283,
+        "middle": 0.9838549999999999,
+        "lower": 0.9743534267230716
+      },
+      "cci5m": -125.12863301348884,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.984423073740178
+    }
+  },
+  {
+    "coin": "ONDOUSDT",
+    "price": 0.9811,
+    "tp": 0.9755,
+    "sl": 0.9867,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.84%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 38.29980590099791,
+      "macd5m": {
+        "macd": -0.001922004720692705,
+        "signal": -0.00132238531180326,
+        "histogram": -0.0005996194088894449
+      },
+      "boll5m": {
+        "upper": 0.9955605486003025,
+        "middle": 0.9867099999999999,
+        "lower": 0.9778594513996972
+      },
+      "cci5m": -93.52486573811305,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.9869408315075119
+    }
+  },
+  {
+    "coin": "ALLUSDT",
+    "price": 1.0962,
+    "tp": 1.0893,
+    "sl": 1.1031,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.13%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 38.26327909032543,
+      "macd5m": {
+        "macd": -0.002395934024522983,
+        "signal": -0.0020098062690290116,
+        "histogram": -0.00038612775549397163
+      },
+      "boll5m": {
+        "upper": 1.1105943540766838,
+        "middle": 1.10127,
+        "lower": 1.091945645923316
+      },
+      "cci5m": -70.41967795105657,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 1.1026542987981673
+    }
+  },
+  {
+    "coin": "BCHUSDT",
+    "price": 588.82,
+    "tp": 590.3796,
+    "sl": 587.2604,
+    "leverage": "6x",
+    "pop": 57,
+    "signal": "Buy",
+    "ema_boost_applied": false,
+    "estimated_profit": "1.32%",
+    "analysis_log": {
+      "buy_score": 20,
+      "sell_score": 15,
+      "initial_signal": "Buy",
+      "base_score_ok": true,
+      "confluence_ok": true,
+      "vol_profile_ok": false,
+      "market_trend_ok": false,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": false,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 28.47623094461332,
+      "macd5m": {
+        "macd": -1.0414516065761745,
+        "signal": -0.9302702536685971,
+        "histogram": -0.11118135290757747
+      },
+      "boll5m": {
+        "upper": 593.5268158465645,
+        "middle": 590.7125,
+        "lower": 587.8981841534354
+      },
+      "cci5m": -95.00752183085272,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 591.9423393284866
+    }
+  },
+  {
+    "coin": "SEIUSDT",
+    "price": 0.3179,
+    "tp": 0.3158,
+    "sl": 0.32,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.34%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 34.26766440749546,
+      "macd5m": {
+        "macd": -0.0010963845543715545,
+        "signal": -0.0008645492823559915,
+        "histogram": -0.00023183527201556297
+      },
+      "boll5m": {
+        "upper": 0.3240170911650484,
+        "middle": 0.32036000000000003,
+        "lower": 0.31670290883495167
+      },
+      "cci5m": -101.75438596491156,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.3210736154530306
+    }
+  },
+  {
+    "coin": "TAOUSDT",
+    "price": 366.41,
+    "tp": 364.4897,
+    "sl": 368.3303,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.62%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 35.02832766390827,
+      "macd5m": {
+        "macd": -0.822405513957392,
+        "signal": -0.6239527275668011,
+        "histogram": -0.19845278639059094
+      },
+      "boll5m": {
+        "upper": 371.3936699292838,
+        "middle": 368.56949999999995,
+        "lower": 365.7453300707161
+      },
+      "cci5m": -117.80821917808038,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 369.20659347399743
+    }
+  },
+  {
+    "coin": "APTUSDT",
+    "price": 4.6244,
+    "tp": 4.598,
+    "sl": 4.6508,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.86%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 32.44864886642851,
+      "macd5m": {
+        "macd": -0.012005592316032043,
+        "signal": -0.006687339395904046,
+        "histogram": -0.005318252920127997
+      },
+      "boll5m": {
+        "upper": 4.71927495491349,
+        "middle": 4.66565,
+        "lower": 4.612025045086511
+      },
+      "cci5m": -115.28858863269222,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 4.664741762027745
+    }
+  },
+  {
+    "coin": "SOONUSDT",
+    "price": 0.2987,
+    "tp": 0.2943,
+    "sl": 0.3031,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "7.37%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": false,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": false,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 32.55487143009144,
+      "macd5m": {
+        "macd": -0.0035467832721585157,
+        "signal": -0.003079253583450033,
+        "histogram": -0.00046752968870848255
+      },
+      "boll5m": {
+        "upper": 0.3150853367700296,
+        "middle": 0.304075,
+        "lower": 0.2930646632299704
+      },
+      "cci5m": -76.37440279927316,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 3,
+        "bearish_score": 0
+      },
+      "ema50_5m": 0.30722525387437416
+    }
+  },
+  {
+    "coin": "FILUSDT",
+    "price": 2.471,
+    "tp": 2.4581,
+    "sl": 2.4839,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.61%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 34.94054685438185,
+      "macd5m": {
+        "macd": -0.004656364332483065,
+        "signal": -0.0024333932013036134,
+        "histogram": -0.0022229711311794517
+      },
+      "boll5m": {
+        "upper": 2.5083482291446364,
+        "middle": 2.48695,
+        "lower": 2.465551770855364
+      },
+      "cci5m": -116.79012345679224,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 2.4856057052023384
+    }
+  },
+  {
+    "coin": "ETCUSDT",
+    "price": 22.159,
+    "tp": 22.0574,
+    "sl": 22.2606,
+    "leverage": "9x",
+    "pop": 80,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.29%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 40.51324731137831,
+      "macd5m": {
+        "macd": -0.025435725726129732,
+        "signal": -0.011161450540986051,
+        "histogram": -0.014274275185143681
+      },
+      "boll5m": {
+        "upper": 22.393952169358595,
+        "middle": 22.25275,
+        "lower": 22.111547830641403
+      },
+      "cci5m": -120.10253376713294,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 22.239921359024624
+    }
+  },
+  {
+    "coin": "ETHFIUSDT",
+    "price": 1.1293,
+    "tp": 1.121,
+    "sl": 1.1376,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.69%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 39.34796667755667,
+      "macd5m": {
+        "macd": -0.0038729650787212577,
+        "signal": -0.003450189541711907,
+        "histogram": -0.00042277553700935085
+      },
+      "boll5m": {
+        "upper": 1.1499256201830959,
+        "middle": 1.13551,
+        "lower": 1.1210943798169042
+      },
+      "cci5m": -70.09314025426782,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 1.1389698328388649
+    }
+  },
+  {
+    "coin": "INJUSDT",
+    "price": 14.211,
+    "tp": 14.1227,
+    "sl": 14.2993,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.11%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 38.31693261522776,
+      "macd5m": {
+        "macd": -0.037490104418125725,
+        "signal": -0.027391334945334283,
+        "histogram": -0.010098769472791442
+      },
+      "boll5m": {
+        "upper": 14.464926507370011,
+        "middle": 14.3019,
+        "lower": 14.138873492629989
+      },
+      "cci5m": -89.48587308939572,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 14.311550856508973
+    }
+  },
+  {
+    "coin": "ZORAUSDT",
+    "price": 0.097,
+    "tp": 0.0959,
+    "sl": 0.0982,
+    "leverage": "6x",
+    "pop": 60,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "5.73%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": false,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 43.06646489141878,
+      "macd5m": {
+        "macd": -0.00046266220378198,
+        "signal": -0.0005068937036270778,
+        "histogram": 4.4231499845097865e-05
+      },
+      "boll5m": {
+        "upper": 0.09812324305391765,
+        "middle": 0.097272,
+        "lower": 0.09642075694608235
+      },
+      "cci5m": -56.443964812448634,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.09819104793136778
+    }
+  },
+  {
+    "coin": "TONUSDT",
+    "price": 3.4811,
+    "tp": 3.4635,
+    "sl": 3.4987,
+    "leverage": "6x",
+    "pop": 60,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "2.52%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": false,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 53.99853994279644,
+      "macd5m": {
+        "macd": 0.0030067265170177215,
+        "signal": 0.004081282141567026,
+        "histogram": -0.0010745556245493042
+      },
+      "boll5m": {
+        "upper": 3.4917680147147223,
+        "middle": 3.4804849999999994,
+        "lower": 3.4692019852852765
+      },
+      "cci5m": -6.666666666666745,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 3,
+        "bearish_score": 0
+      },
+      "ema50_5m": 3.4704388019997148
+    }
+  },
+  {
+    "coin": "PENDLEUSDT",
+    "price": 5.333,
+    "tp": 5.2955,
+    "sl": 5.3705,
+    "leverage": "6x",
+    "pop": 60,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.52%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": false,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 50.52194730519863,
+      "macd5m": {
+        "macd": -0.004796241709851046,
+        "signal": -0.007259012201592161,
+        "histogram": 0.0024627704917411153
+      },
+      "boll5m": {
+        "upper": 5.375331342741576,
+        "middle": 5.33084,
+        "lower": 5.286348657258425
+      },
+      "cci5m": 13.628859461170162,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 5.339192596870813
+    }
+  },
+  {
+    "coin": "INUSDT",
+    "price": 0.0769,
+    "tp": 0.076,
+    "sl": 0.0778,
+    "leverage": "9x",
+    "pop": 89,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "5.90%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "base_score_ok": true,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": false,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 33.9459790846948,
+      "macd5m": {
+        "macd": -0.0005875960767981608,
+        "signal": -0.0006209081957187354,
+        "histogram": 3.331211892057453e-05
+      },
+      "boll5m": {
+        "upper": 0.07836332837411487,
+        "middle": 0.0775115,
+        "lower": 0.07665967162588512
+      },
+      "cci5m": -128.15229123736904,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.07886359007025508
+    }
+  },
+  {
+    "coin": "BERAUSDT",
+    "price": 2.206,
+    "tp": 2.1822,
+    "sl": 2.2298,
+    "leverage": "6x",
+    "pop": 60,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "5.40%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": false,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 53.06085129381221,
+      "macd5m": {
+        "macd": 0.001681825162564543,
+        "signal": 0.0031880811876864763,
+        "histogram": -0.0015062560251219333
+      },
+      "boll5m": {
+        "upper": 2.2335584334057295,
+        "middle": 2.2098,
+        "lower": 2.1860415665942705
+      },
+      "cci5m": -36.97834125726682,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 3,
+        "bearish_score": 0
+      },
+      "ema50_5m": 2.197563916503781
+    }
+  },
+  {
+    "coin": "GALAUSDT",
+    "price": 0.0168,
+    "tp": 0.0167,
+    "sl": 0.0169,
+    "leverage": "6x",
+    "pop": 60,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.74%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 42.0820494637456,
+      "macd5m": {
+        "macd": -2.044453776934088e-05,
+        "signal": -2.544528785222309e-06,
+        "histogram": -1.7900008984118572e-05
+      },
+      "boll5m": {
+        "upper": 0.01708768565713581,
+        "middle": 0.0169175,
+        "lower": 0.016747314342864188
+      },
+      "cci5m": -97.33700642791398,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.016869547637326756
+    }
+  },
+  {
+    "coin": "VIRTUALUSDT",
+    "price": 1.1852,
+    "tp": 1.1776,
+    "sl": 1.1928,
+    "leverage": "7x",
+    "pop": 75,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.19%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 36.89106624081423,
+      "macd5m": {
+        "macd": -0.0033893929230877085,
+        "signal": -0.00293704630475348,
+        "histogram": -0.0004523466183342286
+      },
+      "boll5m": {
+        "upper": 1.200912198622664,
+        "middle": 1.191035,
+        "lower": 1.181157801377336
+      },
+      "cci5m": -98.93948053597398,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 1.1940325288957394
+    }
+  },
+  {
+    "coin": "PNUTUSDT",
+    "price": 0.2262,
+    "tp": 0.2246,
+    "sl": 0.2278,
+    "leverage": "6x",
+    "pop": 60,
+    "signal": "Sell",
+    "ema_boost_applied": false,
+    "estimated_profit": "3.49%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 15,
+      "initial_signal": "Sell",
+      "base_score_ok": false,
+      "confluence_ok": false,
+      "vol_profile_ok": true,
+      "market_trend_ok": true,
+      "macd_conflict_ok": true,
+      "profit_ceiling_ok": true,
+      "min_profit_ok": true,
+      "downgrade_reason": "N/A"
+    },
+    "indicators": {
+      "rsi5m": 40.664344170319005,
+      "macd5m": {
+        "macd": -0.00041146554198159824,
+        "signal": -0.00024645839859446464,
+        "histogram": -0.0001650071433871336
+      },
+      "boll5m": {
+        "upper": 0.22985351046590657,
+        "middle": 0.22752199999999995,
+        "lower": 0.22519048953409332
+      },
+      "cci5m": -94.5791958326563,
+      "marketTrend": -10,
+      "volProfile": {
+        "bullish_score": 0,
+        "bearish_score": 3
+      },
+      "ema50_5m": 0.22745063321922435
+    }
+  }
+]
