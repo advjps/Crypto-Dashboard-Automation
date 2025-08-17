@@ -317,7 +317,7 @@ def analyze_data(symbol, data5m, market_trend):
         "min_profit_ok": passes_min_profit,
         "profit_ceiling_ok": passes_profit_ceiling,
         "confidence": confidence,
-        "confluence_booleans": confluence_signals
+        "confluence_booleans": {k: str(v) for k, v in confluence_signals.items()}
     }
 
     return {
@@ -394,6 +394,7 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
 
 
