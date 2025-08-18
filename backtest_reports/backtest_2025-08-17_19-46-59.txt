@@ -1,0 +1,15 @@
+===== BACKTEST REPORT FOR: signals_2025-08-18_01-16-59.json =====
+Signal Generation Time (UTC): 2025-08-17 19:46:59
+
+--- BUY SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+HYPEUSDT    Buy None              False Success            118        46.81600          46.05200               No         45          30          None          None           False            None             None               True              N/A
+PUMPUSDT    Buy None              False Success             55         0.00373           0.00340               No         45          30          None          None           False            None             None               True              N/A
+ZORAUSDT    Buy None              False Success             43         0.11400           0.10705               No         45          30          None          None            True            None             None               True              N/A
+
+--- SELL SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+ SKLUSDT   Sell None              False    Fail             63         0.03892           0.04134               No          0          55          None          None           False            None             None               True              N/A
+SOONUSDT   Sell None              False    Fail             24         0.27530           0.29014               No         25          30          None          None            True            None             None               True              N/A
+ LPTUSDT   Sell None              False Success             69         6.77300           6.84500               No         25          30          None          None            True            None             None               True              N/A
+
