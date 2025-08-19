@@ -1,0 +1,2860 @@
+[
+  {
+    "coin": "ETHUSDT",
+    "price": 4168.16,
+    "tp": 4136.7874,
+    "sl": 4193.8285,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.75%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.6346465085993243,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 45.41106143566422,
+      "macd_hist5m": 1.5476167707398858,
+      "boll5m": {
+        "upper": 4196.30466485852,
+        "lower": 4138.81933514148,
+        "middle": 4167.562
+      },
+      "cci5m": 1.49718449161993,
+      "ema50_5m": 4191.470527462331,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.5104026540848509
+    }
+  },
+  {
+    "coin": "BTCUSDT",
+    "price": 113190.0,
+    "tp": 112827.0833,
+    "sl": 113486.9318,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.32%",
+    "analysis_log": {
+      "buy_score": 20,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": true,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -3.2173226193811297,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 37.23347474971303,
+      "macd_hist5m": 8.738656880322182,
+      "boll5m": {
+        "upper": 113523.67835791442,
+        "lower": 113150.20164208561,
+        "middle": 113336.94000000002
+      },
+      "cci5m": -139.14240185425174,
+      "ema50_5m": 113720.73634138882,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.10656181825437486
+    }
+  },
+  {
+    "coin": "SOLUSDT",
+    "price": 178.43,
+    "tp": 177.1254,
+    "sl": 179.4974,
+    "leverage": "6x",
+    "confidence": 52,
+    "signal": "Sell",
+    "estimated_profit": "0.73%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": false,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 52,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.29731380533101215,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 53.35623872107665,
+      "macd_hist5m": 0.09945071525827939,
+      "boll5m": {
+        "upper": 179.0250641799387,
+        "lower": 176.9459358200613,
+        "middle": 177.9855
+      },
+      "cci5m": 70.81368365895568,
+      "ema50_5m": 178.60631137745082,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.7137915140680455
+    }
+  },
+  {
+    "coin": "XRPUSDT",
+    "price": 2.9217,
+    "tp": 2.9033,
+    "sl": 2.9367,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.63%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.8274973754294146,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 46.106416802952005,
+      "macd_hist5m": 0.0009925546309212199,
+      "boll5m": {
+        "upper": 2.935638233244397,
+        "lower": 2.9072717667556027,
+        "middle": 2.921455
+      },
+      "cci5m": -16.748283804029068,
+      "ema50_5m": 2.936968496035455,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.5086369587166182
+    }
+  },
+  {
+    "coin": "DOGEUSDT",
+    "price": 0.2139,
+    "tp": 0.2121,
+    "sl": 0.2154,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.83%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.8811434566906999,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 50.709842490288686,
+      "macd_hist5m": 0.0001291685653617034,
+      "boll5m": {
+        "upper": 0.21444832262500305,
+        "lower": 0.21254567737499688,
+        "middle": 0.21349699999999996
+      },
+      "cci5m": 52.05988494657642,
+      "ema50_5m": 0.21461739946158134,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.7170662134723679
+    }
+  },
+  {
+    "coin": "LINKUSDT",
+    "price": 23.916,
+    "tp": 23.6229,
+    "sl": 24.1558,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "1.23%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.5250286664081485,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 44.14413519123967,
+      "macd_hist5m": 0.0026720650465035314,
+      "boll5m": {
+        "upper": 24.17318589916388,
+        "lower": 23.731914100836125,
+        "middle": 23.952550000000002
+      },
+      "cci5m": -55.85404074323058,
+      "ema50_5m": 24.119169629671326,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.41717123065985207
+    }
+  },
+  {
+    "coin": "ADAUSDT",
+    "price": 0.8582,
+    "signal": "Neutral",
+    "confidence": 0,
+    "estimated_profit": "0.00%",
+    "analysis_log": {
+      "buy_score": 30,
+      "sell_score": 20,
+      "initial_signal": "Neutral",
+      "num_confluence_met": 0,
+      "base_threshold_ok": false,
+      "vol_profile_ok": false,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": false,
+      "confidence": 0,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": true,
+      "vetoes_passed": [],
+      "overshoot_ok": false,
+      "ema_gap_atr": -4.298914529019531,
+      "is_regime_aligned": false
+    },
+    "indicators": {
+      "rsi5m": 36.41014621643287,
+      "macd_hist5m": -8.954389817125968e-05,
+      "boll5m": {
+        "upper": 0.876881348812443,
+        "lower": 0.8525886511875569,
+        "middle": 0.8647349999999999
+      },
+      "cci5m": -105.58676755539572,
+      "ema50_5m": 0.876869862658467,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.23098911858577056
+    }
+  },
+  {
+    "coin": "API3USDT",
+    "price": 1.3508,
+    "tp": 1.3029,
+    "sl": 1.39,
+    "leverage": "7x",
+    "confidence": 70,
+    "signal": "Sell",
+    "estimated_profit": "3.55%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 50,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": true,
+      "profit_ceiling_ok": true,
+      "confidence": 70,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": true,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok",
+        "profit_window"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.4240391020226053,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 54.0674857775659,
+      "macd_hist5m": 0.005523058601056922,
+      "boll5m": {
+        "upper": 1.3629437459136837,
+        "lower": 1.2909162540863162,
+        "middle": 1.32693
+      },
+      "cci5m": 105.85493952731484,
+      "ema50_5m": 1.3600306544607836,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.8314012385327906
+    }
+  },
+  {
+    "coin": "SUIUSDT",
+    "price": 3.4762,
+    "tp": 3.4474,
+    "sl": 3.4998,
+    "leverage": "5x",
+    "confidence": 31,
+    "signal": "Sell",
+    "estimated_profit": "0.83%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 20,
+      "initial_signal": "Sell",
+      "num_confluence_met": 1,
+      "base_threshold_ok": false,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 31,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.7035987980323686,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 44.30059726385393,
+      "macd_hist5m": -4.733387124020855e-05,
+      "boll5m": {
+        "upper": 3.5032276180842623,
+        "lower": 3.4602023819157375,
+        "middle": 3.481715
+      },
+      "cci5m": -58.216153793899515,
+      "ema50_5m": 3.4985379744480043,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.37181941364834525
+    }
+  },
+  {
+    "coin": "AIOTUSDT",
+    "price": 1.7762,
+    "tp": 1.6912,
+    "sl": 1.8458,
+    "leverage": "5x",
+    "confidence": 31,
+    "signal": "Sell",
+    "estimated_profit": "4.79%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 20,
+      "initial_signal": "Sell",
+      "num_confluence_met": 1,
+      "base_threshold_ok": false,
+      "vol_profile_ok": false,
+      "min_profit_ok": true,
+      "profit_ceiling_ok": true,
+      "confidence": 31,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "profit_window"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.036871842238517846,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 46.43201730845668,
+      "macd_hist5m": -0.004876540656140635,
+      "boll5m": {
+        "upper": 1.8593072748260877,
+        "lower": 1.7378117251739125,
+        "middle": 1.7985595
+      },
+      "cci5m": -50.8903731936244,
+      "ema50_5m": 1.777624888582307,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.31596445249219246
+    }
+  },
+  {
+    "coin": "ENAUSDT",
+    "price": 0.6395,
+    "tp": 0.6332,
+    "sl": 0.6446,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.98%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.2975885554101669,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 52.983234262153445,
+      "macd_hist5m": 0.000509833551083191,
+      "boll5m": {
+        "upper": 0.642387383227905,
+        "lower": 0.6321026167720949,
+        "middle": 0.637245
+      },
+      "cci5m": 73.65608984843517,
+      "ema50_5m": 0.6403490504383824,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.7192563156090047
+    }
+  },
+  {
+    "coin": "1000PEPEUSDT",
+    "price": 0.0104,
+    "tp": 0.0103,
+    "sl": 0.0105,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.90%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.2692213333320084,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 47.594857683274675,
+      "macd_hist5m": 2.956483271484266e-06,
+      "boll5m": {
+        "upper": 0.01043409620615583,
+        "lower": 0.01032971379384417,
+        "middle": 0.010381905
+      },
+      "cci5m": -26.59867695700438,
+      "ema50_5m": 0.010437903462141131,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.5210284467602285
+    }
+  },
+  {
+    "coin": "BNBUSDT",
+    "price": 832.79,
+    "tp": 829.1538,
+    "sl": 835.7651,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.44%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.6883262678870421,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 50.43664027032498,
+      "macd_hist5m": 0.1491454183206748,
+      "boll5m": {
+        "upper": 836.270591416108,
+        "lower": 828.048408583892,
+        "middle": 832.1595
+      },
+      "cci5m": 22.571670836224364,
+      "ema50_5m": 833.927691280597,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.5766827997949118
+    }
+  },
+  {
+    "coin": "FARTCOINUSDT",
+    "price": 0.8868,
+    "tp": 0.872,
+    "sl": 0.8989,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "1.67%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.221675400434258,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 52.88076884912676,
+      "macd_hist5m": 0.0007645268790626607,
+      "boll5m": {
+        "upper": 0.8937709508609384,
+        "lower": 0.8737590491390617,
+        "middle": 0.883765
+      },
+      "cci5m": 53.97136576961856,
+      "ema50_5m": 0.8882922784048587,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.6516597493921426
+    }
+  },
+  {
+    "coin": "AVAXUSDT",
+    "price": 22.67,
+    "tp": 22.4906,
+    "sl": 22.8168,
+    "leverage": "5x",
+    "confidence": 31,
+    "signal": "Sell",
+    "estimated_profit": "0.79%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 20,
+      "initial_signal": "Sell",
+      "num_confluence_met": 1,
+      "base_threshold_ok": false,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 31,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.5658533821730085,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 44.179615691594805,
+      "macd_hist5m": -0.001344495924450493,
+      "boll5m": {
+        "upper": 22.815633964303597,
+        "lower": 22.600866035696402,
+        "middle": 22.70825
+      },
+      "cci5m": -92.23373892143147,
+      "ema50_5m": 22.797672637908832,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.32190078263521277
+    }
+  },
+  {
+    "coin": "MYXUSDT",
+    "price": 1.161,
+    "tp": 1.1285,
+    "sl": 1.1876,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "2.80%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": false,
+      "min_profit_ok": true,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "profit_window"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": 0.7182701257695153,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 55.70233987726614,
+      "macd_hist5m": 0.000600392357206477,
+      "boll5m": {
+        "upper": 1.172943814692429,
+        "lower": 1.135686185307571,
+        "middle": 1.154315
+      },
+      "cci5m": 88.78324646909655,
+      "ema50_5m": 1.15039109194236,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.6794263379171662
+    }
+  },
+  {
+    "coin": "BIOUSDT",
+    "price": 0.1305,
+    "tp": 0.1283,
+    "sl": 0.1324,
+    "leverage": "6x",
+    "confidence": 63,
+    "signal": "Sell",
+    "estimated_profit": "1.75%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 50,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 63,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": true,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.0431869372102742,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 52.73041577769388,
+      "macd_hist5m": 0.0002759402195162662,
+      "boll5m": {
+        "upper": 0.13072162744469012,
+        "lower": 0.1283463725553099,
+        "middle": 0.129534
+      },
+      "cci5m": 106.84637171598716,
+      "ema50_5m": 0.13163423202251232,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.9277435674556561
+    }
+  },
+  {
+    "coin": "ARBUSDT",
+    "price": 0.4864,
+    "tp": 0.4807,
+    "sl": 0.491,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "1.17%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.8556617544380588,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 48.550009634785695,
+      "macd_hist5m": 0.00011984948151573646,
+      "boll5m": {
+        "upper": 0.48839039413230323,
+        "lower": 0.48377960586769675,
+        "middle": 0.486085
+      },
+      "cci5m": -15.970434897387971,
+      "ema50_5m": 0.4886102975706973,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.568318036292845
+    }
+  },
+  {
+    "coin": "PENGUUSDT",
+    "price": 0.0307,
+    "tp": 0.0302,
+    "sl": 0.031,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "1.35%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -2.029530475581821,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 42.085526469725686,
+      "macd_hist5m": 1.5234684013830477e-05,
+      "boll5m": {
+        "upper": 0.030998127326633432,
+        "lower": 0.030486472673366568,
+        "middle": 0.0307423
+      },
+      "cci5m": -75.68435548373603,
+      "ema50_5m": 0.031037956545206972,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.33328598800896686
+    }
+  },
+  {
+    "coin": "HYPEUSDT",
+    "price": 43.246,
+    "tp": 42.8205,
+    "sl": 43.5941,
+    "leverage": "6x",
+    "confidence": 60,
+    "signal": "Sell",
+    "estimated_profit": "0.98%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 60,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": false,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 60,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": true,
+      "vetoes_passed": [
+        "base_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": 2.5855065486933273,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 69.34235793781349,
+      "macd_hist5m": 0.09081486438467579,
+      "boll5m": {
+        "upper": 43.65467782658821,
+        "lower": 41.69512217341179,
+        "middle": 42.6749
+      },
+      "cci5m": 102.67821664150172,
+      "ema50_5m": 42.74597692589293,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.7914436234940575
+    }
+  },
+  {
+    "coin": "LTCUSDT",
+    "price": 113.87,
+    "tp": 113.0886,
+    "sl": 114.5093,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.69%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.7540702327338428,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 49.302802494909315,
+      "macd_hist5m": 0.01291969466513207,
+      "boll5m": {
+        "upper": 114.22903360735502,
+        "lower": 113.371966392645,
+        "middle": 113.80050000000001
+      },
+      "cci5m": -23.310023310023034,
+      "ema50_5m": 114.13783580843545,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.5810904895288824
+    }
+  },
+  {
+    "coin": "PUMPUSDT",
+    "price": 0.0028,
+    "tp": 0.0028,
+    "sl": 0.0029,
+    "leverage": "7x",
+    "confidence": 95,
+    "signal": "Sell",
+    "estimated_profit": "1.40%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 85,
+      "initial_signal": "Sell",
+      "num_confluence_met": 3,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 95,
+      "bb_touch": true,
+      "rsi_extreme": false,
+      "cci_extreme": true,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": true,
+      "ema_gap_atr": 0.8521098925578748,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 59.785060246482566,
+      "macd_hist5m": 4.171393077910847e-06,
+      "boll5m": {
+        "upper": 0.002820594777236331,
+        "lower": 0.0027659052227636694,
+        "middle": 0.00279325
+      },
+      "cci5m": 214.6609360076387,
+      "ema50_5m": 0.0028086758613351114,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 1.062264591410622
+    }
+  },
+  {
+    "coin": "WIFUSDT",
+    "price": 0.8314,
+    "tp": 0.8223,
+    "sl": 0.8388,
+    "leverage": "5x",
+    "confidence": 24,
+    "signal": "Sell",
+    "estimated_profit": "1.09%",
+    "analysis_log": {
+      "buy_score": 10,
+      "sell_score": 20,
+      "initial_signal": "Sell",
+      "num_confluence_met": 1,
+      "base_threshold_ok": false,
+      "vol_profile_ok": false,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 24,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.331984841227682,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 45.958883041811866,
+      "macd_hist5m": -5.485136489277709e-05,
+      "boll5m": {
+        "upper": 0.8378679182499043,
+        "lower": 0.8273120817500956,
+        "middle": 0.8325899999999999
+      },
+      "cci5m": -64.01320616287535,
+      "ema50_5m": 0.8369043960716802,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.3872661583928959
+    }
+  },
+  {
+    "coin": "TRUMPUSDT",
+    "price": 8.709,
+    "tp": 8.6489,
+    "sl": 8.7582,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.69%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.3787440518967393,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 47.988128159945994,
+      "macd_hist5m": 0.0008339823990190492,
+      "boll5m": {
+        "upper": 8.755735631396767,
+        "lower": 8.662564368603231,
+        "middle": 8.70915
+      },
+      "cci5m": -14.49275362319673,
+      "ema50_5m": 8.746679123164865,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.49839006153289944
+    }
+  },
+  {
+    "coin": "UNIUSDT",
+    "price": 10.1,
+    "tp": 10.0164,
+    "sl": 10.1684,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.83%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.8499671604244141,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 45.430667607954675,
+      "macd_hist5m": 0.006138990797319645,
+      "boll5m": {
+        "upper": 10.14053386372633,
+        "lower": 10.043066136273673,
+        "middle": 10.091800000000001
+      },
+      "cci5m": -5.004609508748806,
+      "ema50_5m": 10.170268865710078,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.5841304113095455
+    }
+  },
+  {
+    "coin": "AAVEUSDT",
+    "price": 279.4,
+    "tp": 277.3758,
+    "sl": 281.0562,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.72%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.0737898687082583,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 48.59734866835856,
+      "macd_hist5m": 0.13731030338504752,
+      "boll5m": {
+        "upper": 280.5725534219645,
+        "lower": 277.62944657803547,
+        "middle": 279.101
+      },
+      "cci5m": 28.290917179804143,
+      "ema50_5m": 280.38798177277295,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.601593321566543
+    }
+  },
+  {
+    "coin": "TRXUSDT",
+    "price": 0.3491,
+    "tp": 0.348,
+    "sl": 0.3501,
+    "leverage": "5x",
+    "confidence": 31,
+    "signal": "Sell",
+    "estimated_profit": "0.33%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 20,
+      "initial_signal": "Sell",
+      "num_confluence_met": 1,
+      "base_threshold_ok": false,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 31,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.2390912649142144,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 48.91894495974649,
+      "macd_hist5m": -2.3321391614328316e-05,
+      "boll5m": {
+        "upper": 0.3505005600051686,
+        "lower": 0.3479384399948313,
+        "middle": 0.34921949999999996
+      },
+      "cci5m": -5.527069321439242,
+      "ema50_5m": 0.3492664893935979,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.46897100850889145
+    }
+  },
+  {
+    "coin": "1000BONKUSDT",
+    "price": 0.0218,
+    "tp": 0.0215,
+    "sl": 0.0219,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "1.01%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.737172416064579,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 51.78797768331603,
+      "macd_hist5m": 1.517396275685293e-05,
+      "boll5m": {
+        "upper": 0.02180255410499909,
+        "lower": 0.021578945895000912,
+        "middle": 0.02169075
+      },
+      "cci5m": 85.71178427595709,
+      "ema50_5m": 0.021833301256136667,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.8096934589323169
+    }
+  },
+  {
+    "coin": "XNYUSDT",
+    "price": 0.0118,
+    "tp": 0.0115,
+    "sl": 0.0121,
+    "leverage": "5x",
+    "confidence": 38,
+    "signal": "Sell",
+    "estimated_profit": "2.79%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 20,
+      "initial_signal": "Sell",
+      "num_confluence_met": 1,
+      "base_threshold_ok": false,
+      "vol_profile_ok": true,
+      "min_profit_ok": true,
+      "profit_ceiling_ok": true,
+      "confidence": 38,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "vol_ok",
+        "profit_window"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.3338459933531381,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 52.0508202306078,
+      "macd_hist5m": -4.493081444129841e-06,
+      "boll5m": {
+        "upper": 0.012051654694498898,
+        "lower": 0.011643445305501102,
+        "middle": 0.01184755
+      },
+      "cci5m": -6.344825720219224,
+      "ema50_5m": 0.011886121964155007,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.4717056973423432
+    }
+  },
+  {
+    "coin": "CRVUSDT",
+    "price": 0.844,
+    "tp": 0.832,
+    "sl": 0.8538,
+    "leverage": "5x",
+    "confidence": 31,
+    "signal": "Sell",
+    "estimated_profit": "1.42%",
+    "analysis_log": {
+      "buy_score": 15,
+      "sell_score": 20,
+      "initial_signal": "Sell",
+      "num_confluence_met": 1,
+      "base_threshold_ok": false,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 31,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": true,
+      "vetoes_passed": [
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.7730845387019782,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 40.17909225547956,
+      "macd_hist5m": -0.00045576095778226706,
+      "boll5m": {
+        "upper": 0.8553633835595285,
+        "lower": 0.8421366164404718,
+        "middle": 0.8487500000000001
+      },
+      "cci5m": -157.42849911415462,
+      "ema50_5m": 0.8536679512657381,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.14087974353487312
+    }
+  },
+  {
+    "coin": "PROVEUSDT",
+    "price": 1.1801,
+    "tp": 1.1655,
+    "sl": 1.192,
+    "leverage": "5x",
+    "confidence": 31,
+    "signal": "Sell",
+    "estimated_profit": "1.23%",
+    "analysis_log": {
+      "buy_score": 10,
+      "sell_score": 20,
+      "initial_signal": "Sell",
+      "num_confluence_met": 1,
+      "base_threshold_ok": false,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 31,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.4634023951436665,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 40.623560108394216,
+      "macd_hist5m": -0.0018121753148956652,
+      "boll5m": {
+        "upper": 1.209773114914951,
+        "lower": 1.1739368850850487,
+        "middle": 1.1918549999999999
+      },
+      "cci5m": -98.96006985790184,
+      "ema50_5m": 1.189790348918385,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.17198000303616293
+    }
+  },
+  {
+    "coin": "DOTUSDT",
+    "price": 3.791,
+    "tp": 3.7611,
+    "sl": 3.8154,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.79%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.513475860047822,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 50.666964399429354,
+      "macd_hist5m": 0.000790874848630195,
+      "boll5m": {
+        "upper": 3.805828206853751,
+        "lower": 3.7682717931462486,
+        "middle": 3.78705
+      },
+      "cci5m": 39.903680770554715,
+      "ema50_5m": 3.7979673700609227,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.6051751115205938
+    }
+  },
+  {
+    "coin": "DAMUSDT",
+    "price": 0.0768,
+    "signal": "Neutral",
+    "confidence": 0,
+    "estimated_profit": "0.00%",
+    "analysis_log": {
+      "buy_score": 65,
+      "sell_score": 20,
+      "initial_signal": "Neutral",
+      "num_confluence_met": 0,
+      "base_threshold_ok": false,
+      "vol_profile_ok": false,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": false,
+      "confidence": 0,
+      "bb_touch": true,
+      "rsi_extreme": false,
+      "cci_extreme": true,
+      "vetoes_passed": [],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.7834242292609792,
+      "is_regime_aligned": false
+    },
+    "indicators": {
+      "rsi5m": 37.32732126848745,
+      "macd_hist5m": -0.00030757203196500984,
+      "boll5m": {
+        "upper": 0.08284880082219503,
+        "lower": 0.07686419917780496,
+        "middle": 0.0798565
+      },
+      "cci5m": -137.2978007398225,
+      "ema50_5m": 0.07954810953772602,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": -0.005714528691650165
+    }
+  },
+  {
+    "coin": "OPUSDT",
+    "price": 0.6955,
+    "tp": 0.6886,
+    "sl": 0.7012,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "1.00%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.362617317267613,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 46.67410074009078,
+      "macd_hist5m": 0.0002336600509149371,
+      "boll5m": {
+        "upper": 0.6992530484423284,
+        "lower": 0.6907469515576717,
+        "middle": 0.6950000000000001
+      },
+      "cci5m": 1.6777243956387253,
+      "ema50_5m": 0.6998011118451762,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.5587813666808625
+    }
+  },
+  {
+    "coin": "LDOUSDT",
+    "price": 1.2875,
+    "tp": 1.2702,
+    "sl": 1.3016,
+    "leverage": "5x",
+    "confidence": 24,
+    "signal": "Sell",
+    "estimated_profit": "1.34%",
+    "analysis_log": {
+      "buy_score": 5,
+      "sell_score": 20,
+      "initial_signal": "Sell",
+      "num_confluence_met": 1,
+      "base_threshold_ok": false,
+      "vol_profile_ok": false,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 24,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.2692072271916257,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 47.342089392482414,
+      "macd_hist5m": -0.0010304664560184642,
+      "boll5m": {
+        "upper": 1.3105824822754848,
+        "lower": 1.2735575177245153,
+        "middle": 1.29207
+      },
+      "cci5m": -45.36890496646156,
+      "ema50_5m": 1.2896149249747626,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.3765697670362712
+    }
+  },
+  {
+    "coin": "NEARUSDT",
+    "price": 2.467,
+    "tp": 2.4455,
+    "sl": 2.4846,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.87%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.0499441115022774,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 47.870686486924804,
+      "macd_hist5m": 0.0004498211561546868,
+      "boll5m": {
+        "upper": 2.477464056107005,
+        "lower": 2.4555359438929956,
+        "middle": 2.4665000000000004
+      },
+      "cci5m": -8.163265306130512,
+      "ema50_5m": 2.4772663263824084,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.5228017804323475
+    }
+  },
+  {
+    "coin": "SEIUSDT",
+    "price": 0.3065,
+    "tp": 0.3037,
+    "sl": 0.3088,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.90%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.6362212727832917,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 48.17048774063372,
+      "macd_hist5m": 0.000190825409489056,
+      "boll5m": {
+        "upper": 0.3077148388832114,
+        "lower": 0.30468516111678867,
+        "middle": 0.3062
+      },
+      "cci5m": 26.061370323661023,
+      "ema50_5m": 0.30855041870528604,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.5990204315867531
+    }
+  },
+  {
+    "coin": "XLMUSDT",
+    "price": 0.3975,
+    "tp": 0.3946,
+    "sl": 0.4,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.74%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.1051826697500522,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 48.08638227733905,
+      "macd_hist5m": 0.00014659186892306382,
+      "boll5m": {
+        "upper": 0.3995739336907575,
+        "lower": 0.3948570663092425,
+        "middle": 0.3972155
+      },
+      "cci5m": 29.252901224666086,
+      "ema50_5m": 0.39902149530040293,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.5687956590154926
+    }
+  },
+  {
+    "coin": "WLDUSDT",
+    "price": 0.9114,
+    "tp": 0.9034,
+    "sl": 0.9179,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.88%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.9905462821969089,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 42.99231642840664,
+      "macd_hist5m": 0.00018524380246453045,
+      "boll5m": {
+        "upper": 0.9175328424848175,
+        "lower": 0.9083071575151824,
+        "middle": 0.91292
+      },
+      "cci5m": -57.244825124905,
+      "ema50_5m": 0.9186238645662282,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.33524258578058796
+    }
+  },
+  {
+    "coin": "APTUSDT",
+    "price": 4.3517,
+    "tp": 4.3175,
+    "sl": 4.3797,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.79%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.7434109721558078,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 50.156784330345566,
+      "macd_hist5m": 0.0009876069837482715,
+      "boll5m": {
+        "upper": 4.36572258794552,
+        "lower": 4.329407412054481,
+        "middle": 4.347565
+      },
+      "cci5m": 45.03851068974061,
+      "ema50_5m": 4.363258729478186,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.6138642426628077
+    }
+  },
+  {
+    "coin": "PLUMEUSDT",
+    "price": 0.0847,
+    "tp": 0.0833,
+    "sl": 0.0858,
+    "leverage": "5x",
+    "confidence": 31,
+    "signal": "Sell",
+    "estimated_profit": "1.60%",
+    "analysis_log": {
+      "buy_score": 15,
+      "sell_score": 20,
+      "initial_signal": "Sell",
+      "num_confluence_met": 1,
+      "base_threshold_ok": false,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 31,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": true,
+      "vetoes_passed": [
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.6471465765527342,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 40.651796218494546,
+      "macd_hist5m": -7.742137061274168e-05,
+      "boll5m": {
+        "upper": 0.08645679907974914,
+        "lower": 0.08446020092025087,
+        "middle": 0.0854585
+      },
+      "cci5m": -119.39551788578478,
+      "ema50_5m": 0.08567581216332305,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.10006975053975461
+    }
+  },
+  {
+    "coin": "HBARUSDT",
+    "price": 0.2352,
+    "tp": 0.2334,
+    "sl": 0.2366,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.75%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.8966903242636615,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 49.00902394548403,
+      "macd_hist5m": 9.34534905706714e-05,
+      "boll5m": {
+        "upper": 0.23617598733999615,
+        "lower": 0.23374501266000383,
+        "middle": 0.2349605
+      },
+      "cci5m": 42.31963602224503,
+      "ema50_5m": 0.23589988241787385,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.5902930013243516
+    }
+  },
+  {
+    "coin": "ETCUSDT",
+    "price": 20.85,
+    "tp": 20.6935,
+    "sl": 20.978,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.75%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.6882406865817785,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 44.16307306366802,
+      "macd_hist5m": 0.003978637558542698,
+      "boll5m": {
+        "upper": 20.966393188007306,
+        "lower": 20.765206811992694,
+        "middle": 20.8658
+      },
+      "cci5m": -30.326255203403228,
+      "ema50_5m": 20.970065162575725,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.4214658551290212
+    }
+  },
+  {
+    "coin": "INJUSDT",
+    "price": 13.567,
+    "tp": 13.4357,
+    "sl": 13.6745,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.97%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.3312325128645406,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 46.069351647795884,
+      "macd_hist5m": 0.0007892256049398944,
+      "boll5m": {
+        "upper": 13.6657770650494,
+        "lower": 13.500922934950601,
+        "middle": 13.583350000000001
+      },
+      "cci5m": -48.86099756270639,
+      "ema50_5m": 13.646475800111281,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.40082141108504715
+    }
+  },
+  {
+    "coin": "1000SHIBUSDT",
+    "price": 0.0122,
+    "tp": 0.0122,
+    "sl": 0.0123,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.69%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.3544685043578426,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 48.3139313625975,
+      "macd_hist5m": 5.748379378545604e-06,
+      "boll5m": {
+        "upper": 0.012285746284710066,
+        "lower": 0.012170153715289933,
+        "middle": 0.01222795
+      },
+      "cci5m": 42.73853273444393,
+      "ema50_5m": 0.01229605046526672,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.6388497554861388
+    }
+  },
+  {
+    "coin": "FILUSDT",
+    "price": 2.385,
+    "tp": 2.3656,
+    "sl": 2.4008,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.81%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.9928099145095989,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 48.2340547934715,
+      "macd_hist5m": 0.0007351772797250613,
+      "boll5m": {
+        "upper": 2.394596452542073,
+        "lower": 2.3716035474579265,
+        "middle": 2.3830999999999998
+      },
+      "cci5m": 27.75510204080893,
+      "ema50_5m": 2.393736423900307,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.5826341861999005
+    }
+  },
+  {
+    "coin": "ONDOUSDT",
+    "price": 0.9221,
+    "tp": 0.9144,
+    "sl": 0.9284,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.83%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.2697342610209164,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 49.18310846608192,
+      "macd_hist5m": 0.0004300456786205352,
+      "boll5m": {
+        "upper": 0.9249277981447594,
+        "lower": 0.9168722018552404,
+        "middle": 0.9208999999999999
+      },
+      "cci5m": 42.183083278972184,
+      "ema50_5m": 0.9265408734313288,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.6489647639817039
+    }
+  },
+  {
+    "coin": "MEMEUSDT",
+    "price": 0.0021,
+    "tp": 0.002,
+    "sl": 0.0021,
+    "leverage": "7x",
+    "confidence": 96,
+    "signal": "Sell",
+    "estimated_profit": "1.18%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 95,
+      "initial_signal": "Sell",
+      "num_confluence_met": 3,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 96,
+      "bb_touch": true,
+      "rsi_extreme": false,
+      "cci_extreme": true,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": true,
+      "ema_gap_atr": 2.5449422555153327,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 64.17956689729846,
+      "macd_hist5m": 1.3751402392806683e-06,
+      "boll5m": {
+        "upper": 0.002049384315285809,
+        "lower": 0.002010315684714191,
+        "middle": 0.00202985
+      },
+      "cci5m": 200.06713662303142,
+      "ema50_5m": 0.0020229228577838603,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 1.041355038314663
+    }
+  },
+  {
+    "coin": "TIAUSDT",
+    "price": 1.6735,
+    "tp": 1.6572,
+    "sl": 1.6868,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.97%",
+    "analysis_log": {
+      "buy_score": -10,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.7122437399630865,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 44.470154200104744,
+      "macd_hist5m": 0.0004777932850508694,
+      "boll5m": {
+        "upper": 1.6829085926968959,
+        "lower": 1.667131407303104,
+        "middle": 1.67502
+      },
+      "cci5m": -32.298136645959126,
+      "ema50_5m": 1.6861913445869092,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.4036583546392201
+    }
+  },
+  {
+    "coin": "ETHFIUSDT",
+    "price": 1.068,
+    "tp": 1.0562,
+    "sl": 1.0777,
+    "leverage": "5x",
+    "confidence": 31,
+    "signal": "Sell",
+    "estimated_profit": "1.10%",
+    "analysis_log": {
+      "buy_score": 10,
+      "sell_score": 20,
+      "initial_signal": "Sell",
+      "num_confluence_met": 1,
+      "base_threshold_ok": false,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 31,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.081997147512005,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 46.3504240396086,
+      "macd_hist5m": -3.285831860500585e-05,
+      "boll5m": {
+        "upper": 1.0764804818698543,
+        "lower": 1.0626195181301457,
+        "middle": 1.06955
+      },
+      "cci5m": -29.819563152901807,
+      "ema50_5m": 1.073801513843568,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.3881751637831991
+    }
+  },
+  {
+    "coin": "BCHUSDT",
+    "price": 554.32,
+    "tp": 551.7381,
+    "sl": 556.4325,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.47%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.0970425296467676,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 50.643721333966084,
+      "macd_hist5m": 0.2753341493396011,
+      "boll5m": {
+        "upper": 555.8757271775818,
+        "lower": 550.9182728224183,
+        "middle": 553.397
+      },
+      "cci5m": 64.1592553949133,
+      "ema50_5m": 555.6074961456895,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.6861842659304863
+    }
+  },
+  {
+    "coin": "VIRTUALUSDT",
+    "price": 1.1761,
+    "tp": 1.1627,
+    "sl": 1.187,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "1.14%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.398400756925523,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 46.94283241153527,
+      "macd_hist5m": 0.000361045596558242,
+      "boll5m": {
+        "upper": 1.1823714902503792,
+        "lower": 1.1697785097496207,
+        "middle": 1.176075
+      },
+      "cci5m": -34.19468659194993,
+      "ema50_5m": 1.184592998283399,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.5019852329635892
+    }
+  },
+  {
+    "coin": "ZORAUSDT",
+    "price": 0.0986,
+    "signal": "Neutral",
+    "confidence": 0,
+    "estimated_profit": "0.00%",
+    "analysis_log": {
+      "buy_score": 90,
+      "sell_score": 20,
+      "initial_signal": "Neutral",
+      "num_confluence_met": 0,
+      "base_threshold_ok": false,
+      "vol_profile_ok": false,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": false,
+      "confidence": 0,
+      "bb_touch": true,
+      "rsi_extreme": true,
+      "cci_extreme": true,
+      "vetoes_passed": [],
+      "overshoot_ok": false,
+      "ema_gap_atr": -3.6181287848567023,
+      "is_regime_aligned": false
+    },
+    "indicators": {
+      "rsi5m": 26.49596725037631,
+      "macd_hist5m": -0.0001933670220680881,
+      "boll5m": {
+        "upper": 0.1025898372857163,
+        "lower": 0.0989481627142837,
+        "middle": 0.100769
+      },
+      "cci5m": -208.32481079975597,
+      "ema50_5m": 0.10187699416088217,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": -0.0901131355497803
+    }
+  },
+  {
+    "coin": "TAOUSDT",
+    "price": 347.53,
+    "tp": 344.6431,
+    "sl": 349.892,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.83%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.4861716909162734,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 50.84796257244645,
+      "macd_hist5m": 0.2101370584176546,
+      "boll5m": {
+        "upper": 348.86559858833994,
+        "lower": 344.85240141166014,
+        "middle": 346.85900000000004
+      },
+      "cci5m": 84.76272155517252,
+      "ema50_5m": 348.16796997484926,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.6671983634143459
+    }
+  },
+  {
+    "coin": "XCNUSDT",
+    "price": 0.0131,
+    "tp": 0.0129,
+    "sl": 0.0133,
+    "leverage": "6x",
+    "confidence": 52,
+    "signal": "Sell",
+    "estimated_profit": "1.70%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": false,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 52,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.835543845499892,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 48.90938288387826,
+      "macd_hist5m": 1.636902441559168e-05,
+      "boll5m": {
+        "upper": 0.013241499528543614,
+        "lower": 0.012934500471456384,
+        "middle": 0.013087999999999999
+      },
+      "cci5m": 27.898550724639634,
+      "ema50_5m": 0.013214749937516887,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.6368082377792667
+    }
+  },
+  {
+    "coin": "SKLUSDT",
+    "price": 0.0317,
+    "tp": 0.0313,
+    "sl": 0.0319,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "1.07%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -0.9032772708477906,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 47.2531813681625,
+      "macd_hist5m": 2.91781600326241e-06,
+      "boll5m": {
+        "upper": 0.03185814104471626,
+        "lower": 0.03153885895528375,
+        "middle": 0.031698500000000004
+      },
+      "cci5m": -7.452165156094386,
+      "ema50_5m": 0.03180953796709853,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.4107372416327403
+    }
+  },
+  {
+    "coin": "POLUSDT",
+    "price": 0.2428,
+    "tp": 0.2406,
+    "sl": 0.2446,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "0.89%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.3838305604749803,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 49.030670991121454,
+      "macd_hist5m": 0.00020017465424869841,
+      "boll5m": {
+        "upper": 0.2436529212918637,
+        "lower": 0.2406540787081363,
+        "middle": 0.2421535
+      },
+      "cci5m": 73.29056912788565,
+      "ema50_5m": 0.2441667103635994,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.7155831731575685
+    }
+  },
+  {
+    "coin": "VINEUSDT",
+    "price": 0.0718,
+    "tp": 0.0698,
+    "sl": 0.0734,
+    "leverage": "6x",
+    "confidence": 59,
+    "signal": "Sell",
+    "estimated_profit": "2.74%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": false,
+      "min_profit_ok": true,
+      "profit_ceiling_ok": true,
+      "confidence": 59,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok",
+        "profit_window"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": 1.6554190047887627,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 57.8844250028051,
+      "macd_hist5m": 1.1131419790253068e-05,
+      "boll5m": {
+        "upper": 0.0731359425156119,
+        "lower": 0.06927705748438809,
+        "middle": 0.07120649999999999
+      },
+      "cci5m": 53.80338840144264,
+      "ema50_5m": 0.07033128366387777,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.6563923244970614
+    }
+  },
+  {
+    "coin": "TONUSDT",
+    "price": 3.221,
+    "tp": 3.2002,
+    "sl": 3.238,
+    "leverage": "6x",
+    "confidence": 52,
+    "signal": "Sell",
+    "estimated_profit": "0.64%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": false,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 52,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "base_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": 0.11727887200078824,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 53.79878709727316,
+      "macd_hist5m": 0.0010139990978860328,
+      "boll5m": {
+        "upper": 3.228415293134899,
+        "lower": 3.199974706865101,
+        "middle": 3.214195
+      },
+      "cci5m": 93.8378931219594,
+      "ema50_5m": 3.2198927883859403,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.7392707356819308
+    }
+  },
+  {
+    "coin": "UMAUSDT",
+    "price": 1.393,
+    "tp": 1.3595,
+    "sl": 1.4204,
+    "leverage": "9x",
+    "confidence": 93,
+    "signal": "Strong Sell",
+    "estimated_profit": "2.41%",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 75,
+      "initial_signal": "Sell",
+      "num_confluence_met": 3,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": true,
+      "profit_ceiling_ok": true,
+      "confidence": 93,
+      "bb_touch": false,
+      "rsi_extreme": true,
+      "cci_extreme": true,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok",
+        "profit_window"
+      ],
+      "overshoot_ok": true,
+      "ema_gap_atr": 2.8491254813000633,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 73.7748616470368,
+      "macd_hist5m": 0.004304799067670702,
+      "boll5m": {
+        "upper": 1.3950088726825567,
+        "lower": 1.3121911273174431,
+        "middle": 1.3536
+      },
+      "cci5m": 156.88329839273226,
+      "ema50_5m": 1.349555757626283,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.9757434511927332
+    }
+  },
+  {
+    "coin": "BROCCOLIF3BUSDT",
+    "price": 0.0117,
+    "tp": 0.0113,
+    "sl": 0.012,
+    "leverage": "7x",
+    "confidence": 66,
+    "signal": "Sell",
+    "estimated_profit": "3.17%",
+    "analysis_log": {
+      "buy_score": 35,
+      "sell_score": 40,
+      "initial_signal": "Sell",
+      "num_confluence_met": 2,
+      "base_threshold_ok": true,
+      "vol_profile_ok": true,
+      "min_profit_ok": true,
+      "profit_ceiling_ok": true,
+      "confidence": 66,
+      "bb_touch": false,
+      "rsi_extreme": true,
+      "cci_extreme": true,
+      "vetoes_passed": [
+        "base_ok",
+        "vol_ok",
+        "profit_window"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -4.543662162243052,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 25.787755733298553,
+      "macd_hist5m": 1.1032596579369901e-06,
+      "boll5m": {
+        "upper": 0.012345051427502774,
+        "lower": 0.011671348572497227,
+        "middle": 0.0120082
+      },
+      "cci5m": -149.20117807723216,
+      "ema50_5m": 0.012465981173020526,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.042528285712160024
+    }
+  },
+  {
+    "coin": "TOWNSUSDT",
+    "price": 0.0278,
+    "signal": "Neutral",
+    "confidence": 0,
+    "estimated_profit": "0.00%",
+    "analysis_log": {
+      "buy_score": 75,
+      "sell_score": 20,
+      "initial_signal": "Neutral",
+      "num_confluence_met": 0,
+      "base_threshold_ok": false,
+      "vol_profile_ok": false,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": false,
+      "confidence": 0,
+      "bb_touch": true,
+      "rsi_extreme": false,
+      "cci_extreme": true,
+      "vetoes_passed": [],
+      "overshoot_ok": false,
+      "ema_gap_atr": -2.6056946866061117,
+      "is_regime_aligned": false
+    },
+    "indicators": {
+      "rsi5m": 31.588304490420526,
+      "macd_hist5m": -5.34242782333741e-05,
+      "boll5m": {
+        "upper": 0.02850907976490337,
+        "lower": 0.02787292023509664,
+        "middle": 0.028191000000000004
+      },
+      "cci5m": -220.2202202202162,
+      "ema50_5m": 0.028231215058783305,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": -0.09890637827237017
+    }
+  },
+  {
+    "coin": "CFXUSDT",
+    "price": 0.1688,
+    "tp": 0.1672,
+    "sl": 0.17,
+    "leverage": "5x",
+    "confidence": 31,
+    "signal": "Sell",
+    "estimated_profit": "0.93%",
+    "analysis_log": {
+      "buy_score": 0,
+      "sell_score": 20,
+      "initial_signal": "Sell",
+      "num_confluence_met": 1,
+      "base_threshold_ok": false,
+      "vol_profile_ok": true,
+      "min_profit_ok": false,
+      "profit_ceiling_ok": true,
+      "confidence": 31,
+      "bb_touch": false,
+      "rsi_extreme": false,
+      "cci_extreme": false,
+      "vetoes_passed": [
+        "vol_ok"
+      ],
+      "overshoot_ok": false,
+      "ema_gap_atr": -1.7814704373805017,
+      "is_regime_aligned": true
+    },
+    "indicators": {
+      "rsi5m": 43.504460485797765,
+      "macd_hist5m": -2.5853016304773664e-06,
+      "boll5m": {
+        "upper": 0.170381623161622,
+        "lower": 0.16781437683837805,
+        "middle": 0.16909800000000003
+      },
+      "cci5m": -55.70305585923391,
+      "ema50_5m": 0.17001496677357192,
+      "marketRegime": "Bearish",
+      "regimeScore": -7,
+      "adx15m": 51.06765843667186,
+      "percentB": 0.3644461979167295
+    }
+  }
+]
