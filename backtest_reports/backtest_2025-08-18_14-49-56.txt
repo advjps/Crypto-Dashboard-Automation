@@ -1,8 +1,0 @@
-===== BACKTEST REPORT FOR: signals_2025-08-18_20-19-56.json =====
-Signal Generation Time (UTC): 2025-08-18 14:49:56
-
---- BUY SIGNALS ---
-    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
-LINKUSDT    Buy None              False Success             52       25.680000         24.785000               No         65          10          None          None            True            None             None               True              N/A
- XNYUSDT    Buy None              False    Fail             21        0.017707          0.015721               No         45          10          None          None           False            None             None               True              N/A
-
