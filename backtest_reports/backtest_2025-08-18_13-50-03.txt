@@ -1,0 +1,22 @@
+===== BACKTEST REPORT FOR: signals_2025-08-18_19-20-03.json =====
+Signal Generation Time (UTC): 2025-08-18 13:50:03
+
+--- STRONG BUY SIGNALS ---
+(None)
+
+--- BUY SIGNALS ---
+  Coin             Signal           Confidence       POP              Outcome          Duration(min)    MaxProfitPrice   MaxDrawdownPrice  Did_TP_Hit_Later  Buy_Score        Sell_Score       Base_Score_OK    Num_Conf         Confluence_OK    Vol_Profile_OK   Min_Profit_OK    Profit_Ceiling_OK  MarketTrend      MACD_Hist        RSI              CCI              %B               BB_Touch         RSI_Extreme      CCI_Extreme      Initial_Signal   Downgrade_Reason
+  1000PEPEUSDT     Buy              60               83               Success          135              0.010803         0.010607         No               50               10               True             2                True             True             False            True             10.000000        -0.000011        40.326709        -215.201393      0.068400         True             False            True             Buy              N/A            
+  PENGUUSDT        Buy              59               87               Success          71               0.031828         0.031157         No               65               10               True             2                True             False            False            True             10.000000        -0.000071        37.911394        -209.097202      0.016500         True             False            True             Buy              N/A            
+  CRVUSDT          Buy              60               83               Fail             21               0.864000         0.851000         Yes              50               10               True             2                True             True             False            True             10.000000        -0.000752        41.431673        -178.082192      -0.108000        True             False            True             Buy              N/A            
+  AIOUSDT          Buy              66               87               Inconclusive                      0.084660         0.081500         No               65               10               True             2                True             False            True             True             10.000000        -0.000054        38.117724        -138.772246      0.007400         True             False            True             Buy              N/A            
+  ZORAUSDT         Buy              59               87               Fail             40               0.100320         0.098500         Yes              65               10               True             2                True             False            False            True             10.000000        -0.000058        37.765881        -155.407970      -0.039700        True             False            True             Buy              N/A            
+  TAOUSDT          Buy              59               87               Fail             9                351.550000       347.910000       Yes              65               10               True             2                True             False            False            True             10.000000        -0.526596        31.444703        -158.208882      -0.016800        True             False            True             Buy              N/A            
+
+--- STRONG SELL SIGNALS ---
+(None)
+
+--- SELL SIGNALS ---
+  Coin             Signal           Confidence       POP              Outcome          Duration(min)    MaxProfitPrice   MaxDrawdownPrice  Did_TP_Hit_Later  Buy_Score        Sell_Score       Base_Score_OK    Num_Conf         Confluence_OK    Vol_Profile_OK   Min_Profit_OK    Profit_Ceiling_OK  MarketTrend      MACD_Hist        RSI              CCI              %B               BB_Touch         RSI_Extreme      CCI_Extreme      Initial_Signal   Downgrade_Reason
+  CTSIUSDT         Sell             54               64               Success          4                0.100400         0.102900         No               20               35               True             2                True             True             False            True             10.000000        0.000230         69.830000        189.598109       1.155000         True             False            True             Sell             N/A            
+

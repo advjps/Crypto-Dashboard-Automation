@@ -1,0 +1,17 @@
+===== BACKTEST REPORT FOR: signals_2025-08-19_01-15-22.json =====
+Signal Generation Time (UTC): 2025-08-18 19:45:22
+
+--- STRONG BUY SIGNALS ---
+(None)
+
+--- BUY SIGNALS ---
+  Coin             Signal           Confidence       POP              Outcome          Duration(min)    MaxProfitPrice   MaxDrawdownPrice  Did_TP_Hit_Later  Buy_Score        Sell_Score       Base_Score_OK    Num_Conf         Confluence_OK    Vol_Profile_OK   Min_Profit_OK    Profit_Ceiling_OK  MarketTrend      MACD_Hist        RSI              CCI              %B               BB_Touch         RSI_Extreme      CCI_Extreme      Initial_Signal   Downgrade_Reason
+  XNYUSDT          Buy              54               100              Fail             101              0.015458         0.014792         No               35               0                True             2                True             False            True             True             5.000000         0.000014         29.667914        -150.990394      0.078200         False            True             True             Buy              N/A            
+
+--- STRONG SELL SIGNALS ---
+(None)
+
+--- SELL SIGNALS ---
+  Coin             Signal           Confidence       POP              Outcome          Duration(min)    MaxProfitPrice   MaxDrawdownPrice  Did_TP_Hit_Later  Buy_Score        Sell_Score       Base_Score_OK    Num_Conf         Confluence_OK    Vol_Profile_OK   Min_Profit_OK    Profit_Ceiling_OK  MarketTrend      MACD_Hist        RSI              CCI              %B               BB_Touch         RSI_Extreme      CCI_Extreme      Initial_Signal   Downgrade_Reason
+  MEMEUSDT         Sell             73               71               Fail             8                0.002156         0.002215         No               20               50               True             3                True             True             False            True             5.000000         0.000005         72.600414        178.310047       1.279900         True             True             True             Sell             N/A            
+

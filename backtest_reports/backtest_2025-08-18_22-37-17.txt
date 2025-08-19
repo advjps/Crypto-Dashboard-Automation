@@ -1,0 +1,21 @@
+===== BACKTEST REPORT FOR: signals_2025-08-19_04-07-17_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-18 22:37:17
+
+--- STRONG BUY SIGNALS ---
+(None)
+
+--- BUY SIGNALS ---
+  Coin             Signal           Confidence       POP              Outcome          Duration(min)    MaxProfitPrice   MaxDrawdownPrice  Did_TP_Hit_Later  Buy_Score        Sell_Score       Base_Score_OK    Num_Conf         Confluence_OK    Vol_Profile_OK   Min_Profit_OK    Profit_Ceiling_OK  MarketTrend      MACD_Hist        RSI              CCI              %B               BB_Touch         RSI_Extreme      CCI_Extreme      Initial_Signal   Downgrade_Reason
+  LINKUSDT         Buy              48               57               Fail             35               26.500000        26.104000        No               20               15               True             2                True             True             False            True             10.000000        0.096407         73.899258        113.762699       0.852900         False            True             True             Buy              N/A            
+  BNBUSDT          Buy              48               57               Fail             43               856.530000       852.640000       No               20               15               True             2                True             True             False            True             10.000000        0.901088         80.104864        150.918948       0.950700         False            True             True             Buy              N/A            
+  MYXUSDT          Buy              41               100              Success          28               1.493800         1.447600         No               20               0                True             1                False            True             True             True             10.000000        0.001848         66.479913        119.768065       0.914500         False            False            True             Buy              N/A            
+  TRXUSDT          Buy              48               57               Fail             3                0.352300         0.351580         No               20               15               True             2                True             True             False            True             10.000000        0.000237         80.466583        133.046820       0.931100         False            True             True             Buy              N/A            
+  POLUSDT          Buy              48               57               Fail             19               0.260590         0.257390         Yes              20               15               True             2                True             True             False            True             10.000000        0.000649         83.115870        137.206302       0.933300         False            True             True             Buy              N/A            
+
+--- STRONG SELL SIGNALS ---
+  Coin             Signal           Confidence       POP              Outcome          Duration(min)    MaxProfitPrice   MaxDrawdownPrice  Did_TP_Hit_Later  Buy_Score        Sell_Score       Base_Score_OK    Num_Conf         Confluence_OK    Vol_Profile_OK   Min_Profit_OK    Profit_Ceiling_OK  MarketTrend      MACD_Hist        RSI              CCI              %B               BB_Touch         RSI_Extreme      CCI_Extreme      Initial_Signal   Downgrade_Reason
+  AIOTUSDT         Strong Sell      80               71               Success          107              1.246430         1.324790         No               20               50               True             3                True             True             True             True             10.000000        0.003358         74.299859        390.622636       1.355800         True             True             True             Sell             N/A            
+
+--- SELL SIGNALS ---
+(None)
+

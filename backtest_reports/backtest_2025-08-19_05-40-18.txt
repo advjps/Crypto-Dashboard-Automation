@@ -1,0 +1,15 @@
+===== BACKTEST REPORT FOR: signals_2025-08-19_11-10-18.json =====
+Signal Generation Time (UTC): 2025-08-19 05:40:18
+
+--- STRONG BUY SIGNALS ---
+(None)
+
+--- BUY SIGNALS ---
+(None)
+
+--- STRONG SELL SIGNALS ---
+(None)
+
+--- SELL SIGNALS ---
+(None)
+

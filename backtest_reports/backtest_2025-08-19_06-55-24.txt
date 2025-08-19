@@ -1,0 +1,22 @@
+===== BACKTEST REPORT FOR: signals_2025-08-19_12-25-24.json =====
+Signal Generation Time (UTC): 2025-08-19 06:55:24
+
+--- STRONG BUY SIGNALS ---
+(None)
+
+--- BUY SIGNALS ---
+  Coin             Signal           Confidence       POP              Outcome          Duration(min)    MaxProfitPrice   MaxDrawdownPrice  Did_TP_Hit_Later  Buy_Score        Sell_Score       Base_Score_OK    Num_Conf         Confluence_OK    Vol_Profile_OK   Min_Profit_OK    Profit_Ceiling_OK  MarketTrend      MACD_Hist        RSI              CCI              %B               BB_Touch         RSI_Extreme      CCI_Extreme      Initial_Signal   Downgrade_Reason
+  LTCUSDT          Buy              51               60               Fail             15               115.820000       114.970000       No               45               30               True             2                True             False            False            True             -10.000000       -0.108613        35.422345        -201.018545      -0.030400        True             False            True             Buy              N/A            
+  PENGUUSDT        Buy              51               60               Success          117              0.031439         0.030756         No               45               30               True             2                True             False            False            True             -10.000000       -0.000036        38.248025        -172.871755      -0.124100        True             False            True             Buy              N/A            
+  PLUMEUSDT        Buy              51               60               Success          116              0.087770         0.084990         No               45               30               True             2                True             False            False            True             -10.000000       -0.000167        31.414890        -154.027155      0.010700         True             False            True             Buy              N/A            
+  1000BONKUSDT     Buy              58               60               Fail             28               0.022124         0.021895         Yes              45               30               True             2                True             True             False            True             -10.000000       -0.000004        38.324286        -224.238758      0.166800         True             False            True             Buy              N/A            
+
+--- STRONG SELL SIGNALS ---
+(None)
+
+--- SELL SIGNALS ---
+  Coin             Signal           Confidence       POP              Outcome          Duration(min)    MaxProfitPrice   MaxDrawdownPrice  Did_TP_Hit_Later  Buy_Score        Sell_Score       Base_Score_OK    Num_Conf         Confluence_OK    Vol_Profile_OK   Min_Profit_OK    Profit_Ceiling_OK  MarketTrend      MACD_Hist        RSI              CCI              %B               BB_Touch         RSI_Extreme      CCI_Extreme      Initial_Signal   Downgrade_Reason
+  AIOTUSDT         Sell             54               100              Fail             57               1.430370         1.494000         Yes              0                35               True             2                True             False            True             True             -10.000000       0.002029         74.250666        132.949733       0.934200         False            True             True             Sell             N/A            
+  AIOUSDT          Sell             55               100              Fail             24               0.075280         0.076990         No               0                55               True             2                True             False            False            True             -10.000000       0.000182         64.869071        264.783023       1.235300         True             False            True             Sell             N/A            
+  ETCUSDT          Sell             55               100              Success          2                21.172000        21.426000        No               0                55               True             2                True             False            False            True             -10.000000       0.014063         65.219499        207.192982       1.066000         True             False            True             Sell             N/A            
+

@@ -1,0 +1,18 @@
+===== BACKTEST REPORT FOR: signals_2025-08-19_03-02-06.json =====
+Signal Generation Time (UTC): 2025-08-18 21:32:06
+
+--- STRONG BUY SIGNALS ---
+(None)
+
+--- BUY SIGNALS ---
+  Coin             Signal           Confidence       POP              Outcome          Duration(min)    MaxProfitPrice   MaxDrawdownPrice  Did_TP_Hit_Later  Buy_Score        Sell_Score       Base_Score_OK    Num_Conf         Confluence_OK    Vol_Profile_OK   Min_Profit_OK    Profit_Ceiling_OK  MarketTrend      MACD_Hist        RSI              CCI              %B               BB_Touch         RSI_Extreme      CCI_Extreme      Initial_Signal   Downgrade_Reason
+  XNYUSDT          Buy              51               82               Success          22               0.015027         0.014700         No               45               10               True             2                True             False            False            True             10.000000        -0.000019        28.148330        -161.066189      -0.043500        False            True             True             Buy              N/A            
+
+--- STRONG SELL SIGNALS ---
+(None)
+
+--- SELL SIGNALS ---
+  Coin             Signal           Confidence       POP              Outcome          Duration(min)    MaxProfitPrice   MaxDrawdownPrice  Did_TP_Hit_Later  Buy_Score        Sell_Score       Base_Score_OK    Num_Conf         Confluence_OK    Vol_Profile_OK   Min_Profit_OK    Profit_Ceiling_OK  MarketTrend      MACD_Hist        RSI              CCI              %B               BB_Touch         RSI_Extreme      CCI_Extreme      Initial_Signal   Downgrade_Reason
+  PROVEUSDT        Sell             73               71               Fail             25               1.235300         1.251500         Yes              20               50               True             3                True             True             False            True             10.000000        0.001889         71.075460        242.689385       1.164400         True             True             True             Sell             N/A            
+  EPICUSDT         Sell             54               64               Fail             20               2.935700         2.974000         No               20               35               True             2                True             True             False            True             10.000000        0.007066         65.217952        248.401551       1.168300         True             False            True             Sell             N/A            
+

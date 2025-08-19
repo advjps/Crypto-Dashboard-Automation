@@ -1,0 +1,18 @@
+===== BACKTEST REPORT FOR: signals_2025-08-19_05-02-32.json =====
+Signal Generation Time (UTC): 2025-08-18 23:32:32
+
+--- STRONG BUY SIGNALS ---
+(None)
+
+--- BUY SIGNALS ---
+  Coin             Signal           Confidence       POP              Outcome          Duration(min)    MaxProfitPrice   MaxDrawdownPrice  Did_TP_Hit_Later  Buy_Score        Sell_Score       Base_Score_OK    Num_Conf         Confluence_OK    Vol_Profile_OK   Min_Profit_OK    Profit_Ceiling_OK  MarketTrend      MACD_Hist        RSI              CCI              %B               BB_Touch         RSI_Extreme      CCI_Extreme      Initial_Signal   Downgrade_Reason
+  ADAUSDT          Buy              60               83               Fail             42               0.924900         0.917400         Yes              50               10               True             2                True             True             False            True             5.000000         -0.000766        45.754753        -165.268954      -0.006200        True             False            True             Buy              N/A            
+  MYXUSDT          Buy              41               100              Fail             9                1.511500         1.444100         No               20               0                True             1                False            True             True             True             5.000000         0.003206         67.444903        146.239616       0.883800         False            False            True             Buy              N/A            
+  TOWNSUSDT        Buy              59               87               Success          74               0.032490         0.031660         No               65               10               True             2                True             False            False            True             5.000000         -0.000083        34.398437        -208.114419      -0.045400        True             False            True             Buy              N/A            
+
+--- STRONG SELL SIGNALS ---
+(None)
+
+--- SELL SIGNALS ---
+(None)
+

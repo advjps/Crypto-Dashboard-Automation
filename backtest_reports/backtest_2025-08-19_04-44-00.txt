@@ -1,0 +1,16 @@
+===== BACKTEST REPORT FOR: signals_2025-08-19_10-14-00.json =====
+Signal Generation Time (UTC): 2025-08-19 04:44:00
+
+--- STRONG BUY SIGNALS ---
+(None)
+
+--- BUY SIGNALS ---
+(None)
+
+--- STRONG SELL SIGNALS ---
+(None)
+
+--- SELL SIGNALS ---
+  Coin             Signal           Confidence       POP              Outcome          Duration(min)    MaxProfitPrice   MaxDrawdownPrice  Did_TP_Hit_Later  Buy_Score        Sell_Score       Base_Score_OK    Num_Conf         Confluence_OK    Vol_Profile_OK   Min_Profit_OK    Profit_Ceiling_OK  MarketTrend      MACD_Hist        RSI              CCI              %B               BB_Touch         RSI_Extreme      CCI_Extreme      Initial_Signal   Downgrade_Reason
+  AIOTUSDT         Sell             62               100              Fail             15               1.308430         1.359730         No               0                55               True             2                True             False            True             True             -5.000000        0.003336         69.315565        258.515349       1.196500         True             False            True             Sell             N/A            
+
