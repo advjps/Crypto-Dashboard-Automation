@@ -1,0 +1,15 @@
+===== BACKTEST REPORT FOR: signals_2025-08-19_04-07-17_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-18 22:37:17
+
+--- STRONG SELL SIGNALS ---
+    Coin      Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+AIOTUSDT Strong Sell None              False Success            107         1.24054           1.32479               No         20          50          None          None            True            None             None               True              N/A
+
+--- BUY SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+LINKUSDT    Buy None              False    Fail             35        26.50000          25.03000               No         20          15          None          None            True            None             None               True              N/A
+ BNBUSDT    Buy None              False    Fail             43       856.53000         840.44000               No         20          15          None          None            True            None             None               True              N/A
+ MYXUSDT    Buy None              False Success             28         1.52280           1.37280               No         20           0          None          None            True            None             None               True              N/A
+ TRXUSDT    Buy None              False    Fail              3         0.35260           0.34905               No         20          15          None          None            True            None             None               True              N/A
+ POLUSDT    Buy None              False    Fail             19         0.26758           0.25313              Yes         20          15          None          None            True            None             None               True              N/A
+

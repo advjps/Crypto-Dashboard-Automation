@@ -1,0 +1,7 @@
+===== BACKTEST REPORT FOR: signals_2025-08-19_10-14-00.json =====
+Signal Generation Time (UTC): 2025-08-19 04:44:00
+
+--- SELL SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+AIOTUSDT   Sell None              False    Fail             15         1.30843           1.48888               No          0          55          None          None           False            None             None               True              N/A
+

@@ -1,0 +1,13 @@
+===== BACKTEST REPORT FOR: signals_2025-08-18_21-13-52.json =====
+Signal Generation Time (UTC): 2025-08-18 15:43:52
+
+--- BUY SIGNALS ---
+   Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+BIOUSDT    Buy None              False Success              6        0.146760          0.129430               No         20           0          None          None            True            None             None               True              N/A
+XNYUSDT    Buy None              False    Fail            137        0.016798          0.015318               No         45          10          None          None           False            None             None               True              N/A
+
+--- SELL SIGNALS ---
+   Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+XRPUSDT   Sell None              False    Fail            102          2.9985           3.09520               No         20          35          None          None           False            None             None               True              N/A
+XLMUSDT   Sell None              False Success             53          0.4075           0.41784               No         20          35          None          None           False            None             None               True              N/A
+

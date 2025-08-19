@@ -1,0 +1,19 @@
+===== BACKTEST REPORT FOR: signals_2025-08-18_11-08-37_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-18 05:38:37
+
+--- STRONG BUY SIGNALS ---
+   Coin     Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+BNBUSDT Strong Buy None              False Success             16          835.95            825.19               No         60          30          None          None            True            None             None               True              N/A
+
+--- BUY SIGNALS ---
+     Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+  ETHUSDT    Buy None              False    Fail              8     4311.980000       4228.000000               No         45          30          None          None           False            None             None               True              N/A
+ PUMPUSDT    Buy None              False Success             10        0.003231          0.003114               No         35          20          None          None           False            None             None               True              N/A
+CYBERUSDT    Buy None              False Success             20        2.610000          2.532000               No         50          20          None          None            True            None             None               True              N/A
+ HYPEUSDT    Buy None              False    Fail             34       44.025000         43.000000              Yes         45          30          None          None           False            None             None               True              N/A
+
+--- SELL SIGNALS ---
+   Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+SKLUSDT   Sell None              False Success             86          0.0347           0.03733               No         15          20          None          None            True            None             None               True              N/A
+AIOUSDT   Sell None              False Success             53          0.0731           0.08529               No         10          30          None          None            True            None             None               True              N/A
+

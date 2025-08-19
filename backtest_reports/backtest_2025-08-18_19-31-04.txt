@@ -1,0 +1,11 @@
+===== BACKTEST REPORT FOR: signals_2025-08-19_01-01-04.json =====
+Signal Generation Time (UTC): 2025-08-18 19:31:04
+
+--- BUY SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+AIOTUSDT    Buy None              False Success             87          1.2666           1.21104               No         20           0          None          None            True            None             None               True              N/A
+
+--- SELL SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+MEMEUSDT   Sell None              False    Fail             22          0.0021          0.002265              Yes         20          35          None          None           False            None             None               True              N/A
+

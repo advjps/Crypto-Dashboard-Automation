@@ -1,0 +1,28 @@
+===== BACKTEST REPORT FOR: signals_2025-08-18_15-18-33_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-18 09:48:33
+
+--- STRONG SELL SIGNALS ---
+    Coin      Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+EPICUSDT Strong Sell None              False Success           26.0          2.8697            3.0373               No          0          70          None          None            True            None             None               True              N/A
+
+--- SELL SIGNALS ---
+        Coin Signal  POP  EMA_Boost_Applied      Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+     ETHUSDT   Sell None              False      Success           39.0     4251.010000       4339.000000               No          0          55          None          None            True            None             None               True              N/A
+    LINKUSDT   Sell None              False      Success           39.0       24.448000         25.288000               No          0          55          None          None           False            None             None               True              N/A
+     MYXUSDT   Sell None              False      Success           20.0        1.472400          1.586300               No          0          55          None          None           False            None             None               True              N/A
+     BNBUSDT   Sell None              False      Success            8.0      830.330000        838.000000               No          0          55          None          None            True            None             None               True              N/A
+    AVAXUSDT   Sell None              False         Fail           55.0       23.610000         23.943000               No          0          55          None          None           False            None             None               True              N/A
+     LTCUSDT   Sell None              False Inconclusive            NaN      116.140000        117.250000               No          0          55          None          None           False            None             None               True              N/A
+     UNIUSDT   Sell None              False      Success           39.0       10.295000         10.478000               No          0          55          None          None           False            None             None               True              N/A
+    AAVEUSDT   Sell None              False      Success           39.0      284.890000        289.990000               No          0          55          None          None           False            None             None               True              N/A
+1000BONKUSDT   Sell None              False      Success           20.0        0.022319          0.022675               No          0          55          None          None           False            None             None               True              N/A
+    NEARUSDT   Sell None              False      Success           88.0        2.560000          2.596000               No          0          55          None          None           False            None             None               True              N/A
+ VIRTUALUSDT   Sell None              False         Fail           35.0        1.213300          1.251700              Yes          0          55          None          None           False            None             None               True              N/A
+   PROVEUSDT   Sell None              False      Success            9.0        1.219000          1.238600               No          0          55          None          None           False            None             None               True              N/A
+    ZORAUSDT   Sell None              False      Success           20.0        0.100290          0.102590               No          0          55          None          None           False            None             None               True              N/A
+     TIAUSDT   Sell None              False Inconclusive            NaN        1.741500          1.763600               No          0          55          None          None           False            None             None               True              N/A
+     WLDUSDT   Sell None              False      Success          103.0        0.951400          0.964400               No          0          55          None          None           False            None             None               True              N/A
+     ETCUSDT   Sell None              False      Success          102.0       21.326000         21.529000               No          0          55          None          None           False            None             None               True              N/A
+  PENDLEUSDT   Sell None              False      Success          101.0        5.281300          5.401100               No          0          55          None          None            True            None             None               True              N/A
+   NEIROUSDT   Sell None              False      Success            0.0        0.000369          0.000400               No          0          55          None          None            True            None             None               True              N/A
+
