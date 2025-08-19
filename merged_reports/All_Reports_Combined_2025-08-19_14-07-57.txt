@@ -1,0 +1,465 @@
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_05-38-37.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-18_11-08-37_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-18 05:38:37
+
+--- STRONG BUY SIGNALS ---
+   Coin     Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+BNBUSDT Strong Buy None              False Success             16          835.95            825.19               No         60          30          None          None            True            None             None               True              N/A
+
+--- BUY SIGNALS ---
+     Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+  ETHUSDT    Buy None              False    Fail              8     4311.980000       4228.000000               No         45          30          None          None           False            None             None               True              N/A
+ PUMPUSDT    Buy None              False Success             10        0.003231          0.003114               No         35          20          None          None           False            None             None               True              N/A
+CYBERUSDT    Buy None              False Success             20        2.610000          2.532000               No         50          20          None          None            True            None             None               True              N/A
+ HYPEUSDT    Buy None              False    Fail             34       44.025000         43.000000              Yes         45          30          None          None           False            None             None               True              N/A
+
+--- SELL SIGNALS ---
+   Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+SKLUSDT   Sell None              False Success             86          0.0347           0.03733               No         15          20          None          None            True            None             None               True              N/A
+AIOUSDT   Sell None              False Success             53          0.0731           0.08529               No         10          30          None          None            True            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_07-01-10.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-18_12-31-10_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-18 07:01:10
+
+--- STRONG SELL SIGNALS ---
+   Coin      Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+XNYUSDT Strong Sell None              False Success              1        0.017113           0.02100               No          0          70          None          None            True            None             None               True              N/A
+AIOUSDT Strong Sell None              False    Fail             10        0.078700           0.08788               No          0          70          None          None            True            None             None               True              N/A
+
+--- SELL SIGNALS ---
+   Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+BIOUSDT   Sell None              False Success            122         0.11920           0.12861               No         -5          30          None          None            True            None             None               True              N/A
+TRXUSDT   Sell None              False    Fail             64         0.34388           0.34739              Yes         25          30          None          None            True            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_07-42-04.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-18_13-12-04.json =====
+Signal Generation Time (UTC): 2025-08-18 07:42:04
+
+--- SELL SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+LINKUSDT   Sell None              False Success             58         24.3680          25.28800               No          0          55          None          None           False            None             None               True              N/A
+ BIOUSDT   Sell None              False    Fail             20          0.1192           0.12904              Yes         10          30          None          None            True            None             None               True              N/A
+CTSIUSDT   Sell None              False Success             78          0.0976           0.10350               No         -5          30          None          None            True            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_08-57-24.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-18_14-27-24_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-18 08:57:24
+
+--- STRONG BUY SIGNALS ---
+    Coin     Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+HBARUSDT Strong Buy None              False    Fail             22         0.24254           0.23827              Yes         60          30          None          None            True            None             None               True              N/A
+
+--- BUY SIGNALS ---
+   Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+ENAUSDT    Buy None              False Success             43          0.6818            0.6681               No         45          30          None          None           False            None             None               True              N/A
+
+--- SELL SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+ SKLUSDT   Sell None              False    Fail              4          0.0361           0.03834              Yes          0          35          None          None            True            None             None               True              N/A
+CTSIUSDT   Sell None              False Success             58          0.0973           0.10010               No         -5          30          None          None            True            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_09-48-33.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-18_15-18-33_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-18 09:48:33
+
+--- STRONG SELL SIGNALS ---
+    Coin      Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+EPICUSDT Strong Sell None              False Success           26.0          2.8697            3.0373               No          0          70          None          None            True            None             None               True              N/A
+
+--- SELL SIGNALS ---
+        Coin Signal  POP  EMA_Boost_Applied      Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+     ETHUSDT   Sell None              False      Success           39.0     4251.010000       4339.000000               No          0          55          None          None            True            None             None               True              N/A
+    LINKUSDT   Sell None              False      Success           39.0       24.448000         25.288000               No          0          55          None          None           False            None             None               True              N/A
+     MYXUSDT   Sell None              False      Success           20.0        1.472400          1.586300               No          0          55          None          None           False            None             None               True              N/A
+     BNBUSDT   Sell None              False      Success            8.0      830.330000        838.000000               No          0          55          None          None            True            None             None               True              N/A
+    AVAXUSDT   Sell None              False         Fail           55.0       23.610000         23.943000               No          0          55          None          None           False            None             None               True              N/A
+     LTCUSDT   Sell None              False Inconclusive            NaN      116.140000        117.250000               No          0          55          None          None           False            None             None               True              N/A
+     UNIUSDT   Sell None              False      Success           39.0       10.295000         10.478000               No          0          55          None          None           False            None             None               True              N/A
+    AAVEUSDT   Sell None              False      Success           39.0      284.890000        289.990000               No          0          55          None          None           False            None             None               True              N/A
+1000BONKUSDT   Sell None              False      Success           20.0        0.022319          0.022675               No          0          55          None          None           False            None             None               True              N/A
+    NEARUSDT   Sell None              False      Success           88.0        2.560000          2.596000               No          0          55          None          None           False            None             None               True              N/A
+ VIRTUALUSDT   Sell None              False         Fail           35.0        1.213300          1.251700              Yes          0          55          None          None           False            None             None               True              N/A
+   PROVEUSDT   Sell None              False      Success            9.0        1.219000          1.238600               No          0          55          None          None           False            None             None               True              N/A
+    ZORAUSDT   Sell None              False      Success           20.0        0.100290          0.102590               No          0          55          None          None           False            None             None               True              N/A
+     TIAUSDT   Sell None              False Inconclusive            NaN        1.741500          1.763600               No          0          55          None          None           False            None             None               True              N/A
+     WLDUSDT   Sell None              False      Success          103.0        0.951400          0.964400               No          0          55          None          None           False            None             None               True              N/A
+     ETCUSDT   Sell None              False      Success          102.0       21.326000         21.529000               No          0          55          None          None           False            None             None               True              N/A
+  PENDLEUSDT   Sell None              False      Success          101.0        5.281300          5.401100               No          0          55          None          None            True            None             None               True              N/A
+   NEIROUSDT   Sell None              False      Success            0.0        0.000369          0.000400               No          0          55          None          None            True            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_11-33-29.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-18_17-03-29.json =====
+Signal Generation Time (UTC): 2025-08-18 11:33:29
+
+--- BUY SIGNALS ---
+   Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+ADAUSDT    Buy None              False    Fail             17          0.9144            0.8911              Yes         45          30          None          None           False            None             None               True              N/A
+ARBUSDT    Buy None              False Success             30          0.5283            0.5077               No         45          30          None          None           False            None             None               True              N/A
+
+--- SELL SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+EPICUSDT   Sell None              False Success             22          2.9064           3.06320               No          0          35          None          None           False            None             None               True              N/A
+ AIOUSDT   Sell None              False Success             18          0.0819           0.09259               No          0          35          None          None           False            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_13-50-03.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-18_19-20-03.json =====
+Signal Generation Time (UTC): 2025-08-18 13:50:03
+
+--- BUY SIGNALS ---
+        Coin Signal  POP  EMA_Boost_Applied      Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+1000PEPEUSDT    Buy None              False      Success          135.0        0.010806          0.010607               No         50          10          None          None            True            None             None               True              N/A
+   PENGUUSDT    Buy None              False      Success           71.0        0.031974          0.031157               No         65          10          None          None           False            None             None               True              N/A
+     CRVUSDT    Buy None              False         Fail           21.0        0.890000          0.848000              Yes         50          10          None          None            True            None             None               True              N/A
+     AIOUSDT    Buy None              False Inconclusive            NaN        0.084660          0.081500               No         65          10          None          None           False            None             None               True              N/A
+    ZORAUSDT    Buy None              False         Fail           40.0        0.105370          0.097610              Yes         65          10          None          None           False            None             None               True              N/A
+     TAOUSDT    Buy None              False         Fail            9.0      356.620000        347.800000              Yes         65          10          None          None           False            None             None               True              N/A
+
+--- SELL SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+CTSIUSDT   Sell None              False Success            4.0          0.0953            0.1029               No         20          35          None          None            True            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_14-49-56.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-18_20-19-56.json =====
+Signal Generation Time (UTC): 2025-08-18 14:49:56
+
+--- BUY SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+LINKUSDT    Buy None              False Success             52       25.680000         24.785000               No         65          10          None          None            True            None             None               True              N/A
+ XNYUSDT    Buy None              False    Fail             21        0.017707          0.015721               No         45          10          None          None           False            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_15-43-52.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-18_21-13-52.json =====
+Signal Generation Time (UTC): 2025-08-18 15:43:52
+
+--- BUY SIGNALS ---
+   Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+BIOUSDT    Buy None              False Success              6        0.146760          0.129430               No         20           0          None          None            True            None             None               True              N/A
+XNYUSDT    Buy None              False    Fail            137        0.016798          0.015318               No         45          10          None          None           False            None             None               True              N/A
+
+--- SELL SIGNALS ---
+   Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+XRPUSDT   Sell None              False    Fail            102          2.9985           3.09520               No         20          35          None          None           False            None             None               True              N/A
+XLMUSDT   Sell None              False Success             53          0.4075           0.41784               No         20          35          None          None           False            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_17-42-52.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-18_23-12-52_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-18 17:42:52
+
+--- STRONG SELL SIGNALS ---
+    Coin      Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+AIOTUSDT Strong Sell None              False    Fail             68         1.16903           1.26333               No         20          50          None          None            True            None             None               True              N/A
+
+--- BUY SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+ SOLUSDT    Buy None              False    Fail             17        185.3100         181.97000               No         20          15          None          None            True            None             None               True              N/A
+ BNBUSDT    Buy None              False    Fail             17        847.7800         842.70000               No         20          15          None          None            True            None             None               True              N/A
+ UNIUSDT    Buy None              False    Fail              6         10.6390          10.47500               No         20          15          None          None            True            None             None               True              N/A
+HBARUSDT    Buy None              False    Fail              4          0.2477           0.24367               No         20          15          None          None            True            None             None               True              N/A
+ONDOUSDT    Buy None              False    Fail              6          0.9706           0.95540               No         20          15          None          None            True            None             None               True              N/A
+
+--- SELL SIGNALS ---
+     Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+  XRPUSDT   Sell None              False Success             15        3.041900          3.089400               No         20          50          None          None            True            None             None               True              N/A
+  ADAUSDT   Sell None              False Success             10        0.908900          0.933800               No         20          50          None          None            True            None             None               True              N/A
+TRUMPUSDT   Sell None              False Success              4        9.017000          9.135000               No         20          50          None          None            True            None             None               True              N/A
+ AAVEUSDT   Sell None              False Success              6      288.700000        294.390000               No         20          50          None          None            True            None             None               True              N/A
+ NEARUSDT   Sell None              False Success              6        2.558000          2.610000               No         20          50          None          None            True            None             None               True              N/A
+  XLMUSDT   Sell None              False Success             13        0.410310          0.416630               No         20          50          None          None            True            None             None               True              N/A
+MAGICUSDT   Sell None              False Success            143        0.237900          0.245400               No         20          35          None          None            True            None             None               True              N/A
+ MEMEUSDT   Sell None              False Success              0        0.002084          0.002265               No         20          35          None          None            True            None             None               True              N/A
+  TONUSDT   Sell None              False Success             16        3.323600          3.360200               No         20          35          None          None           False            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_18-57-26.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-19_00-27-26.json =====
+Signal Generation Time (UTC): 2025-08-18 18:57:26
+
+--- BUY SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+AIOTUSDT    Buy None              False Success             83          1.2666               1.2               No         20          15          None          None            True            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_19-31-04.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-19_01-01-04.json =====
+Signal Generation Time (UTC): 2025-08-18 19:31:04
+
+--- BUY SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+AIOTUSDT    Buy None              False Success             87          1.2666           1.21104               No         20           0          None          None            True            None             None               True              N/A
+
+--- SELL SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+MEMEUSDT   Sell None              False    Fail             22          0.0021          0.002265              Yes         20          35          None          None           False            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_19-45-22.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-19_01-15-22.json =====
+Signal Generation Time (UTC): 2025-08-18 19:45:22
+
+--- BUY SIGNALS ---
+   Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+XNYUSDT    Buy None              False    Fail            101        0.015458          0.014709               No         35           0          None          None           False            None             None               True              N/A
+
+--- SELL SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+MEMEUSDT   Sell None              False    Fail              8        0.002156          0.002265               No         20          50          None          None            True            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_20-37-41.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-19_02-07-41.json =====
+Signal Generation Time (UTC): 2025-08-18 20:37:41
+
+--- BUY SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+AIOTUSDT    Buy None              False    Fail             73            1.35           1.21104              Yes         30          10          None          None            True            None             None               True              N/A
+
+--- SELL SIGNALS ---
+   Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+SKLUSDT   Sell None              False Success              4          0.0349             0.036               No         20          35          None          None           False            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_21-32-06.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-19_03-02-06.json =====
+Signal Generation Time (UTC): 2025-08-18 21:32:06
+
+--- BUY SIGNALS ---
+   Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+XNYUSDT    Buy None              False Success             22          0.0153          0.014551               No         45          10          None          None           False            None             None               True              N/A
+
+--- SELL SIGNALS ---
+     Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+PROVEUSDT   Sell None              False    Fail             25          1.2266            1.2599              Yes         20          50          None          None            True            None             None               True              N/A
+ EPICUSDT   Sell None              False    Fail             20          2.9357            3.0382               No         20          35          None          None            True            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_22-37-17.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-19_04-07-17_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-18 22:37:17
+
+--- STRONG SELL SIGNALS ---
+    Coin      Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+AIOTUSDT Strong Sell None              False Success            107         1.24054           1.32479               No         20          50          None          None            True            None             None               True              N/A
+
+--- BUY SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+LINKUSDT    Buy None              False    Fail             35        26.50000          25.03000               No         20          15          None          None            True            None             None               True              N/A
+ BNBUSDT    Buy None              False    Fail             43       856.53000         840.44000               No         20          15          None          None            True            None             None               True              N/A
+ MYXUSDT    Buy None              False Success             28         1.52280           1.37280               No         20           0          None          None            True            None             None               True              N/A
+ TRXUSDT    Buy None              False    Fail              3         0.35260           0.34905               No         20          15          None          None            True            None             None               True              N/A
+ POLUSDT    Buy None              False    Fail             19         0.26758           0.25313              Yes         20          15          None          None            True            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-18_23-32-32.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-19_05-02-32.json =====
+Signal Generation Time (UTC): 2025-08-18 23:32:32
+
+--- BUY SIGNALS ---
+     Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+  ADAUSDT    Buy None              False    Fail             42         0.94120           0.90510              Yes         50          10          None          None            True            None             None               True              N/A
+  MYXUSDT    Buy None              False    Fail              9         1.51150           1.30910               No         20           0          None          None            True            None             None               True              N/A
+TOWNSUSDT    Buy None              False Success             74         0.03299           0.03145               No         65          10          None          None           False            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-19_03-33-48.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-19_09-03-48_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-19 03:33:48
+
+--- STRONG BUY SIGNALS ---
+    Coin     Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+LINKUSDT Strong Buy None              False    Fail              3        24.63400          23.88800               No         60          30          None          None            True            None             None               True              N/A
+DOGEUSDT Strong Buy None              False    Fail              9         0.21867           0.21429               No         60          30          None          None            True            None             None               True              N/A
+ INJUSDT Strong Buy None              False    Fail              9        13.93000          13.69600               No         60          30          None          None            True            None             None               True              N/A
+HBARUSDT Strong Buy None              False    Fail              9         0.24112           0.23626               No         60          30          None          None            True            None             None               True              N/A
+
+--- BUY SIGNALS ---
+        Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+     ETHUSDT    Buy None              False    Fail              4     4255.000000       4192.010000               No         45          30          None          None           False            None             None               True              N/A
+     BTCUSDT    Buy None              False    Fail              8   115430.000000     114303.800000               No         45          30          None          None           False            None             None               True              N/A
+     XRPUSDT    Buy None              False    Fail              9        3.026700          2.971700               No         45          30          None          None           False            None             None               True              N/A
+     ADAUSDT    Buy None              False    Fail             14        0.932100          0.894700              Yes         45          30          None          None           False            None             None               True              N/A
+     SUIUSDT    Buy None              False    Fail              9        3.559800          3.482100               No         45          30          None          None           False            None             None               True              N/A
+    AVAXUSDT    Buy None              False    Fail              9       23.377000         22.964000               No         45          30          None          None           False            None             None               True              N/A
+     UNIUSDT    Buy None              False    Fail              9       10.375000         10.137000               No         45          30          None          None           False            None             None               True              N/A
+    AAVEUSDT    Buy None              False    Fail              9      284.720000        279.700000               No         45          30          None          None           False            None             None               True              N/A
+   TRUMPUSDT    Buy None              False    Fail              9        9.034000          8.825000              Yes         45          30          None          None           False            None             None               True              N/A
+     CRVUSDT    Buy None              False    Fail              9        0.865000          0.837000              Yes         45          30          None          None           False            None             None               True              N/A
+1000BONKUSDT    Buy None              False    Fail              8        0.022372          0.021879               No         45          30          None          None           False            None             None               True              N/A
+     DOTUSDT    Buy None              False    Fail              9        3.870000          3.780000               No         45          30          None          None           False            None             None               True              N/A
+     TRXUSDT    Buy None              False    Fail              6        0.350020          0.345310               No         45          30          None          None           False            None             None               True              N/A
+     SEIUSDT    Buy None              False    Fail              9        0.319200          0.312800               No         45          30          None          None           False            None             None               True              N/A
+     SKLUSDT    Buy None              False    Fail             43        0.033300          0.032020              Yes         50          20          None          None            True            None             None               True              N/A
+    NEARUSDT    Buy None              False    Fail              9        2.539000          2.487000               No         45          30          None          None           False            None             None               True              N/A
+     XLMUSDT    Buy None              False    Fail              9        0.409360          0.401500               No         45          30          None          None           False            None             None               True              N/A
+      OPUSDT    Buy None              False    Fail              9        0.716500          0.700700               No         45          30          None          None           False            None             None               True              N/A
+     LDOUSDT    Buy None              False    Fail              9        1.282200          1.263000               No         45          30          None          None           False            None             None               True              N/A
+     FILUSDT    Buy None              False    Fail              9        2.437000          2.383000               No         45          30          None          None           False            None             None               True              N/A
+     WLDUSDT    Buy None              False    Fail              9        0.937900          0.918000               No         45          30          None          None           False            None             None               True              N/A
+    ONDOUSDT    Buy None              False    Fail              9        0.950600          0.930000               No         45          30          None          None           False            None             None               True              N/A
+     TIAUSDT    Buy None              False    Fail              9        1.732400          1.690000              Yes         45          30          None          None           False            None             None               True              N/A
+1000SHIBUSDT    Buy None              False    Fail              6        0.012580          0.012315               No         45          30          None          None           False            None             None               True              N/A
+     TAOUSDT    Buy None              False    Fail              9      353.550000        346.720000               No         45          30          None          None           False            None             None               True              N/A
+     APTUSDT    Buy None              False    Fail              9        4.501500          4.417500               No         35          20          None          None           False            None             None               True              N/A
+     ETCUSDT    Buy None              False    Fail              9       21.326000         20.933000               No         45          30          None          None           False            None             None               True              N/A
+   ETHFIUSDT    Buy None              False    Fail              9        1.109600          1.083900               No         45          30          None          None           False            None             None               True              N/A
+     TONUSDT    Buy None              False    Fail              1        3.246100          3.193400               No         35          20          None          None           False            None             None               True              N/A
+
+--- SELL SIGNALS ---
+      Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+   BIOUSDT   Sell None              False Success             29        0.128920          0.140000               No          0          55          None          None            True            None             None               True              N/A
+   XNYUSDT   Sell None              False Success              0        0.013497          0.014322               No         25          30          None          None            True            None             None               True              N/A
+ PLUMEUSDT   Sell None              False    Fail             35        0.086340          0.090080              Yes         25          30          None          None            True            None             None               True              N/A
+   POLUSDT   Sell None              False Success             35        0.248540          0.257570               No         25          30          None          None            True            None             None               True              N/A
+PENDLEUSDT   Sell None              False Success              9        5.196900          5.276100               No         25          30          None          None            True            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-19_04-44-00.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-19_10-14-00.json =====
+Signal Generation Time (UTC): 2025-08-19 04:44:00
+
+--- SELL SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+AIOTUSDT   Sell None              False    Fail             15         1.30843           1.48888               No          0          55          None          None           False            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-19_06-55-24.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-19_12-25-24.json =====
+Signal Generation Time (UTC): 2025-08-19 06:55:24
+
+--- BUY SIGNALS ---
+        Coin Signal  POP  EMA_Boost_Applied      Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+     LTCUSDT    Buy None              False         Fail           15.0      115.820000        113.360000               No         45          30          None          None           False            None             None               True              N/A
+   PENGUUSDT    Buy None              False Inconclusive            NaN        0.031359          0.030757               No         45          30          None          None           False            None             None               True              N/A
+   PLUMEUSDT    Buy None              False Inconclusive            NaN        0.086850          0.085030               No         45          30          None          None           False            None             None               True              N/A
+1000BONKUSDT    Buy None              False         Fail           28.0        0.022166          0.021895               No         45          30          None          None            True            None             None               True              N/A
+
+--- SELL SIGNALS ---
+    Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+AIOTUSDT   Sell None              False    Fail           57.0         1.37000           1.50495              Yes          0          35          None          None           False            None             None               True              N/A
+ AIOUSDT   Sell None              False    Fail           24.0         0.07515           0.07770               No          0          55          None          None           False            None             None               True              N/A
+ ETCUSDT   Sell None              False Success            2.0        21.07200          21.42600               No          0          55          None          None           False            None             None               True              N/A
+
+
+
+============================================================
+====== CONTENTS OF: backtest_2025-08-19_07-33-03.txt ======
+============================================================
+
+===== BACKTEST REPORT FOR: signals_2025-08-19_13-03-03_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-19 07:33:03
+
+--- STRONG BUY SIGNALS ---
+     Coin     Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+  BTCUSDT Strong Buy None              False Success            5.0    115052.40000      114591.90000               No         60          30          None          None            True            None             None               True              N/A
+  INJUSDT Strong Buy None              False Success           15.0        13.75300          13.61500               No         60          30          None          None            True            None             None               True              N/A
+ETHFIUSDT Strong Buy None              False    Fail           59.0         1.08530           1.07000               No         60          30          None          None            True            None             None               True              N/A
+ ZORAUSDT Strong Buy None              False Success           27.0         0.10335           0.10026               No         60          30          None          None            True            None             None               True              N/A
+
+--- STRONG SELL SIGNALS ---
+    Coin      Signal  POP  EMA_Boost_Applied      Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+ XNYUSDT Strong Sell None              False         Fail           36.0         0.01379          0.014657              Yes          0          70          None          None            True            None             None               True              N/A
+API3USDT Strong Sell None              False Inconclusive            NaN         1.35290          1.540000               No          0          70          None          None            True            None             None               True              N/A
+
+--- BUY SIGNALS ---
+     Coin Signal  POP  EMA_Boost_Applied      Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+  XRPUSDT    Buy None              False      Success           28.0        3.009100          2.989000               No         45          30          None          None           False            None             None               True              N/A
+ MEMEUSDT    Buy None              False      Success            1.0        0.002016          0.001975               No         35          20          None          None           False            None             None               True              N/A
+  XLMUSDT    Buy None              False      Success           19.0        0.406550          0.403070               No         45          30          None          None           False            None             None               True              N/A
+  BCHUSDT    Buy None              False Inconclusive            NaN      565.140000        563.050000               No         45          30          None          None           False            None             None               True              N/A
+TOWNSUSDT    Buy None              False         Fail            9.0        0.030200          0.027800               No         45          30          None          None           False            None             None               True              N/A
+
+--- SELL SIGNALS ---
+   Coin Signal  POP  EMA_Boost_Applied Outcome  Duration(min)  MaxProfitPrice  MaxDrawdownPrice Did_TP_Hit_Later  Buy_Score  Sell_Score Base_Score_OK Confluence_OK  Vol_Profile_OK Market_Trend_OK MACD_Conflict_OK  Profit_Ceiling_OK Downgrade_Reason
+BNBUSDT   Sell None              False    Fail           45.0          835.67            841.55               No         25          30          None          None            True            None             None               True              N/A
+LTCUSDT   Sell None              False Success           10.0          113.36            115.23               No         25          30          None          None            True            None             None               True              N/A
+
+
+
