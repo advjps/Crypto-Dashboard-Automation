@@ -1,0 +1,18 @@
+===== BACKTEST REPORT FOR: signals_2025-08-20_17-13-43.json =====
+Signal Generation Time (UTC): 2025-08-20 11:43:43
+
+--- STRONG BUY SIGNALS ---
+(None)
+
+--- BUY SIGNALS ---
+(None)
+
+--- STRONG SELL SIGNALS ---
+(None)
+
+--- SELL SIGNALS ---
+  Coin             Signal           Confidence       POP              Outcome          Duration(min)    MaxProfitPrice   MaxDrawdownPrice  Did_TP_Hit_Later  Buy_Score        Sell_Score       Base_Score_OK    Num_Conf         Confluence_OK    Vol_Profile_OK   Min_Profit_OK    Profit_Ceiling_OK  Regime           RegimeScore      MACD_Hist        ADX15m           RSI              CCI              %B               Overshoot_OK     BB_Touch         RSI_Extreme      CCI_Extreme      Initial_Signal   Aligned          Vetoes_Passed    Downgrade_Reason
+  AIOTUSDT         Sell             45               86               Success          76               1.510170         1.688920         Yes              -5               30               True             1                False            True             True             True             Bearish          -4               0.001178         12.412296        53.464547        67.465022        0.669800         False            False            False            False            Sell             True             base_ok,vol_ok,profit_window  N/A            
+  BIOUSDT          Sell             66               93               Fail             18               0.147120         0.168400         No               -5               65               True             2                True             False            True             True             Bearish          -4               0.000665         12.412296        71.416017        123.333829       0.844500         False            False            True             True             Sell             True             base_ok,profit_window  N/A            
+  MUSDT            Sell             43               89               Inconclusive     0                0.446600         0.466900         No               -5               40               True             1                False            False            True             True             Bearish          -4               0.001234         12.412296        67.102799        87.917322        0.781200         False            False            False            False            Sell             True             base_ok,profit_window  N/A            
+
