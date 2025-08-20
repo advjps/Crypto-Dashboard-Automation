@@ -5,7 +5,6 @@ import os
 import re
 import json
 import time
-import math
 from datetime import datetime, timedelta, timezone
 
 import requests
@@ -18,7 +17,9 @@ import pytz
 GITHUB_REPO_URL = "https://github.com/advjps/Crypto-Dashboard-Automation"
 DATA_DIR_IN_REPO = "data_archive"
 REPORTS_FOLDER = "backtest_reports"
-HOURS_TO_CHECK = 3  # backtest horizon (in hours)
+ANALYTICS_DIR = "analytics"          # NEW: CSV output folder
+HOURS_TO_CHECK = 3                   # backtest horizon (in hours)
+BINANCE_FAPI = "https://fapi.binance.com"
 
 # --- PROXY (same as automation) ---
 PROXY_IP = "217.180.42.139"
@@ -27,8 +28,6 @@ PROXY_USER = "NQOgprvOa4fgcWw"
 PROXY_PASS = "Nx8gIuzPunYu7P1"
 proxy_url = f"http://{PROXY_USER}:{PROXY_PASS}@{PROXY_IP}:{PROXY_PORT}"
 proxies = {"http": proxy_url, "https": proxy_url}
-
-BINANCE_FAPI = "https://fapi.binance.com"
 
 # =========================
 # HELPERS
@@ -209,8 +208,8 @@ def first_touch_outcome(side: str, tp: float, sl: float, klines):
     if not klines:
         return ("Inconclusive", 0, None, None, "No")
 
-    max_high = -1e309
-    min_low = 1e309
+    max_high = float("-inf")
+    min_low = float("inf")
     hit_tp_index = None
     hit_sl_index = None
 
@@ -244,7 +243,7 @@ def first_touch_outcome(side: str, tp: float, sl: float, klines):
     return (outcome, duration, max_profit_price, max_drawdown_price, did_tp_later)
 
 # =========================
-# REPORTING
+# REPORTING (TXT)
 # =========================
 REPORT_COLUMNS = [
     "Coin", "Signal", "Confidence", "POP", "Outcome", "Duration(min)",
@@ -265,18 +264,160 @@ def format_header():
 
 def format_row(row):
     def fmt(x):
-        if x is None: return ""
+        if x is None:
+            return ""
         if isinstance(x, float):
-            # prices to 6dp, others compact
-            return f"{x:.6f}" if any(k in ("MaxProfitPrice","MaxDrawdownPrice") for k in REPORT_COLUMNS) else f"{x:.4f}"
+            return f"{x:.6f}" if x > 1000 else f"{x:.4f}"
         return str(x)
     return "  " + "  ".join([fmt(row.get(c, "")).ljust(15) for c in REPORT_COLUMNS])
 
 # =========================
+# ANALYTICS CSV (NEW)
+# =========================
+CSV_COLUMNS = [
+    "FileTimestampUTC","Coin","Signal","Outcome","Duration(min)",
+    "Confidence","POP","Buy_Score","Sell_Score",
+    "Num_Conf","Confluence_OK","Vol_Profile_OK",
+    "Min_Profit_OK","Profit_Ceiling_OK",
+    "Regime","RegimeScore","ADX15m","MACD_Hist",
+    "RSI","CCI","PercentB","Overshoot_OK","Aligned",
+    "Initial_Signal","Vetoes_Passed",
+    "MaxProfitPrice","MaxDrawdownPrice","Did_TP_Hit_Later",
+    "DeservedStrongBuy","DeservedStrongSell"
+]
+
+def compute_deserved_flags(row):
+    """
+    Analysis-only: who *should* have been Strong under queued tweaks?
+    - Sell: Success AND Num_Conf>=2 AND (PercentB>=1.00 OR (ADX15m>=20 and MACD_Hist>0)) AND Confidence>=60
+    - Buy : Success AND Num_Conf>=2 AND (PercentB<=-0.05 OR RSI<=28) AND Confidence>=60
+    """
+    try:
+        outcome   = (row.get("Outcome") or "").strip()
+        num_conf  = int(row.get("Num_Conf") or 0)
+        pctb      = float(row.get("PercentB")) if row.get("PercentB") not in ("", None) else None
+        adx       = float(row.get("ADX15m")) if row.get("ADX15m") not in ("", None) else None
+        macd_hist = float(row.get("MACD_Hist")) if row.get("MACD_Hist") not in ("", None) else None
+        rsi       = float(row.get("RSI")) if row.get("RSI") not in ("", None) else None
+        conf      = float(row.get("Confidence")) if row.get("Confidence") not in ("", None) else 0.0
+        sig       = (row.get("Signal") or "")
+
+        ok_base   = (outcome == "Success" and num_conf >= 2 and conf >= 60)
+
+        deserved_sell = False
+        deserved_buy  = False
+
+        if ok_base and "Sell" in sig:
+            cond_os = (pctb is not None and pctb >= 1.00) or ((adx is not None and adx >= 20) and (macd_hist is not None and macd_hist > 0))
+            deserved_sell = bool(cond_os)
+
+        if ok_base and "Buy" in sig:
+            cond_ob = ((pctb is not None and pctb <= -0.05) or (rsi is not None and rsi <= 28))
+            deserved_buy = bool(cond_ob)
+
+        return int(deserved_buy), int(deserved_sell)
+    except Exception:
+        return 0, 0
+
+def row_for_csv(file_ts_utc_str, r):
+    out = {
+        "FileTimestampUTC": file_ts_utc_str,
+        "Coin": r.get("Coin",""),
+        "Signal": r.get("Signal",""),
+        "Outcome": r.get("Outcome",""),
+        "Duration(min)": r.get("Duration(min)",""),
+        "Confidence": r.get("Confidence",""),
+        "POP": r.get("POP",""),
+        "Buy_Score": r.get("Buy_Score",""),
+        "Sell_Score": r.get("Sell_Score",""),
+        "Num_Conf": r.get("Num_Conf",""),
+        "Confluence_OK": r.get("Confluence_OK",""),
+        "Vol_Profile_OK": r.get("Vol_Profile_OK",""),
+        "Min_Profit_OK": r.get("Min_Profit_OK",""),
+        "Profit_Ceiling_OK": r.get("Profit_Ceiling_OK",""),
+        "Regime": r.get("Regime",""),
+        "RegimeScore": r.get("RegimeScore",""),
+        "ADX15m": r.get("ADX15m",""),
+        "MACD_Hist": r.get("MACD_Hist",""),
+        "RSI": r.get("RSI",""),
+        "CCI": r.get("CCI",""),
+        "PercentB": r.get("%B",""),
+        "Overshoot_OK": r.get("Overshoot_OK",""),
+        "Aligned": r.get("Aligned",""),
+        "Initial_Signal": r.get("Initial_Signal",""),
+        "Vetoes_Passed": r.get("Vetoes_Passed",""),
+        "MaxProfitPrice": r.get("MaxProfitPrice",""),
+        "MaxDrawdownPrice": r.get("MaxDrawdownPrice",""),
+        "Did_TP_Hit_Later": r.get("Did_TP_Hit_Later",""),
+        "DeservedStrongBuy": "",
+        "DeservedStrongSell": ""
+    }
+    b, s = compute_deserved_flags(out)
+    out["DeservedStrongBuy"] = b
+    out["DeservedStrongSell"] = s
+    return out
+
+# =========================
 # CORE BACKTEST
 # =========================
+def build_row(entry, start_time_utc):
+    """Extract fields, evaluate outcome, and return a single row dict."""
+    label = entry.get("signal", "Neutral")
+    if label == "Neutral":
+        return None, None
+
+    coin = entry.get("coin") or entry.get("symbol")
+    if not coin:
+        return None, None
+
+    tp = entry.get("tp"); sl = entry.get("sl")
+    if tp is None or sl is None:
+        return None, None
+    tp = float(tp); sl = float(sl)
+
+    side = "Buy" if "Buy" in label else "Sell"
+    klines = fetch_future_klines_1m(coin, start_time_utc, minutes=HOURS_TO_CHECK*60)
+    outcome, duration_min, max_profit_px, max_drawdown_px, did_tp_later = first_touch_outcome(side, tp, sl, klines)
+
+    f = extract_fields(entry)
+    row = {
+        "Coin": coin,
+        "Signal": f["Signal"],
+        "Confidence": int(round(float(f["Confidence"]))) if f["Confidence"] not in (None, "") else "",
+        "POP": f["POP"],
+        "Outcome": outcome,
+        "Duration(min)": duration_min,
+        "MaxProfitPrice": max_profit_px,
+        "MaxDrawdownPrice": max_drawdown_px,
+        "Did_TP_Hit_Later": did_tp_later,
+        "Buy_Score": f["Buy_Score"],
+        "Sell_Score": f["Sell_Score"],
+        "Base_Score_OK": f["Base_Score_OK"],
+        "Num_Conf": f["Num_Conf"],
+        "Confluence_OK": f["Confluence_OK"],
+        "Vol_Profile_OK": f["Vol_Profile_OK"],
+        "Min_Profit_OK": f["Min_Profit_OK"],
+        "Profit_Ceiling_OK": f["Profit_Ceiling_OK"],
+        "Regime": f["Regime"],
+        "RegimeScore": f["RegimeScore"],
+        "MACD_Hist": f["MACD_Hist"],
+        "ADX15m": f["ADX15m"],
+        "RSI": f["RSI"],
+        "CCI": f["CCI"],
+        "%B": round(f["%B"], 4) if isinstance(f["%B"], (int, float)) else "",
+        "Overshoot_OK": f["Overshoot_OK"],
+        "BB_Touch": f["BB_Touch"],
+        "RSI_Extreme": f["RSI_Extreme"],
+        "CCI_Extreme": f["CCI_Extreme"],
+        "Initial_Signal": f["Initial_Signal"],
+        "Aligned": f["Aligned"],
+        "Vetoes_Passed": f["Vetoes_Passed"],
+        "Downgrade_Reason": f["Downgrade_Reason"],
+    }
+    return label, row
+
 def backtest_file(json_url: str):
-    """Download one JSON file, evaluate all signals, and write a TXT report."""
+    """Download one JSON file, evaluate all signals, and write TXT + CSV."""
     filename = json_url.split("/")[-1]
     print(f"\n===== BACKTEST REPORT FOR: {filename} =====")
 
@@ -287,73 +428,43 @@ def backtest_file(json_url: str):
         signals = r.json()
     except Exception as e:
         print(f"[ERROR] Could not download/parse JSON: {e}")
-        return None, None
+        return None
 
     start_time_utc = parse_timestamp_from_filename(filename)
-    end_time_utc = start_time_utc + timedelta(hours=HOURS_TO_CHECK)
 
     rows_by_type = {"Strong Buy": [], "Buy": [], "Strong Sell": [], "Sell": []}
 
     for entry in signals:
         try:
-            label = entry.get("signal", "Neutral")
-            if label == "Neutral":
+            label, row = build_row(entry, start_time_utc)
+            if not label:
                 continue
-            coin = entry.get("coin") or entry.get("symbol")
-            if not coin:
-                continue
-
-            tp = entry.get("tp"); sl = entry.get("sl")
-            if tp is None or sl is None:
-                continue
-            tp = float(tp); sl = float(sl)
-
-            side = "Buy" if "Buy" in label else "Sell"
-
-            klines = fetch_future_klines_1m(coin, start_time_utc, minutes=HOURS_TO_CHECK*60)
-            outcome, duration_min, max_profit_px, max_drawdown_px, did_tp_later = first_touch_outcome(side, tp, sl, klines)
-
-            f = extract_fields(entry)
-            row = {
-                "Coin": coin,
-                "Signal": f["Signal"],
-                "Confidence": int(round(float(f["Confidence"]))) if f["Confidence"] not in (None, "") else "",
-                "POP": f["POP"],
-                "Outcome": outcome,
-                "Duration(min)": duration_min,
-                "MaxProfitPrice": max_profit_px,
-                "MaxDrawdownPrice": max_drawdown_px,
-                "Did_TP_Hit_Later": did_tp_later,
-                "Buy_Score": f["Buy_Score"],
-                "Sell_Score": f["Sell_Score"],
-                "Base_Score_OK": f["Base_Score_OK"],
-                "Num_Conf": f["Num_Conf"],
-                "Confluence_OK": f["Confluence_OK"],
-                "Vol_Profile_OK": f["Vol_Profile_OK"],
-                "Min_Profit_OK": f["Min_Profit_OK"],
-                "Profit_Ceiling_OK": f["Profit_Ceiling_OK"],
-                "Regime": f["Regime"],
-                "RegimeScore": f["RegimeScore"],
-                "MACD_Hist": f["MACD_Hist"],
-                "ADX15m": f["ADX15m"],
-                "RSI": f["RSI"],
-                "CCI": f["CCI"],
-                "%B": round(f["%B"], 4) if isinstance(f["%B"], (int, float)) else "",
-                "Overshoot_OK": f["Overshoot_OK"],
-                "BB_Touch": f["BB_Touch"],
-                "RSI_Extreme": f["RSI_Extreme"],
-                "CCI_Extreme": f["CCI_Extreme"],
-                "Initial_Signal": f["Initial_Signal"],
-                "Aligned": f["Aligned"],
-                "Vetoes_Passed": f["Vetoes_Passed"],
-                "Downgrade_Reason": f["Downgrade_Reason"],
-            }
-
             rows_by_type[label].append(row)
         except Exception as e:
             print(f"[WARN] Skipped entry due to error: {e}")
 
-    # Write a per-file report
+    # ---- NEW: write per-file CSV analytics ----
+    ensure_dir(ANALYTICS_DIR)
+    file_ts_str = start_time_utc.strftime("%Y-%m-%d %H:%M:%S")
+    csv_rows = []
+    for key in ["Strong Buy","Buy","Strong Sell","Sell"]:
+        for r in rows_by_type[key]:
+            csv_rows.append(row_for_csv(file_ts_str, r))
+
+    csv_name = f"backtest_{start_time_utc.strftime('%Y-%m-%d_%H-%M-%S')}.csv"
+    csv_path = os.path.join(ANALYTICS_DIR, csv_name)
+    try:
+        import csv
+        with open(csv_path, "w", newline="", encoding="utf-8") as cf:
+            writer = csv.DictWriter(cf, fieldnames=CSV_COLUMNS)
+            writer.writeheader()
+            for rr in csv_rows:
+                writer.writerow(rr)
+        print(f"[OK] Analytics CSV saved: {csv_path}")
+    except Exception as e:
+        print(f"[WARN] Could not write analytics CSV: {e}")
+
+    # ---- TXT report (as before) ----
     ensure_dir(REPORTS_FOLDER)
     out_path = os.path.join(REPORTS_FOLDER, f"backtest_{start_time_utc.strftime('%Y-%m-%d_%H-%M-%S')}.txt")
     with open(out_path, "w", encoding="utf-8") as f:
@@ -374,14 +485,16 @@ def backtest_file(json_url: str):
                 f.write("(None)\n")
             f.write("\n")
 
-    print(f"[OK] Report saved: {out_path}")
-    return out_path, rows_by_type
+    print(f"[OK] TXT report saved: {out_path}")
+    return out_path
 
 # =========================
 # MAIN
 # =========================
 def main():
     ensure_dir(REPORTS_FOLDER)
+    ensure_dir(ANALYTICS_DIR)
+
     urls = get_github_archive_urls()
     if not urls:
         print("[INFO] No JSON files found on GitHub.")
