@@ -6,6 +6,8 @@ import pytz
 import pandas as pd
 
 ANALYTICS_DIR = "analytics"
+os.makedirs(ANALYTICS_DIR, exist_ok=True)   # <-- add this line
+
 ALL_SIGNALS_CSV = os.path.join(ANALYTICS_DIR, "all_signals.csv")
 
 def ist_timestamp():
