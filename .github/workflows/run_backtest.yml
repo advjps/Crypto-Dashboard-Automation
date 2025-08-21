@@ -3,6 +3,13 @@ name: Run Backtest Script
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write   # needed to push with GITHUB_TOKEN
+
+concurrency:
+  group: backtest-run
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,6 +17,9 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -50,4 +60,7 @@ jobs:
           git add -A backtest_reports
           git add -A analytics
           git commit -m "Generate new backtest reports and analytics CSVs [with previews]" || echo "No changes to commit"
-          git push
+          # retry push up to 3x in case of transient network/permission issues
+          for i in 1 2 3; do
+            git push && break || { echo "push failed, retry $i/3"; sleep 5; }
+          done
