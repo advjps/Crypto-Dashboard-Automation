@@ -1,4 +1,4 @@
-# run_automation.py (V12 – 6th Amendment: Regime-aware Dual Engine + IST timestamps)
+# run_automation.py (V13 – 7th Amendment)
 import pandas as pd
 import requests
 import json
@@ -8,470 +8,480 @@ import os
 import math
 import pytz
 
-# --- PROXY CONFIGURATION ---
+# ============== PROXY CONFIG ==============
 PROXY_IP = "217.180.42.139"
 PROXY_PORT = "48642"
 PROXY_USER = "NQOgprvOa4fgcWw"
 PROXY_PASS = "Nx8gIuzPunYu7P1"
-
 proxy_url = f"http://{PROXY_USER}:{PROXY_PASS}@{PROXY_IP}:{PROXY_PORT}"
-proxies = {"http": proxy_url, "https": proxy_url} if "YOUR_IP" not in PROXY_IP else None
+proxies = { "http": proxy_url, "https": proxy_url } if "YOUR_IP" not in PROXY_IP else None
 
-# --- General Configuration ---
+# ============== GENERAL CONFIG ==============
 LIVE_FILENAME = "live_signals.json"
 ARCHIVE_FOLDER = "data_archive"
-TOP_COINS_LIMIT = 70
+TOP_LIMIT = 70
+BINANCE_FAPI = "https://fapi.binance.com"
 
-# =========================
-# Utilities & Indicators
-# =========================
+# Profit evaluation basis (ROI on margin)
+LEVERAGE_FOR_PROFIT_EVAL = 7.0
+MIN_PROFIT_MARGIN = 2.0           # min % on margin to pass
+PROFIT_CEILING_MARGIN = 10.0      # cap % on margin
+# ATR-based TP/SL clamps (as % of price)
+TP_PCT_MIN, TP_PCT_MAX = 0.008, 0.016
+SL_PCT_MIN, SL_PCT_MAX = 0.008, 0.020
+
+# Regime hysteresis (stickiness)
+REGIME_HOLD_MINUTES = 60
+REGIME_CONFIRM_BARS = 2
+
+# ============== INDICATORS ==============
 def calc_ema(values, period):
-    if not isinstance(values, list) or len(values) < period:
-        return [None] * len(values)
+    if not isinstance(values, list) or len(values) < period: return [None]*len(values)
     return pd.Series(values).ewm(span=period, adjust=False).mean().tolist()
 
 def calc_rsi(values, period=14):
-    if not isinstance(values, list) or len(values) < period + 1:
-        return [None] * len(values)
-    series = pd.Series(values)
-    delta = series.diff()
-    gain = (delta.where(delta > 0, 0)).ewm(alpha=1 / period, adjust=False).mean()
-    loss = (-delta.where(delta < 0, 0)).ewm(alpha=1 / period, adjust=False).mean()
-    rs = gain / loss
+    if not isinstance(values, list) or len(values) < period + 1: return [None]*len(values)
+    s = pd.Series(values)
+    d = s.diff()
+    up = (d.where(d > 0, 0)).ewm(alpha=1/period, adjust=False).mean()
+    dn = (-d.where(d < 0, 0)).ewm(alpha=1/period, adjust=False).mean()
+    rs = up / dn
     return (100 - (100 / (1 + rs))).tolist()
 
 def get_last_valid_value(values):
-    for value in reversed(values):
-        if value is not None and not (isinstance(value, float) and math.isnan(value)):
-            return value
+    for v in reversed(values):
+        if v is not None and not (isinstance(v, float) and math.isnan(v)):
+            return float(v)
     return None
 
 def calc_macd(values, fast=12, slow=26, signal=9):
-    series = pd.Series(values)
-    ema_fast = series.ewm(span=fast, adjust=False).mean()
-    ema_slow = series.ewm(span=slow, adjust=False).mean()
-    macd_line = ema_fast - ema_slow
-    signal_line = macd_line.ewm(span=signal, adjust=False).mean()
-    histogram = macd_line - signal_line
-    return {"macd": macd_line.iloc[-1], "signal": signal_line.iloc[-1], "histogram": histogram.iloc[-1]}
+    s = pd.Series(values)
+    ema_f = s.ewm(span=fast, adjust=False).mean()
+    ema_s = s.ewm(span=slow, adjust=False).mean()
+    macd = ema_f - ema_s
+    sig  = macd.ewm(span=signal, adjust=False).mean()
+    hist = macd - sig
+    return {'macd': float(macd.iloc[-1]), 'signal': float(sig.iloc[-1]), 'histogram': float(hist.iloc[-1])}
 
 def calc_bollinger(values, period=20, mult=2):
-    if len(values) < period:
-        return {"upper": None, "middle": None, "lower": None}
-    series = pd.Series(values)
-    mean = series.rolling(window=period).mean().iloc[-1]
-    std = series.rolling(window=period).std().iloc[-1]
-    return {"upper": mean + mult * std, "middle": mean, "lower": mean - mult * std}
+    if len(values) < period: return {'upper': None, 'middle': None, 'lower': None}
+    s = pd.Series(values)
+    m = s.rolling(window=period).mean().iloc[-1]
+    sd = s.rolling(window=period).std().iloc[-1]
+    return {'upper': float(m + mult*sd), 'middle': float(m), 'lower': float(m - mult*sd)}
 
 def calc_atr(highs, lows, closes, period=14):
-    if len(highs) < period + 1:
-        return None
-    df = pd.DataFrame({"high": highs, "low": lows, "close": closes})
-    high_low = df["high"] - df["low"]
-    high_close = (df["high"] - df["close"].shift()).abs()
-    low_close = (df["low"] - df["close"].shift()).abs()
-    tr = pd.concat([high_low, high_close, low_close], axis=1).max(axis=1)
-    return tr.ewm(alpha=1 / period, adjust=False).mean().iloc[-1]
+    if len(highs) < period + 1: return None
+    df = pd.DataFrame({'high': highs, 'low': lows, 'close': closes})
+    hl = df['high'] - df['low']
+    hc = (df['high'] - df['close'].shift()).abs()
+    lc = (df['low'] - df['close'].shift()).abs()
+    tr = pd.concat([hl, hc, lc], axis=1).max(axis=1)
+    return float(tr.ewm(alpha=1/period, adjust=False).mean().iloc[-1])
 
 def calc_cci(highs, lows, closes, period=20):
-    if len(highs) < period:
-        return None
-    tp_series = pd.Series([(h + l + c) / 3 for h, l, c in zip(highs, lows, closes)])
-    mean = tp_series.rolling(window=period).mean().iloc[-1]
-    mean_dev = tp_series.rolling(window=period).apply(lambda x: (x - x.mean()).abs().mean(), raw=False).iloc[-1]
-    if mean_dev == 0:
-        return 0
-    return (tp_series.iloc[-1] - mean) / (0.015 * mean_dev)
-
-def calc_vol_profile(closes, highs, lows, volumes):
-    try:
-        df = pd.DataFrame({"price": closes, "volume": volumes})
-        price_range = max(highs) - min(lows)
-        if price_range == 0:
-            return {"bullish_score": 0, "bearish_score": 0}
-        poc = df.groupby(pd.cut(df["price"], bins=10), observed=False)["volume"].sum().idxmax().mid
-        current_price = closes[-1]
-        if current_price > poc:
-            return {"bullish_score": 3, "bearish_score": 0}
-        if current_price < poc:
-            return {"bullish_score": 0, "bearish_score": 3}
-        return {"bullish_score": 5, "bearish_score": 5}
-    except Exception:
-        return {"bullish_score": 1, "bearish_score": 1}
+    if len(highs) < period: return None
+    tp = pd.Series([(h + l + c)/3 for h, l, c in zip(highs, lows, closes)])
+    ma = tp.rolling(window=period).mean().iloc[-1]
+    md = tp.rolling(window=period).apply(lambda x: (x - x.mean()).abs().mean()).iloc[-1]
+    if md == 0: return 0.0
+    return float((tp.iloc[-1] - ma) / (0.015 * md))
 
 def calc_adx(highs, lows, closes, period=14):
-    """Basic ADX(14). Returns list same length as inputs."""
-    if len(highs) < period + 1:
-        return [None] * len(highs)
-    df = pd.DataFrame({"high": highs, "low": lows, "close": closes})
-    df["prev_high"] = df["high"].shift(1)
-    df["prev_low"] = df["low"].shift(1)
-    df["prev_close"] = df["close"].shift(1)
-    df["+DM"] = (df["high"] - df["prev_high"]).clip(lower=0.0)
-    df["-DM"] = (df["prev_low"] - df["low"]).clip(lower=0.0)
-    df["+DM"] = df["+DM"].where(df["+DM"] > df["-DM"], 0.0)
-    df["-DM"] = df["-DM"].where(df["-DM"] > df["+DM"], 0.0)
-    tr1 = (df["high"] - df["low"]).abs()
-    tr2 = (df["high"] - df["prev_close"]).abs()
-    tr3 = (df["low"] - df["prev_close"]).abs()
-    df["TR"] = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
-    atr = df["TR"].ewm(alpha=1 / period, adjust=False).mean()
-    plus_di = 100 * (df["+DM"].ewm(alpha=1 / period, adjust=False).mean() / atr)
-    minus_di = 100 * (df["-DM"].ewm(alpha=1 / period, adjust=False).mean() / atr)
-    dx = (abs(plus_di - minus_di) / (plus_di + minus_di)).replace([float("inf"), -float("inf")], 0.0) * 100
-    adx = dx.ewm(alpha=1 / period, adjust=False).mean()
-    return adx.tolist()
+    # Lightweight ADX (Wilder)
+    import numpy as np
+    if len(highs) < period + 2: return None
+    H, L, C = pd.Series(highs), pd.Series(lows), pd.Series(closes)
+    up_move = H.diff()
+    dn_move = -L.diff()
+    plus_dm = up_move.where((up_move > dn_move) & (up_move > 0), 0.0)
+    minus_dm = dn_move.where((dn_move > up_move) & (dn_move > 0), 0.0)
+    tr1 = H - L
+    tr2 = (H - C.shift()).abs()
+    tr3 = (L - C.shift()).abs()
+    tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
+    atr = tr.ewm(alpha=1/period, adjust=False).mean()
+    plus_di = 100 * (plus_dm.ewm(alpha=1/period, adjust=False).mean() / atr)
+    minus_di = 100 * (minus_dm.ewm(alpha=1/period, adjust=False).mean() / atr)
+    dx = ( (plus_di - minus_di).abs() / (plus_di + minus_di).replace(0, 1e-9) ) * 100
+    adx = dx.ewm(alpha=1/period, adjust=False).mean()
+    return float(adx.iloc[-1])
 
-# =========================
-# Data fetching
-# =========================
-def fetch_top_volume_coins(limit=TOP_COINS_LIMIT):
+# ============== DATA FETCH ==============
+def fetch_top_volume_coins(limit=TOP_LIMIT):
     try:
-        url = "https://fapi.binance.com/fapi/v1/ticker/24hr"
-        response = requests.get(url, proxies=proxies, timeout=30)
-        response.raise_for_status()
-        data = response.json()
-        usdt_pairs = [t for t in data if "symbol" in t and t["symbol"].endswith("USDT")]
-        return [c["symbol"] for c in sorted(usdt_pairs, key=lambda x: float(x["quoteVolume"]), reverse=True)[:limit]]
+        url = f"{BINANCE_FAPI}/fapi/v1/ticker/24hr"
+        r = requests.get(url, proxies=proxies, timeout=30)
+        r.raise_for_status()
+        data = r.json()
+        usdt = [t for t in data if 'symbol' in t and str(t['symbol']).endswith('USDT')]
+        return [c['symbol'] for c in sorted(usdt, key=lambda x: float(x['quoteVolume']), reverse=True)[:limit]]
     except Exception as e:
         print(f"Error fetching top coins: {e}")
         return []
 
-def fetch_binance_data(symbol, timeframe="5m", limit=300):
-    """Fetches and formats kline data from Binance Futures."""
+def fetch_binance_klines(symbol, interval='5m', limit=200):
     try:
-        url = f"https://fapi.binance.com/fapi/v1/klines?symbol={symbol}&interval={timeframe}&limit={limit}"
-        resp = requests.get(url, proxies=proxies, timeout=30)
-        resp.raise_for_status()
-        data = resp.json()
+        url = f"{BINANCE_FAPI}/fapi/v1/klines?symbol={symbol}&interval={interval}&limit={limit}"
+        r = requests.get(url, proxies=proxies, timeout=30)
+        r.raise_for_status()
+        data = r.json()
         return [
-            {"open": float(d[1]), "high": float(d[2]), "low": float(d[3]), "close": float(d[4]), "volume": float(d[5])}
+            {"open": float(d[1]), "high": float(d[2]), "low": float(d[3]),
+             "close": float(d[4]), "volume": float(d[5])}
             for d in data
         ]
     except Exception as e:
-        print(f"  - Could not fetch data for {symbol} ({timeframe}): {e}")
+        print(f"  - Could not fetch {symbol} {interval}: {e}")
         return []
 
-# =========================
-# 6th Amendment: Regime API
-# =========================
-def _safe(val, cast=float, default=None):
+def fetch_funding_rate_avg(symbols, limit=1):
+    # average of latest funding rates across a slice of symbols
+    vals = []
+    for s in symbols[:20]:  # cap to 20 to be gentle
+        try:
+            url = f"{BINANCE_FAPI}/fapi/v1/fundingRate?symbol={s}&limit={limit}"
+            r = requests.get(url, proxies=proxies, timeout=20)
+            if r.status_code == 200:
+                js = r.json()
+                if js:
+                    vals.append(float(js[-1].get("fundingRate", 0.0)))
+            time.sleep(0.05)
+        except Exception:
+            pass
+    if not vals:
+        return 0.0
+    return float(sum(vals)/len(vals))
+
+# ============== HELPER: %B ==============
+def percent_b(price, boll):
     try:
-        return cast(val)
+        lower = float(boll["lower"]); upper = float(boll["upper"])
+        rng = (upper - lower) if (upper - lower) != 0 else 1e-9
+        return float((price - lower) / rng)
     except Exception:
-        return default
-
-def _ema_rel(a, b):
-    if a is None or b is None:
-        return 0
-    return 1 if a > b else (-1 if a < b else 0)
-
-def detect_regime(btc_5m, btc_15m, btc_1h, btc_4h, prev_regime=None, prev_score=None):
-    """
-    Decide current market regime from BTC data (with hysteresis).
-    Returns dict: {"regime": "Bullish"/"Bearish"/"Neutral", "regime_score": int, "adx15m": float or None}
-    """
-    for arr in (btc_5m, btc_15m, btc_1h, btc_4h):
-        if not arr or len(arr) < 60:
-            return {"regime": "Neutral", "regime_score": 0, "adx15m": None}
-
-    c5 = [d["close"] for d in btc_5m]
-    c15 = [d["close"] for d in btc_15m]
-    c1h = [d["close"] for d in btc_1h]
-    c4h = [d["close"] for d in btc_4h]
-    h15 = [d["high"] for d in btc_15m]
-    l15 = [d["low"] for d in btc_15m]
-
-    ema20_1h = get_last_valid_value(calc_ema(c1h, 20))
-    ema50_1h = get_last_valid_value(calc_ema(c1h, 50))
-    ema200_1h = get_last_valid_value(calc_ema(c1h, 200))
-    rsi1h = get_last_valid_value(calc_rsi(c1h, 14))
-    macd1h = calc_macd(c1h, 12, 26, 9); macd1h_hist = _safe(macd1h.get("histogram")) if isinstance(macd1h, dict) else None
-    ema20_4h = get_last_valid_value(calc_ema(c4h, 20))
-    ema50_4h = get_last_valid_value(calc_ema(c4h, 50))
-
-    try:
-        adx15 = get_last_valid_value(calc_adx(h15, l15, c15, 14))
-    except Exception:
-        adx15 = None
-
-    ema20_5m = get_last_valid_value(calc_ema(c5, 20))
-    ema50_5m = get_last_valid_value(calc_ema(c5, 50))
-
-    score = 0
-    # 1h EMA stack
-    if _ema_rel(ema20_1h, ema50_1h) == 1 and _ema_rel(ema50_1h, ema200_1h) == 1:
-        score += 2
-    elif _ema_rel(ema20_1h, ema50_1h) == -1 and _ema_rel(ema50_1h, ema200_1h) == -1:
-        score -= 2
-    # 1h RSI
-    if rsi1h is not None:
-        if rsi1h > 55: score += 1
-        elif rsi1h < 45: score -= 1
-    # 1h MACD
-    if macd1h_hist is not None:
-        score += 1 if macd1h_hist > 0 else -1
-    # 4h bias
-    if _ema_rel(ema20_4h, ema50_4h) == 1: score += 1
-    elif _ema_rel(ema20_4h, ema50_4h) == -1: score -= 1
-    # 5m micro timing penalty/bonus
-    micro = _ema_rel(ema20_5m, ema50_5m)
-    score += (-1 if micro == -1 else (1 if micro == 1 else 0))
-
-    scale = 1.2 if (adx15 is not None and adx15 >= 20) else 0.9
-    raw_score = int(score)
-
-    if raw_score >= 3:
-        regime = "Bullish"
-    elif raw_score <= -3:
-        regime = "Bearish"
-    else:
-        if prev_regime in ("Bullish", "Bearish") and prev_score is not None:
-            if prev_regime == "Bullish" and prev_score >= 3 and raw_score >= 1:
-                regime = "Bullish"
-            elif prev_regime == "Bearish" and prev_score <= -3 and raw_score <= -1:
-                regime = "Bearish"
-            else:
-                regime = "Neutral"
-        else:
-            regime = "Neutral"
-
-    return {"regime": regime, "regime_score": int(round(raw_score * scale)), "adx15m": _safe(adx15, float)}
-
-# ===========================================
-# 6th Amendment: Regime-aware analyze_data()
-# ===========================================
-def analyze_data(symbol, data5m, market_ctx):
-    """
-    Regime-aware dual-engine analyzer.
-    - market_ctx = {"regime": ..., "regime_score": ..., "adx15m": float or None}
-    """
-    if not data5m or len(data5m) < 50:
         return None
 
-    regime = (market_ctx or {}).get("regime", "Neutral")
-    regime_score = (market_ctx or {}).get("regime_score", 0) or 0
-    adx15m = (market_ctx or {}).get("adx15m", None)
+# ============== REGIME DETECTOR ==============
+_last_regime = {"regime":"Neutral", "score":0.0, "ts":0}
+
+def compute_market_regime(btc5, btc15, btc1h, breadth_snap, funding_avg):
+    """
+    Votes:
+      +2/-2 : EMA stack on 15m+1h (20>50>100 bullish or bearish)
+      +1/-1 : ADX(15m) >= 20 in same direction
+      +1/-1 : Breadth: % of top coins above 5m EMA20
+      +1/-1 : Funding avg (pos bullish / neg bearish)
+    Threshold: score >= +3 -> Bullish, <= -3 -> Bearish, else Neutral.
+    Hysteresis: require confirmation for REGIME_CONFIRM_BARS bars; hold for REGIME_HOLD_MINUTES.
+    """
+    score = 0.0
+    comp = {"ema_stack":0.0, "adx15m":0.0, "breadth":0.0, "funding":0.0}
+
+    # EMA stack 15m + 1h (20 vs 50 vs 100)
+    def ema_stack_vote(data):
+        closes = [d["close"] for d in data]
+        ema20 = get_last_valid_value(calc_ema(closes, 20))
+        ema50 = get_last_valid_value(calc_ema(closes, 50))
+        ema100= get_last_valid_value(calc_ema(closes, 100))
+        if None in (ema20, ema50, ema100): return 0
+        if ema20 > ema50 > ema100: return +1
+        if ema20 < ema50 < ema100: return -1
+        return 0
+
+    v15 = ema_stack_vote(btc15)
+    v1h = ema_stack_vote(btc1h)
+    ema_vote = v15 + v1h
+    if ema_vote > 0: score += 2.0; comp["ema_stack"]=+2.0
+    elif ema_vote < 0: score -= 2.0; comp["ema_stack"]=-2.0
+
+    # ADX on 15m
+    h15 = [d["high"] for d in btc15]; l15 = [d["low"] for d in btc15]; c15 = [d["close"] for d in btc15]
+    adx15 = calc_adx(h15, l15, c15, 14)
+    if adx15 is not None and adx15 >= 20:
+        # direction by ema_vote sign
+        if ema_vote > 0: score += 1.0; comp["adx15m"]=+1.0
+        elif ema_vote < 0: score -= 1.0; comp["adx15m"]=-1.0
+
+    # Breadth: % of coins above 5m EMA20
+    breadth_pct = 0.0
+    if breadth_snap:
+        above = 0; total = 0
+        for x in breadth_snap:
+            closes = x.get("closes", [])
+            ema20c = get_last_valid_value(calc_ema(closes, 20)) if closes else None
+            if ema20c is not None and len(closes)>0:
+                total += 1
+                if closes[-1] >= ema20c: above += 1
+        if total>0:
+            breadth_pct = (above/total)*100.0
+            if breadth_pct >= 60: score += 1.0; comp["breadth"]=+1.0
+            elif breadth_pct <= 40: score -= 1.0; comp["breadth"]=-1.0
+
+    # Funding average
+    if funding_avg is not None:
+        if funding_avg > 0: score += 1.0; comp["funding"]=+1.0
+        elif funding_avg < 0: score -= 1.0; comp["funding"]=-1.0
+
+    # Decide raw regime
+    raw = "Neutral"
+    if score >= 3.0: raw = "Bullish"
+    elif score <= -3.0: raw = "Bearish"
+
+    # Hysteresis / stickiness
+    now_min = int(time.time()//60)
+    global _last_regime
+    hold_ok = (now_min - _last_regime.get("ts",0)) >= REGIME_HOLD_MINUTES
+    if raw != _last_regime.get("regime") and not hold_ok:
+        # Don't flip early
+        final = _last_regime.get("regime", "Neutral")
+        final_score = _last_regime.get("score", 0.0)
+    else:
+        final = raw
+        final_score = score
+        _last_regime = {"regime": final, "score": final_score, "ts": now_min}
+
+    return {
+        "regime": final,
+        "score": float(final_score),
+        "components": {
+            "ema_stack": float(comp["ema_stack"]),
+            "adx15m": float(comp["adx15m"]),
+            "breadth": float(comp["breadth"]),
+            "funding": float(comp["funding"]),
+            "breadth_pct": float(breadth_pct),
+            "adx15m_value": float(adx15) if adx15 is not None else None
+        }
+    }
+
+# ============== VOLUME PROFILE (simple) ==============
+def calc_vol_profile(closes, highs, lows, volumes):
+    try:
+        df = pd.DataFrame({'price': closes, 'volume': volumes})
+        price_range = max(highs) - min(lows)
+        if price_range == 0: return {'bullish_score': 0.0, 'bearish_score': 0.0}
+        poc = df.groupby(pd.cut(df['price'], bins=10), observed=False)['volume'].sum().idxmax().mid
+        current_price = closes[-1]
+        if current_price > poc: return {'bullish_score': 3.0, 'bearish_score': 0.0}
+        if current_price < poc: return {'bullish_score': 0.0, 'bearish_score': 3.0}
+        return {'bullish_score': 1.0, 'bearish_score': 1.0}
+    except:
+        return {'bullish_score': 1.0, 'bearish_score': 1.0}
+
+# ============== ANALYZE PER SYMBOL (7th Amendment) ==============
+def analyze_data(symbol, data5m, regime_obj):
+    """
+    Regime-aware scoring:
+      - Bullish: only Buy/Strong Buy considered
+      - Bearish: only Sell/Strong Sell considered
+      - Neutral: both allowed but stricter gating
+    Profit gates use ROI on margin at LEVERAGE_FOR_PROFIT_EVAL.
+    """
+    if not data5m or len(data5m) < 60:
+        return None
 
     price = data5m[-1].get("close")
-    if price is None:
-        return None
+    if price is None: return None
 
     closes = [d["close"] for d in data5m]
-    highs = [d["high"] for d in data5m]
-    lows = [d["low"] for d in data5m]
-    volumes = [d["volume"] for d in data5m]
+    highs  = [d["high"]  for d in data5m]
+    lows   = [d["low"]   for d in data5m]
+    vols   = [d["volume"]for d in data5m]
 
-    # Indicators (5m)
+    # Indicators
     rsi = get_last_valid_value(calc_rsi(closes, 14))
-    macd = calc_macd(closes, 12, 26, 9); macd_hist = macd.get("histogram") if isinstance(macd, dict) else None
+    macd = calc_macd(closes, 12, 26, 9)
+    macd_hist = macd.get("histogram")
     boll = calc_bollinger(closes, 20, 2)
-    atr = calc_atr(highs, lows, closes, 14)
-    cci = calc_cci(highs, lows, closes, 20)
-    ema50 = get_last_valid_value(calc_ema(closes, 50))
-    volp = calc_vol_profile(closes, highs, lows, volumes)
+    atr  = calc_atr(highs, lows, closes, 14)
+    cci  = calc_cci(highs, lows, closes, 20)
+    ema50= get_last_valid_value(calc_ema(closes, 50))
+    adx15= calc_adx(highs[-120:], lows[-120:], closes[-120:], 14)  # approx last 10h of 5m bars
+    volp = calc_vol_profile(closes, highs, lows, vols)
+    pb   = percent_b(price, boll)
 
     if any(v is None for v in [rsi, cci, boll.get("lower"), boll.get("upper")]):
         return None
 
-    lower, upper, middle = boll["lower"], boll["upper"], boll["middle"]
-    band_rng = (upper - lower) if (upper - lower) != 0 else price * 1e-9
-    pct_b = (price - lower) / band_rng  # <0 below lower, >1 above upper
+    regime = regime_obj.get("regime","Neutral")
+    regime_score = float(regime_obj.get("score",0.0))
+    comp = regime_obj.get("components",{})
 
-    # Confluence flags
-    bb_touch_buy = price <= lower
-    rsi_ext_buy = rsi is not None and rsi <= 30
-    cci_ext_buy = cci is not None and cci <= -100
-    num_conf_buy = int(bb_touch_buy) + int(rsi_ext_buy) + int(cci_ext_buy)
+    # ====== Separate scoring ======
+    buy_score = 0.0; sell_score = 0.0
 
-    bb_touch_sell = price >= upper
-    rsi_ext_sell = rsi is not None and rsi >= 70
-    cci_ext_sell = cci is not None and cci >= +100
-    macd_up = macd_hist is not None and macd_hist > 0
-    adx_gate = adx15m is not None and float(adx15m) >= 20.0
-    num_conf_sell = int(bb_touch_sell) + int(rsi_ext_sell) + int(macd_up) + int(adx_gate)
+    # Buy scoring (mean reversion + supportive trend)
+    if price <= boll["lower"]: buy_score += 35
+    if rsi <= 30: buy_score += 30
+    elif 30 < rsi <= 40: buy_score += 15
+    if cci >= 100: buy_score += 15
+    if macd_hist is not None and macd_hist < 0: buy_score += 5
+    if ema50 is not None and price >= ema50: buy_score += 10  # above ema50 supports buys
 
-    ema_gap_atr = None
-    if ema50 is not None and atr and atr > 0:
-        ema_gap_atr = (price - ema50) / atr
+    # Sell scoring (mirror)
+    if price >= boll["upper"]: sell_score += 35
+    if rsi >= 70: sell_score += 30
+    elif 60 <= rsi < 70: sell_score += 15
+    if cci <= -100: sell_score += 15
+    if macd_hist is not None and macd_hist > 0: sell_score += 5
+    if ema50 is not None and price <= ema50: sell_score += 10  # below ema50 supports sells
 
-    # BUY engine
-    buy_score = 0
-    if bb_touch_buy: buy_score += 35
-    if rsi_ext_buy: buy_score += 30
-    elif rsi is not None and 30 < rsi <= 40: buy_score += 15
-    if cci_ext_buy: buy_score += 15
-    if pct_b <= -0.10: buy_score += 15
-    elif pct_b <= -0.05: buy_score += 10
-    if macd_hist is not None: buy_score += 5 if macd_hist < 0 else -5
-    if regime == "Bullish": buy_score += 10
-    if ema_gap_atr is not None:
-        if -1.5 <= ema_gap_atr <= -0.8: buy_score += 5
-        elif ema_gap_atr < -1.5: buy_score -= 5
+    # Regime bias
+    if regime == "Bullish":
+        buy_score += 10; sell_score -= 10
+    elif regime == "Bearish":
+        sell_score += 10; buy_score -= 10
 
-    # SELL engine
-    sell_score = 0
-    if bb_touch_sell: sell_score += 25
-    if rsi_ext_sell: sell_score += 25
-    elif rsi is not None and 60 <= rsi < 70: sell_score += 10
-    if cci_ext_sell: sell_score += 10
-    if pct_b >= 1.10: sell_score += 15
-    elif pct_b >= 1.02: sell_score += 10
-    if macd_hist is not None and macd_hist > 0: sell_score += 20
-    if regime == "Bearish": sell_score += 10
-    if adx_gate: sell_score += 10
+    # Initial direction under regime gate
+    initial = "Neutral"
+    if regime == "Bullish":
+        if buy_score > 0: initial = "Buy"
+    elif regime == "Bearish":
+        if sell_score > 0: initial = "Sell"
+    else:  # Neutral allows both
+        if buy_score > sell_score and buy_score > 0: initial = "Buy"
+        elif sell_score > buy_score and sell_score > 0: initial = "Sell"
 
-    # Regime side gating
-    consider_buy = regime in ("Bullish", "Neutral")
-    consider_sell = regime in ("Bearish", "Neutral")
-
-    initial_signal = "Neutral"
-    if consider_buy and (buy_score > sell_score) and buy_score > 0:
-        initial_signal = "Buy"
-    if consider_sell and (sell_score > buy_score) and sell_score > 0:
-        initial_signal = "Sell"
-    if regime == "Bullish" and initial_signal == "Sell":
-        initial_signal = "Neutral"
-    if regime == "Bearish" and initial_signal == "Buy":
-        initial_signal = "Neutral"
-
-    if initial_signal == "Neutral":
+    if initial == "Neutral":
         return {
-            "coin": symbol,
-            "price": round(float(price), 4),
+            "coin": symbol, "price": round(float(price),4),
             "signal": "Neutral",
             "confidence": 0,
             "estimated_profit": "0.00%",
             "analysis_log": {
-                "buy_score": int(round(buy_score)),
-                "sell_score": int(round(sell_score)),
                 "initial_signal": "Neutral",
-                "num_confluence_met": 0,
-                "base_threshold_ok": False,
-                "vol_profile_ok": False,
-                "min_profit_ok": False,
-                "profit_ceiling_ok": False,
-                "confidence": 0,
-                "bb_touch": bool(bb_touch_buy or bb_touch_sell),
-                "rsi_extreme": bool(rsi_ext_buy or rsi_ext_sell),
-                "cci_extreme": bool(cci_ext_buy or cci_ext_sell),
-                "vetoes_passed": [],
-                "overshoot_ok": False,
-                "ema_gap_atr": float(ema_gap_atr) if ema_gap_atr is not None else None,
-                "is_regime_aligned": False
+                "regime": regime,
+                "regime_score": regime_score,
+                "regime_explain": comp
             },
             "indicators": {
-                "rsi5m": float(rsi) if rsi is not None else None,
-                "macd_hist5m": float(macd_hist) if macd_hist is not None else None,
-                "boll5m": {"upper": float(upper), "lower": float(lower), "middle": float(middle)},
-                "cci5m": float(cci) if cci is not None else None,
-                "ema50_5m": float(ema50) if ema50 is not None else None,
-                "marketRegime": regime,
-                "regimeScore": int(regime_score),
-                "adx15m": float(adx15m) if adx15m is not None else None,
-                "percentB": float(pct_b)
+                "marketRegime": regime, "regimeScore": regime_score
             }
         }
 
-    # Risk model per regime
-    aligned = (regime == "Bullish" and initial_signal == "Buy") or (regime == "Bearish" and initial_signal == "Sell")
-    tp_factor = 2.2 if aligned else 2.0
-    sl_factor = 1.8 if aligned else 2.0
-    if initial_signal == "Buy" and regime != "Bullish" and ema_gap_atr is not None and ema_gap_atr < 0:
-        tp_factor, sl_factor = 1.7, 2.3
+    # Confluence (side-specific)
+    bb_touch_buy  = price <= boll["lower"]
+    bb_touch_sell = price >= boll["upper"]
+    rsi_buy = (rsi <= 30)
+    rsi_sell = (rsi >= 70)
+    cci_buy = (cci >= 100)
+    cci_sell= (cci <= -100)
 
-    eff_atr = atr if atr and atr > 0 else price * 0.002
-    if initial_signal == "Buy":
-        tp = price + eff_atr * tp_factor
-        sl = price - eff_atr * sl_factor
-    else:
-        tp = price - eff_atr * tp_factor
-        sl = price + eff_atr * sl_factor
+    num_conf_buy  = int(bb_touch_buy) + int(rsi_buy) + int(cci_buy)
+    num_conf_sell = int(bb_touch_sell)+ int(rsi_sell)+ int(cci_sell)
 
-    profit_pct = abs(((tp - price) / price) * 100) if price else 0.0
-    min_profit_ok = profit_pct >= 2.0
-    profit_ceiling_ok = profit_pct <= 10.0
-
-    vetoes_passed = []
-    vol_ok_buy = volp["bullish_score"] > 0
+    # Volume profile gate
+    vol_ok_buy  = volp["bullish_score"] > 0
     vol_ok_sell = volp["bearish_score"] > 0
 
-    if initial_signal == "Buy":
-        base_ok = buy_score >= 20
-        strong_base_ok = buy_score >= 55
-        conf_cnt = num_conf_buy
-        overshoot_ok = (pct_b <= -0.05) or (rsi is not None and rsi <= 28)
-        vol_ok = True if conf_cnt == 3 else vol_ok_buy
-        is_aligned = (regime == "Bullish")
-        regime_mult = 1.0 if is_aligned else (0.85 if regime == "Neutral" else 0.6)
+    # Overshoot helpers
+    overshoot_buy  = (pb is not None and pb <= -0.03) or rsi <= 28
+    overshoot_sell = (pb is not None and pb >= 1.00) or rsi >= 72
+    # Trend-strength relax for sells in strong downtrends
+    if regime == "Bearish" and adx15 is not None and adx15 >= 20 and macd_hist is not None and macd_hist > 0:
+        if pb is not None and pb >= 0.98:
+            overshoot_sell = True
+            vol_ok_sell = True  # allow VP bypass with strong confluence
 
-        S = min(1.0, buy_score / 100.0)
-        C = min(1.0, conf_cnt / 3.0)
-        checks = 0; V_raw = 0
-        for cond, name in [(base_ok, "base_ok"), (vol_ok, "vol_ok"), (min_profit_ok and profit_ceiling_ok, "profit_window")]:
-            checks += 1
-            if cond: V_raw += 1; vetoes_passed.append(name)
-        V = V_raw / max(1, checks)
+    # Base thresholds
+    base_buy_ok  = buy_score  >= 18
+    base_sell_ok = sell_score >= 18
+    conf_buy_ok  = num_conf_buy  >= (2 if regime != "Neutral" else 3)
+    conf_sell_ok = num_conf_sell >= (2 if regime != "Neutral" else 3)
 
-        conf = 100.0 * (0.40 * S + 0.40 * C + 0.20 * V)
-        if pct_b is not None and pct_b < -0.05:
-            conf += min(5.0, (abs(pct_b) - 0.05) * 100.0)
-        conf *= regime_mult
+    # ====== Risk model & profit gates (ROI on margin) ======
+    # ATR-derived raw TP/SL
+    eff_atr = atr if atr and atr > 0 else price * 0.002
+    # side-aware factors; aligned side gets slight advantage
+    aligned = (regime == "Bullish" and initial=="Buy") or (regime=="Bearish" and initial=="Sell")
+    tp_factor = 2.2 if aligned else 2.0
+    sl_factor = 1.8 if aligned else 2.0
 
-        strong_threshold = 80 if regime == "Bullish" else (85 if regime == "Neutral" else 999)
-        signal = "Buy"
-        if strong_base_ok and conf_cnt >= 2 and overshoot_ok and vol_ok and min_profit_ok and profit_ceiling_ok and conf >= strong_threshold:
-            signal = "Strong Buy"
-
+    # Convert to actual levels, then clamp to % bands
+    if initial == "Buy":
+        tp_raw = price + eff_atr * tp_factor
+        sl_raw = price - eff_atr * sl_factor
     else:
-        base_ok = sell_score >= 25
-        strong_base_ok = sell_score >= 50
-        conf_cnt = num_conf_sell
-        overshoot_ok = (pct_b >= 1.02) or (rsi is not None and rsi >= 72)
-        vol_ok = True if (conf_cnt >= 3 and adx_gate) else vol_ok_sell
-        is_aligned = (regime == "Bearish")
-        regime_mult = 1.0 if is_aligned else (0.85 if regime == "Neutral" else 0.6)
+        tp_raw = price - eff_atr * tp_factor
+        sl_raw = price + eff_atr * sl_factor
 
-        S = min(1.0, sell_score / 100.0)
-        C = min(1.0, conf_cnt / 3.0)
-        checks = 0; V_raw = 0
-        for cond, name in [(base_ok, "base_ok"), (vol_ok, "vol_ok"), (min_profit_ok and profit_ceiling_ok, "profit_window")]:
-            checks += 1
-            if cond: V_raw += 1; vetoes_passed.append(name)
-        V = V_raw / max(1, checks)
+    tp_pct_abs = abs((tp_raw - price)/price)   # fraction
+    sl_pct_abs = abs((sl_raw - price)/price)
 
-        conf = 100.0 * (0.40 * S + 0.40 * C + 0.20 * V)
-        if pct_b is not None and pct_b > 1.02:
-            conf += min(5.0, (pct_b - 1.02) * 100.0)
-        if adx_gate:
-            conf += 3.0
-        conf *= regime_mult
+    tp_pct_abs = min(max(tp_pct_abs, TP_PCT_MIN), TP_PCT_MAX)
+    sl_pct_abs = min(max(sl_pct_abs, SL_PCT_MIN), SL_PCT_MAX)
 
-        strong_threshold = 80 if regime == "Bearish" else (85 if regime == "Neutral" else 999)
-        signal = "Sell"
-        if strong_base_ok and conf_cnt >= 2 and overshoot_ok and vol_ok and min_profit_ok and profit_ceiling_ok and conf >= strong_threshold:
-            signal = "Strong Sell"
+    tp = price * (1 + tp_pct_abs) if initial=="Buy" else price * (1 - tp_pct_abs)
+    sl = price * (1 - sl_pct_abs) if initial=="Buy" else price * (1 + sl_pct_abs)
 
-    confidence = int(max(0, min(100, round(conf))))
-    leverage = 9 if ("Strong" in signal) else (7 if confidence >= 65 else (6 if confidence >= 50 else 5))
+    # Estimated profit as ROI on margin at fixed leverage
+    raw_move_pct = tp_pct_abs * 100.0
+    est_profit_margin_pct = raw_move_pct * LEVERAGE_FOR_PROFIT_EVAL
+    min_profit_ok = est_profit_margin_pct >= MIN_PROFIT_MARGIN
+    profit_ceiling_ok = est_profit_margin_pct <= PROFIT_CEILING_MARGIN
 
+    # ====== Confidence ======
+    if initial == "Buy":
+        base = buy_score
+        num_conf = num_conf_buy
+        vol_ok = vol_ok_buy
+        overshoot_ok = overshoot_buy
+    else:
+        base = sell_score
+        num_conf = num_conf_sell
+        vol_ok = vol_ok_sell
+        overshoot_ok = overshoot_sell
+
+    base_component = max(0.0, min(1.0, base/100.0)) * 0.40
+    conf_component = max(0.0, min(1.0, num_conf/3.0)) * 0.40
+    veto_passes = 0
+    if (base_buy_ok if initial=="Buy" else base_sell_ok): veto_passes += 1
+    if vol_ok: veto_passes += 1
+    if min_profit_ok and profit_ceiling_ok: veto_passes += 1
+    veto_component = (veto_passes/3.0) * 0.20
+
+    # Regime alignment & strength bonus
+    bonus = 0.0
+    if aligned and adx15 is not None and adx15 >= 25:
+        bonus += 0.05  # +5
+    confidence = int(round( (base_component + conf_component + veto_component + bonus) * 100 ))
+    confidence = max(0, min(100, confidence))
+
+    # ====== Final label ======
+    final_signal = "Neutral"
+    if initial == "Buy":
+        if (base_buy_ok and conf_component>0 and vol_ok and overshoot_ok and min_profit_ok and profit_ceiling_ok and confidence >= 70):
+            final_signal = "Strong Buy"
+        elif confidence >= 40:
+            final_signal = "Buy"
+        else:
+            final_signal = "Neutral"
+    else:
+        if (base_sell_ok and conf_component>0 and vol_ok and overshoot_ok and min_profit_ok and profit_ceiling_ok and confidence >= 75):
+            final_signal = "Strong Sell"
+        elif confidence >= 40:
+            final_signal = "Sell"
+        else:
+            final_signal = "Neutral"
+
+    # Leverage suggestion (execution)
+    leverage = 7 if final_signal.startswith("Strong") else (6 if confidence>=50 else 5)
+
+    # ====== Build JSON-safe payload ======
     analysis_log = {
+        "initial_signal": initial,
+        "regime": regime,
+        "regime_score": float(regime_score),
+        "regime_explain": comp,
         "buy_score": int(round(buy_score)),
         "sell_score": int(round(sell_score)),
-        "initial_signal": initial_signal,
-        "num_confluence_met": int(conf_cnt),
-        "base_threshold_ok": bool(base_ok),
+        "num_confluence_met": int(num_conf),
         "vol_profile_ok": bool(vol_ok),
+        "overshoot_ok": bool(overshoot_ok),
         "min_profit_ok": bool(min_profit_ok),
         "profit_ceiling_ok": bool(profit_ceiling_ok),
-        "confidence": int(confidence),
-        "bb_touch": bool(bb_touch_buy or bb_touch_sell),
-        "rsi_extreme": bool(rsi_ext_buy or rsi_ext_sell),
-        "cci_extreme": bool(cci_ext_buy or cci_ext_sell),
-        "vetoes_passed": list(vetoes_passed),
-        "overshoot_ok": bool(overshoot_ok),
-        "ema_gap_atr": float(ema_gap_atr) if ema_gap_atr is not None else None,
-        "is_regime_aligned": bool(is_aligned)
+        "profit_eval_leverage": float(LEVERAGE_FOR_PROFIT_EVAL),
+        "profit_basis": "margin_roi_percent"
     }
 
     return {
@@ -479,78 +489,91 @@ def analyze_data(symbol, data5m, market_ctx):
         "price": round(float(price), 4),
         "tp": round(float(tp), 4),
         "sl": round(float(sl), 4),
-        "leverage": f"{leverage}x",
+        "leverage": f"{int(leverage)}x",
         "confidence": int(confidence),
-        "signal": signal,
-        "estimated_profit": f"{profit_pct:.2f}%",
+        "signal": final_signal,
+        "estimated_profit": f"{est_profit_margin_pct:.2f}%",
         "analysis_log": analysis_log,
         "indicators": {
-            "rsi5m": float(rsi) if rsi is not None else None,
+            "rsi5m": float(rsi),
             "macd_hist5m": float(macd_hist) if macd_hist is not None else None,
-            "boll5m": {"upper": float(upper), "lower": float(lower), "middle": float(middle)},
-            "cci5m": float(cci) if cci is not None else None,
+            "boll5m": {
+                "upper": float(boll["upper"]),
+                "lower": float(boll["lower"]),
+                "middle": float(boll["middle"])
+            },
+            "cci5m": float(cci),
             "ema50_5m": float(ema50) if ema50 is not None else None,
-            "marketRegime": regime,
-            "regimeScore": int(regime_score),
-            "adx15m": float(adx15m) if adx15m is not None else None,
-            "percentB": float(pct_b)
+            "adx15m": float(comp.get("adx15m_value")) if comp.get("adx15m_value") is not None else (float(adx15) if adx15 is not None else None),
+            "percentB": float(pb) if pb is not None else None,
+            "marketRegime": str(regime),
+            "regimeScore": float(regime_score),
+            "volProfile": {
+                "bullish_score": float(volp["bullish_score"]),
+                "bearish_score": float(volp["bearish_score"])
+            }
         }
     }
 
-# =========================
-# Main Execution
-# =========================
+# ============== MAIN ==============
 if __name__ == "__main__":
-    print("Starting automated data fetch (6th Amendment)...")
+    print("Starting automated data fetch...")
 
-    top_coins = fetch_top_volume_coins()
-    if not top_coins:
-        print("Could not fetch top coins. Exiting.")
-        exit()
+    symbols = fetch_top_volume_coins()
+    if not symbols:
+        print("Could not fetch top coins. Exiting."); exit()
 
-    print(f"Found {len(top_coins)} coins to analyze.")
+    print(f"Found {len(symbols)} coins to analyze.")
 
-    # --- BTC context for regime detection ---
-    btc_5m = fetch_binance_data("BTCUSDT", "5m", 300)
-    btc_15m = fetch_binance_data("BTCUSDT", "15m", 300)
-    btc_1h = fetch_binance_data("BTCUSDT", "1h", 300)
-    btc_4h = fetch_binance_data("BTCUSDT", "4h", 300)
+    # BTC multi-timeframe for regime
+    btc5  = fetch_binance_klines("BTCUSDT", "5m", 300)
+    btc15 = fetch_binance_klines("BTCUSDT", "15m", 300)
+    btc1h = fetch_binance_klines("BTCUSDT", "1h", 300)
 
-    market_ctx = detect_regime(btc_5m, btc_15m, btc_1h, btc_4h)
-    print(f"Regime: {market_ctx['regime']}  |  Score: {market_ctx['regime_score']}  |  ADX15m: {market_ctx['adx15m']}")
+    # breadth snapshot (subset for speed)
+    breadth_snap = []
+    for sym in symbols[:30]:
+        d5 = fetch_binance_klines(sym, "5m", 120)
+        if d5:
+            breadth_snap.append({"symbol": sym, "closes": [x["close"] for x in d5]})
+        time.sleep(0.05)
+
+    funding_avg = fetch_funding_rate_avg(symbols)
+    regime_obj = compute_market_regime(btc5, btc15, btc1h, breadth_snap, funding_avg)
+    print(f"Regime determined: {regime_obj.get('regime')} (score={regime_obj.get('score')})")
 
     all_results = []
-    for coin in top_coins:
+    for coin in symbols:
         print(f" - Analyzing {coin}...")
         time.sleep(0.2)
-
-        data_5m = fetch_binance_data(coin, "5m", 300)
-        if not data_5m:
-            continue
-
-        result = analyze_data(coin, data_5m, market_ctx)
-        if result:
-            all_results.append(result)
+        data_5m = fetch_binance_klines(coin, "5m", 200)
+        if not data_5m: continue
+        res = analyze_data(coin, data_5m, regime_obj)
+        if res:
+            all_results.append(res)
 
     if all_results:
-        strong_signals = [s for s in all_results if "Strong" in s.get("signal", "")]
+        strong_signals = [s for s in all_results if "Strong" in s.get('signal',"")]
         print(f"\nAnalysis complete. Found {len(strong_signals)} strong signals.")
         print("Saving full analysis file...")
 
+        # IST timestamped filenames
         utc_now = datetime.now(pytz.utc)
         ist_tz = pytz.timezone("Asia/Kolkata")
         ist_now = utc_now.astimezone(ist_tz)
         timestamp_str = ist_now.strftime("%Y-%m-%d_%H-%M-%S")
+
         file_suffix = "_STRONG" if strong_signals else ""
         archive_filename = f"signals_{timestamp_str}{file_suffix}.json"
 
         os.makedirs(ARCHIVE_FOLDER, exist_ok=True)
         archive_filepath = os.path.join(ARCHIVE_FOLDER, archive_filename)
-        with open(archive_filepath, "w", encoding="utf-8") as f:
+
+        with open(archive_filepath, 'w', encoding='utf-8') as f:
             json.dump(all_results, f, indent=2)
         print(f"SUCCESS: Archive file saved to {archive_filepath}")
 
-        with open(LIVE_FILENAME, "w", encoding="utf-8") as f:
+        with open(LIVE_FILENAME, 'w', encoding='utf-8') as f:
             json.dump(all_results, f, indent=2)
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
