@@ -132,18 +132,23 @@ def pop_proxy_from_scores(sig: str, buy_score, sell_score):
 
 def extract_fields(entry: dict):
     """
-    Normalize 6th-Amendment JSON to a flat dict for reporting.
-    Backward compatible with older JSONs (missing keys -> None/"").
+    Normalize JSON (V5/V6/V7) to a flat dict for reporting.
+    Compatible with:
+      - indicators.percentB  (new)
+      - indicators.boll5m + price (fallback compute)
+      - indicators.marketRegime / regimeScore (new)
+      - analysis_log.regime / regime_score (fallback)
     """
     sig = entry.get("signal")  # Strong Buy / Buy / Sell / Strong Sell / Neutral
     conf = entry.get("confidence")
     price = entry.get("price")
+
     alog = entry.get("analysis_log", {}) or {}
     inds = entry.get("indicators", {}) or {}
 
+    # Scores / gates
     buy_s = alog.get("buy_score")
     sell_s = alog.get("sell_score")
-
     base_ok = alog.get("base_threshold_ok")
     num_conf = alog.get("num_confluence_met")
     confluence_ok = (num_conf is not None and num_conf >= 2)
@@ -153,19 +158,42 @@ def extract_fields(entry: dict):
     vetoes = alog.get("vetoes_passed")
     is_aligned = alog.get("is_regime_aligned")
 
-    boll = inds.get("boll5m") or {}
-    pct_b = compute_percent_b(price, boll)
+    # Regime (prefer indicators; fallback to analysis_log)
+    market_regime = inds.get("marketRegime", alog.get("regime"))
+    regime_score = inds.get("regimeScore", alog.get("regime_score"))
 
-    market_regime = inds.get("marketRegime")
-    regime_score = inds.get("regimeScore")
-    adx15 = inds.get("adx15m")
+    # MACD/ADX/RSI/CCI
     macd_hist = inds.get("macd_hist5m")
-    rsi = inds.get("rsi5m")
-    cci = inds.get("cci5m")
+    adx15     = inds.get("adx15m")
+    rsi       = inds.get("rsi5m")
+    cci       = inds.get("cci5m")
 
+    # %B: prefer indicators.percentB; else compute from boll5m + price
+    pct_b = inds.get("percentB")
+    if pct_b is None:
+        boll = inds.get("boll5m") or {}
+        try:
+            lower = float(boll.get("lower")) if boll.get("lower") is not None else None
+            upper = float(boll.get("upper")) if boll.get("upper") is not None else None
+            if price is not None and lower is not None and upper is not None and upper != lower:
+                pct_b = (float(price) - lower) / (upper - lower)
+        except Exception:
+            pct_b = None
+
+    # Legacy POP proxy if needed
     pop = entry.get("pop")
     if pop is None:
-        pop = pop_proxy_from_scores(sig, buy_s, sell_s)
+        # derive a proxy from scores if available
+        try:
+            b = float(buy_s or 0.0); s = float(sell_s or 0.0)
+            if sig and "Buy" in sig:
+                denom = (b + abs(s)) or 1.0
+                pop = int(round(max(0.0, min(100.0, (b / denom) * 100))))
+            elif sig and "Sell" in sig:
+                denom = (abs(b) + s) or 1.0
+                pop = int(round(max(0.0, min(100.0, (s / denom) * 100))))
+        except Exception:
+            pop = None
 
     return {
         "Signal": sig,
@@ -186,7 +214,7 @@ def extract_fields(entry: dict):
         "ADX15m": adx15,
         "RSI": rsi,
         "CCI": cci,
-        "%B": pct_b,
+        "%B": pct_b,  # keep legacy header name for analytics
         "Initial_Signal": alog.get("initial_signal"),
         "BB_Touch": alog.get("bb_touch"),
         "RSI_Extreme": alog.get("rsi_extreme"),
