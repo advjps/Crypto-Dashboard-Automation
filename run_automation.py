@@ -22,15 +22,30 @@ ARCHIVE_FOLDER = "data_archive"
 TOP_LIMIT = 70
 BINANCE_FAPI = "https://fapi.binance.com"
 
-# Profit evaluation basis (ROI on margin)
-LEVERAGE_FOR_PROFIT_EVAL = 7.0
-MIN_PROFIT_MARGIN = 2.0           # min % on margin to pass
-PROFIT_CEILING_MARGIN = 10.0      # cap % on margin
-# ATR-based TP/SL clamps (as % of price)
-TP_PCT_MIN, TP_PCT_MAX = 0.008, 0.016
-SL_PCT_MIN, SL_PCT_MAX = 0.008, 0.020
+# --- Profit evaluation basis (ROI on margin) ---
+LEVERAGE_FOR_PROFIT_EVAL = 7.0       # fixed leverage used for estimated_profit (ROI on margin)
+MIN_PROFIT_MARGIN = 2.0              # min % on margin to pass
+PROFIT_CEILING_MARGIN = None         # 8th Amendment: ceiling veto removed (not used)
 
-# Regime hysteresis (stickiness)
+# --- Strong confidence thresholds (adaptive by regime/side) ---
+STRONG_CONF_THRESHOLDS = {
+    "Bearish_Sell": 70,   # lowered to promote more high-quality sells in bear regimes
+    "Bullish_Buy": 78,    # buys stricter in bull regimes
+    "Neutral_Sell": 75,
+    "Neutral_Buy": 80
+}
+
+# --- ATR-based TP/SL clamps (as % of price) - default band ---
+TP_PCT_MIN, TP_PCT_MAX = 0.008, 0.016   # 0.8% .. 1.6%
+SL_PCT_MIN, SL_PCT_MAX = 0.008, 0.020   # 0.8% .. 2.0%
+
+# --- Adaptive widening for extreme RSI contexts (keeps 1:1 R:R) ---
+# Applied only when: (Sell & RSI>=70 & upper-band/%B confirm & MACD<=0 or ADX>=20)
+#                 or (Buy  & RSI<=30 & lower-band/%B confirm & MACD>=0 or ADX>=20)
+WIDEN_MIN_PCT = 0.012   # 1.2%
+WIDEN_MAX_PCT = 0.022   # 2.2%
+
+# --- Regime hysteresis (stickiness) ---
 REGIME_HOLD_MINUTES = 60
 REGIME_CONFIRM_BARS = 2
 
@@ -634,4 +649,5 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
 
