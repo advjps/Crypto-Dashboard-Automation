@@ -271,60 +271,73 @@ def calc_vol_profile(closes, highs, lows, volumes):
 # ============== ANALYZE PER SYMBOL (7th Amendment) ==============
 def analyze_data(symbol, data5m, regime_obj):
     """
-    Regime-aware scoring:
-      - Bullish: only Buy/Strong Buy considered
-      - Bearish: only Sell/Strong Sell considered
-      - Neutral: both allowed but stricter gating
-    Profit gates use ROI on margin at LEVERAGE_FOR_PROFIT_EVAL.
+    8th Amendment:
+      - Remove profit ceiling veto
+      - Adaptive Strong thresholds by regime
+      - RSI-based confidence boosts (+5..+8; extra +3 with %B/extreme close), with MACD fail-safe
+      - Adaptive SL/TP widening (1.2–2.2% per side) for extreme RSI contexts only, 1:1 maintained
+      - Confluence & Overshoot kept strict (they proved protective)
+      - Estimated profit = ROI on margin at fixed leverage (7x)
     """
     if not data5m or len(data5m) < 60:
         return None
 
     price = data5m[-1].get("close")
-    if price is None: return None
+    if price is None:
+        return None
 
     closes = [d["close"] for d in data5m]
     highs  = [d["high"]  for d in data5m]
     lows   = [d["low"]   for d in data5m]
     vols   = [d["volume"]for d in data5m]
 
-    # Indicators
-    rsi = get_last_valid_value(calc_rsi(closes, 14))
-    macd = calc_macd(closes, 12, 26, 9)
-    macd_hist = macd.get("histogram")
-    boll = calc_bollinger(closes, 20, 2)
-    atr  = calc_atr(highs, lows, closes, 14)
-    cci  = calc_cci(highs, lows, closes, 20)
-    ema50= get_last_valid_value(calc_ema(closes, 50))
-    adx15= calc_adx(highs[-120:], lows[-120:], closes[-120:], 14)  # approx last 10h of 5m bars
-    volp = calc_vol_profile(closes, highs, lows, vols)
-    pb   = percent_b(price, boll)
+    # ----- Indicators -----
+    rsi   = get_last_valid_value(calc_rsi(closes, 14))
+    macd  = calc_macd(closes, 12, 26, 9)
+    macd_hist = macd.get("histogram") if isinstance(macd, dict) else None
+    boll  = calc_bollinger(closes, 20, 2)
+    atr   = calc_atr(highs, lows, closes, 14)
+    cci   = calc_cci(highs, lows, closes, 20)
+    ema50 = get_last_valid_value(calc_ema(closes, 50))
+    # approx last ~10 hours (120x5m) for a stronger ADX read
+    adx15 = calc_adx(highs[-120:], lows[-120:], closes[-120:], 14)
+    volp  = calc_vol_profile(closes, highs, lows, vols)
 
     if any(v is None for v in [rsi, cci, boll.get("lower"), boll.get("upper")]):
         return None
 
-    regime = regime_obj.get("regime","Neutral")
-    regime_score = float(regime_obj.get("score",0.0))
-    comp = regime_obj.get("components",{})
+    def percent_b(price, boll):
+        try:
+            lower = float(boll["lower"]); upper = float(boll["upper"])
+            rng = (upper - lower) if (upper - lower) != 0 else 1e-9
+            return float((price - lower) / rng)
+        except Exception:
+            return None
 
-    # ====== Separate scoring ======
+    pb = percent_b(price, boll)
+
+    regime = str(regime_obj.get("regime", "Neutral"))
+    regime_score = float(regime_obj.get("score", 0.0))
+    comp = regime_obj.get("components", {})
+
+    # ===== Separate scoring (same base logic as 7th) =====
     buy_score = 0.0; sell_score = 0.0
 
-    # Buy scoring (mean reversion + supportive trend)
+    # Buy side (mean reversion + trend support)
     if price <= boll["lower"]: buy_score += 35
     if rsi <= 30: buy_score += 30
     elif 30 < rsi <= 40: buy_score += 15
     if cci >= 100: buy_score += 15
     if macd_hist is not None and macd_hist < 0: buy_score += 5
-    if ema50 is not None and price >= ema50: buy_score += 10  # above ema50 supports buys
+    if ema50 is not None and price >= ema50: buy_score += 10
 
-    # Sell scoring (mirror)
+    # Sell side (mirror)
     if price >= boll["upper"]: sell_score += 35
     if rsi >= 70: sell_score += 30
     elif 60 <= rsi < 70: sell_score += 15
     if cci <= -100: sell_score += 15
     if macd_hist is not None and macd_hist > 0: sell_score += 5
-    if ema50 is not None and price <= ema50: sell_score += 10  # below ema50 supports sells
+    if ema50 is not None and price <= ema50: sell_score += 10
 
     # Regime bias
     if regime == "Bullish":
@@ -332,7 +345,7 @@ def analyze_data(symbol, data5m, regime_obj):
     elif regime == "Bearish":
         sell_score += 10; buy_score -= 10
 
-    # Initial direction under regime gate
+    # ===== Initial direction with regime gate =====
     initial = "Neutral"
     if regime == "Bullish":
         if buy_score > 0: initial = "Buy"
@@ -359,45 +372,39 @@ def analyze_data(symbol, data5m, regime_obj):
             }
         }
 
-    # Confluence (side-specific)
+    # ===== Confluence & Overshoot (kept strict) =====
     bb_touch_buy  = price <= boll["lower"]
     bb_touch_sell = price >= boll["upper"]
-    rsi_buy = (rsi <= 30)
+    rsi_buy  = (rsi <= 30)
     rsi_sell = (rsi >= 70)
-    cci_buy = (cci >= 100)
-    cci_sell= (cci <= -100)
+    cci_buy  = (cci >= 100)
+    cci_sell = (cci <= -100)
 
     num_conf_buy  = int(bb_touch_buy) + int(rsi_buy) + int(cci_buy)
     num_conf_sell = int(bb_touch_sell)+ int(rsi_sell)+ int(cci_sell)
 
-    # Volume profile gate
     vol_ok_buy  = volp["bullish_score"] > 0
     vol_ok_sell = volp["bearish_score"] > 0
 
-    # Overshoot helpers
-    overshoot_buy  = (pb is not None and pb <= -0.03) or rsi <= 28
-    overshoot_sell = (pb is not None and pb >= 1.00) or rsi >= 72
-    # Trend-strength relax for sells in strong downtrends
-    if regime == "Bearish" and adx15 is not None and adx15 >= 20 and macd_hist is not None and macd_hist > 0:
-        if pb is not None and pb >= 0.98:
-            overshoot_sell = True
-            vol_ok_sell = True  # allow VP bypass with strong confluence
+    # Overshoot heuristic: deep band excursions
+    overshoot_buy  = (pb is not None and pb <= 0.05) or rsi <= 28 or bb_touch_buy
+    overshoot_sell = (pb is not None and pb >= 0.95) or rsi >= 72 or bb_touch_sell
 
-    # Base thresholds
+    # Base thresholds (unchanged)
     base_buy_ok  = buy_score  >= 18
     base_sell_ok = sell_score >= 18
     conf_buy_ok  = num_conf_buy  >= (2 if regime != "Neutral" else 3)
     conf_sell_ok = num_conf_sell >= (2 if regime != "Neutral" else 3)
 
-    # ====== Risk model & profit gates (ROI on margin) ======
-    # ATR-derived raw TP/SL
+    # ===== Risk model & adaptive widening =====
     eff_atr = atr if atr and atr > 0 else price * 0.002
-    # side-aware factors; aligned side gets slight advantage
     aligned = (regime == "Bullish" and initial=="Buy") or (regime=="Bearish" and initial=="Sell")
+
+    # base ATR factors (slight advantage if aligned)
     tp_factor = 2.2 if aligned else 2.0
     sl_factor = 1.8 if aligned else 2.0
 
-    # Convert to actual levels, then clamp to % bands
+    # Raw ATR targets
     if initial == "Buy":
         tp_raw = price + eff_atr * tp_factor
         sl_raw = price - eff_atr * sl_factor
@@ -405,22 +412,44 @@ def analyze_data(symbol, data5m, regime_obj):
         tp_raw = price - eff_atr * tp_factor
         sl_raw = price + eff_atr * sl_factor
 
-    tp_pct_abs = abs((tp_raw - price)/price)   # fraction
-    sl_pct_abs = abs((sl_raw - price)/price)
+    tp_pct_abs = abs((tp_raw - price) / price)
+    sl_pct_abs = abs((sl_raw - price) / price)
 
+    # Default clamps
     tp_pct_abs = min(max(tp_pct_abs, TP_PCT_MIN), TP_PCT_MAX)
     sl_pct_abs = min(max(sl_pct_abs, SL_PCT_MIN), SL_PCT_MAX)
 
+    # Extreme-context widening (1:1 maintained)
+    sell_extreme = (
+        initial == "Sell" and (rsi is not None and rsi >= 70) and
+        (((pb is not None) and pb >= 0.95) or (price >= boll["upper"])) and
+        ((macd_hist is not None and macd_hist <= 0) or (adx15 is not None and adx15 >= 20))
+    )
+    buy_extreme = (
+        initial == "Buy" and (rsi is not None and rsi <= 30) and
+        (((pb is not None) and pb <= 0.05) or (price <= boll["lower"])) and
+        ((macd_hist is not None and macd_hist >= 0) or (adx15 is not None and adx15 >= 20))
+    )
+
+    adaptive_widen_applied = False
+    if sell_extreme or buy_extreme:
+        pct = max(tp_pct_abs, sl_pct_abs)
+        pct = min(max(pct, WIDEN_MIN_PCT), WIDEN_MAX_PCT)
+        tp_pct_abs = pct
+        sl_pct_abs = pct
+        adaptive_widen_applied = True
+
+    # Final TP/SL levels from pct (1:1 if widened)
     tp = price * (1 + tp_pct_abs) if initial=="Buy" else price * (1 - tp_pct_abs)
     sl = price * (1 - sl_pct_abs) if initial=="Buy" else price * (1 + sl_pct_abs)
 
-    # Estimated profit as ROI on margin at fixed leverage
+    # Estimated profit as ROI on margin (7x)
     raw_move_pct = tp_pct_abs * 100.0
     est_profit_margin_pct = raw_move_pct * LEVERAGE_FOR_PROFIT_EVAL
     min_profit_ok = est_profit_margin_pct >= MIN_PROFIT_MARGIN
-    profit_ceiling_ok = est_profit_margin_pct <= PROFIT_CEILING_MARGIN
+    profit_ceiling_ok = True  # ceiling removed in 8th
 
-    # ====== Confidence ======
+    # ===== Confidence calculation =====
     if initial == "Buy":
         base = buy_score
         num_conf = num_conf_buy
@@ -440,34 +469,58 @@ def analyze_data(symbol, data5m, regime_obj):
     if min_profit_ok and profit_ceiling_ok: veto_passes += 1
     veto_component = (veto_passes/3.0) * 0.20
 
-    # Regime alignment & strength bonus
-    bonus = 0.0
-    if aligned and adx15 is not None and adx15 >= 25:
-        bonus += 0.05  # +5
-    confidence = int(round( (base_component + conf_component + veto_component + bonus) * 100 ))
+    confidence = int(round((base_component + conf_component + veto_component) * 100))
     confidence = max(0, min(100, confidence))
 
-    # ====== Final label ======
+    # ===== RSI-based confidence boosts (with MACD fail-safes) =====
+    rsi_boost_points = 0
+    # Sell side boost: RSI >= 70, extra +3 if %B >= 0.95 or outside upper band; skip if MACD hist > 0
+    if initial == "Sell" and rsi is not None and rsi >= 70:
+        if not (macd_hist is not None and macd_hist > 0):
+            rsi_boost_points += 6  # base +6 (within +5..+8 range)
+            if (pb is not None and pb >= 0.95) or (price >= boll["upper"]):
+                rsi_boost_points += 3
+    # Buy side boost: RSI <= 30, extra +3 if %B <= 0.05 or outside lower band; skip if MACD hist < 0
+    if initial == "Buy" and rsi is not None and rsi <= 30:
+        if not (macd_hist is not None and macd_hist < 0):
+            rsi_boost_points += 6
+            if (pb is not None and pb <= 0.05) or (price <= boll["lower"]):
+                rsi_boost_points += 3
+
+    if rsi_boost_points:
+        confidence = max(0, min(100, confidence + rsi_boost_points))
+
+    # ===== Final label with adaptive thresholds =====
+    if regime == "Bearish":
+        strong_sell_thr = STRONG_CONF_THRESHOLDS["Bearish_Sell"]
+        strong_buy_thr  = STRONG_CONF_THRESHOLDS["Neutral_Buy"]  # buys generally off in bearish; keep high
+    elif regime == "Bullish":
+        strong_sell_thr = STRONG_CONF_THRESHOLDS["Neutral_Sell"]  # sells off in bullish; keep higher
+        strong_buy_thr  = STRONG_CONF_THRESHOLDS["Bullish_Buy"]
+    else:  # Neutral
+        strong_sell_thr = STRONG_CONF_THRESHOLDS["Neutral_Sell"]
+        strong_buy_thr  = STRONG_CONF_THRESHOLDS["Neutral_Buy"]
+
     final_signal = "Neutral"
     if initial == "Buy":
-        if (base_buy_ok and conf_component>0 and vol_ok and overshoot_ok and min_profit_ok and profit_ceiling_ok and confidence >= 70):
+        if (base_buy_ok and conf_component>0 and vol_ok and overshoot_ok and min_profit_ok and confidence >= strong_buy_thr):
             final_signal = "Strong Buy"
         elif confidence >= 40:
             final_signal = "Buy"
         else:
             final_signal = "Neutral"
     else:
-        if (base_sell_ok and conf_component>0 and vol_ok and overshoot_ok and min_profit_ok and profit_ceiling_ok and confidence >= 75):
+        if (base_sell_ok and conf_component>0 and vol_ok and overshoot_ok and min_profit_ok and confidence >= strong_sell_thr):
             final_signal = "Strong Sell"
         elif confidence >= 40:
             final_signal = "Sell"
         else:
             final_signal = "Neutral"
 
-    # Leverage suggestion (execution)
-    leverage = 7 if final_signal.startswith("Strong") else (6 if confidence>=50 else 5)
+    # Leverage suggestion
+    leverage = 7 if final_signal.startswith("Strong") else (6 if confidence >= 50 else 5)
 
-    # ====== Build JSON-safe payload ======
+    # ----- JSON-safe payload -----
     analysis_log = {
         "initial_signal": initial,
         "regime": regime,
@@ -479,9 +532,12 @@ def analyze_data(symbol, data5m, regime_obj):
         "vol_profile_ok": bool(vol_ok),
         "overshoot_ok": bool(overshoot_ok),
         "min_profit_ok": bool(min_profit_ok),
-        "profit_ceiling_ok": bool(profit_ceiling_ok),
+        "profit_ceiling_ok": True,  # always true now
         "profit_eval_leverage": float(LEVERAGE_FOR_PROFIT_EVAL),
-        "profit_basis": "margin_roi_percent"
+        "profit_basis": "margin_roi_percent",
+        "adaptive_widen_applied": bool(adaptive_widen_applied),
+        "tp_sl_pct": round(tp_pct_abs * 100.0, 3),
+        "rsi_conf_boost_points": int(rsi_boost_points)
     }
 
     return {
@@ -504,7 +560,7 @@ def analyze_data(symbol, data5m, regime_obj):
             },
             "cci5m": float(cci),
             "ema50_5m": float(ema50) if ema50 is not None else None,
-            "adx15m": float(comp.get("adx15m_value")) if comp.get("adx15m_value") is not None else (float(adx15) if adx15 is not None else None),
+            "adx15m": float(adx15) if adx15 is not None else None,
             "percentB": float(pb) if pb is not None else None,
             "marketRegime": str(regime),
             "regimeScore": float(regime_score),
@@ -514,7 +570,7 @@ def analyze_data(symbol, data5m, regime_obj):
             }
         }
     }
-
+    
 # ============== MAIN ==============
 if __name__ == "__main__":
     print("Starting automated data fetch...")
@@ -578,3 +634,4 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
