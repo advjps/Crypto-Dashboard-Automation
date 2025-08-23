@@ -1,3 +1,0 @@
-FileTimestampUTC,Coin,Signal,Outcome,Duration(min),Confidence,POP,Buy_Score,Sell_Score,Num_Conf,Confluence_OK,Vol_Profile_OK,Min_Profit_OK,Profit_Ceiling_OK,Regime,RegimeScore,ADX15m,MACD_Hist,RSI,CCI,PercentB,Overshoot_OK,Aligned,Initial_Signal,Vetoes_Passed,MaxProfitPrice,MaxDrawdownPrice,Did_TP_Hit_Later,DeservedStrongBuy,DeservedStrongSell
-2025-08-21 21:32:29,ASRUSDT,Sell,Fail,9,46,78,10,35,1,False,True,True,False,Bearish,-3.0,21.341553283102225,-0.00327756027719377,32.50456261086207,-117.69260549748375,0.1661,False,,Sell,,3.293,3.503,No,0,0
-2025-08-21 21:32:29,CUDISUSDT,Sell,Fail,4,65,84,15,80,2,True,False,True,False,Bearish,-3.0,21.341553283102225,0.0004534063515142043,71.1352541993447,320.90493025295234,1.2188,True,,Sell,,0.09619,0.10377,Yes,0,0
