@@ -1,0 +1,20 @@
+===== BACKTEST REPORT FOR: signals_2025-08-23_13-13-20.json =====
+Signal Generation Time (UTC): 2025-08-23 07:43:20
+
+--- BUY SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+    ENAUSDT       Buy           45            Inconclusive  180           No            8.40%         45            15            False         False         True          24.05         -159.92       0.031         25.64         -0.00188    
+    MEMEUSDT      Buy           47            Fail          4             Yes           11.20%        35            10            False         True          True          63.18         131.38        0.910         23.06         0.00001     
+    AAVEUSDT      Buy           45            Fail          36            Yes           6.00%         45            15            False         False         True          26.29         -155.44       0.067         30.34         -0.85594    
+    XPLUSDT       Buy           49            Success       1             No            11.20%        40            -10           False         True          True          59.32         100.26        0.802         16.27         -0.00002    
+    ETHFIUSDT     Buy           45            Inconclusive  180           No            6.53%         45            15            False         False         True          28.99         -136.37       0.101         18.43         -0.00153    
+    SKLUSDT       Buy           45            Success       96            No            8.40%         45            15            False         False         True          25.99         -166.83       0.026         42.39         -0.00005    
+    BANDUSDT      Buy           53            Success       50            No            11.20%        65            15            False         False         True          34.93         -183.78       -0.005        19.70         -0.00130    
+    MYXUSDT       Buy           53            Success       78            No            10.11%        65            15            False         False         True          36.61         -193.70       -0.051        17.30         -0.00117    
+    CUDISUSDT     Buy           45            Fail          20            No            11.20%        45            15            False         False         True          29.02         -113.10       0.134         38.48         -0.00008    
+    BBUSDT        Buy           45            Success       22            No            10.07%        45            15            False         False         True          25.37         -118.59       0.160         36.28         -0.00013    
+    XNYUSDT       Buy           72            Fail          4             No            14.00%        80            15            True          False         True          26.02         -190.47       -0.046        26.13         -0.00007    
+
+--- SELL SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+

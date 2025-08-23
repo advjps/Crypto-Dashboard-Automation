@@ -1,0 +1,34 @@
+===== BACKTEST REPORT FOR: signals_2025-08-23_04-09-45_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-22 22:39:45
+
+--- BUY SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+    ETHUSDT       Buy           59            Success       63            No            6.07%         65            15            False         True          True          35.66         -148.94       -0.000        27.69         -7.63465    
+    XRPUSDT       Buy           47            Fail          122           No            5.60%         50            15            False         False         True          40.56         -142.55       -0.042        15.62         -0.00179    
+    ADAUSDT       Buy           53            Fail          141           No            5.83%         65            15            False         False         True          35.85         -149.17       -0.003        22.85         -0.00118    
+    ENAUSDT       Buy           59            Success       46            No            7.52%         65            15            False         True          True          39.46         -176.51       -0.030        18.73         -0.00120    
+    WIFUSDT       Buy           57            Success       47            No            6.71%         60            5             False         True          True          42.56         -146.83       -0.002        26.68         -0.00096    
+    LTCUSDT       Buy           59            Success       59            No            5.60%         65            15            False         True          True          36.13         -223.60       -0.165        26.25         -0.11492    
+    ETCUSDT       Buy           53            Fail          26            Yes           6.91%         65            15            False         False         True          35.32         -160.98       -0.012        17.40         -0.03358    
+    TRUMPUSDT     Buy           53            Success       52            No            5.60%         65            15            False         False         True          37.17         -180.11       -0.029        22.58         -0.00751    
+    UNIUSDT       Buy           53            Success       58            No            6.17%         65            15            False         False         True          32.24         -165.07       -0.058        17.44         -0.01297    
+    1000BONKUSDT  Buy           53            Success       39            No            6.74%         50            15            False         True          True          40.03         -197.39       -0.102        30.30         -0.00003    
+    MEMEUSDT      Buy           47            Success       43            No            11.20%        35            25            False         True          True          85.99         135.06        0.880         74.43         0.00001     
+    AEROUSDT      Buy           45            Success       17            No            8.87%         45            15            False         False         True          25.20         -107.21       0.141         20.90         -0.00251    
+    OPUSDT        Buy           53            Fail          155           No            6.83%         65            15            False         False         True          34.97         -167.51       -0.032        18.07         -0.00109    
+    NEARUSDT      Buy           57            Fail          164           No            5.60%         60            5             False         True          True          40.04         -193.69       -0.151        32.39         -0.00276    
+    TRXUSDT       Buy           57            Inconclusive  180           No            5.60%         60            5             False         True          True          41.67         -171.80       -0.063        20.58         -0.00013    
+    1000SHIBUSDT  Buy           59            Success       6             No            5.60%         65            15            False         True          True          37.00         -185.19       -0.128        32.02         -0.00002    
+    FILUSDT       Buy           59            Fail          137           No            5.83%         65            15            False         True          True          38.89         -199.61       -0.119        30.89         -0.00366    
+    WLDUSDT       Buy           47            Success       62            No            6.07%         50            15            False         False         True          40.09         -235.17       -0.167        20.34         -0.00086    
+    SEIUSDT       Buy           59            Fail          144           No            6.74%         65            15            False         True          True          37.70         -183.46       -0.019        19.22         -0.00055    
+    CRVUSDT       Buy           59            Success       48            No            7.13%         65            15            False         True          True          38.73         -150.88       -0.005        23.40         -0.00124    
+    INJUSDT       Buy           47            Fail          155           No            6.95%         50            15            False         False         True          40.44         -179.94       -0.014        12.18         -0.01536    
+    VIRTUALUSDT   Strong Buy    79            Success       57            No            7.12%         80            15            True          True          True          28.85         -195.32       -0.053        16.87         -0.00209    
+    TAOUSDT       Buy           57            Fail          144           No            5.60%         60            5             False         True          True          41.77         -229.45       -0.124        24.87         -0.42663    
+    FETUSDT       Buy           53            Fail          142           No            5.60%         65            15            False         False         True          33.98         -180.35       -0.041        18.09         -0.00077    
+    VINEUSDT      Buy           47            Success       2             No            11.20%        35            45            False         True          True          69.78         193.82        1.128         19.80         0.00019     
+
+--- SELL SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+
