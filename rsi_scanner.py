@@ -2,7 +2,7 @@ import requests
 import pandas as pd
 import time
 
-# Proxy configuration (unused unless needed)
+# Proxy configuration
 proxy = {
     'http': 'http://NQOgprvOa4fgcWw:Nx8gIuzPunYu7P1@217.180.42.139:48642',
     'https': 'http://NQOgprvOa4fgcWw:Nx8gIuzPunYu7P1@217.180.42.139:48642'
@@ -47,23 +47,24 @@ def fetch_with_retries(url, params=None, use_proxy=False, retries=3, delay=2):
                 print(f"Max retries reached for {url}")
                 return None
 
-# Fetch market data
+# Fetch futures market data
 def fetch_market_data():
-    url = "https://api.coindcx.com/exchange/v1/markets"
-    data = fetch_with_retries(url)
+    url = "https://api.coindcx.com/exchange/v1/derivatives/futures/data/active_instruments"
+    params = {"margin_currency_short_name": "USDT"}
+    data = fetch_with_retries(url, params=params)
     if not data:
         print("Trying with proxy...")
-        data = fetch_with_retries(url, use_proxy=True)
+        data = fetch_with_retries(url, params=params, use_proxy=True)
     if data:
         print(f"Raw market data: {data[:5]}")
-        markets = [pair for pair in data if isinstance(pair, str) and pair.endswith('USDT')]
-        print(f"Filtered {len(markets)} USDT pairs: {markets}")
-        return [{'pair': pair, 'target_currency_short_name': pair.replace('USDT', '')} for pair in markets[:5]]  # Limit to 5
+        markets = [pair for pair in data if isinstance(pair, str) and pair.endswith('_USDT') and pair.startswith('B-')]
+        print(f"Filtered {len(markets)} USDT futures pairs: {markets[:5]}")
+        return [{'pair': pair, 'target_currency_short_name': pair.replace('B-', '').replace('_USDT', '')} for pair in markets[:5]]  # Limit to 5
     return []
 
 # Fetch ticker data
 def fetch_ticker_data():
-    url = "https://api.coindcx.com/exchange/ticker"
+    url = "https://api.coindcx.com/exchange/v1/derivatives/futures/ticker"
     data = fetch_with_retries(url)
     if not data:
         print("Trying with proxy...")
@@ -74,17 +75,19 @@ def fetch_ticker_data():
 def fetch_candles(pair, timeframe, limit=50):
     url = "https://public.coindcx.com/market_data/candles"
     params = {"pair": pair, "interval": timeframe, "endTime": int(time.time() * 1000), "limit": limit}
-    data = fetch_with_retries(url, params)
+    data = fetch_with_retries(url, params=params)
     if not data:
         print(f"Trying with proxy for {pair} ({timeframe})...")
-        data = fetch_with_retries(url, params, use_proxy=True)
+        data = fetch_with_retries(url, params=params, use_proxy=True)
+    if not data:
+        print(f"Failed to fetch candles for {pair} ({timeframe})")
     return data[::-1] if data else None
 
 # Main function
 def main():
     markets = fetch_market_data()
     if not markets:
-        print("No USDT pairs found")
+        print("No USDT futures pairs found")
         pd.DataFrame(columns=[
             'Name', 'Current Price (USDT)', 'Volume (1-min)', '24h Price Change (%)',
             'RSI (1-min)', 'RSI (5-min)', 'RSI (15-min)', 'RSI (1-hour)', 'RSI (1-day)'
@@ -96,7 +99,7 @@ def main():
     for i, market in enumerate(markets, 1):
         print(f"Processing pair {i}/{len(markets)}: {market['pair']}...")
         pair = market['pair']
-        symbol = market.get('target_currency_short_name', pair.replace('USDT', ''))
+        symbol = market.get('target_currency_short_name', pair.replace('B-', '').replace('_USDT', ''))
 
         timeframes = {'1m': '1m', '5m': '5m', '15m': '15m', '1h': '1h', '1d': '1d'}
         candles = {}
