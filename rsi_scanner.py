@@ -2,7 +2,7 @@ import requests
 import pandas as pd
 import time
 
-# Proxy configuration
+# Proxy configuration (unused unless needed)
 proxy = {
     'http': 'http://NQOgprvOa4fgcWw:Nx8gIuzPunYu7P1@217.180.42.139:48642',
     'https': 'http://NQOgprvOa4fgcWw:Nx8gIuzPunYu7P1@217.180.42.139:48642'
@@ -56,9 +56,9 @@ def fetch_market_data():
         data = fetch_with_retries(url, use_proxy=True)
     if data:
         print(f"Raw market data: {data[:5]}")
-        markets = [pair for pair in data if isinstance(pair, str) and '_USDT' in pair]
+        markets = [pair for pair in data if isinstance(pair, str) and pair.endswith('USDT')]
         print(f"Filtered {len(markets)} USDT pairs: {markets}")
-        return [{'pair': pair, 'target_currency_short_name': pair.split('_')[0]} for pair in markets[:5]]  # Limit to 5 for testing
+        return [{'pair': pair, 'target_currency_short_name': pair.replace('USDT', '')} for pair in markets[:5]]  # Limit to 5
     return []
 
 # Fetch ticker data
@@ -85,6 +85,10 @@ def main():
     markets = fetch_market_data()
     if not markets:
         print("No USDT pairs found")
+        pd.DataFrame(columns=[
+            'Name', 'Current Price (USDT)', 'Volume (1-min)', '24h Price Change (%)',
+            'RSI (1-min)', 'RSI (5-min)', 'RSI (15-min)', 'RSI (1-hour)', 'RSI (1-day)'
+        ]).to_csv('rsi_dashboard.csv', index=False)
         return
     ticker_data = fetch_ticker_data()
 
@@ -92,7 +96,7 @@ def main():
     for i, market in enumerate(markets, 1):
         print(f"Processing pair {i}/{len(markets)}: {market['pair']}...")
         pair = market['pair']
-        symbol = market.get('target_currency_short_name', pair.split('_')[0])
+        symbol = market.get('target_currency_short_name', pair.replace('USDT', ''))
 
         timeframes = {'1m': '1m', '5m': '5m', '15m': '15m', '1h': '1h', '1d': '1d'}
         candles = {}
