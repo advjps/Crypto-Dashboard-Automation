@@ -1,0 +1,22 @@
+===== BACKTEST REPORT FOR: signals_2025-08-24_04-11-48.json =====
+Signal Generation Time (UTC): 2025-08-23 22:41:48
+
+--- BUY SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+    WLFIUSDT      Buy           47            Fail          1             Yes           11.20%        50            30            False         False         True          33.88         -202.13       -0.033        23.72         0.00038     
+    LINKUSDT      Buy           43            Fail          148           No            5.60%         25            20            False         True          True          61.40         116.89        0.840         17.44         0.00457     
+    BIOUSDT       Buy           43            Success       139           No            10.18%        25            20            False         True          True          67.20         119.28        0.885         21.98         0.00064     
+    WIFUSDT       Buy           43            Success       36            No            5.60%         25            20            False         True          True          61.97         140.41        0.950         17.55         0.00040     
+    ETCUSDT       Buy           43            Success       120           No            5.60%         25            5             False         True          True          56.00         104.42        0.765         16.09         0.00287     
+    DOTUSDT       Buy           43            Fail          163           No            5.60%         25            5             False         True          True          58.07         109.13        0.836         23.45         0.00100     
+    DOGSUSDT      Buy           43            Fail          0             No            6.80%         25            5             False         True          True          52.57         172.12        0.973         11.12         0.00000     
+    UMAUSDT       Buy           68            Inconclusive  180           No            8.40%         70            25            True          False         True          27.56         -209.39       -0.043        22.26         -0.00143    
+
+--- SELL SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+    FHEUSDT       Sell          43            Fail          17            Yes           11.20%        20            25            False         True          True          38.35         -130.32       0.144         25.29         -0.00017    
+    AVAXUSDT      Sell          68            Inconclusive  180           No            8.40%         25            70            True          False         True          73.65         179.62        1.028         25.90         0.02474     
+    XPLUSDT       Sell          41            Fail          11            Yes           11.20%        25            35            False         False         True          72.25         117.07        0.885         26.46         0.00321     
+    PUMPUSDT      Sell          43            Success       149           No            5.60%         20            25            False         True          True          35.95         -101.14       0.191         38.66         -0.00000    
+    VINEUSDT      Sell          43            Fail          77            No            5.60%         5             25            False         True          True          42.23         -110.81       0.156         13.30         -0.00004    
+

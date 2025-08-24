@@ -1,0 +1,17 @@
+===== BACKTEST REPORT FOR: signals_2025-08-24_20-11-32.json =====
+Signal Generation Time (UTC): 2025-08-24 14:41:32
+
+--- BUY SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+
+--- SELL SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+    BIOUSDT       Sell          47            Success       8             No            11.20%        25            35            False         True          True          24.14         -138.78       0.068         42.22         -0.00183    
+    WLFIUSDT      Sell          47            Fail          10            Yes           11.20%        10            35            False         True          True          34.32         -150.11       0.064         23.88         -0.00076    
+    XRPUSDT       Sell          47            Fail          26            No            5.60%         -5            35            False         True          True          44.49         -129.14       0.134         11.22         -0.00084    
+    ARBUSDT       Sell          53            Fail          23            No            6.27%         15            65            False         False         True          65.12         209.10        1.026         16.33         0.00052     
+    DOLOUSDT      Sell          47            Fail          12            Yes           11.20%        10            35            False         True          True          38.60         -126.93       0.106         15.15         -0.00042    
+    SAPIENUSDT    Sell          47            Fail          7             Yes           11.20%        60            35            False         True          True          28.46         -189.09       -0.009        30.82         -0.00138    
+    XNYUSDT       Sell          45            Fail          16            Yes           14.00%        15            45            False         False         True          70.42         179.76        1.000         27.60         0.00001     
+    BRUSDT        Sell          47            Success       18            No            11.20%        25            35            False         True          True          28.98         -113.49       0.137         28.99         -0.00017    
+

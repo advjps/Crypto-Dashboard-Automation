@@ -1,0 +1,13 @@
+===== BACKTEST REPORT FOR: signals_2025-08-24_17-09-16.json =====
+Signal Generation Time (UTC): 2025-08-24 11:39:16
+
+--- BUY SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+    PROMPTUSDT    Buy           43            Success       3             No            11.20%        25            20            False         True          True          66.12         118.14        0.942         16.40         0.00125     
+    MEMEUSDT      Buy           43            Success       31            No            11.20%        25            20            False         True          True          64.69         103.63        0.843         22.45         0.00001     
+
+--- SELL SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+    BCHUSDT       Sell          49            Success       134           No            5.60%         25            55            False         False         True          64.51         227.68        1.170         13.52         0.11741     
+    QTUMUSDT      Sell          45            Fail          19            No            11.20%        15            30            False         False         True          70.23         87.74         0.838         76.53         -0.00410    
+

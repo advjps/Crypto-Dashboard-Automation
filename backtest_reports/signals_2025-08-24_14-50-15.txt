@@ -1,0 +1,33 @@
+===== BACKTEST REPORT FOR: signals_2025-08-24_14-50-15.json =====
+Signal Generation Time (UTC): 2025-08-24 09:20:15
+
+--- BUY SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+    XRPUSDT       Buy           49            Fail          79            No            5.60%         55            25            False         False         True          35.43         -202.51       -0.109        13.98         -0.00112    
+    DOGEUSDT      Buy           49            Fail          70            No            5.60%         55            25            False         False         True          36.57         -177.27       -0.068        32.03         -0.00002    
+    LINKUSDT      Buy           49            Inconclusive  180           No            5.60%         55            25            False         False         True          31.83         -239.11       -0.105        19.31         -0.02091    
+    ADAUSDT       Buy           49            Fail          58            No            5.60%         55            25            False         False         True          36.96         -172.89       -0.049        16.61         -0.00033    
+    ENAUSDT       Buy           49            Fail          57            No            5.60%         55            25            False         False         True          33.43         -196.66       -0.038        23.09         -0.00062    
+    1000PEPEUSDT  Buy           49            Fail          70            No            5.60%         55            25            False         False         True          32.65         -222.49       -0.101        40.84         -0.00000    
+    PENGUUSDT     Buy           68            Fail          41            No            8.40%         70            25            True          False         True          28.24         -205.97       -0.049        41.78         -0.00003    
+    TRXUSDT       Buy           45            Inconclusive  180           No            5.60%         30            15            False         True          True          61.17         105.32        0.953         15.20         -0.00004    
+    FILUSDT       Buy           49            Fail          59            No            5.60%         55            25            False         False         True          35.65         -238.17       -0.129        36.84         -0.00004    
+
+--- SELL SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+    BTCUSDT       Sell          43            Inconclusive  180           No            5.60%         5             25            False         True          True          42.09         -132.40       0.197         13.37         -5.90919    
+    WIFUSDT       Sell          45            Success       57            No            5.60%         0             30            False         True          True          40.34         -114.47       0.114         23.63         0.00008     
+    PUMPUSDT      Sell          43            Success       1             No            5.97%         20            25            False         True          True          39.38         -175.52       0.006         19.90         -0.00000    
+    LTCUSDT       Sell          45            Success       117           No            5.60%         15            30            False         True          True          38.42         -109.40       0.156         27.92         0.02659     
+    DOTUSDT       Sell          43            Success       54            No            5.60%         20            25            False         True          True          38.80         -161.85       0.031         18.40         -0.00094    
+    ONDOUSDT      Sell          43            Success       58            No            5.60%         20            25            False         True          True          39.80         -149.04       0.089         24.20         -0.00010    
+    XLMUSDT       Sell          43            Success       70            No            5.60%         5             25            False         True          True          40.14         -152.91       0.065         26.19         -0.00004    
+    1000SHIBUSDT  Sell          43            Success       58            No            5.60%         20            25            False         True          True          33.62         -182.83       0.024         34.44         -0.00000    
+    WCTUSDT       Sell          43            Success       60            No            5.60%         20            25            False         True          True          35.89         -135.78       0.068         26.38         -0.00010    
+    NEARUSDT      Sell          43            Success       57            No            5.60%         20            25            False         True          True          38.50         -155.53       0.085         20.14         -0.00049    
+    APTUSDT       Sell          43            Success       59            No            5.60%         5             25            False         True          True          41.80         -113.43       0.162         26.67         -0.00008    
+    TIAUSDT       Sell          43            Success       54            No            5.60%         20            25            False         True          True          39.62         -189.08       0.049         23.42         -0.00042    
+    SEIUSDT       Sell          43            Success       54            No            5.60%         20            25            False         True          True          39.50         -160.49       0.098         21.78         -0.00007    
+    HBARUSDT      Sell          43            Success       79            No            5.60%         20            25            False         True          True          37.49         -157.74       0.050         23.88         -0.00004    
+    ZORAUSDT      Sell          43            Success       99            No            11.07%        20            25            False         True          True          37.59         -190.58       0.045         17.01         -0.00012    
+

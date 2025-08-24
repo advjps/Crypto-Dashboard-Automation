@@ -1,0 +1,14 @@
+===== BACKTEST REPORT FOR: signals_2025-08-24_13-09-45.json =====
+Signal Generation Time (UTC): 2025-08-24 07:39:45
+
+--- BUY SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+    BTCUSDT       Buy           43            Inconclusive  180           No            5.60%         25            5             False         True          True          54.59         119.18        0.951         15.97         18.75408    
+    WLFIUSDT      Buy           49            Fail          0             No            11.20%        55            25            False         False         True          31.29         -205.82       -0.170        16.23         -0.00131    
+    API3USDT      Buy           41            Success       8             No            5.75%         35            25            False         False         True          16.76         -115.67       0.105         50.00         -0.00081    
+
+--- SELL SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+    XNYUSDT       Sell          43            Fail          26            No            11.20%        20            25            False         True          True          34.66         -141.79       0.069         34.04         -0.00001    
+    TRXUSDT       Sell          41            Inconclusive  180           No            5.60%         10            35            False         False         True          70.78         98.01         0.860         40.08         0.00005     
+

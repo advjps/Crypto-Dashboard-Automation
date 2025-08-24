@@ -1,0 +1,18 @@
+===== BACKTEST REPORT FOR: signals_2025-08-24_21-54-01.json =====
+Signal Generation Time (UTC): 2025-08-24 16:24:01
+
+--- BUY SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+
+--- SELL SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+    BIOUSDT       Sell          47            Success       1             No            11.20%        25            35            False         True          True          24.69         -115.25       0.152         67.23         -0.00026    
+    FHEUSDT       Sell          47            Success       6             No            11.20%        45            35            False         True          True          32.36         -246.85       -0.073        21.66         -0.00024    
+    BOMEUSDT      Sell          47            Fail          76            No            8.48%         45            35            False         True          True          30.74         -179.34       -0.053        18.66         -0.00000    
+    DOLOUSDT      Sell          47            Fail          50            No            11.20%        45            35            False         True          True          30.25         -224.79       -0.103        19.74         -0.00121    
+    SAPIENUSDT    Sell          47            Success       24            No            11.20%        10            35            False         True          True          32.21         -132.48       0.133         33.73         -0.00052    
+    TRXUSDT       Sell          53            Inconclusive  178           No            5.60%         15            65            False         False         True          60.55         192.86        1.087         10.86         0.00003     
+    BCHUSDT       Sell          47            Fail          79            No            5.60%         -5            35            False         True          True          44.70         -109.00       0.166         22.95         -0.18695    
+    ZORAUSDT      Sell          43            Fail          79            No            11.20%        5             25            False         True          True          49.41         -110.78       0.157         35.28         -0.00018    
+    DOGSUSDT      Sell          47            Inconclusive  178           No            9.64%         45            35            False         True          True          31.51         -174.90       -0.010        17.45         -0.00000    
+

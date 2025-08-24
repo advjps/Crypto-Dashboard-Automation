@@ -1,0 +1,15 @@
+===== BACKTEST REPORT FOR: signals_2025-08-24_22-16-13.json =====
+Signal Generation Time (UTC): 2025-08-24 16:46:13
+
+--- BUY SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+
+--- SELL SIGNALS ---
+    Coin          Signal        Confidence    Outcome       Duration(min)  Did_TP_Hit_Later  Estimated_Profit(%)  Buy_Score     Sell_Score    Confluence_OK  Vol_Profile_OK  Min_Profit_OK  RSI           CCI           %B            ADX15m        MACD_Hist   
+    BIOUSDT       Sell          47            Success       1             No            11.20%        60            35            False         True          True          13.33         -188.97       -0.020        71.73         -0.00156    
+    MEMEUSDT      Sell          41            Fail          117           No            11.20%        45            35            False         False         True          32.93         -199.40       -0.045        26.47         -0.00001    
+    FHEUSDT       Sell          47            Success       5             No            11.20%        10            35            False         True          True          30.94         -117.75       0.117         30.75         -0.00029    
+    BRUSDT        Sell          49            Fail          15            No            11.03%        5             40            False         True          True          33.89         -117.86       0.119         31.41         0.00005     
+    BCHUSDT       Sell          47            Fail          56            No            5.60%         -5            35            False         True          True          42.22         -103.71       0.150         22.32         -0.18340    
+    ZORAUSDT      Sell          43            Fail          56            No            11.20%        5             25            False         True          True          45.97         -117.67       0.164         25.92         -0.00024    
+
