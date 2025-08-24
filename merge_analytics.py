@@ -16,7 +16,7 @@ def ist_timestamp():
 
 def load_all_csvs():
     os.makedirs(ANALYTICS_DIR, exist_ok=True)
-    files = sorted(glob.glob(os.path.join(ANALYTICS_DIR, "backtest_*.csv")))
+    files = sorted(glob.glob(os.path.join(ANALYTICS_DIR, "signals_*.csv")))
     if not files:
         print(f"[INFO] No per-file analytics CSVs found in {ANALYTICS_DIR}/")
         return pd.DataFrame()
