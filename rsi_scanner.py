@@ -1,22 +1,18 @@
 import requests
 import pandas as pd
 import time
-import hmac
-import hashlib
-from datetime import datetime
 
-# Proxy configuration (used if public API fails)
+# Proxy configuration
 proxy = {
     'http': 'http://NQOgprvOa4fgcWw:Nx8gIuzPunYu7P1@217.180.42.139:48642',
     'https': 'http://NQOgprvOa4fgcWw:Nx8gIuzPunYu7P1@217.180.42.139:48642'
 }
 
-# Function to calculate RSI (14-period)
+# Calculate RSI (14-period)
 def calculate_rsi(closes, period=14):
     if len(closes) < period + 1:
         return None
-    gains = 0
-    losses = 0
+    gains = losses = 0
     for i in range(1, period + 1):
         diff = closes[i] - closes[i - 1]
         if diff > 0:
@@ -36,7 +32,7 @@ def calculate_rsi(closes, period=14):
     rs = avg_gain / avg_loss
     return 100 - (100 / (1 + rs))
 
-# Function to fetch data with retries
+# Fetch data with retries
 def fetch_with_retries(url, params=None, use_proxy=False, retries=3, delay=2):
     for attempt in range(1, retries + 1):
         try:
@@ -53,16 +49,16 @@ def fetch_with_retries(url, params=None, use_proxy=False, retries=3, delay=2):
 
 # Fetch market data
 def fetch_market_data():
-    url = "https://api.coindcx.com/exchange/v1/market_details"
+    url = "https://api.coindcx.com/exchange/v1/markets"
     data = fetch_with_retries(url)
     if not data:
         print("Trying with proxy...")
         data = fetch_with_retries(url, use_proxy=True)
     if data:
         print(f"Raw market data: {data[:5]}")
-        markets = [pair for pair in data if 'pair' in pair and '_USDT' in pair['pair'] and pair.get('status') == 'Active']
-        print(f"Filtered {len(markets)} USDT pairs: {[p['pair'] for p in markets]}")
-        return markets[:5]  # Limit to 5 for testing
+        markets = [pair for pair in data if isinstance(pair, str) and '_USDT' in pair]
+        print(f"Filtered {len(markets)} USDT pairs: {markets}")
+        return [{'pair': pair, 'target_currency_short_name': pair.split('_')[0]} for pair in markets[:5]]  # Limit to 5 for testing
     return []
 
 # Fetch ticker data
@@ -82,11 +78,10 @@ def fetch_candles(pair, timeframe, limit=50):
     if not data:
         print(f"Trying with proxy for {pair} ({timeframe})...")
         data = fetch_with_retries(url, params, use_proxy=True)
-    return data[::-1] if data else None  # Reverse for chronological order
+    return data[::-1] if data else None
 
 # Main function
 def main():
-    # Fetch market and ticker data
     markets = fetch_market_data()
     if not markets:
         print("No USDT pairs found")
@@ -99,7 +94,6 @@ def main():
         pair = market['pair']
         symbol = market.get('target_currency_short_name', pair.split('_')[0])
 
-        # Fetch candlestick data
         timeframes = {'1m': '1m', '5m': '5m', '15m': '15m', '1h': '1h', '1d': '1d'}
         candles = {}
         volume = 0
@@ -111,9 +105,8 @@ def main():
                     volume = float(data[-1].get('volume', 0))
             else:
                 candles[key] = None
-            time.sleep(2)  # Avoid rate limits
+            time.sleep(2)
 
-        # Calculate RSI
         rsi_values = {}
         for key, data in candles.items():
             if data:
@@ -122,7 +115,6 @@ def main():
             else:
                 rsi_values[key] = None
 
-        # Filter for RSI (1-min) > 60 or < 30
         rsi_1m = rsi_values.get('1m')
         if rsi_1m is not None and (rsi_1m > 60 or rsi_1m < 30):
             ticker = next((t for t in ticker_data if t['market'] == pair), {})
@@ -138,7 +130,6 @@ def main():
                 'RSI (1-day)': rsi_values.get('1d')
             })
 
-    # Create and save CSV
     if results:
         df = pd.DataFrame(results)
         df = df.sort_values(by='RSI (1-min)', ascending=False)
@@ -146,7 +137,6 @@ def main():
         print(f"Saved {len(df)} pairs to rsi_dashboard.csv")
     else:
         print("No pairs with RSI (1-min) > 60 or < 30 found")
-        # Create empty CSV to avoid workflow errors
         pd.DataFrame(columns=[
             'Name', 'Current Price (USDT)', 'Volume (1-min)', '24h Price Change (%)',
             'RSI (1-min)', 'RSI (5-min)', 'RSI (15-min)', 'RSI (1-hour)', 'RSI (1-day)'
