@@ -1,22 +1,40 @@
+# .github/workflows/rsi_workflow.yml
+
 name: RSI Dashboard Workflow
+
 on:
-  workflow_dispatch:  # Manual trigger
+  workflow_dispatch:  # Allows manual triggering
+
 jobs:
   generate-csv:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
+      
       - name: Install dependencies
-        run: pip install requests pandas
-      - name: Run RSI script
-        run: python rsi_scanner.py
-      - name: Commit CSV
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Run RSI scanner script
+        env:
+          # The requests library automatically uses HTTP_PROXY and HTTPS_PROXY
+          # Get this value from the repository's secrets
+          HTTP_PROXY: ${{ secrets.PROXY_URL }}
+          HTTPS_PROXY: ${{ secrets.PROXY_URL }}
+        run: python rsi_scanner.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions-bot@github.com"
           git add rsi_dashboard.csv
-          git commit -m "Update RSI dashboard CSV" || echo "No changes to commit"
+          # The following command exits with 0 if there are no changes, preventing a workflow error.
+          git diff --quiet --exit-code --cached || git commit -m "Update RSI dashboard CSV"
           git push
