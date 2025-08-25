@@ -5,26 +5,33 @@ import pandas as pd
 import pandas_ta as ta
 import time
 import os
+import sys  # Import sys to use the exit function
 
-# --- THIS IS THE FIX ---
-# Add a User-Agent header to mimic a web browser and avoid 403 Forbidden errors.
-HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-}
+# Create a Session object to persist headers and connection settings
+session = requests.Session()
+
+# Update headers to more closely mimic a real browser session
+session.headers.update({
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+    'Accept': 'application/json, text/plain, */*',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Origin': 'https://coindcx.com',
+    'Referer': 'https://coindcx.com/'
+})
 
 # Securely get proxy from environment variables set by GitHub Actions
 proxy_url = os.getenv('HTTP_PROXY')
-proxies = {
-    'http': proxy_url,
-    'https': proxy_url
-} if proxy_url else None
+if proxy_url:
+    session.proxies = {
+        'http': proxy_url,
+        'https': proxy_url
+    }
 
 def fetch_with_retries(url, params=None, retries=3, delay=5):
-    """Fetches data from a URL with a retry mechanism."""
+    """Fetches data from a URL with a retry mechanism using the session."""
     for attempt in range(retries):
         try:
-            # Pass the HEADERS dictionary with each request
-            response = requests.get(url, params=params, headers=HEADERS, proxies=proxies, timeout=15)
+            response = session.get(url, params=params, timeout=15)
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
@@ -34,19 +41,10 @@ def fetch_with_retries(url, params=None, retries=3, delay=5):
             else:
                 return None
 
-def get_futures_markets():
-    """Fetches all active B-USDT futures markets from CoinDCX."""
-    url = "https://api.coindcx.com/exchange/v1/derivatives/futures/data/active_instruments"
-    data = fetch_with_retries(url)
-    if data:
-        return [market for market in data if isinstance(market, str) and market.startswith('B-') and market.endswith('_USDT')]
-    return []
-
 def get_ticker_data():
     """Fetches ticker data for all futures markets."""
     url = "https://public.coindcx.com/market_data/ticker"
-    data = fetch_with_retries(url)
-    return {item['market']: item for item in data} if data else {}
+    return fetch_with_retries(url)
 
 def get_rsi(pair, interval):
     """Fetches candles and calculates the latest RSI value for a given pair and interval."""
@@ -56,16 +54,15 @@ def get_rsi(pair, interval):
 
     if not data or len(data) < 15:
         print(f"Not enough data for {pair} on {interval} timeframe.")
-        return None, 0 # Return RSI and Volume
+        return None, 0
 
-    # The API returns data newest-to-oldest, so we must reverse it for calculations.
     data.reverse()
-
     df = pd.DataFrame(data)
     df = df[['open', 'high', 'low', 'close', 'volume']].astype(float)
     
-    # Calculate RSI using pandas-ta
-    df.ta.rsi(length=14, append=True)
+    # --- THIS IS THE FIX FOR RSI MISMATCH ---
+    # Use the RMA smoothing method, which matches TradingView and CoinDCX.
+    df.ta.rsi(length=14, append=True, ma='RMA')
     
     latest_rsi = df['RSI_14'].iloc[-1]
     latest_volume = df['volume'].iloc[-1]
@@ -74,20 +71,42 @@ def get_rsi(pair, interval):
 
 def main():
     """Main function to execute the scanner."""
-    print("Fetching active futures markets...")
-    markets = get_futures_markets()
-    if not markets:
-        print("Could not fetch futures markets. Exiting.")
-        return
+    print("Fetching ticker data for all markets to filter by volume...")
+    all_tickers = get_ticker_data()
 
-    print("Fetching ticker data for all markets...")
-    tickers = get_ticker_data()
+    # --- THIS IS THE FIX TO STOP THE SCRIPT ON FAILURE ---
+    if not all_tickers:
+        print("Could not fetch ticker data. Halting workflow to save minutes.")
+        sys.exit(1)  # Exit with an error code to stop the GitHub Action
+        
+    MIN_VOLUME_USDT = 100_000_000
+    high_volume_markets = []
+    ticker_map = {}
+
+    for ticker in all_tickers:
+        market = ticker.get('market')
+        if market and market.startswith('B-') and market.endswith('_USDT'):
+            try:
+                volume_in_base = float(ticker.get('volume', 0))
+                last_price = float(ticker.get('last_price', 0))
+                volume_in_usdt = volume_in_base * last_price
+                
+                if volume_in_usdt >= MIN_VOLUME_USDT:
+                    high_volume_markets.append(market)
+                    ticker_map[market] = ticker
+
+            except (ValueError, TypeError):
+                continue
+
+    if not high_volume_markets:
+        print(f"No coins found with 24h volume >= ${MIN_VOLUME_USDT:,}")
+        return
     
     results = []
-    total_markets = len(markets)
-    print(f"Found {total_markets} markets. Starting scan...")
+    total_markets = len(high_volume_markets)
+    print(f"Found {total_markets} markets with volume over ${MIN_VOLUME_USDT:,}. Starting scan...")
 
-    for i, pair in enumerate(markets, 1):
+    for i, pair in enumerate(high_volume_markets, 1):
         print(f"[{i}/{total_markets}] Scanning {pair}...")
         
         rsi_1m, volume_1m = get_rsi(pair, '1m')
@@ -98,7 +117,7 @@ def main():
             rsi_15m, _ = get_rsi(pair, '15m')
             rsi_1d, _ = get_rsi(pair, '1d')
 
-            ticker_info = tickers.get(pair, {})
+            ticker_info = ticker_map.get(pair, {})
             results.append({
                 'Coin name': pair.replace('B-', '').replace('_USDT', ''),
                 'current price': float(ticker_info.get('last_price', 0)),
@@ -109,10 +128,10 @@ def main():
                 'RSI 14 on 15 min Candles': rsi_15m,
                 'RSI 14 on 1 day candles': rsi_1d
             })
-            time.sleep(1) # Small delay after a hit to avoid being rate-limited
+            time.sleep(1)
 
     if not results:
-        print("Scan complete. No coins matched the RSI criteria.")
+        print("Scan complete. No high-volume coins matched the RSI criteria.")
         df = pd.DataFrame(columns=['Coin name', 'current price', 'volume', '24 hours change', 'RSI 14 on 1 min Candles', 'RSI 14 on 5 min Candles', 'RSI 14 on 15 min Candles', 'RSI 14 on 1 day candles'])
     else:
         print(f"Scan complete. Found {len(results)} matching coins.")
