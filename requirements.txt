@@ -2,3 +2,4 @@ pandas
 requests
 pytz
 matplotlib
+pandas-ta
