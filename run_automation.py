@@ -1,4 +1,4 @@
-# run_automation.py (8b Amendment – IST Timestamps, Fixed 5% TP/SL on margin + Deserving Strong)
+# run_automation.py (8b.1 Amendment – IST Timestamps, Fixed 5% TP/SL, Deserving Strong, Softer Gates)
 import pandas as pd
 import requests
 import json
@@ -25,15 +25,14 @@ BINANCE_FAPI = "https://fapi.binance.com"
 # Profit evaluation basis (ROI on margin)
 LEVERAGE_FOR_PROFIT_EVAL = 7.0
 MIN_PROFIT_MARGIN = 2.0           # min % on margin to pass
-# 8b: fixed TP/SL = 5% on margin, 1:1 R/R (≈ 0.714% raw move at 7x)
+# 8b/8b.1: fixed TP/SL = 5% on margin, 1:1 R/R (~0.714% raw move at 7x)
 FIXED_TP_SL_MARGIN = 5.0
 
-# ATR-based clamps from 8th Amendment are superseded by fixed TP/SL in 8b
-# (left here for reference)
+# (Legacy clamps kept for reference; not used in 8b/8b.1)
 TP_PCT_MIN, TP_PCT_MAX = 0.008, 0.016
 SL_PCT_MIN, SL_PCT_MAX = 0.008, 0.020
 
-# Regime hysteresis (stickiness)
+# Regime hysteresis (stickiness) – placeholder knobs (regime calc itself is EMA-based)
 REGIME_HOLD_MINUTES = 60
 REGIME_CONFIRM_BARS = 2
 
@@ -102,6 +101,7 @@ def calc_cci(highs, lows, closes, period=20):
     return float((tp_series.iloc[-1] - mean) / (0.015 * mean_dev))
 
 def calc_market_trend(closes):
+    # EMA20/EMA50 regime: 10/5/-5/-10
     if len(closes) < 50:
         return 0.0
     ema20_list = calc_ema(closes, 20)
@@ -165,13 +165,14 @@ def fetch_binance_data(symbol, timeframe='5m', limit=120):
         print(f"  - Could not fetch data for {symbol}: {e}")
         return []
 
-# ============== ANALYZE (8th Amendment core + 8b TP/SL + Deserving Strong) ==============
+# ============== ANALYZE (8th core + 8b TP/SL + 8b.1 soft gates) ==============
 def analyze_data(symbol, data5m, market_trend):
     """
-    8th Amendment logic with 8b changes:
-    - Fixed TP/SL = 5% on margin (7x), 1:1 R/R
-    - Add 'deserving_strong' tag for near-strongs (Sell ≥68, Buy ≥75)
-    - JSON-safe outputs
+    8th Amendment logic with:
+      - 8b: Fixed TP/SL = 5% on margin (7x), 1:1 R/R
+      - Deserving Strong tag (Sell ≥68, Buy ≥75)
+      - 8b.1: Softer strong thresholds; Neutral confluence 3→2; vol-profile override; stronger RSI boost
+    JSON-safe outputs only.
     """
     if not data5m or len(data5m) < 60:
         return None
@@ -198,7 +199,7 @@ def analyze_data(symbol, data5m, market_trend):
     if any(v is None for v in [latest_rsi, latest_cci, boll.get("lower"), boll.get("upper")]):
         return None
 
-    # --- Scoring (kept consistent with 8th Amendment) ---
+    # --- Scoring (8th base) ---
     buy_score = 0.0
     sell_score = 0.0
 
@@ -216,7 +217,7 @@ def analyze_data(symbol, data5m, market_trend):
     if latest_cci >= 100: buy_score += 15
     if latest_cci <= -100: sell_score += 15
 
-    # MACD soft bias
+    # MACD soft bias (hist < 0 helps Buys, hist > 0 helps Sells)
     if latest_macd_hist < 0: buy_score += 5
     else: sell_score += 5
 
@@ -228,7 +229,7 @@ def analyze_data(symbol, data5m, market_trend):
     if market_trend >= 5: buy_score += 10; sell_score -= 10
     elif market_trend <= -5: sell_score += 10; buy_score -= 10
 
-    # Initial direction (with simple regime gating)
+    # Initial direction with regime gating
     initial_signal = "Neutral"
     if market_trend >= 5:
         if buy_score > 0: initial_signal = "Buy"
@@ -253,21 +254,29 @@ def analyze_data(symbol, data5m, market_trend):
     overshoot_buy = (percentB <= 0.05) or rsi_buy or bb_touch_buy
     overshoot_sell = (percentB >= 0.95) or rsi_sell or bb_touch_sell
 
-    # Volume profile OK
+    # Volume profile OK (base)
     passes_vol_buy = (vol_profile["bullish_score"] > 0)
     passes_vol_sell = (vol_profile["bearish_score"] > 0)
+
+    # --- 8b.1: Vol profile override when setup compelling ---
+    # Allow if 3 confluence OR (≥2 confluence and deep BB overshoot)
+    if (num_conf_buy >= 3) or (num_conf_buy >= 2 and percentB <= 0.03):
+        passes_vol_buy = True
+    if (num_conf_sell >= 3) or (num_conf_sell >= 2 and percentB >= 0.97):
+        passes_vol_sell = True
 
     # Base gates
     base_buy_ok = (buy_score >= 18)
     base_sell_ok = (sell_score >= 18)
 
-    # Confluence gates (neutral stricter)
+    # Confluence gates (Neutral relaxed from 3→2)
     if market_trend >= 5:
         conf_buy_ok = (num_conf_buy >= 2); conf_sell_ok = False
     elif market_trend <= -5:
         conf_sell_ok = (num_conf_sell >= 2); conf_buy_ok = False
     else:
-        conf_buy_ok = (num_conf_buy >= 3); conf_sell_ok = (num_conf_sell >= 3)
+        conf_buy_ok = (num_conf_buy >= 2)
+        conf_sell_ok = (num_conf_sell >= 2)
 
     # --- 8b: Fixed TP/SL 5% on margin, 1:1 ---
     raw_move_frac = (FIXED_TP_SL_MARGIN / LEVERAGE_FOR_PROFIT_EVAL) / 100.0  # ≈ 0.007142857
@@ -284,7 +293,7 @@ def analyze_data(symbol, data5m, market_trend):
     estimated_profit_margin_pct = FIXED_TP_SL_MARGIN
     passes_min_profit = (estimated_profit_margin_pct >= MIN_PROFIT_MARGIN)
 
-    # Confidence (8th weights: Base 40 + Conf 40 + Veto 20) – unchanged in 8b
+    # Confidence (8th weights: Base 40 + Conf 40 + Veto 20)
     base_score = buy_score if initial_signal == "Buy" else sell_score if initial_signal == "Sell" else 0.0
     num_conf = num_conf_buy if initial_signal == "Buy" else num_conf_sell if initial_signal == "Sell" else 0
     vol_ok = passes_vol_buy if initial_signal == "Buy" else passes_vol_sell if initial_signal == "Sell" else False
@@ -301,64 +310,82 @@ def analyze_data(symbol, data5m, market_trend):
     confidence = int(round((base_component + conf_component + veto_component) * 100.0))
     confidence = max(0, min(100, confidence))
 
-    # RSI-based small boosts (kept modest in 8b)
+    # --- 8b.1: Slightly stronger RSI-based boosts (with MACD fail-safes) ---
     rsi_boost = 0
     if initial_signal == "Sell" and rsi_sell and not (latest_macd_hist > 0):
-        rsi_boost += 6
-        if (percentB >= 0.95 or bb_touch_sell): rsi_boost += 3
+        rsi_boost += 8
+        if (percentB >= 0.95 or bb_touch_sell):
+            rsi_boost += 4
     if initial_signal == "Buy" and rsi_buy and not (latest_macd_hist < 0):
-        rsi_boost += 6
-        if (percentB <= 0.05 or bb_touch_buy): rsi_boost += 3
+        rsi_boost += 8
+        if (percentB <= 0.05 or bb_touch_buy):
+            rsi_boost += 4
     confidence = max(0, min(100, confidence + rsi_boost))
 
-    # Final label (8th thresholds)
-    # Bearish market prefers Sells, Bullish prefers Buys; Neutral stricter
-    if market_trend <= -5:
-        strong_sell_thr, strong_buy_thr = 70, 80
-    elif market_trend >= 5:
-        strong_sell_thr, strong_buy_thr = 75, 78
-    else:
-        strong_sell_thr, strong_buy_thr = 75, 80
+    # --- 8b.1: Softer strong thresholds ---
+    if market_trend <= -5:        # Bearish regime
+        strong_sell_thr, strong_buy_thr = 68, 80   # was 70,80
+    elif market_trend >= 5:       # Bullish regime
+        strong_sell_thr, strong_buy_thr = 72, 75   # was 75,78
+    else:                         # Neutral
+        strong_sell_thr, strong_buy_thr = 72, 78   # was 75,80
 
+    # Final label
     final_signal = "Neutral"
     if initial_signal == "Buy":
-        if base_buy_ok and conf_component > 0 and vol_ok and overshoot_ok and passes_min_profit and confidence >= strong_buy_thr:
+        if base_buy_ok and conf_buy_ok and vol_ok and overshoot_ok and passes_min_profit and confidence >= strong_buy_thr:
             final_signal = "Strong Buy"
         elif confidence >= 40:
             final_signal = "Buy"
         else:
             final_signal = "Neutral"
     elif initial_signal == "Sell":
-        if base_sell_ok and conf_component > 0 and vol_ok and overshoot_ok and passes_min_profit and confidence >= strong_sell_thr:
+        if base_sell_ok and conf_sell_ok and vol_ok and overshoot_ok and passes_min_profit and confidence >= strong_sell_thr:
             final_signal = "Strong Sell"
         elif confidence >= 40:
             final_signal = "Sell"
         else:
             final_signal = "Neutral"
 
-    # Leverage suggestion (display only)
+    # Leverage suggestion
     leverage = 7 if final_signal.startswith("Strong") else (6 if confidence >= 50 else 5)
     leverage_str = f"{int(leverage)}x"
 
-    # --- 8b: Deserving Strong tag (analysis-only helper) ---
+    # Deserving Strong tag (analysis-only helper)
     deserving_strong = False
     if initial_signal == "Buy" and confidence >= 75:
         deserving_strong = True
     elif initial_signal == "Sell" and confidence >= 68:
         deserving_strong = True
 
+    # --- Debug: print why promotion blocked for near-strongs (confidence ≥60) ---
+    if initial_signal in ("Buy", "Sell") and confidence >= 60 and not final_signal.startswith("Strong"):
+        not_promoted = []
+        if not ((initial_signal == "Buy" and base_buy_ok) or (initial_signal == "Sell" and base_sell_ok)):
+            not_promoted.append("base_fail")
+        if (initial_signal == "Buy" and not conf_buy_ok) or (initial_signal == "Sell" and not conf_sell_ok):
+            not_promoted.append("conf_fail")
+        if not vol_ok: not_promoted.append("vol_profile_fail")
+        if not overshoot_ok: not_promoted.append("overshoot_fail")
+        if not passes_min_profit: not_promoted.append("min_profit_fail")
+        thr = strong_buy_thr if initial_signal == "Buy" else strong_sell_thr
+        if confidence < thr: not_promoted.append(f"conf_below_thr({confidence}<{thr})")
+        print(f"  · {symbol} {initial_signal} blocked: {', '.join(not_promoted) or 'unknown'}")
+
     # Build JSON-safe analysis_log
     analysis_log = {
         "initial_signal": str(initial_signal),
         "buy_score": int(round(buy_score)),
         "sell_score": int(round(sell_score)),
-        "num_confluence_met": int(num_conf),
+        "num_confluence_buy": int(num_conf_buy),
+        "num_confluence_sell": int(num_conf_sell),
         "vol_profile_ok": bool(vol_ok),
         "overshoot_ok": bool(overshoot_ok),
         "min_profit_ok": bool(passes_min_profit),
         "rsi_conf_boost_points": int(rsi_boost),
         "deserving_strong": bool(deserving_strong),
-        "raw_move_pct": round(raw_move_frac * 100.0, 4)  # ~0.7143
+        "raw_move_pct": round(raw_move_frac * 100.0, 4),  # ~0.7143
+        "percentB": float(percentB)
     }
 
     return {
@@ -386,8 +413,7 @@ def analyze_data(symbol, data5m, market_trend):
                 "bullish_score": float(vol_profile["bullish_score"]),
                 "bearish_score": float(vol_profile["bearish_score"])
             },
-            "ema50_5m": float(latest_ema50) if latest_ema50 is not None else None,
-            "percentB": float(percentB)
+            "ema50_5m": float(latest_ema50) if latest_ema50 is not None else None
         }
     }
 
@@ -398,7 +424,7 @@ if __name__ == "__main__":
     top_coins = fetch_top_volume_coins()
     if not top_coins:
         print("Could not fetch top coins. Exiting.")
-        exit(0)
+        raise SystemExit(0)
     print(f"Found {len(top_coins)} coins to analyze.")
 
     btc_data = fetch_binance_data("BTCUSDT")
@@ -408,7 +434,7 @@ if __name__ == "__main__":
     all_results = []
     for coin in top_coins:
         print(f" - Analyzing {coin}...")
-        time.sleep(0.2)  # gentle pacing
+        time.sleep(0.2)  # gentle pacing to play nice with API
         data_5m = fetch_binance_data(coin)
         if not data_5m:
             continue
@@ -421,7 +447,7 @@ if __name__ == "__main__":
         print(f"\nAnalysis complete. Found {len(strong_signals)} strong signals.")
         print("Saving full analysis file...")
 
-        # **IST Timestamp filenames**
+        # IST Timestamp filenames
         utc_now = datetime.now(pytz.utc)
         ist_tz = pytz.timezone("Asia/Kolkata")
         ist_now = utc_now.astimezone(ist_tz)
