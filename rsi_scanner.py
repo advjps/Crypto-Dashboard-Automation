@@ -1,153 +1,120 @@
+# rsi_scanner.py
+
 import requests
 import pandas as pd
+import pandas_ta as ta
 import time
+import os
 
-# Proxy configuration
-proxy = {
-    'http': 'http://NQOgprvOa4fgcWw:Nx8gIuzPunYu7P1@217.180.42.139:48642',
-    'https': 'http://NQOgprvOa4fgcWw:Nx8gIuzPunYu7P1@217.180.42.139:48642'
-}
+# Securely get proxy from environment variables set by GitHub Actions
+proxy_url = os.getenv('HTTP_PROXY')
+proxies = {
+    'http': proxy_url,
+    'https': proxy_url
+} if proxy_url else None
 
-# Calculate RSI (14-period)
-def calculate_rsi(closes, period=14):
-    if len(closes) < period + 1:
-        return None
-    gains = losses = 0
-    for i in range(1, period + 1):
-        diff = closes[i] - closes[i - 1]
-        if diff > 0:
-            gains += diff
-        else:
-            losses -= diff
-    avg_gain = gains / period
-    avg_loss = losses / period
-    for i in range(period + 1, len(closes)):
-        diff = closes[i] - closes[i - 1]
-        gain = max(diff, 0)
-        loss = max(-diff, 0)
-        avg_gain = (avg_gain * (period - 1) + gain) / period
-        avg_loss = (avg_loss * (period - 1) + loss) / period
-    if avg_loss == 0:
-        return 100 if avg_gain > 0 else None
-    rs = avg_gain / avg_loss
-    return 100 - (100 / (1 + rs))
-
-# Fetch data with retries
-def fetch_with_retries(url, params=None, use_proxy=False, retries=3, delay=2):
-    for attempt in range(1, retries + 1):
+def fetch_with_retries(url, params=None, retries=3, delay=5):
+    """Fetches data from a URL with a retry mechanism."""
+    for attempt in range(retries):
         try:
-            response = requests.get(url, params=params, proxies=proxy if use_proxy else None, timeout=10)
+            response = requests.get(url, params=params, proxies=proxies, timeout=15)
             response.raise_for_status()
             return response.json()
-        except requests.RequestException as e:
-            print(f"Attempt {attempt} failed for {url}: {e}")
-            if attempt < retries and response.status_code == 429:
-                time.sleep(delay * attempt)
+        except requests.exceptions.RequestException as e:
+            print(f"Attempt {attempt + 1} failed for {url}: {e}")
+            if attempt < retries - 1:
+                time.sleep(delay)
             else:
-                print(f"Max retries reached for {url}")
                 return None
 
-# Fetch futures market data
-def fetch_market_data():
+def get_futures_markets():
+    """Fetches all active B-USDT futures markets from CoinDCX."""
     url = "https://api.coindcx.com/exchange/v1/derivatives/futures/data/active_instruments"
-    params = {"margin_currency_short_name": "USDT"}
-    data = fetch_with_retries(url, params=params)
-    if not data:
-        print("Trying with proxy...")
-        data = fetch_with_retries(url, params=params, use_proxy=True)
+    data = fetch_with_retries(url)
     if data:
-        print(f"Raw market data: {data[:5]}")
-        markets = [pair for pair in data if isinstance(pair, str) and pair.endswith('_USDT') and pair.startswith('B-')]
-        print(f"Filtered {len(markets)} USDT futures pairs: {markets[:5]}")
-        return [{'pair': pair, 'target_currency_short_name': pair.replace('B-', '').replace('_USDT', '')} for pair in markets[:5]]  # Limit to 5
+        # Filter for pairs that are strings and match the desired format
+        return [market for market in data if isinstance(market, str) and market.startswith('B-') and market.endswith('_USDT')]
     return []
 
-# Fetch ticker data
-def fetch_ticker_data():
+def get_ticker_data():
+    """Fetches ticker data for all futures markets."""
     url = "https://api.coindcx.com/exchange/v1/derivatives/futures/ticker"
     data = fetch_with_retries(url)
-    if not data:
-        print("Trying with proxy...")
-        data = fetch_with_retries(url, use_proxy=True)
-    return data or []
+    # Create a dictionary for quick lookups: {'B-BTC_USDT': {...ticker_info...}}
+    return {item['market']: item for item in data} if data else {}
 
-# Fetch candlestick data
-def fetch_candles(pair, timeframe, limit=50):
+def get_rsi(pair, interval):
+    """Fetches candles and calculates the latest RSI value for a given pair and interval."""
+    # CoinDCX API limit is 1000 candles, which is more than enough for RSI 14
     url = "https://public.coindcx.com/market_data/candles"
-    params = {"pair": pair, "interval": timeframe, "endTime": int(time.time() * 1000), "limit": limit}
+    params = {'pair': pair, 'interval': interval, 'limit': 100}
     data = fetch_with_retries(url, params=params)
-    if not data:
-        print(f"Trying with proxy for {pair} ({timeframe})...")
-        data = fetch_with_retries(url, params=params, use_proxy=True)
-    if not data:
-        print(f"Failed to fetch candles for {pair} ({timeframe})")
-    return data[::-1] if data else None
 
-# Main function
+    if not data or len(data) < 15:
+        print(f"Not enough data for {pair} on {interval} timeframe.")
+        return None, 0 # Return RSI and Volume
+
+    df = pd.DataFrame(data)
+    df = df[['open', 'high', 'low', 'close', 'volume']].astype(float)
+    
+    # Calculate RSI using pandas-ta
+    df.ta.rsi(length=14, append=True)
+    
+    latest_rsi = df['RSI_14'].iloc[-1]
+    latest_volume = df['volume'].iloc[-1]
+    
+    return latest_rsi, latest_volume
+
 def main():
-    markets = fetch_market_data()
+    """Main function to execute the scanner."""
+    print("Fetching active futures markets...")
+    markets = get_futures_markets()
     if not markets:
-        print("No USDT futures pairs found")
-        pd.DataFrame(columns=[
-            'Name', 'Current Price (USDT)', 'Volume (1-min)', '24h Price Change (%)',
-            'RSI (1-min)', 'RSI (5-min)', 'RSI (15-min)', 'RSI (1-hour)', 'RSI (1-day)'
-        ]).to_csv('rsi_dashboard.csv', index=False)
+        print("Could not fetch futures markets. Exiting.")
         return
-    ticker_data = fetch_ticker_data()
 
+    print("Fetching ticker data for all markets...")
+    tickers = get_ticker_data()
+    
     results = []
-    for i, market in enumerate(markets, 1):
-        print(f"Processing pair {i}/{len(markets)}: {market['pair']}...")
-        pair = market['pair']
-        symbol = market.get('target_currency_short_name', pair.replace('B-', '').replace('_USDT', ''))
+    total_markets = len(markets)
+    print(f"Found {total_markets} markets. Starting scan...")
 
-        timeframes = {'1m': '1m', '5m': '5m', '15m': '15m', '1h': '1h', '1d': '1d'}
-        candles = {}
-        volume = 0
-        for key, interval in timeframes.items():
-            data = fetch_candles(pair, interval)
-            if data and len(data) > 14:
-                candles[key] = data
-                if key == '1m':
-                    volume = float(data[-1].get('volume', 0))
-            else:
-                candles[key] = None
-            time.sleep(2)
+    for i, pair in enumerate(markets, 1):
+        print(f"[{i}/{total_markets}] Scanning {pair}...")
+        
+        rsi_1m, volume_1m = get_rsi(pair, '1m')
 
-        rsi_values = {}
-        for key, data in candles.items():
-            if data:
-                closes = [float(candle['close']) for candle in data]
-                rsi_values[key] = calculate_rsi(closes)
-            else:
-                rsi_values[key] = None
+        if rsi_1m is not None and (rsi_1m >= 65 or rsi_1m <= 30):
+            print(f"  -> HIT on {pair} with 1-min RSI: {rsi_1m:.2f}. Fetching other timeframes...")
+            rsi_5m, _ = get_rsi(pair, '5m')
+            rsi_15m, _ = get_rsi(pair, '15m')
+            rsi_1d, _ = get_rsi(pair, '1d')
 
-        rsi_1m = rsi_values.get('1m')
-        if rsi_1m is not None and (rsi_1m > 60 or rsi_1m < 30):
-            ticker = next((t for t in ticker_data if t['market'] == pair), {})
+            ticker_info = tickers.get(pair, {})
             results.append({
-                'Name': symbol,
-                'Current Price (USDT)': float(ticker.get('last_price', 0)) if ticker else None,
-                'Volume (1-min)': volume,
-                '24h Price Change (%)': float(ticker.get('change_24_hour', 0)) if ticker else None,
-                'RSI (1-min)': rsi_1m,
-                'RSI (5-min)': rsi_values.get('5m'),
-                'RSI (15-min)': rsi_values.get('15m'),
-                'RSI (1-hour)': rsi_values.get('1h'),
-                'RSI (1-day)': rsi_values.get('1d')
+                'Coin name': pair.replace('B-', '').replace('_USDT', ''),
+                'current price': float(ticker_info.get('last_price', 0)),
+                'volume': volume_1m,
+                '24 hours change': float(ticker_info.get('change_24_hour', 0)),
+                'RSI 14 on 1 min Candles': rsi_1m,
+                'RSI 14 on 5 min Candles': rsi_5m,
+                'RSI 14 on 15 min Candles': rsi_15m,
+                'RSI 14 on 1 day candles': rsi_1d
             })
+            time.sleep(1) # Small delay after a hit to avoid being rate-limited
 
-    if results:
-        df = pd.DataFrame(results)
-        df = df.sort_values(by='RSI (1-min)', ascending=False)
-        df.to_csv('rsi_dashboard.csv', index=False, float_format='%.2f')
-        print(f"Saved {len(df)} pairs to rsi_dashboard.csv")
+    if not results:
+        print("Scan complete. No coins matched the RSI criteria.")
+        # Create an empty CSV if no results are found to ensure the file exists
+        df = pd.DataFrame(columns=['Coin name', 'current price', 'volume', '24 hours change', 'RSI 14 on 1 min Candles', 'RSI 14 on 5 min Candles', 'RSI 14 on 15 min Candles', 'RSI 14 on 1 day candles'])
     else:
-        print("No pairs with RSI (1-min) > 60 or < 30 found")
-        pd.DataFrame(columns=[
-            'Name', 'Current Price (USDT)', 'Volume (1-min)', '24h Price Change (%)',
-            'RSI (1-min)', 'RSI (5-min)', 'RSI (15-min)', 'RSI (1-hour)', 'RSI (1-day)'
-        ]).to_csv('rsi_dashboard.csv', index=False)
+        print(f"Scan complete. Found {len(results)} matching coins.")
+        df = pd.DataFrame(results)
+        df = df.sort_values(by='RSI 14 on 1 min Candles', ascending=False)
+
+    df.to_csv('rsi_dashboard.csv', index=False, float_format='%.2f')
+    print("CSV file 'rsi_dashboard.csv' has been created/updated.")
 
 if __name__ == "__main__":
     main()
