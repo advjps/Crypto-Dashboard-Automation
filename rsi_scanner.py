@@ -32,20 +32,17 @@ def get_futures_markets():
     url = "https://api.coindcx.com/exchange/v1/derivatives/futures/data/active_instruments"
     data = fetch_with_retries(url)
     if data:
-        # Filter for pairs that are strings and match the desired format
         return [market for market in data if isinstance(market, str) and market.startswith('B-') and market.endswith('_USDT')]
     return []
 
 def get_ticker_data():
     """Fetches ticker data for all futures markets."""
-    url = "https://api.coindcx.com/exchange/v1/derivatives/futures/ticker"
+    url = "https://public.coindcx.com/market_data/ticker"
     data = fetch_with_retries(url)
-    # Create a dictionary for quick lookups: {'B-BTC_USDT': {...ticker_info...}}
     return {item['market']: item for item in data} if data else {}
 
 def get_rsi(pair, interval):
     """Fetches candles and calculates the latest RSI value for a given pair and interval."""
-    # CoinDCX API limit is 1000 candles, which is more than enough for RSI 14
     url = "https://public.coindcx.com/market_data/candles"
     params = {'pair': pair, 'interval': interval, 'limit': 100}
     data = fetch_with_retries(url, params=params)
@@ -53,6 +50,10 @@ def get_rsi(pair, interval):
     if not data or len(data) < 15:
         print(f"Not enough data for {pair} on {interval} timeframe.")
         return None, 0 # Return RSI and Volume
+
+    # --- THIS IS THE FIX ---
+    # The API returns data newest-to-oldest, so we must reverse it for calculations.
+    data.reverse()
 
     df = pd.DataFrame(data)
     df = df[['open', 'high', 'low', 'close', 'volume']].astype(float)
@@ -106,7 +107,6 @@ def main():
 
     if not results:
         print("Scan complete. No coins matched the RSI criteria.")
-        # Create an empty CSV if no results are found to ensure the file exists
         df = pd.DataFrame(columns=['Coin name', 'current price', 'volume', '24 hours change', 'RSI 14 on 1 min Candles', 'RSI 14 on 5 min Candles', 'RSI 14 on 15 min Candles', 'RSI 14 on 1 day candles'])
     else:
         print(f"Scan complete. Found {len(results)} matching coins.")
