@@ -3,3 +3,5 @@ requests
 pytz
 matplotlib
 pandas-ta
+numpy<2.0
+
