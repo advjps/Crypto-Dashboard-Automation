@@ -21,7 +21,7 @@ ANALYTICS_DIR = "analytics"
 BINANCE_FAPI = "https://fapi.binance.com"
 # 1-minute klines
 FUTURES_INTERVAL = "1m"
-LOOKAHEAD_MINUTES = 180  # 3 hours
+LOOKAHEAD_MINUTES = 300  # 5 hours
 
 # Reuse the same proxy config as automation
 PROXY_IP = "217.180.42.139"
