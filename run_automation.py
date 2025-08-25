@@ -1,4 +1,4 @@
-# run_automation.py (8b.1 Amendment – IST Timestamps, Fixed 5% TP/SL, Deserving Strong, Softer Gates)
+# run_automation.py (8b.2 Amendment – IST Timestamps, Fixed 5% TP/SL, Deserving Strong, Softer Gates + Either/Or Final Gate)
 import pandas as pd
 import requests
 import json
@@ -25,14 +25,14 @@ BINANCE_FAPI = "https://fapi.binance.com"
 # Profit evaluation basis (ROI on margin)
 LEVERAGE_FOR_PROFIT_EVAL = 7.0
 MIN_PROFIT_MARGIN = 2.0           # min % on margin to pass
-# 8b/8b.1: fixed TP/SL = 5% on margin, 1:1 R/R (~0.714% raw move at 7x)
+# 8b/8b.1/8b.2: fixed TP/SL = 5% on margin, 1:1 R/R (~0.714% raw move at 7x)
 FIXED_TP_SL_MARGIN = 5.0
 
-# (Legacy clamps kept for reference; not used in 8b/8b.1)
+# (Legacy ATR clamps kept for reference; not used in 8b+)
 TP_PCT_MIN, TP_PCT_MAX = 0.008, 0.016
 SL_PCT_MIN, SL_PCT_MAX = 0.008, 0.020
 
-# Regime hysteresis (stickiness) – placeholder knobs (regime calc itself is EMA-based)
+# Regime hysteresis (placeholders)
 REGIME_HOLD_MINUTES = 60
 REGIME_CONFIRM_BARS = 2
 
@@ -165,13 +165,14 @@ def fetch_binance_data(symbol, timeframe='5m', limit=120):
         print(f"  - Could not fetch data for {symbol}: {e}")
         return []
 
-# ============== ANALYZE (8th core + 8b TP/SL + 8b.1 soft gates) ==============
+# ============== ANALYZE (8th core + 8b fixed TP/SL + 8b.1 soft gates + 8b.2 either/or final gate) ==============
 def analyze_data(symbol, data5m, market_trend):
     """
     8th Amendment logic with:
       - 8b: Fixed TP/SL = 5% on margin (7x), 1:1 R/R
       - Deserving Strong tag (Sell ≥68, Buy ≥75)
       - 8b.1: Softer strong thresholds; Neutral confluence 3→2; vol-profile override; stronger RSI boost
+      - 8b.2: Either/Or final gate (overshoot required, plus vol_profile_ok OR strong confluence), slightly softer thresholds
     JSON-safe outputs only.
     """
     if not data5m or len(data5m) < 60:
@@ -322,25 +323,36 @@ def analyze_data(symbol, data5m, market_trend):
             rsi_boost += 4
     confidence = max(0, min(100, confidence + rsi_boost))
 
-    # --- 8b.1: Softer strong thresholds ---
-    if market_trend <= -5:        # Bearish regime
-        strong_sell_thr, strong_buy_thr = 68, 80   # was 70,80
-    elif market_trend >= 5:       # Bullish regime
-        strong_sell_thr, strong_buy_thr = 72, 75   # was 75,78
-    else:                         # Neutral
-        strong_sell_thr, strong_buy_thr = 72, 78   # was 75,80
+    # --- 8b.2: Build strength heuristics for promotion (Either/Or gate needs these) ---
+    strong_conf_buy  = (num_conf_buy  >= 3) or (num_conf_buy  >= 2 and percentB <= 0.03)
+    strong_conf_sell = (num_conf_sell >= 3) or (num_conf_sell >= 2 and percentB >= 0.97)
 
-    # Final label
+    # Final gates per side (overshoot required; plus vol OK OR strong confluence)
+    buy_final_gate  = base_buy_ok  and conf_buy_ok  and overshoot_buy  and passes_min_profit \
+                      and (passes_vol_buy  or strong_conf_buy)
+
+    sell_final_gate = base_sell_ok and conf_sell_ok and overshoot_sell and passes_min_profit \
+                      and (passes_vol_sell or strong_conf_sell)
+
+    # --- 8b.2: Softer strong thresholds (tiny nudge) ---
+    if market_trend <= -5:        # Bearish regime
+        strong_sell_thr, strong_buy_thr = 66, 80   # was 68,80
+    elif market_trend >= 5:       # Bullish regime
+        strong_sell_thr, strong_buy_thr = 70, 75   # was 72,75
+    else:                         # Neutral
+        strong_sell_thr, strong_buy_thr = 70, 78   # was 72,78
+
+    # --- Final label using the gates above ---
     final_signal = "Neutral"
     if initial_signal == "Buy":
-        if base_buy_ok and conf_buy_ok and vol_ok and overshoot_ok and passes_min_profit and confidence >= strong_buy_thr:
+        if buy_final_gate and confidence >= strong_buy_thr:
             final_signal = "Strong Buy"
         elif confidence >= 40:
             final_signal = "Buy"
         else:
             final_signal = "Neutral"
     elif initial_signal == "Sell":
-        if base_sell_ok and conf_sell_ok and vol_ok and overshoot_ok and passes_min_profit and confidence >= strong_sell_thr:
+        if sell_final_gate and confidence >= strong_sell_thr:
             final_signal = "Strong Sell"
         elif confidence >= 40:
             final_signal = "Sell"
@@ -365,11 +377,15 @@ def analyze_data(symbol, data5m, market_trend):
             not_promoted.append("base_fail")
         if (initial_signal == "Buy" and not conf_buy_ok) or (initial_signal == "Sell" and not conf_sell_ok):
             not_promoted.append("conf_fail")
-        if not vol_ok: not_promoted.append("vol_profile_fail")
-        if not overshoot_ok: not_promoted.append("overshoot_fail")
-        if not passes_min_profit: not_promoted.append("min_profit_fail")
+        if not (passes_vol_buy if initial_signal=="Buy" else passes_vol_sell):
+            not_promoted.append("vol_profile_fail")
+        if not (overshoot_buy if initial_signal=="Buy" else overshoot_sell):
+            not_promoted.append("overshoot_fail")
+        if not passes_min_profit:
+            not_promoted.append("min_profit_fail")
         thr = strong_buy_thr if initial_signal == "Buy" else strong_sell_thr
-        if confidence < thr: not_promoted.append(f"conf_below_thr({confidence}<{thr})")
+        if confidence < thr:
+            not_promoted.append(f"conf_below_thr({confidence}<{thr})")
         print(f"  · {symbol} {initial_signal} blocked: {', '.join(not_promoted) or 'unknown'}")
 
     # Build JSON-safe analysis_log
@@ -413,7 +429,8 @@ def analyze_data(symbol, data5m, market_trend):
                 "bullish_score": float(vol_profile["bullish_score"]),
                 "bearish_score": float(vol_profile["bearish_score"])
             },
-            "ema50_5m": float(latest_ema50) if latest_ema50 is not None else None
+            "ema50_5m": float(latest_ema50) if latest_ema50 is not None else None,
+            "percentB": float(percentB)
         }
     }
 
