@@ -6,6 +6,12 @@ import pandas_ta as ta
 import time
 import os
 
+# --- THIS IS THE FIX ---
+# Add a User-Agent header to mimic a web browser and avoid 403 Forbidden errors.
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+}
+
 # Securely get proxy from environment variables set by GitHub Actions
 proxy_url = os.getenv('HTTP_PROXY')
 proxies = {
@@ -17,7 +23,8 @@ def fetch_with_retries(url, params=None, retries=3, delay=5):
     """Fetches data from a URL with a retry mechanism."""
     for attempt in range(retries):
         try:
-            response = requests.get(url, params=params, proxies=proxies, timeout=15)
+            # Pass the HEADERS dictionary with each request
+            response = requests.get(url, params=params, headers=HEADERS, proxies=proxies, timeout=15)
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
@@ -51,7 +58,6 @@ def get_rsi(pair, interval):
         print(f"Not enough data for {pair} on {interval} timeframe.")
         return None, 0 # Return RSI and Volume
 
-    # --- THIS IS THE FIX ---
     # The API returns data newest-to-oldest, so we must reverse it for calculations.
     data.reverse()
 
