@@ -1,0 +1,17 @@
+===== BACKTEST REPORT FOR: signals_2025-08-25_22-01-16.json =====
+Signal Generation Time (UTC): 2025-08-25 16:31:16
+
+--- BUY SIGNALS ---
+      Coin Signal  Confidence  Deserving_Strong Outcome  Duration(min)  Estimated_Profit(%)            TP            SL       RSI       %B  Num_Conf  Vol_Profile_OK  Overshoot_OK  Min_Profit_OK Did_TP_Hit_Later
+   BTCUSDT    Buy          47             False    Fail          164.0                  5.0 113400.156429 111791.643571 61.537226 0.847684       1.0            True         False           True               No
+   ADAUSDT    Buy          47             False    Fail           27.0                  5.0      0.881250      0.868750 58.992391 0.827409       1.0            True         False           True               No
+PROMPTUSDT    Buy          47             False Success            0.0                  5.0      0.365089      0.359911 64.930928 0.929492       1.0            True         False           True              N/A
+   SPKUSDT    Buy          45             False Success            0.0                  5.0      0.069976      0.068984 26.547402 0.178958       1.0           False          True           True              N/A
+   MYXUSDT    Buy          47             False    Fail            0.0                  5.0      1.221664      1.204336 71.164412 0.954728       1.0            True         False           True              Yes
+   BIDUSDT    Buy          47             False Success            0.0                  5.0      0.106445      0.104935 67.578767 0.861189       1.0            True         False           True              N/A
+
+--- SELL SIGNALS ---
+  (none)
+
+Summary:
+  Total: 65  Success: 3  Fail: 3  Inconclusive: 59

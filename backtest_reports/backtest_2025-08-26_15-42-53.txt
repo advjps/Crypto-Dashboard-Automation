@@ -1,0 +1,45 @@
+===== BACKTEST REPORT FOR: signals_2025-08-25_18-49-25_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-25 13:19:25
+
+--- BUY SIGNALS ---
+  (none)
+
+--- SELL SIGNALS ---
+        Coin      Signal  Confidence  Deserving_Strong Outcome  Duration(min)  Estimated_Profit(%)         TP         SL       RSI   %B  Num_Conf  Vol_Profile_OK  Overshoot_OK  Min_Profit_OK Did_TP_Hit_Later
+     ADAUSDT        Sell          47             False Success           25.0                  5.0   0.856637   0.868963 44.205590 None       1.0            True         False           True              N/A
+    LINKUSDT        Sell          47             False    Fail            3.0                  5.0  24.127421  24.474579 35.406401 None       1.0            True         False           True               No
+1000PEPEUSDT        Sell          43             False    Fail            5.0                  5.0   0.010116   0.010261 44.681416 None       1.0           False         False           True              Yes
+  PROMPTUSDT        Sell          53             False Success            0.0                  5.0   0.344224   0.349176 64.579622 None       1.0           False          True           True              N/A
+FARTCOINUSDT        Sell          47             False    Fail            5.0                  5.0   0.876891   0.889509 43.857489 None       1.0            True         False           True              Yes
+     ARBUSDT        Sell          47             False    Fail            5.0                  5.0   0.539320   0.547080 41.727425 None       1.0            True         False           True              Yes
+     WIFUSDT        Sell          47             False    Fail            5.0                  5.0   0.811859   0.823541 40.573075 None       1.0            True         False           True              Yes
+    AAVEUSDT        Sell          47             False    Fail           55.0                  5.0 323.562214 328.217786 36.912835 None       1.0            True         False           True              Yes
+   PENGUUSDT        Sell          41             False    Fail            6.0                  5.0   0.031314   0.031764 42.141704 None       1.0           False         False           True              Yes
+     DOTUSDT        Sell          47             False    Fail            6.0                  5.0   3.853279   3.908721 45.296180 None       1.0            True         False           True              Yes
+   TRUMPUSDT        Sell          47             False    Fail           43.0                  5.0   8.306243   8.425757 42.900103 None       1.0            True         False           True               No
+     UNIUSDT        Sell          47             False Success           25.0                  5.0  10.134093  10.279907 42.383816 None       1.0            True         False           True              N/A
+1000BONKUSDT        Sell          41             False    Fail            5.0                  5.0   0.020877   0.021177 43.713211 None       1.0           False         False           True              Yes
+     ETCUSDT        Sell          47             False    Fail            5.0                  5.0  21.689957  22.002043 35.940748 None       1.0            True         False           True              Yes
+     FILUSDT        Sell          47             False    Fail            6.0                  5.0   2.268679   2.301321 39.883843 None       1.0            True         False           True              Yes
+     NEOUSDT        Sell          47             False    Fail            2.0                  5.0   7.778043   7.889957 41.571851 None       1.0            True         False           True              Yes
+     WLDUSDT        Sell          47             False    Fail            5.0                  5.0   0.906081   0.919119 40.814609 None       1.0            True         False           True               No
+    NEARUSDT        Sell          41             False Success           26.0                  5.0   2.482143   2.517857 43.894201 None       1.0           False         False           True              N/A
+      OPUSDT        Sell          41             False    Fail            5.0                  5.0   0.719623   0.729977 39.739545 None       1.0           False         False           True              Yes
+    ONDOUSDT        Sell          47             False    Fail            5.0                  5.0   0.915315   0.928485 42.463111 None       1.0            True         False           True               No
+   ETHFIUSDT        Sell          47             False    Fail            6.0                  5.0   1.160551   1.177249 41.075181 None       1.0            True         False           True              Yes
+     XPLUSDT Strong Sell          79              True    Fail            1.0                  5.0   0.558780   0.566820 74.702560 None       2.0            True          True           True              Yes
+     TIAUSDT        Sell          47             False    Fail           29.0                  5.0   1.684184   1.708416 41.680905 None       1.0            True         False           True              Yes
+    BOMEUSDT        Sell          47             False    Fail            4.0                  5.0   0.002133   0.002163 37.776522 None       1.0            True         False           True              Yes
+     APTUSDT        Sell          47             False    Fail            5.0                  5.0   4.353877   4.416523 43.006790 None       1.0            True         False           True               No
+     TAOUSDT        Sell          47             False    Fail            5.0                  5.0 337.452286 342.307714 43.327819 None       1.0            True         False           True              Yes
+     INJUSDT        Sell          47             False    Fail            5.0                  5.0  13.222871  13.413129 41.358439 None       1.0            True         False           True               No
+     SEIUSDT        Sell          47             False    Fail            6.0                  5.0   0.293389   0.297611 44.723928 None       1.0            True         False           True              Yes
+    ZORAUSDT        Sell          47             False    Fail            1.0                  5.0   0.107338   0.108882 33.279856 None       1.0            True         False           True               No
+ VIRTUALUSDT        Sell          47             False    Fail            5.0                  5.0   1.170777   1.187623 39.665249 None       1.0            True         False           True              Yes
+  PENDLEUSDT        Sell          47             False    Fail           18.0                  5.0   5.375527   5.452873 41.112966 None       1.0            True         False           True              Yes
+    GALAUSDT        Sell          41             False    Fail            5.0                  5.0   0.016690   0.016930 37.965011 None       1.0           False         False           True              Yes
+     TONUSDT        Sell          41             False    Fail           49.0                  5.0   3.175058   3.220742 42.664841 None       1.0           False         False           True               No
+    PNUTUSDT        Sell          47             False    Fail            5.0                  5.0   0.212303   0.215357 42.422254 None       1.0            True         False           True              Yes
+
+Summary:
+  Total: 66  Success: 4  Fail: 30  Inconclusive: 32

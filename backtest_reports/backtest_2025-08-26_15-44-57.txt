@@ -1,0 +1,14 @@
+===== BACKTEST REPORT FOR: signals_2025-08-26_00-29-04.json =====
+Signal Generation Time (UTC): 2025-08-25 18:59:04
+
+--- BUY SIGNALS ---
+    Coin Signal  Confidence  Deserving_Strong Outcome  Duration(min)  Estimated_Profit(%)       TP       SL       RSI       %B  Num_Conf  Vol_Profile_OK  Overshoot_OK  Min_Profit_OK Did_TP_Hit_Later
+ SPKUSDT    Buy          41             False    Fail            0.0                  5.0 0.075425 0.074355 57.792019 0.859951       1.0           False         False           True              Yes
+QTUMUSDT    Buy          41             False Success           21.0                  5.0 3.082864 3.039136 63.940166 0.819612       1.0           False         False           True              N/A
+ XPLUSDT    Buy          47             False    Fail           16.0                  5.0 0.563194 0.555206 57.932600 0.956028       1.0            True         False           True               No
+
+--- SELL SIGNALS ---
+  (none)
+
+Summary:
+  Total: 66  Success: 1  Fail: 2  Inconclusive: 63

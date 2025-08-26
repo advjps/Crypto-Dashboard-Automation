@@ -1,0 +1,18 @@
+===== BACKTEST REPORT FOR: signals_2025-08-25_20-03-16.json =====
+Signal Generation Time (UTC): 2025-08-25 14:33:16
+
+--- BUY SIGNALS ---
+    Coin Signal  Confidence  Deserving_Strong Outcome  Duration(min)  Estimated_Profit(%)         TP         SL       RSI        %B  Num_Conf  Vol_Profile_OK  Overshoot_OK  Min_Profit_OK Did_TP_Hit_Later
+ BNBUSDT    Buy          47             False    Fail          283.0                  5.0 873.273429 860.886571 64.334010  0.843303       1.0            True         False           True               No
+ WLDUSDT    Buy          47             False Success            8.0                  5.0   0.939765   0.926435 69.276304  1.078581       1.0            True         False           True              N/A
+ TRXUSDT    Buy          47             False    Fail          193.0                  5.0   0.355542   0.350498 45.409466 -0.006820       1.0           False          True           True               No
+ CRVUSDT    Buy          47             False    Fail           63.0                  5.0   0.849021   0.836979 62.173710  0.828090       1.0            True         False           True               No
+ZORAUSDT    Buy          47             False Success           12.0                  5.0   0.112609   0.111011 61.518380  0.856278       1.0            True         False           True              N/A
+ALGOUSDT    Buy          47             False Success           15.0                  5.0   0.262864   0.259136 62.768017  0.866517       1.0            True         False           True              N/A
+ TONUSDT    Buy          47             False    Fail           88.0                  5.0   3.248640   3.202560 60.012033  0.809923       1.0            True         False           True               No
+
+--- SELL SIGNALS ---
+  (none)
+
+Summary:
+  Total: 66  Success: 3  Fail: 4  Inconclusive: 59

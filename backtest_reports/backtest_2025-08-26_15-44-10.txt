@@ -1,0 +1,53 @@
+===== BACKTEST REPORT FOR: signals_2025-08-25_19-45-03.json =====
+Signal Generation Time (UTC): 2025-08-25 14:15:03
+
+--- BUY SIGNALS ---
+        Coin Signal  Confidence  Deserving_Strong Outcome  Duration(min)  Estimated_Profit(%)            TP            SL       RSI   %B  Num_Conf  Vol_Profile_OK  Overshoot_OK  Min_Profit_OK Did_TP_Hit_Later
+     ETHUSDT    Buy          47             False    Fail           72.0                  5.0   4690.062857   4623.537143 59.474304 None       1.0            True         False           True               No
+     BTCUSDT    Buy          47             False Success           69.0                  5.0 112497.252857 110901.547143 56.839011 None       1.0            True         False           True              N/A
+     SOLUSDT    Buy          47             False    Fail           27.0                  5.0    199.857429    197.022571 55.839586 None       1.0            True         False           True               No
+    LINKUSDT    Buy          43             False Success           70.0                  5.0     24.659893     24.310107 50.502017 None       1.0            True         False           True              N/A
+1000PEPEUSDT    Buy          43             False    Fail           54.0                  5.0      0.010315      0.010169 51.418332 None       1.0            True         False           True               No
+     SUIUSDT    Buy          47             False    Fail           91.0                  5.0      3.513619      3.463781 56.037560 None       1.0            True         False           True               No
+     ENAUSDT    Buy          47             False Success           70.0                  5.0      0.651219      0.641981 53.637030 None       1.0            True         False           True              N/A
+     BNBUSDT    Buy          47             False Success           34.0                  5.0    871.682143    859.317857 66.011647 None       1.0            True         False           True              N/A
+    AVAXUSDT    Buy          47             False    Fail           55.0                  5.0     24.589393     24.240607 59.594844 None       1.0            True         False           True               No
+    WLFIUSDT    Buy          47             False    Fail            0.0                  5.0      0.221672      0.218528 67.767065 None       1.0            True         False           True              Yes
+     LTCUSDT    Buy          47             False    Fail          105.0                  5.0    112.860429    111.259571 56.075660 None       1.0            True         False           True               No
+    HYPEUSDT    Buy          47             False Success            2.0                  5.0     46.603521     45.942479 64.886345 None       1.0            True         False           True              N/A
+     ARBUSDT    Buy          47             False    Fail           27.0                  5.0      0.556044      0.548156 60.907484 None       1.0            True         False           True               No
+   PENGUUSDT    Buy          47             False    Fail           65.0                  5.0      0.031958      0.031504 52.520975 None       1.0            True         False           True               No
+     DOTUSDT    Buy          47             False    Fail           80.0                  5.0      3.937929      3.882071 56.750601 None       1.0            True         False           True               No
+   TRUMPUSDT    Buy          47             False    Fail          105.0                  5.0      8.507336      8.386664 60.484365 None       1.0            True         False           True               No
+    PUMPUSDT    Buy          47             False Success            8.0                  5.0      0.002857      0.002817 63.079943 None       1.0            True         False           True              N/A
+     SPKUSDT    Buy          49             False Success            3.0                  5.0      0.083976      0.082784 59.369429 None       1.0            True         False           True              N/A
+     WLDUSDT    Buy          47             False Success            8.0                  5.0      0.928586      0.915414 57.091224 None       1.0            True         False           True              N/A
+1000SHIBUSDT    Buy          47             False    Fail           55.0                  5.0      0.012535      0.012357 55.457384 None       1.0            True         False           True               No
+     CRVUSDT    Buy          47             False    Fail           81.0                  5.0      0.849021      0.836979 66.034742 None       1.0            True         False           True               No
+    HBARUSDT    Buy          47             False Success            2.0                  5.0      0.241523      0.238097 63.277614 None       1.0            True         False           True              N/A
+    NEARUSDT    Buy          47             False    Fail           27.0                  5.0      2.535986      2.500014 56.140746 None       1.0            True         False           True               No
+     LDOUSDT    Buy          47             False Success           45.0                  5.0      1.369009      1.349591 57.964649 None       1.0            True         False           True              N/A
+      OPUSDT    Buy          47             False    Fail           48.0                  5.0      0.740049      0.729551 59.532434 None       1.0            True         False           True               No
+    ONDOUSDT    Buy          47             False    Fail          101.0                  5.0      0.937650      0.924350 57.984459 None       1.0            True         False           True               No
+     BIDUSDT    Buy          47             False    Fail           13.0                  5.0      0.104894      0.103406 58.019145 None       1.0            True         False           True              Yes
+     XLMUSDT    Buy          47             False    Fail          102.0                  5.0      0.398667      0.393013 59.363937 None       1.0            True         False           True               No
+     TIAUSDT    Buy          47             False    Fail           13.0                  5.0      1.742659      1.717941 65.777348 None       1.0            True         False           True               No
+     APTUSDT    Buy          47             False    Fail           55.0                  5.0      4.481484      4.417916 66.601057 None       1.0            True         False           True               No
+    BOMEUSDT    Buy          41             False Success            8.0                  5.0      0.002204      0.002172 54.622741 None       1.0           False         False           True              N/A
+     TAOUSDT    Buy          47             False    Fail           91.0                  5.0    344.855786    339.964214 56.282509 None       1.0            True         False           True               No
+     INJUSDT    Buy          47             False    Fail           55.0                  5.0     13.615564     13.422436 60.495195 None       1.0            True         False           True               No
+     SEIUSDT    Buy          47             False    Fail           55.0                  5.0      0.300028      0.295772 57.936112 None       1.0            True         False           True               No
+    ZORAUSDT    Buy          47             False Success            2.0                  5.0      0.111894      0.110306 60.597959 None       1.0            True         False           True              N/A
+  PENDLEUSDT    Buy          47             False    Fail           27.0                  5.0      5.513805      5.435595 59.207741 None       1.0            True         False           True               No
+    ALGOUSDT    Buy          47             False Success            4.0                  5.0      0.261354      0.257646 62.281176 None       1.0            True         False           True              N/A
+    GALAUSDT    Buy          47             False    Fail           26.0                  5.0      0.017142      0.016898 59.148826 None       1.0            True         False           True               No
+     TONUSDT    Buy          47             False    Fail          167.0                  5.0      3.246223      3.200177 63.023677 None       1.0            True         False           True               No
+     CFXUSDT    Buy          47             False    Fail           12.0                  5.0      0.181457      0.178883 57.380354 None       1.0            True         False           True               No
+    PNUTUSDT    Buy          47             False    Fail           54.0                  5.0      0.217916      0.214825 56.185765 None       1.0            True         False           True               No
+    ATOMUSDT    Buy          47             False    Fail           27.0                  5.0      4.687243      4.620757 68.889354 None       1.0            True         False           True               No
+
+--- SELL SIGNALS ---
+  (none)
+
+Summary:
+  Total: 66  Success: 13  Fail: 29  Inconclusive: 24

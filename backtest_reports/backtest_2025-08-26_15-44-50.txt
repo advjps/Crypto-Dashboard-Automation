@@ -1,0 +1,16 @@
+===== BACKTEST REPORT FOR: signals_2025-08-25_23-27-19.json =====
+Signal Generation Time (UTC): 2025-08-25 17:57:19
+
+--- BUY SIGNALS ---
+    Coin Signal  Confidence  Deserving_Strong Outcome  Duration(min)  Estimated_Profit(%)       TP       SL       RSI       %B  Num_Conf  Vol_Profile_OK  Overshoot_OK  Min_Profit_OK Did_TP_Hit_Later
+ XNYUSDT    Buy          47             False    Fail            1.0                  5.0 0.006657 0.006563 59.925003 0.921636       1.0            True         False           True              Yes
+ XLMUSDT    Buy          47             False    Fail           21.0                  5.0 0.398154 0.392506 59.913688 0.932456       1.0            True         False           True               No
+ BIDUSDT    Buy          47             False    Fail            3.0                  5.0 0.107210 0.105690 60.441995 0.869859       1.0            True         False           True              Yes
+ ONGUSDT    Buy          41             False    Fail            0.0                  5.0 0.202234 0.199366 59.295761 0.976385       1.0           False         False           True              Yes
+IOSTUSDT    Buy          47             False    Fail            4.0                  5.0 0.003962 0.003906 55.698114 0.950332       1.0            True         False           True               No
+
+--- SELL SIGNALS ---
+  (none)
+
+Summary:
+  Total: 66  Success: 0  Fail: 5  Inconclusive: 61

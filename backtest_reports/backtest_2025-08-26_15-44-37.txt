@@ -1,0 +1,19 @@
+===== BACKTEST REPORT FOR: signals_2025-08-25_21-36-49.json =====
+Signal Generation Time (UTC): 2025-08-25 16:06:49
+
+--- BUY SIGNALS ---
+    Coin Signal  Confidence  Deserving_Strong Outcome  Duration(min)  Estimated_Profit(%)         TP         SL       RSI        %B  Num_Conf  Vol_Profile_OK  Overshoot_OK  Min_Profit_OK Did_TP_Hit_Later
+LINKUSDT    Buy          53             False Success            0.0                  5.0  24.513857  24.166143 38.804892 -0.015698       1.0           False          True           True              N/A
+ SPKUSDT    Buy          45             False    Fail            1.0                  5.0   0.072383   0.071357 29.953689  0.132166       1.0           False          True           True              Yes
+ XNYUSDT    Buy          43             False Success            0.0                  5.0   0.006627   0.006533 55.267512  0.924890       1.0            True         False           True              N/A
+ BCHUSDT    Buy          45             False Success           29.0                  5.0 561.582857 553.617143 28.133410  0.014742       1.0           False          True           True              N/A
+BOMEUSDT    Buy          45             False Success            0.0                  5.0   0.002081   0.002051 26.595941  0.188022       1.0           False          True           True              N/A
+ BIDUSDT    Buy          47             False    Fail            3.0                  5.0   0.106485   0.104975 71.064480  1.092825       1.0            True         False           True              Yes
+ MYXUSDT    Buy          47             False Success           15.0                  5.0   1.208068   1.190932 65.787750  1.026631       1.0            True         False           True              N/A
+ XPLUSDT    Buy          53             False    Fail            1.0                  5.0   0.561281   0.553319 37.986798 -0.015864       1.0           False          True           True              Yes
+
+--- SELL SIGNALS ---
+  (none)
+
+Summary:
+  Total: 66  Success: 5  Fail: 3  Inconclusive: 58

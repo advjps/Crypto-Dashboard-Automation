@@ -1,0 +1,20 @@
+===== BACKTEST REPORT FOR: signals_2025-08-25_20-55-58_STRONG.json =====
+Signal Generation Time (UTC): 2025-08-25 15:25:58
+
+--- BUY SIGNALS ---
+    Coin     Signal  Confidence  Deserving_Strong Outcome  Duration(min)  Estimated_Profit(%)            TP            SL       RSI        %B  Num_Conf  Vol_Profile_OK  Overshoot_OK  Min_Profit_OK Did_TP_Hit_Later
+ BTCUSDT        Buy          47             False    Fail          245.0                  5.0 113134.774286 111530.025714 62.968421  0.818801       1.0            True         False           True               No
+ BIOUSDT        Buy          45             False    Fail            0.0                  5.0      0.206041      0.203119 16.946297  0.042346       1.0           False          True           True              Yes
+ ENAUSDT        Buy          47             False Success           17.0                  5.0      0.654341      0.645059 58.266323  0.861695       1.0            True         False           True              N/A
+ ONTUSDT        Buy          53             False Success            4.0                  5.0      0.192264      0.189536 32.722305 -0.009754       1.0           False          True           True              N/A
+QTUMUSDT        Buy          45             False    Fail            9.0                  5.0      3.047614      3.004386 27.910624  0.108725       1.0           False          True           True              Yes
+MEMEUSDT Strong Buy          79              True Success            0.0                  5.0      0.003494      0.003444 28.328776 -0.132394       2.0            True          True           True              N/A
+PUMPUSDT        Buy          47             False Success            5.0                  5.0      0.002922      0.002880 68.846870  0.990824       1.0            True         False           True              N/A
+ ONGUSDT Strong Buy          79              True Success           27.0                  5.0      0.197561      0.194759 28.415148 -0.020452       2.0            True          True           True              N/A
+ TONUSDT        Buy          49             False    Fail           32.0                  5.0      3.256798      3.210602 62.138423  0.830570       1.0            True         False           True               No
+
+--- SELL SIGNALS ---
+  (none)
+
+Summary:
+  Total: 66  Success: 5  Fail: 4  Inconclusive: 57
