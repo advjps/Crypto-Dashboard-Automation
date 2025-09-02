@@ -479,19 +479,39 @@ def analyze_data(symbol, data5m, market_trend):
         "percentB": float(percentB)
     }
 
-    return {
-        "coin": symbol,
-        "price": round(float(current_price), 6),
-        "tp": round(float(tp), 6),
-        "sl": round(float(sl), 6),
-        "leverage": leverage_str,
-        "confidence": int(conf),
-        "signal": final_signal,
-        "estimated_profit": f"{estimated_profit_margin_pct:.2f}%",
-        "deserving_strong": bool(deserving_strong),
-        "analysis_log": analysis_log,
-        "indicators": indicators
+    from datetime import timezone
+
+# inside analyze_data, before return
+signal_time_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+return {
+    "coin": symbol,
+    "price": round(float(current_price), 4),
+    "tp": round(float(tp), 4),
+    "sl": round(float(sl), 4),
+    "leverage": f"{leverage}x",
+    "confidence": int(confidence),
+    "signal": final_signal,
+    "estimated_profit": f"{profit_pct:.2f}%",
+    "signal_time_utc": signal_time_utc,   # <-- NEW FIELD
+    "analysis_log": analysis_log,
+    "indicators": {
+        "rsi5m": float(latest_rsi) if latest_rsi is not None else None,
+        "macd_hist5m": float(latest_macd_hist) if latest_macd_hist is not None else None,
+        "boll5m": {
+            "upper": float(boll["upper"]),
+            "lower": float(boll["lower"]),
+            "middle": float(boll["middle"])
+        },
+        "cci5m": float(latest_cci),
+        "marketTrend": float(market_trend),
+        "volProfile": {
+            "bullish_score": float(vol_profile["bullish_score"]),
+            "bearish_score": float(vol_profile["bearish_score"])
+        },
+        "ema50_5m": float(latest_ema50) if latest_ema50 is not None else None
     }
+}
 
 # ============== MAIN EXECUTION ==============
 if __name__ == "__main__":
@@ -544,3 +564,4 @@ if __name__ == "__main__":
         print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
     else:
         print("\nNo results generated. No file will be saved.")
+
