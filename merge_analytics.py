@@ -6,7 +6,7 @@ import pytz
 import pandas as pd
 
 ANALYTICS_DIR = "analytics"
-os.makedirs(ANALYTICS_DIR, exist_ok=True)   # <-- add this line
+os.makedirs(ANALYTICS_DIR, exist_ok=True)
 
 ALL_SIGNALS_CSV = os.path.join(ANALYTICS_DIR, "all_signals.csv")
 
@@ -15,7 +15,6 @@ def ist_timestamp():
     return datetime.now(ist).strftime("%Y-%m-%d_%H-%M-%S")
 
 def load_all_csvs():
-    os.makedirs(ANALYTICS_DIR, exist_ok=True)
     files = sorted(glob.glob(os.path.join(ANALYTICS_DIR, "signals_*.csv")))
     if not files:
         print(f"[INFO] No per-file analytics CSVs found in {ANALYTICS_DIR}/")
@@ -36,30 +35,60 @@ def winrate(success, fail):
     denom = (success or 0) + (fail or 0)
     return (success / denom * 100.0) if denom > 0 else 0.0
 
+def colname(df, candidates):
+    """Return the first matching column name from candidates."""
+    for c in candidates:
+        if c in df.columns:
+            return c
+    return None
+
 def summarize_bucket(df, bucket_name):
-    sub = df[df["signal"] == bucket_name].copy()
+    sig_col = colname(df, ["Signal", "signal"])
+    out_col = colname(df, ["Outcome", "outcome"])
+    conf_col = colname(df, ["Confidence", "confidence"])
+
+    if not sig_col or not out_col:
+        return {"Total": 0, "Success": 0, "Fail": 0, "Inconclusive": 0, "WinRate": 0.0, "AvgConfidence": 0.0}
+
+    sub = df[df[sig_col] == bucket_name].copy()
     if sub.empty:
         return {"Total": 0, "Success": 0, "Fail": 0, "Inconclusive": 0, "WinRate": 0.0, "AvgConfidence": 0.0}
-    success = (sub["Outcome"] == "Success").sum()
-    fail = (sub["Outcome"] == "Fail").sum()
-    inconcl = (sub["Outcome"] == "Inconclusive").sum()
+
+    success = (sub[out_col] == "Success").sum()
+    fail = (sub[out_col] == "Fail").sum()
+    inconcl = (sub[out_col] == "Inconclusive").sum()
     wr = winrate(success, fail)
-    avg_conf = pd.to_numeric(sub["Confidence"], errors="coerce").dropna().mean() or 0.0
-    return {"Total": int(len(sub)), "Success": int(success), "Fail": int(fail),
-            "Inconclusive": int(inconcl), "WinRate": wr, "AvgConfidence": float(avg_conf)}
+
+    avg_conf = 0.0
+    if conf_col:
+        avg_conf = pd.to_numeric(sub[conf_col], errors="coerce").dropna().mean() or 0.0
+
+    return {
+        "Total": int(len(sub)),
+        "Success": int(success),
+        "Fail": int(fail),
+        "Inconclusive": int(inconcl),
+        "WinRate": wr,
+        "AvgConfidence": float(avg_conf)
+    }
 
 def regime_summary(df):
-    if df.empty or "Regime" not in df.columns:
+    reg_col = colname(df, ["Regime", "regime"])
+    out_col = colname(df, ["Outcome", "outcome"])
+    conf_col = colname(df, ["Confidence", "confidence"])
+    if df.empty or not reg_col or not out_col:
         return pd.DataFrame()
     rows = []
-    for regime, g in df.groupby("Regime"):
+    for regime, g in df.groupby(reg_col):
         if regime in (None, "", float("nan")):
             regime = "Unknown"
-        succ = (g["Outcome"] == "Success").sum()
-        fail = (g["Outcome"] == "Fail").sum()
-        inc = (g["Outcome"] == "Inconclusive").sum()
+        succ = (g[out_col] == "Success").sum()
+        fail = (g[out_col] == "Fail").sum()
+        inc = (g[out_col] == "Inconclusive").sum()
         wr = winrate(succ, fail)
-        avg_conf = pd.to_numeric(g["Confidence"], errors="coerce").dropna().mean() or 0.0
+        avg_conf = 0.0
+        if conf_col:
+            avg_conf = pd.to_numeric(g[conf_col], errors="coerce").dropna().mean() or 0.0
         rows.append({
             "Regime": regime, "Total": len(g), "Success": int(succ), "Fail": int(fail),
             "Inconclusive": int(inc), "WinRate": wr, "AvgConfidence": avg_conf
@@ -67,7 +96,9 @@ def regime_summary(df):
     return pd.DataFrame(rows).sort_values(["Regime"])
 
 def deserved_summary(df):
-    if df.empty:
+    out_col = colname(df, ["Outcome", "outcome"])
+    conf_col = colname(df, ["Confidence", "confidence"])
+    if df.empty or not out_col:
         return pd.DataFrame()
     out = []
     for flag_col, label in [("DeservedStrongBuy", "DeservedStrongBuy"),
@@ -75,11 +106,13 @@ def deserved_summary(df):
         if flag_col not in df.columns:
             continue
         sub = df[pd.to_numeric(df[flag_col], errors="coerce").fillna(0).astype(int) == 1].copy()
-        succ = (sub["Outcome"] == "Success").sum()
-        fail = (sub["Outcome"] == "Fail").sum()
-        inc  = (sub["Outcome"] == "Inconclusive").sum()
+        succ = (sub[out_col] == "Success").sum()
+        fail = (sub[out_col] == "Fail").sum()
+        inc  = (sub[out_col] == "Inconclusive").sum()
         wr = winrate(succ, fail)
-        avg_conf = pd.to_numeric(sub["Confidence"], errors="coerce").dropna().mean() or 0.0
+        avg_conf = 0.0
+        if conf_col:
+            avg_conf = pd.to_numeric(sub[conf_col], errors="coerce").dropna().mean() or 0.0
         out.append({
             "Group": label, "Total": len(sub), "Success": int(succ), "Fail": int(fail),
             "Inconclusive": int(inc), "WinRate": wr, "AvgConfidence": avg_conf
@@ -106,7 +139,7 @@ def main():
     # --- Regime summary ---
     regime_df = regime_summary(df)
 
-    # --- DeservedStrong summaries (analysis-only) ---
+    # --- DeservedStrong summaries ---
     deserved_df = deserved_summary(df)
 
     # Save CSV summaries
