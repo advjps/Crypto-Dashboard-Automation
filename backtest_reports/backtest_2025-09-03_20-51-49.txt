@@ -1,0 +1,1389 @@
+===== BACKTEST REPORT FOR: signals_2025-09-02_10-00-41_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-02 04:29:19+00:00
+
+{
+  "coin": "ETHUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "2.83%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "BTCUSDT",
+  "signal": "Neutral",
+  "confidence": 16,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "1.79%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": false,
+    "confidence": 16,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "WLFIUSDT",
+  "signal": "Neutral",
+  "confidence": 31,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "16.11%",
+  "analysis_log": {
+    "buy_score": 20,
+    "sell_score": -15,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": false,
+    "min_profit_ok": true,
+    "confidence": 31,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "SOLUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "3.68%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "XRPUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "2.65%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "DOGEUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "3.55%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "TRUMPUSDT",
+  "signal": "Neutral",
+  "confidence": 22,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "3.79%",
+  "analysis_log": {
+    "buy_score": 5,
+    "sell_score": -15,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 22,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "ADAUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "3.62%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "1000PEPEUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "3.93%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "SUIUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "3.29%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "LINKUSDT",
+  "signal": "Buy",
+  "confidence": 59,
+  "outcome": "Success",
+  "duration_min": 83,
+  "did_tp_hit_later": true,
+  "estimated_profit": "4.01%",
+  "analysis_log": {
+    "buy_score": 30,
+    "sell_score": 25,
+    "initial_signal": "Buy",
+    "num_confluence_met": 2,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 59,
+    "bb_touch": false,
+    "rsi_extreme": true,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "AVAXUSDT",
+  "signal": "Strong Sell",
+  "confidence": 74,
+  "outcome": "Fail",
+  "duration_min": 30,
+  "did_tp_hit_later": false,
+  "estimated_profit": "3.71%",
+  "analysis_log": {
+    "buy_score": 30,
+    "sell_score": 60,
+    "initial_signal": "Sell",
+    "num_confluence_met": 3,
+    "vol_profile_ok": false,
+    "min_profit_ok": true,
+    "confidence": 74,
+    "bb_touch": true,
+    "rsi_extreme": true,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "ENAUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "7.82%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "BNBUSDT",
+  "signal": "Neutral",
+  "confidence": 16,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "1.55%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": false,
+    "confidence": 16,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "MUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "23.80%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "FARTCOINUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "5.81%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "FILUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "4.29%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "PUMPUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "11.60%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "XPLUSDT",
+  "signal": "Buy",
+  "confidence": 41,
+  "outcome": "Fail",
+  "duration_min": 63,
+  "did_tp_hit_later": false,
+  "estimated_profit": "18.08%",
+  "analysis_log": {
+    "buy_score": 20,
+    "sell_score": 0,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 41,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "HEMIUSDT",
+  "signal": "Neutral",
+  "confidence": 16,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "18.08%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": false,
+    "min_profit_ok": true,
+    "confidence": 16,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "DOLOUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "11.03%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "WIFUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "4.31%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "PYTHUSDT",
+  "signal": "Buy",
+  "confidence": 55,
+  "outcome": "Success",
+  "duration_min": 24,
+  "did_tp_hit_later": true,
+  "estimated_profit": "6.66%",
+  "analysis_log": {
+    "buy_score": 20,
+    "sell_score": 15,
+    "initial_signal": "Buy",
+    "num_confluence_met": 2,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 55,
+    "bb_touch": false,
+    "rsi_extreme": true,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "LTCUSDT",
+  "signal": "Neutral",
+  "confidence": 22,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "2.95%",
+  "analysis_log": {
+    "buy_score": 5,
+    "sell_score": 0,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 22,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "1000BONKUSDT",
+  "signal": "Neutral",
+  "confidence": 22,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "5.08%",
+  "analysis_log": {
+    "buy_score": 5,
+    "sell_score": 0,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 22,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "HYPEUSDT",
+  "signal": "Strong Sell",
+  "confidence": 70,
+  "outcome": "Fail",
+  "duration_min": 100,
+  "did_tp_hit_later": false,
+  "estimated_profit": "4.51%",
+  "analysis_log": {
+    "buy_score": 20,
+    "sell_score": 50,
+    "initial_signal": "Sell",
+    "num_confluence_met": 3,
+    "vol_profile_ok": false,
+    "min_profit_ok": true,
+    "confidence": 70,
+    "bb_touch": true,
+    "rsi_extreme": true,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "ARBUSDT",
+  "signal": "Buy",
+  "confidence": 45,
+  "outcome": "Success",
+  "duration_min": 132,
+  "did_tp_hit_later": true,
+  "estimated_profit": "4.78%",
+  "analysis_log": {
+    "buy_score": 30,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 45,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "DOTUSDT",
+  "signal": "Buy",
+  "confidence": 45,
+  "outcome": "Fail",
+  "duration_min": 175,
+  "did_tp_hit_later": false,
+  "estimated_profit": "3.47%",
+  "analysis_log": {
+    "buy_score": 30,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 45,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "AAVEUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "3.36%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "JELLYJELLYUSDT",
+  "signal": "Neutral",
+  "confidence": 16,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "12.41%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": false,
+    "min_profit_ok": true,
+    "confidence": 16,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "LINEAUSDT",
+  "signal": "Neutral",
+  "confidence": 12,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "17.12%",
+  "analysis_log": {
+    "buy_score": 5,
+    "sell_score": -15,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": false,
+    "min_profit_ok": true,
+    "confidence": 12,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "BIOUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "5.74%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "PENGUUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "6.37%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "UNIUSDT",
+  "signal": "Buy",
+  "confidence": 45,
+  "outcome": "Success",
+  "duration_min": 125,
+  "did_tp_hit_later": true,
+  "estimated_profit": "3.78%",
+  "analysis_log": {
+    "buy_score": 30,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 45,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "BCHUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "3.72%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "BASUSDT",
+  "signal": "Neutral",
+  "confidence": 16,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "14.07%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": false,
+    "min_profit_ok": true,
+    "confidence": 16,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "MITOUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "10.72%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "IPUSDT",
+  "signal": "Buy",
+  "confidence": 45,
+  "outcome": "Success",
+  "duration_min": 26,
+  "did_tp_hit_later": true,
+  "estimated_profit": "7.16%",
+  "analysis_log": {
+    "buy_score": 30,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 45,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "TAUSDT",
+  "signal": "Neutral",
+  "confidence": 29,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "12.76%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": false,
+    "min_profit_ok": true,
+    "confidence": 29,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "1000SHIBUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "2.67%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "OPUSDT",
+  "signal": "Buy",
+  "confidence": 55,
+  "outcome": "Fail",
+  "duration_min": 173,
+  "did_tp_hit_later": false,
+  "estimated_profit": "4.03%",
+  "analysis_log": {
+    "buy_score": 20,
+    "sell_score": 15,
+    "initial_signal": "Buy",
+    "num_confluence_met": 2,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 55,
+    "bb_touch": false,
+    "rsi_extreme": true,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "HBARUSDT",
+  "signal": "Buy",
+  "confidence": 59,
+  "outcome": "Success",
+  "duration_min": 98,
+  "did_tp_hit_later": true,
+  "estimated_profit": "3.15%",
+  "analysis_log": {
+    "buy_score": 30,
+    "sell_score": 25,
+    "initial_signal": "Buy",
+    "num_confluence_met": 2,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 59,
+    "bb_touch": false,
+    "rsi_extreme": true,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "XLMUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "3.16%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "WLDUSDT",
+  "signal": "Buy",
+  "confidence": 45,
+  "outcome": "Success",
+  "duration_min": 125,
+  "did_tp_hit_later": true,
+  "estimated_profit": "3.51%",
+  "analysis_log": {
+    "buy_score": 30,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 45,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "TRXUSDT",
+  "signal": "Neutral",
+  "confidence": 16,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "0.99%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": false,
+    "confidence": 16,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "XNYUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "10.88%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "POLUSDT",
+  "signal": "Buy",
+  "confidence": 41,
+  "outcome": "Fail",
+  "duration_min": 51,
+  "did_tp_hit_later": false,
+  "estimated_profit": "7.00%",
+  "analysis_log": {
+    "buy_score": 20,
+    "sell_score": 0,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 41,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "APTUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "2.72%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "SPKUSDT",
+  "signal": "Neutral",
+  "confidence": 16,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "5.79%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": false,
+    "min_profit_ok": true,
+    "confidence": 16,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "TIAUSDT",
+  "signal": "Buy",
+  "confidence": 45,
+  "outcome": "Success",
+  "duration_min": 98,
+  "did_tp_hit_later": true,
+  "estimated_profit": "3.29%",
+  "analysis_log": {
+    "buy_score": 30,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 45,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "NEARUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "3.34%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "ETCUSDT",
+  "signal": "Buy",
+  "confidence": 45,
+  "outcome": "Success",
+  "duration_min": 32,
+  "did_tp_hit_later": true,
+  "estimated_profit": "2.66%",
+  "analysis_log": {
+    "buy_score": 30,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 45,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "CRVUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "4.69%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "ONDOUSDT",
+  "signal": "Neutral",
+  "confidence": 16,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "4.86%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": false,
+    "min_profit_ok": true,
+    "confidence": 16,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "MAVUSDT",
+  "signal": "Buy",
+  "confidence": 45,
+  "outcome": "Fail",
+  "duration_min": 32,
+  "did_tp_hit_later": false,
+  "estimated_profit": "16.89%",
+  "analysis_log": {
+    "buy_score": 30,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 45,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "NMRUSDT",
+  "signal": "Neutral",
+  "confidence": 39,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "7.16%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 39,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "INJUSDT",
+  "signal": "Buy",
+  "confidence": 45,
+  "outcome": "Success",
+  "duration_min": 30,
+  "did_tp_hit_later": true,
+  "estimated_profit": "3.74%",
+  "analysis_log": {
+    "buy_score": 30,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 45,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "LDOUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "3.68%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": -5,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "SEIUSDT",
+  "signal": "Buy",
+  "confidence": 45,
+  "outcome": "Success",
+  "duration_min": 111,
+  "did_tp_hit_later": true,
+  "estimated_profit": "3.78%",
+  "analysis_log": {
+    "buy_score": 30,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 45,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "FORMUSDT",
+  "signal": "Buy",
+  "confidence": 41,
+  "outcome": "Success",
+  "duration_min": 11,
+  "did_tp_hit_later": true,
+  "estimated_profit": "3.67%",
+  "analysis_log": {
+    "buy_score": 20,
+    "sell_score": -15,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 41,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
+{
+  "coin": "TAOUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "2.81%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "ETHFIUSDT",
+  "signal": "Neutral",
+  "confidence": 26,
+  "outcome": "Inconclusive",
+  "duration_min": 300,
+  "did_tp_hit_later": false,
+  "estimated_profit": "4.70%",
+  "analysis_log": {
+    "buy_score": 15,
+    "sell_score": 10,
+    "initial_signal": "Buy",
+    "num_confluence_met": 0,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 26,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": false
+  }
+}
+
+{
+  "coin": "SKLUSDT",
+  "signal": "Buy",
+  "confidence": 41,
+  "outcome": "Fail",
+  "duration_min": 51,
+  "did_tp_hit_later": false,
+  "estimated_profit": "4.47%",
+  "analysis_log": {
+    "buy_score": 20,
+    "sell_score": 0,
+    "initial_signal": "Buy",
+    "num_confluence_met": 1,
+    "vol_profile_ok": true,
+    "min_profit_ok": true,
+    "confidence": 41,
+    "bb_touch": false,
+    "rsi_extreme": false,
+    "cci_extreme": true
+  }
+}
+
