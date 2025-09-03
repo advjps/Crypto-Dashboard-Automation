@@ -1,0 +1,354 @@
+[
+  {
+    "coin": "SOLUSDT",
+    "price": 209.19,
+    "tp": 207.6838,
+    "sl": 215.4657,
+    "leverage": "7x",
+    "confidence": 25,
+    "signal": "Sell",
+    "estimated_profit": "5.04%",
+    "regime": "Bearish",
+    "signal_time_utc": "2025-09-03T22:51:00.395583+00:00",
+    "signal_time_ist": "2025-09-04T04:21:00.395583+05:30",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 25
+    },
+    "indicators": {
+      "rsi5m": 51.338519143902815,
+      "williamsR": -18.018018018017234,
+      "cci5m": 69.63527009877538,
+      "stc5m": 25,
+      "tsi5m": -0.02,
+      "cmf5m": -0.07093376670760364,
+      "cvd5m": "falling",
+      "hma5m": "up",
+      "alma5m": "up",
+      "keltner5m": {
+        "upper": 212.33,
+        "middle": 210.08659999999998,
+        "lower": 208.34
+      },
+      "boll5m": {
+        "upper": 209.46845630405704,
+        "middle": 208.93850000000003,
+        "lower": 208.40854369594302
+      },
+      "macd5m": {
+        "macd": -0.04540728240871772,
+        "signal": -0.11467481935343456,
+        "histogram": 0.06926753694471684
+      },
+      "marketTrend": -10
+    }
+  },
+  {
+    "coin": "FARTCOINUSDT",
+    "price": 0.7925,
+    "tp": 0.7868,
+    "sl": 0.8163,
+    "leverage": "7x",
+    "confidence": 25,
+    "signal": "Sell",
+    "estimated_profit": "5.04%",
+    "regime": "Bearish",
+    "signal_time_utc": "2025-09-03T22:51:12.938323+00:00",
+    "signal_time_ist": "2025-09-04T04:21:12.938323+05:30",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 25
+    },
+    "indicators": {
+      "rsi5m": 52.830093806842264,
+      "williamsR": -7.446808510638688,
+      "cci5m": 79.88039299444462,
+      "stc5m": 25,
+      "tsi5m": -0.02,
+      "cmf5m": -0.004002149075370649,
+      "cvd5m": "falling",
+      "hma5m": "up",
+      "alma5m": "up",
+      "keltner5m": {
+        "upper": 0.8168,
+        "middle": 0.7986880000000002,
+        "lower": 0.7859
+      },
+      "boll5m": {
+        "upper": 0.7943368408822223,
+        "middle": 0.7902600000000001,
+        "lower": 0.7861831591177778
+      },
+      "macd5m": {
+        "macd": -0.0002615791118364408,
+        "signal": -0.000798902062079101,
+        "histogram": 0.0005373229502426602
+      },
+      "marketTrend": -10
+    }
+  },
+  {
+    "coin": "HEMIUSDT",
+    "price": 0.0392,
+    "tp": 0.0389,
+    "sl": 0.0403,
+    "leverage": "7x",
+    "confidence": 25,
+    "signal": "Sell",
+    "estimated_profit": "5.04%",
+    "regime": "Bearish",
+    "signal_time_utc": "2025-09-03T22:51:14.287642+00:00",
+    "signal_time_ist": "2025-09-04T04:21:14.287642+05:30",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 25
+    },
+    "indicators": {
+      "rsi5m": 55.89143837592872,
+      "williamsR": -11.44624903325615,
+      "cci5m": 72.55938817594912,
+      "stc5m": 25,
+      "tsi5m": -0.02,
+      "cmf5m": -0.1571482690661838,
+      "cvd5m": "falling",
+      "hma5m": "down",
+      "alma5m": "down",
+      "keltner5m": {
+        "upper": 0.039866,
+        "middle": 0.03881834,
+        "lower": 0.037388
+      },
+      "boll5m": {
+        "upper": 0.03953522961414491,
+        "middle": 0.0387994,
+        "lower": 0.03806357038585509
+      },
+      "macd5m": {
+        "macd": -3.33055990159245e-05,
+        "signal": -7.706552911023732e-05,
+        "histogram": 4.375993009431282e-05
+      },
+      "marketTrend": -10
+    }
+  },
+  {
+    "coin": "BNXUSDT",
+    "price": 2.0,
+    "tp": 1.9856,
+    "sl": 2.06,
+    "leverage": "7x",
+    "confidence": 25,
+    "signal": "Sell",
+    "estimated_profit": "5.04%",
+    "regime": "Bearish",
+    "signal_time_utc": "2025-09-03T22:51:18.505305+00:00",
+    "signal_time_ist": "2025-09-04T04:21:18.505305+05:30",
+    "analysis_log": {
+      "buy_score": 10,
+      "sell_score": 25
+    },
+    "indicators": {
+      "rsi5m": null,
+      "williamsR": NaN,
+      "cci5m": 0,
+      "stc5m": 25,
+      "tsi5m": -0.02,
+      "cmf5m": NaN,
+      "cvd5m": "falling",
+      "hma5m": "down",
+      "alma5m": "down",
+      "keltner5m": {
+        "upper": 2.0,
+        "middle": 2.0,
+        "lower": 2.0
+      },
+      "boll5m": {
+        "upper": 2.0,
+        "middle": 2.0,
+        "lower": 2.0
+      },
+      "macd5m": {
+        "macd": 0.0,
+        "signal": 0.0,
+        "histogram": 0.0
+      },
+      "marketTrend": -10
+    }
+  },
+  {
+    "coin": "AGIXUSDT",
+    "price": 0.7009,
+    "tp": 0.6959,
+    "sl": 0.7219,
+    "leverage": "7x",
+    "confidence": 25,
+    "signal": "Sell",
+    "estimated_profit": "5.04%",
+    "regime": "Bearish",
+    "signal_time_utc": "2025-09-03T22:51:25.363308+00:00",
+    "signal_time_ist": "2025-09-04T04:21:25.363308+05:30",
+    "analysis_log": {
+      "buy_score": 10,
+      "sell_score": 25
+    },
+    "indicators": {
+      "rsi5m": null,
+      "williamsR": NaN,
+      "cci5m": 0.0,
+      "stc5m": 25,
+      "tsi5m": -0.02,
+      "cmf5m": NaN,
+      "cvd5m": "falling",
+      "hma5m": "down",
+      "alma5m": "down",
+      "keltner5m": {
+        "upper": 0.7009,
+        "middle": 0.7008999999999993,
+        "lower": 0.7009
+      },
+      "boll5m": {
+        "upper": 0.7009,
+        "middle": 0.7009,
+        "lower": 0.7009
+      },
+      "macd5m": {
+        "macd": 0.0,
+        "signal": 0.0,
+        "histogram": 0.0
+      },
+      "marketTrend": -10
+    }
+  },
+  {
+    "coin": "ALPACAUSDT",
+    "price": 1.19,
+    "tp": 1.1814,
+    "sl": 1.2257,
+    "leverage": "7x",
+    "confidence": 25,
+    "signal": "Sell",
+    "estimated_profit": "5.04%",
+    "regime": "Bearish",
+    "signal_time_utc": "2025-09-03T22:51:26.729299+00:00",
+    "signal_time_ist": "2025-09-04T04:21:26.729299+05:30",
+    "analysis_log": {
+      "buy_score": 10,
+      "sell_score": 25
+    },
+    "indicators": {
+      "rsi5m": null,
+      "williamsR": NaN,
+      "cci5m": 0.0,
+      "stc5m": 25,
+      "tsi5m": -0.02,
+      "cmf5m": NaN,
+      "cvd5m": "falling",
+      "hma5m": "down",
+      "alma5m": "down",
+      "keltner5m": {
+        "upper": 1.19,
+        "middle": 1.1899999999999984,
+        "lower": 1.19
+      },
+      "boll5m": {
+        "upper": 1.19,
+        "middle": 1.19,
+        "lower": 1.19
+      },
+      "macd5m": {
+        "macd": 0.0,
+        "signal": 0.0,
+        "histogram": 0.0
+      },
+      "marketTrend": -10
+    }
+  },
+  {
+    "coin": "VIDTUSDT",
+    "price": 0.0029,
+    "tp": 0.0029,
+    "sl": 0.003,
+    "leverage": "7x",
+    "confidence": 25,
+    "signal": "Sell",
+    "estimated_profit": "5.04%",
+    "regime": "Bearish",
+    "signal_time_utc": "2025-09-03T22:51:28.075288+00:00",
+    "signal_time_ist": "2025-09-04T04:21:28.075288+05:30",
+    "analysis_log": {
+      "buy_score": 10,
+      "sell_score": 25
+    },
+    "indicators": {
+      "rsi5m": null,
+      "williamsR": NaN,
+      "cci5m": 0.0,
+      "stc5m": 25,
+      "tsi5m": -0.02,
+      "cmf5m": NaN,
+      "cvd5m": "falling",
+      "hma5m": "down",
+      "alma5m": "down",
+      "keltner5m": {
+        "upper": 0.00293,
+        "middle": 0.002929999999999994,
+        "lower": 0.00293
+      },
+      "boll5m": {
+        "upper": 0.00293,
+        "middle": 0.00293,
+        "lower": 0.00293
+      },
+      "macd5m": {
+        "macd": 0.0,
+        "signal": 0.0,
+        "histogram": 0.0
+      },
+      "marketTrend": -10
+    }
+  },
+  {
+    "coin": "WLFIUSDT",
+    "price": 0.2172,
+    "tp": 0.2156,
+    "sl": 0.2237,
+    "leverage": "7x",
+    "confidence": 25,
+    "signal": "Sell",
+    "estimated_profit": "5.04%",
+    "regime": "Bearish",
+    "signal_time_utc": "2025-09-03T22:51:28.745624+00:00",
+    "signal_time_ist": "2025-09-04T04:21:28.745624+05:30",
+    "analysis_log": {
+      "buy_score": -5,
+      "sell_score": 25
+    },
+    "indicators": {
+      "rsi5m": 57.95383551924048,
+      "williamsR": -14.285714285714096,
+      "cci5m": 86.69527896995658,
+      "stc5m": 25,
+      "tsi5m": -0.02,
+      "cmf5m": 0.06341334656860349,
+      "cvd5m": "falling",
+      "hma5m": "up",
+      "alma5m": "up",
+      "keltner5m": {
+        "upper": 0.2229,
+        "middle": 0.21728300000000003,
+        "lower": 0.2106
+      },
+      "boll5m": {
+        "upper": 0.21829634764760567,
+        "middle": 0.21551499999999998,
+        "lower": 0.2127336523523943
+      },
+      "macd5m": {
+        "macd": 0.0007161069247478002,
+        "signal": 0.0005340538429111103,
+        "histogram": 0.00018205308183668993
+      },
+      "marketTrend": -10
+    }
+  }
+]
