@@ -7,6 +7,15 @@ import pandas as pd
 from datetime import datetime, timedelta, timezone
 import pytz
 
+# Add these at the top, just like in run_automation.py
+PROXY_IP = "217.180.42.139"
+PROXY_PORT = "48642"
+PROXY_USER = "NQOgprvOa4fgcWw"
+PROXY_PASS = "Nx8gIuzPunYu7P1"
+
+proxy_url = f"http://{PROXY_USER}:{PROXY_PASS}@{PROXY_IP}:{PROXY_PORT}"
+proxies = {"http": proxy_url, "https": proxy_url} if "YOUR_IP" not in PROXY_IP else None
+
 # --- CONFIG ---
 DATA_ARCHIVE = "data_archive"
 REPORTS_DIR = "backtest_reports"
@@ -47,7 +56,6 @@ def extract_signal_time(signal_entry, filename):
     except Exception:
         return None
 
-
 def fetch_binance_1m(symbol, start_time, end_time):
     """Fetch 1m klines between start_time and end_time."""
     url = f"{BINANCE_FAPI}/fapi/v1/klines"
@@ -58,7 +66,7 @@ def fetch_binance_1m(symbol, start_time, end_time):
         "endTime": int(end_time.timestamp() * 1000),
     }
     try:
-        resp = requests.get(url, params=params, timeout=30)
+        resp = requests.get(url, params=params, proxies=proxies, timeout=30)  # <-- added proxies
         resp.raise_for_status()
         data = resp.json()
         return [
@@ -75,7 +83,6 @@ def fetch_binance_1m(symbol, start_time, end_time):
     except Exception as e:
         print(f"[ERROR] Could not fetch Binance 1m data for {symbol}: {e}")
         return []
-
 
 def analyze_signal_outcome(signal, filename):
     """Check if TP or SL was hit first within LOOKAHEAD_MINUTES."""
