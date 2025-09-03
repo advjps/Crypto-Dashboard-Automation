@@ -37,7 +37,7 @@ def winrate(success, fail):
     return (success / denom * 100.0) if denom > 0 else 0.0
 
 def summarize_bucket(df, bucket_name):
-    sub = df[df["Signal"] == bucket_name].copy()
+    sub = df[df["signal"] == bucket_name].copy()
     if sub.empty:
         return {"Total": 0, "Success": 0, "Fail": 0, "Inconclusive": 0, "WinRate": 0.0, "AvgConfidence": 0.0}
     success = (sub["Outcome"] == "Success").sum()
