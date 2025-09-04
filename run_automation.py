@@ -37,22 +37,34 @@ SL_PCT_PRICE = 0.03               # ~3.0% of price (~21% on 7x margin)
 REGIME_BULLISH_BONUS = 10         # add to favored side score
 REGIME_STRICTER_STRONG = 5        # raise strong threshold for unfavored side
 
-# ============== SAFE NUMERIC HELPERS ==============
+# ---- SAFE NUMERIC HELPERS (drop-in patch) ----
 def _isnum(x):
+    # Reject None and pandas NA / NaN early
     try:
-        return x is not None and not (isinstance(x, float) and (math.isnan(x) or math.isinf(x)))
+        import pandas as pd
+        if x is None or pd.isna(x):
+            return False
+    except Exception:
+        if x is None:
+            return False
+    # Try float coercion
+    try:
+        xf = float(x)
     except Exception:
         return False
+    # Reject non-finite
+    return not (math.isnan(xf) or math.isinf(xf))
 
 def _nz(x, default=None):
     return x if _isnum(x) else default
 
 def get_last_valid_value(values):
+    """Return last numeric (finite) value from a list; skips None, NaN, pandas.NA."""
     if not isinstance(values, list):
         return None
     for v in reversed(values):
         if _isnum(v):
-            return v
+            return float(v)
     return None
 
 # ============== INDICATOR FUNCTIONS (NaN-safe) ==============
@@ -489,3 +501,4 @@ if __name__ == "__main__":
         print(f"[OK] Updated {LIVE_FILENAME}")
     else:
         print("\n[INFO] No signals this run (neutrals are skipped).")
+
