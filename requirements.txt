@@ -1,7 +1,7 @@
-pandas
-requests
-pytz
-matplotlib
-pandas-ta
+pandas==2.3.2
+requests==2.32.5
+pytz==2025.2
+matplotlib==3.10.6
 numpy<2.0
+
 
