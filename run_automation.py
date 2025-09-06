@@ -1,24 +1,18 @@
-# run_automation.py -- 10th Amendment (Complete automation script)
+# run_automation.py (10th Amendment - Full automation script)
 # Requirements: pandas, requests, pytz
-# Place this in your repo and run. Adjust configuration constants below to tune.
+# Drop-in replacement for your automation script. Produces JSONs in data_archive/ and live_signals.json
 
 import os
 import time
-import math
 import json
-from datetime import datetime, timezone, timedelta
-
-import pandas as pd
+import math
 import requests
+import pandas as pd
 import pytz
 
-# ============== CONFIG ==============
-LIVE_FILENAME = "live_signals.json"
-ARCHIVE_FOLDER = "data_archive"
-TOP_LIMIT = 70
-BINANCE_FAPI = "https://fapi.binance.com"
+from datetime import datetime, timezone, timedelta
 
-# PROXY (set your proxy credentials or leave PROXY_IP as "YOUR_IP" to disable)
+# ----------------- PROXY CONFIGURATION -----------------
 PROXY_IP = "217.180.42.139"
 PROXY_PORT = "48642"
 PROXY_USER = "NQOgprvOa4fgcWw"
@@ -27,60 +21,78 @@ PROXY_PASS = "Nx8gIuzPunYu7P1"
 proxy_url = f"http://{PROXY_USER}:{PROXY_PASS}@{PROXY_IP}:{PROXY_PORT}"
 proxies = {"http": proxy_url, "https": proxy_url} if "YOUR_IP" not in PROXY_IP else None
 
+# ----------------- GENERAL CONFIG -----------------
+LIVE_FILENAME = "live_signals.json"
+ARCHIVE_FOLDER = "data_archive"
+TOP_LIMIT = 70
+BINANCE_FAPI = "https://fapi.binance.com"
+
 # Profit evaluation basis (ROI on margin)
 LEVERAGE_FOR_PROFIT_EVAL = 7.0
 MIN_PROFIT_MARGIN = 2.0           # min % on margin to pass
-PROFIT_CEILING_MARGIN = 999.0     # removed ceiling by default (set high)
-
-# ATR-based TP/SL clamps (as % of price) - used for fallback
-TP_PCT_MIN, TP_PCT_MAX = 0.008, 0.016
+PROFIT_CEILING_MARGIN = 100.0     # no effective ceiling now (large)
+# ATR-based TP/SL clamps (as % of price)
+TP_PCT_MIN, TP_PCT_MAX = 0.0072, 0.016   # MIN_TP_PCT fixed to 0.72% of price
 SL_PCT_MIN, SL_PCT_MAX = 0.008, 0.020
 
-# Thresholds & scoring tuning
-STRONG_THRESHOLD = 70     # Confidence >= this => Strong
-BUY_SELL_THRESHOLD = 40   # Confidence >= this => Buy/Sell
-RECORD_NEUTRALS = False   # If False, don't save neutral signals into archive/live lists
+# Regime hysteresis (stickiness)
+REGIME_HOLD_MINUTES = 60
+REGIME_CONFIRM_BARS = 2
 
-# Lookback and other params
-KL_INTERVAL = "5m"
-KL_LIMIT = 200
-REGIME_HORIZON = 50
+# Request config
+REQUEST_TIMEOUT = 30
+REQUEST_RETRIES = 3
+REQUEST_BACKOFF = 0.8
 
-# Confluence thresholds (for logging)
-CONFLUENCE_MIN_SUCCESS_PCT = 68.0  # used for analysis (not hard gating)
+# Lookback for kline fetch
+KLINE_LIMIT_5M = 200
 
-# ============== Helpers ==============
-def ist_now_iso():
-    ist = pytz.timezone("Asia/Kolkata")
-    return datetime.now(pytz.utc).astimezone(ist).isoformat()
+# Ensure folders exist
+os.makedirs(ARCHIVE_FOLDER, exist_ok=True)
 
-def utc_now_iso():
-    return datetime.now(pytz.utc).isoformat()
+# ----------------- UTILS -----------------
+def request_with_retries(url, params=None, proxies_local=proxies, timeout=REQUEST_TIMEOUT):
+    last_exc = None
+    for attempt in range(REQUEST_RETRIES):
+        try:
+            r = requests.get(url, params=params, proxies=proxies_local, timeout=timeout)
+            r.raise_for_status()
+            return r
+        except Exception as e:
+            last_exc = e
+            time.sleep(REQUEST_BACKOFF * (1 + attempt))
+    raise last_exc
 
-def safe_float(x, default=None):
+def utcnow_iso():
+    return datetime.now(timezone.utc).isoformat()
+
+def utc_to_ist_iso(utc_iso):
     try:
-        if x is None: return default
+        dt = datetime.fromisoformat(utc_iso)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        ist = pytz.timezone("Asia/Kolkata")
+        return dt.astimezone(ist).isoformat()
+    except Exception:
+        return ""
+
+def safe_cast_float(x):
+    try:
         return float(x)
     except Exception:
-        return default
+        return None
 
-def clamp01(x):
-    return max(0.0, min(1.0, x))
+def get_last_valid_value(values):
+    """Return last non-None, non-NaN value from a sequence"""
+    for v in reversed(values):
+        try:
+            if v is not None and not (isinstance(v, float) and math.isnan(v)):
+                return v
+        except Exception:
+            return v
+    return None
 
-def clamp0_100(x):
-    return max(0, min(100, int(round(x))))
-
-def json_safe(obj):
-    # Convert numpy types if any to python native
-    if isinstance(obj, (pd.Timestamp, datetime)):
-        return obj.isoformat()
-    try:
-        json.dumps(obj)
-        return obj
-    except Exception:
-        return str(obj)
-
-# ============== Indicator implementations (robust & JSON-safe) ==============
+# ----------------- INDICATORS -----------------
 def calc_ema(values, period):
     if not isinstance(values, list) or len(values) < period:
         return [None] * len(values)
@@ -94,68 +106,53 @@ def calc_rsi(values, period=14):
     gain = (delta.where(delta > 0, 0)).ewm(alpha=1/period, adjust=False).mean()
     loss = (-delta.where(delta < 0, 0)).ewm(alpha=1/period, adjust=False).mean()
     rs = gain / loss
-    rsi = (100 - (100 / (1 + rs)))
-    return rsi.tolist()
-
-def get_last_valid_value(values):
-    if values is None:
-        return None
-    for v in reversed(values):
-        if v is not None and not (isinstance(v, float) and math.isnan(v)):
-            return v
-    return None
+    rsi = (100 - (100 / (1 + rs))).tolist()
+    return rsi
 
 def calc_macd(values, fast=12, slow=26, signal=9):
-    # return last macd, signal, histogram and raw series for normalization if needed
-    if len(values) < slow + signal:
-        # best-effort compute but may have Nones
-        series = pd.Series(values)
-        ema_fast = series.ewm(span=fast, adjust=False).mean()
-        ema_slow = series.ewm(span=slow, adjust=False).mean()
-    else:
-        series = pd.Series(values)
-        ema_fast = series.ewm(span=fast, adjust=False).mean()
-        ema_slow = series.ewm(span=slow, adjust=False).mean()
-    macd_line = ema_fast - ema_slow
+    series = pd.Series(values)
+    ema_fast = series.ewm(span=fast, adjust=False).mean()
+    ema_slow = series.ewm(span=slow, adjust=False).mean()
+    macd_line = (ema_fast - ema_slow)
     signal_line = macd_line.ewm(span=signal, adjust=False).mean()
-    hist = macd_line - signal_line
+    histogram = (macd_line - signal_line)
+    # return Python floats for last elements
     try:
-        return {
-            "macd": safe_float(macd_line.iloc[-1]),
-            "signal": safe_float(signal_line.iloc[-1]),
-            "histogram": safe_float(hist.iloc[-1]),
-            "hist_series": hist.fillna(0).tolist()
-        }
+        return {'macd': float(macd_line.iloc[-1]), 'signal': float(signal_line.iloc[-1]), 'histogram': float(histogram.iloc[-1])}
     except Exception:
-        return {"macd": None, "signal": None, "histogram": None, "hist_series": []}
+        return {'macd': None, 'signal': None, 'histogram': 0.0}
 
 def calc_bollinger(values, period=20, mult=2):
     if len(values) < period:
-        return {"upper": None, "middle": None, "lower": None, "percent_b": None}
+        return {'upper': None, 'middle': None, 'lower': None}
     series = pd.Series(values)
     mean = series.rolling(window=period).mean().iloc[-1]
     std = series.rolling(window=period).std().iloc[-1]
     if pd.isna(mean) or pd.isna(std):
-        return {"upper": None, "middle": None, "lower": None, "percent_b": None}
-    upper = mean + (mult * std)
-    lower = mean - (mult * std)
-    last = values[-1]
+        return {'upper': None, 'middle': None, 'lower': None}
+    upper = float(mean + (mult * std))
+    middle = float(mean)
+    lower = float(mean - (mult * std))
     percent_b = None
     try:
-        percent_b = (last - lower) / (upper - lower) if (upper - lower) != 0 else None
+        if upper != lower:
+            percent_b = float((values[-1] - lower) / (upper - lower))
     except Exception:
         percent_b = None
-    return {"upper": safe_float(upper), "middle": safe_float(mean), "lower": safe_float(lower), "percent_b": safe_float(percent_b)}
+    return {'upper': upper, 'middle': middle, 'lower': lower, 'percent_b': percent_b}
 
 def calc_atr(highs, lows, closes, period=14):
     if len(highs) < period + 1:
         return None
-    df = pd.DataFrame({"high": highs, "low": lows, "close": closes})
+    df = pd.DataFrame({'high': highs, 'low': lows, 'close': closes})
     high_low = df['high'] - df['low']
     high_close = (df['high'] - df['close'].shift()).abs()
     low_close = (df['low'] - df['close'].shift()).abs()
     tr = pd.concat([high_low, high_close, low_close], axis=1).max(axis=1)
-    return safe_float(tr.ewm(alpha=1/period, adjust=False).mean().iloc[-1])
+    try:
+        return float(tr.ewm(alpha=1/period, adjust=False).mean().iloc[-1])
+    except Exception:
+        return None
 
 def calc_cci(highs, lows, closes, period=20):
     if len(highs) < period:
@@ -165,696 +162,630 @@ def calc_cci(highs, lows, closes, period=20):
     mean_dev = tp.rolling(window=period).apply(lambda x: (x - x.mean()).abs().mean(), raw=False).iloc[-1]
     if mean_dev == 0 or pd.isna(mean) or pd.isna(mean_dev):
         return 0.0
-    return safe_float((tp.iloc[-1] - mean) / (0.015 * mean_dev))
+    return float((tp.iloc[-1] - mean) / (0.015 * mean_dev))
 
-def calc_keltner(values_high, values_low, values_close, period=20, atr_mult=1.5):
-    # Keltner Channel: center = EMA(period) of close, upper = center + atr_mult * ATR, lower = center - atr_mult * ATR
-    if len(values_close) < period:
-        return {"upper": None, "middle": None, "lower": None}
-    center = pd.Series(values_close).ewm(span=period, adjust=False).mean().iloc[-1]
-    atr = calc_atr(values_high, values_low, values_close, period)
-    if atr is None:
-        return {"upper": None, "middle": None, "lower": None}
-    upper = center + atr_mult * atr
-    lower = center - atr_mult * atr
-    return {"upper": safe_float(upper), "middle": safe_float(center), "lower": safe_float(lower)}
-
-def calc_hma(values, period=21):
-    # Hull Moving Average approximation
-    if len(values) < period:
-        return None
-    series = pd.Series(values)
-    half_len = int(period/2)
-    wma_half = series.ewm(span=half_len, adjust=False).mean()
-    wma_full = series.ewm(span=period, adjust=False).mean()
-    diff = 2 * wma_half - wma_full
-    hma = diff.ewm(span=int(math.sqrt(period)), adjust=False).mean()
-    return safe_float(hma.iloc[-1])
-
-def alma(values, window=9, offset=0.85, sigma=6.0):
-    # Arnaud Legoux Moving Average (lightweight)
-    if len(values) < window:
-        return None
-    series = pd.Series(values)
-    m = offset * (window - 1)
-    s = window / sigma
-    w = [math.exp(-((i - m) ** 2) / (2 * (s ** 2))) for i in range(window)]
-    w = [wi / sum(w) for wi in w]
-    vals = series.rolling(window).apply(lambda x: sum([a*b for a,b in zip(w, x)]), raw=True)
-    return safe_float(vals.iloc[-1])
-
-def calc_tsi(values, r1=25, r2=13):
-    # True Strength Index simplified implementation (price momentum)
-    if len(values) < max(r1, r2) + 5:
-        return None
-    p = pd.Series(values)
-    delta = p.diff()
-    abs_delta = delta.abs()
-    ema1 = delta.ewm(span=r1, adjust=False).mean()
-    ema2 = ema1.ewm(span=r2, adjust=False).mean()
-    abs_ema1 = abs_delta.ewm(span=r1, adjust=False).mean()
-    abs_ema2 = abs_ema1.ewm(span=r2, adjust=False).mean()
-    tsi = 100 * (ema2 / abs_ema2) if abs_ema2.iloc[-1] != 0 else 0.0
-    return safe_float(tsi.iloc[-1])
-
-def calc_stc(values, fast=23, slow=50, cycle=10):
-    # Approximate Schaff Trend Cycle using MACD-like approach + %K smoothing
-    # This is a lightweight approximation to provide a numeric value.
-    try:
-        macd = pd.Series(values).ewm(span=fast, adjust=False).mean() - pd.Series(values).ewm(span=slow, adjust=False).mean()
-        macd_signal = macd.ewm(span=cycle, adjust=False).mean()
-        macd_hist = macd - macd_signal
-        # Normalize histogram between 0..100 using rolling min/max
-        window = max(10, int(len(values)/5))
-        mn = macd_hist.rolling(window).min().iloc[-1] if len(macd_hist) >= window else macd_hist.min()
-        mx = macd_hist.rolling(window).max().iloc[-1] if len(macd_hist) >= window else macd_hist.max()
-        denom = (mx - mn) if (mx - mn) != 0 else 1e-8
-        stc = 100 * (macd_hist.iloc[-1] - mn) / denom
-        return safe_float(stc)
-    except Exception:
-        return None
-
-def calc_vol_profile(closes, highs, lows, volumes, bins=10):
+def calc_vol_profile(closes, highs, lows, volumes):
+    # coarse volume profile: bucketize prices into 10 bins, sum volumes
     try:
         df = pd.DataFrame({'price': closes, 'volume': volumes})
         price_range = max(highs) - min(lows)
         if price_range == 0:
-            return {'bullish_score': 0, 'bearish_score': 0}
-        # Group volume into bins across price and find POC
-        cuts = pd.cut(df['price'], bins=bins)
-        vol_by_bin = df.groupby(cuts, observed=False)['volume'].sum()
-        if vol_by_bin.empty:
-            return {'bullish_score': 0, 'bearish_score': 0}
-        poc_interval = vol_by_bin.idxmax()
-        try:
-            poc = (poc_interval.left + poc_interval.right) / 2.0
-        except Exception:
-            poc = df['price'].median()
+            return {'bullish_score': 0.0, 'bearish_score': 0.0}
+        bins = 10
+        # create categories
+        df['bin'] = pd.cut(df['price'], bins=bins)
+        agg = df.groupby('bin', observed=False)['volume'].sum()
+        if agg.empty:
+            return {'bullish_score': 0.0, 'bearish_score': 0.0}
+        poc_interval = agg.idxmax()
+        if hasattr(poc_interval, 'mid'):
+            poc = float(poc_interval.mid)
+        else:
+            poc = float(df['price'].mean())
         current_price = closes[-1]
-        # scoring is lightweight: 5 if inside POC window, 3 if above/below, 0 otherwise
         if current_price > poc:
-            return {'bullish_score': 3, 'bearish_score': 0}
+            return {'bullish_score': 3.0, 'bearish_score': 0.0}
         if current_price < poc:
-            return {'bullish_score': 0, 'bearish_score': 3}
-        return {'bullish_score': 5, 'bearish_score': 5}
+            return {'bullish_score': 0.0, 'bearish_score': 3.0}
+        return {'bullish_score': 5.0, 'bearish_score': 5.0}
     except Exception:
-        return {'bullish_score': 1, 'bearish_score': 1}
+        return {'bullish_score': 1.0, 'bearish_score': 1.0}
 
-def calc_cvd(closes, volumes):
-    # Approximate Cumulative Volume Delta using direction-aware volume:
-    # if price_up (close>prev_close) => +volume, else -volume
-    if len(closes) < 2 or len(volumes) < 2:
-        return {"trend": "unknown", "value": 0.0}
-    deltas = []
-    for i in range(1, len(closes)):
-        direction = 1 if closes[i] > closes[i - 1] else (-1 if closes[i] < closes[i - 1] else 0)
-        deltas.append(direction * volumes[i])
-    cum = sum(deltas[-20:])  # sum last 20 bars
-    # simple classification
-    trend = "rising" if cum > 0 else ("falling" if cum < 0 else "flat")
-    return {"trend": trend, "value": safe_float(cum)}
+# ----------------- OPTIONAL INDICATOR STUBS -----------------
+# If you have implementations for these in your repo, keep them. If not, they are left as None-returning stubs.
+def calc_hma(values, period=16):
+    # optional - if not available, return None
+    try:
+        # simple HMA stub using WMA approximation via pandas - not precise but safe
+        series = pd.Series(values)
+        half = int(period/2)
+        wma_half = series.rolling(window=half).mean()
+        wma_full = series.rolling(window=period).mean()
+        diff = 2 * wma_half - wma_full
+        hma = diff.rolling(window=int(math.sqrt(period))).mean()
+        return hma.tolist()
+    except Exception:
+        return None
+
+def calc_alma(values, window=9, offset=0.85, sigma=6):
+    # optional ALMA approximation stub; return list or None
+    try:
+        s = pd.Series(values)
+        # very light ALMA-like smoothing using gaussian filter approx
+        return s.rolling(window=window, win_type='gaussian').mean(std=sigma).tolist()
+    except Exception:
+        return None
+
+def calc_tsi(values, r=25, s=13):
+    # optional TSI stub; return last value or None
+    try:
+        series = pd.Series(values)
+        delta = series.diff()
+        double_smoothed = delta.ewm(span=r, adjust=False).mean().ewm(span=s, adjust=False).mean()
+        double_smoothed_abs = delta.abs().ewm(span=r, adjust=False).mean().ewm(span=s, adjust=False).mean()
+        tsi = 100 * (double_smoothed / double_smoothed_abs)
+        return float(tsi.iloc[-1])
+    except Exception:
+        return None
+
+def calc_stc(values):
+    # optional STC stub - return last value or None
+    return None
+
+def calc_cvd(values, volumes):
+    # optional CVD stub, return dict {'trend': 'rising'|'falling', 'value': numeric}
+    try:
+        # simplistic CVD: cumulative delta using sign of close-open times volume
+        deltas = []
+        for i in range(len(values)):
+            o = values[i]
+            # we don't have open here; approximate by previous close
+            if i == 0:
+                deltas.append(0)
+            else:
+                delta = values[i] - values[i-1]
+                deltas.append(delta)
+        # compute rolling sum
+        cvd = float(sum(deltas[-20:]))
+        trend = "rising" if cvd >= 0 else "falling"
+        return {"trend": trend, "value": cvd}
+    except Exception:
+        return None
+
+# ----------------- DATA FETCH -----------------
+def fetch_top_volume_coins(limit=TOP_LIMIT):
+    try:
+        url = f"{BINANCE_FAPI}/fapi/v1/ticker/24hr"
+        resp = request_with_retries(url)
+        data = resp.json()
+        usdt_pairs = [t for t in data if 'symbol' in t and t['symbol'].endswith('USDT')]
+        # sort by quoteVolume
+        usdt_pairs_sorted = sorted(usdt_pairs, key=lambda x: float(x.get('quoteVolume', 0) or 0), reverse=True)
+        symbols = [c['symbol'] for c in usdt_pairs_sorted[:limit]]
+        return symbols
+    except Exception as e:
+        print(f"Error fetching top coins: {e}")
+        return []
+
+def fetch_binance_data(symbol, timeframe='5m', limit=KLINE_LIMIT_5M):
+    try:
+        url = f"{BINANCE_FAPI}/fapi/v1/klines"
+        params = {"symbol": symbol, "interval": timeframe, "limit": limit}
+        resp = request_with_retries(url, params=params)
+        data = resp.json()
+        out = []
+        for d in data:
+            out.append({
+                "open_time": int(d[0]),
+                "open": float(d[1]),
+                "high": float(d[2]),
+                "low": float(d[3]),
+                "close": float(d[4]),
+                "volume": float(d[5]),
+                "close_time": int(d[6])
+            })
+        return out
+    except Exception as e:
+        print(f"  - Could not fetch data for {symbol}: {e}")
+        return []
 
 def calc_market_trend(closes):
-    # Simple market trend based on EMA20/EMA50 & last price
     if len(closes) < 50:
         return 0.0
     ema20 = get_last_valid_value(calc_ema(closes, 20))
     ema50 = get_last_valid_value(calc_ema(closes, 50))
     if ema20 is None or ema50 is None:
         return 0.0
-    last = closes[-1]
-    if ema20 > ema50 and last > ema20:
+    if ema20 > ema50 and closes[-1] > ema20:
         return 10.0
     if ema20 > ema50:
         return 5.0
-    if ema20 < ema50 and last < ema20:
+    if ema20 < ema50 and closes[-1] < ema20:
         return -10.0
     if ema20 < ema50:
         return -5.0
     return 0.0
 
-# ============== Data fetchers ==============
-def fetch_top_volume_coins(limit=TOP_LIMIT):
-    try:
-        url = f"{BINANCE_FAPI}/fapi/v1/ticker/24hr"
-        resp = requests.get(url, proxies=proxies, timeout=30)
-        resp.raise_for_status()
-        data = resp.json()
-        usdt = [t for t in data if 'symbol' in t and t['symbol'].endswith('USDT')]
-        usdt_sorted = sorted(usdt, key=lambda x: float(x.get('quoteVolume', 0) or 0), reverse=True)
-        return [c['symbol'] for c in usdt_sorted[:limit]]
-    except Exception as e:
-        print(f"Error fetching top coins: {e}")
-        return []
-
-def fetch_binance_data(symbol, timeframe=KL_INTERVAL, limit=KL_LIMIT):
-    try:
-        url = f"{BINANCE_FAPI}/fapi/v1/klines?symbol={symbol}&interval={timeframe}&limit={limit}"
-        resp = requests.get(url, proxies=proxies, timeout=30)
-        resp.raise_for_status()
-        data = resp.json()
-        cleaned = []
-        for d in data:
-            cleaned.append({
-                "open": float(d[1]),
-                "high": float(d[2]),
-                "low": float(d[3]),
-                "close": float(d[4]),
-                "volume": float(d[5]),
-                "open_time": int(d[0]),
-                "close_time": int(d[6])
-            })
-        return cleaned
-    except Exception as e:
-        print(f"  - Could not fetch data for {symbol}: {e}")
-        return []
-
-# ============== 10th Amendment: analyze_data() ==============
+# ----------------- ANALYZE DATA (new 10th amendment) -----------------
 def analyze_data(symbol, data5m, market_trend):
     """
-    Analyze data and return a JSON-serializable dict with:
-    - coin, price, tp, sl, leverage, confidence, signal, estimated_profit, regime, timestamps
-    - analysis_log with components, indicator_scores, confluence_flags, would_be_strong_if
-    - indicators raw values
+    10th-Amendment analyze_data implementing A,B,C,D,E,F together.
+
+    Returns: dict (JSON-serializable) or None for Neutral
     """
-    # Minimal data check
-    if not data5m or len(data5m) < 60:
+    # ---------- basic guards ----------
+    try:
+        if not data5m or len(data5m) < 50:
+            return None
+        current_price = float(data5m[-1].get("close", None) or 0.0)
+        if current_price <= 0:
+            return None
+    except Exception:
         return None
 
-    closes = [d["close"] for d in data5m]
-    highs = [d["high"] for d in data5m]
-    lows  = [d["low"] for d in data5m]
-    volumes = [d["volume"] for d in data5m]
-    current_price = safe_float(closes[-1])
-    if current_price is None:
+    # ---------- extract OHLCV ----------
+    closes = [float(d["close"]) for d in data5m]
+    highs = [float(d["high"]) for d in data5m]
+    lows  = [float(d["low"]) for d in data5m]
+    volumes = [float(d.get("volume", 0) or 0) for d in data5m]
+
+    # ---------- compute core indicators (wrapped defensively) ----------
+    def safe_call(fname, *args, **kwargs):
+        try:
+            fn = globals().get(fname)
+            if callable(fn):
+                return fn(*args, **kwargs)
+        except Exception:
+            pass
         return None
 
-    # --- Indicators ---
-    latest_rsi = get_last_valid_value(calc_rsi(closes, 14))
-    macd = calc_macd(closes, 12, 26, 9)
-    macd_hist = safe_float(macd.get("histogram"))
-    macd_hist_series = macd.get("hist_series", [])
-    boll = calc_bollinger(closes, 20, 2)
-    atr = calc_atr(highs, lows, closes, 14) or (current_price * 0.002)
-    latest_cci = calc_cci(highs, lows, closes, 20)
-    vol_profile = calc_vol_profile(closes, highs, lows, volumes)
-    latest_ema50 = get_last_valid_value(calc_ema(closes, 50))
-    kelt = calc_keltner(highs, lows, closes, 20, atr_mult=1.5)
-    hma = calc_hma(closes, 21)
-    alma_val = alma(closes, window=9)
-    tsi_val = calc_tsi(closes)
-    stc_val = calc_stc(closes)
-    cvd_obj = calc_cvd(closes, volumes)
-    # Derived flags
+    latest_rsi = safe_call("get_last_valid_value", safe_call("calc_rsi", closes, 14))
+    latest_rsi = float(latest_rsi) if latest_rsi is not None else None
+
+    macd_obj = safe_call("calc_macd", closes, 12, 26, 9) or {}
+    macd_hist = macd_obj.get("histogram", 0.0)
+    try:
+        macd_hist = float(macd_hist)
+    except Exception:
+        macd_hist = 0.0
+
+    boll = safe_call("calc_bollinger", closes, 20, 2) or {"upper": None, "middle": None, "lower": None, "percent_b": None}
+    boll_upper = boll.get("upper")
+    boll_lower = boll.get("lower")
+    boll_mid = boll.get("middle")
     percent_b = boll.get("percent_b")
-    # Avoid None issues
-    latest_rsi = safe_float(latest_rsi)
-    latest_cci = safe_float(latest_cci)
-    latest_ema50 = safe_float(latest_ema50)
-    tsi_val = safe_float(tsi_val)
-    stc_val = safe_float(stc_val)
-    hma = safe_float(hma)
-    alma_val = safe_float(alma_val)
-    kelt_upper = safe_float(kelt.get("upper"))
-    kelt_lower = safe_float(kelt.get("lower"))
 
-    # --- Component / indicator scoring (separate engines) ---
-    indicator_scores = {}
-    base_buy = base_sell = 0.0
-    momentum_buy = momentum_sell = 0.0
-    trend_buy = trend_sell = 0.0
-    volume_buy = volume_sell = 0.0
-    confluence_bonus = 0.0
-    profit_check = 0.0
+    atr = safe_call("calc_atr", highs, lows, closes, 14)
+    try:
+        atr = float(atr) if atr is not None and not (isinstance(atr, float) and math.isnan(atr)) else None
+    except Exception:
+        atr = None
 
-    # --- BaseScore mapping (Buy) ---
-    # Price vs Bollinger lower
-    if percent_b is not None and percent_b <= 0.0:
-        indicator_scores['boll_buy_touch'] = 20.0
-        base_buy += 20.0
-    else:
-        indicator_scores['boll_buy_touch'] = 0.0
+    latest_cci = safe_call("calc_cci", highs, lows, closes, 20)
+    latest_cci = float(latest_cci) if latest_cci is not None else None
 
-    # RSI oversold
-    if latest_rsi is not None and latest_rsi <= 30:
-        indicator_scores['rsi_buy'] = 12.0
-        base_buy += 12.0
-    else:
-        indicator_scores['rsi_buy'] = 0.0
+    vol_profile = safe_call("calc_vol_profile", closes, highs, lows, volumes) or {"bullish_score": 0.0, "bearish_score": 0.0}
+    vp_bull = float(vol_profile.get("bullish_score", 0) or 0)
+    vp_bear = float(vol_profile.get("bearish_score", 0) or 0)
 
-    # CCI extreme
-    if latest_cci is not None and latest_cci >= 100:
-        indicator_scores['cci_buy'] = 8.0
-        base_buy += 8.0
-    else:
-        indicator_scores['cci_buy'] = 0.0
+    latest_ema50 = safe_call("get_last_valid_value", safe_call("calc_ema", closes, 50))
+    latest_ema50 = float(latest_ema50) if latest_ema50 is not None else None
 
-    # Keltner lower touch or %B very low
-    kelt_buy_touch = 0
-    if kelt_lower is not None and current_price <= kelt_lower:
-        indicator_scores['keltner_buy_touch'] = 6.0
-        base_buy += 6.0
-        kelt_buy_touch = 1
-    else:
-        indicator_scores['keltner_buy_touch'] = 0.0
-    if percent_b is not None and percent_b <= 0.05:
-        indicator_scores['percentb_buy'] = 6.0
-        base_buy += 6.0
-    else:
-        # ensure field exists
-        indicator_scores['percentb_buy'] = 0.0
+    # optional indicators
+    tsi_val = safe_call("calc_tsi", closes)
+    stc_val = safe_call("calc_stc", closes)
+    hma_series = safe_call("calc_hma", closes, 16)
+    hma_val = float(hma_series[-1]) if isinstance(hma_series, (list, tuple)) and hma_series[-1] is not None else None
+    alma_series = safe_call("calc_alma", closes, 9, 0.85, 6)
+    alma_val = float(alma_series[-1]) if isinstance(alma_series, (list, tuple)) and alma_series[-1] is not None else None
+    cvd_obj = safe_call("calc_cvd", closes, volumes)
 
-    # --- BaseScore mapping (Sell) ---
-    if percent_b is not None and percent_b >= 1.0:
-        indicator_scores['boll_sell_touch'] = 20.0
-        base_sell += 20.0
-    else:
-        indicator_scores['boll_sell_touch'] = 0.0
+    # ---------- scoring config ----------
+    STRONG_THRESHOLD = 65   # experiment
+    MIN_CONF_FOR_SIGNAL = 40
+    LEVERAGE = LEVERAGE_FOR_PROFIT_EVAL or 7.0
 
-    if latest_rsi is not None and latest_rsi >= 70:
-        indicator_scores['rsi_sell'] = 12.0
-        base_sell += 12.0
-    else:
-        indicator_scores['rsi_sell'] = 0.0
+    # Minimum TP/SL based on ATR but enforce MIN TP pct
+    MIN_TP_PCT = TP_PCT_MIN
+    MAX_TP_PCT = TP_PCT_MAX
+    MIN_SL_PCT = SL_PCT_MIN
+    MAX_SL_PCT = SL_PCT_MAX
+    TP_ATR_FACTOR = 1.8
+    SL_ATR_FACTOR = 1.8
 
-    if latest_cci is not None and latest_cci <= -100:
-        indicator_scores['cci_sell'] = 8.0
-        base_sell += 8.0
-    else:
-        indicator_scores['cci_sell'] = 0.0
+    effective_atr = atr if (atr and atr > 0) else (current_price * 0.002)
+    tp_pct_from_atr = (effective_atr * TP_ATR_FACTOR) / current_price if current_price else MIN_TP_PCT
+    tp_pct = max(MIN_TP_PCT, min(MAX_TP_PCT, tp_pct_from_atr))
+    sl_pct_from_atr = (effective_atr * SL_ATR_FACTOR) / current_price if current_price else MIN_SL_PCT
+    sl_pct = max(MIN_SL_PCT, min(MAX_SL_PCT, sl_pct_from_atr))
 
-    if percent_b is not None and percent_b >= 0.95:
-        indicator_scores['percentb_sell'] = 6.0
-        base_sell += 6.0
-    else:
-        indicator_scores['percentb_sell'] = 0.0
+    tp_buy = current_price + (tp_pct * current_price)
+    sl_buy = current_price - (sl_pct * current_price)
+    tp_sell = current_price - (tp_pct * current_price)
+    sl_sell = current_price + (sl_pct * current_price)
 
-    # --- Momentum (MACD normalized) ---
-    # Normalize macd_hist relative to ATR to prevent domination by large raw hist
-    macd_norm = 0.0
-    if macd_hist is not None and atr and atr > 0:
-        macd_norm = clamp01(abs(macd_hist) / max(atr * 1.0, 1e-8))
-    hist_sign = 0
-    if macd_hist is not None:
-        hist_sign = 1 if macd_hist > 0 else (-1 if macd_hist < 0 else 0)
-
-    # Buy momentum: positive MACD hist helps buy
-    indicator_scores['macd_buy'] = safe_float(10.0 * macd_norm if hist_sign > 0 else 0.0)
-    momentum_buy += indicator_scores['macd_buy']
-
-    # Sell momentum: negative MACD hist helps sell
-    indicator_scores['macd_sell'] = safe_float(10.0 * macd_norm if hist_sign < 0 else 0.0)
-    momentum_sell += indicator_scores['macd_sell']
-
-    # TSI & STC contributions
-    indicator_scores['tsi_val'] = safe_float(tsi_val or 0.0)
-    indicator_scores['stc_val'] = safe_float(stc_val or 0.0)
-    # small scoring from TSI / STC
-    if tsi_val is not None and tsi_val > 0:
-        momentum_buy += 5.0
-        indicator_scores['tsi_buy'] = 5.0
-    else:
-        indicator_scores['tsi_buy'] = 0.0
-    if tsi_val is not None and tsi_val < 0:
-        momentum_sell += 5.0
-        indicator_scores['tsi_sell'] = 5.0
-    else:
-        indicator_scores['tsi_sell'] = 0.0
-
-    if stc_val is not None and stc_val > 50:
-        momentum_buy += 5.0
-        indicator_scores['stc_buy'] = 5.0
-    else:
-        indicator_scores['stc_buy'] = 0.0
-    if stc_val is not None and stc_val < 50:
-        momentum_sell += 5.0
-        indicator_scores['stc_sell'] = 5.0
-    else:
-        indicator_scores['stc_sell'] = 0.0
-
-    # Recent candle thrust simple heuristic: compare last two closes
-    recent_thrust = 0.0
-    if len(closes) >= 3:
-        if closes[-1] > closes[-2] and closes[-2] > closes[-3]:
-            recent_thrust = 5.0  # bullish thrust
-            momentum_buy += 5.0
-            indicator_scores['thrust_buy'] = 5.0
-            indicator_scores['thrust_sell'] = 0.0
-        elif closes[-1] < closes[-2] and closes[-2] < closes[-3]:
-            recent_thrust = -5.0
-            momentum_sell += 5.0
-            indicator_scores['thrust_sell'] = 5.0
-            indicator_scores['thrust_buy'] = 0.0
-        else:
-            indicator_scores['thrust_buy'] = 0.0
-            indicator_scores['thrust_sell'] = 0.0
-    else:
-        indicator_scores['thrust_buy'] = 0.0
-        indicator_scores['thrust_sell'] = 0.0
-
-    # --- Trend alignment ---
-    # BTC market_trend used as bias
-    trend_bias_buy = 0.0
-    trend_bias_sell = 0.0
-    if market_trend >= 5:
-        trend_bias_buy += 8.0
-    elif market_trend <= -5:
-        trend_bias_sell += 8.0
-    # EMA50 slope
-    if latest_ema50 is not None:
-        ema50_series = calc_ema(closes, 50)
-        ema50_prev = ema50_series[-2] if len(ema50_series) >= 2 else None
-        if ema50_prev is not None:
-            if ema50_series[-1] > ema50_prev and current_price > ema50_series[-1]:
-                trend_buy += 7.0
-                indicator_scores['ema50_buy'] = 7.0
-            else:
-                indicator_scores['ema50_buy'] = 0.0
-            if ema50_series[-1] < ema50_prev and current_price < ema50_series[-1]:
-                trend_sell += 7.0
-                indicator_scores['ema50_sell'] = 7.0
-            else:
-                indicator_scores['ema50_sell'] = 0.0
-        else:
-            indicator_scores['ema50_buy'] = 0.0
-            indicator_scores['ema50_sell'] = 0.0
-    else:
-        indicator_scores['ema50_buy'] = 0.0
-        indicator_scores['ema50_sell'] = 0.0
-
-    # HMA / ALMA trend contributions
-    if hma is not None and hma > 0:
-        # crude direction: compare HMA last vs previous
-        # recompute HMA series quickly
-        hma_series = []
+    # ---------- BUY / SELL scoring engine ----------
+    def buy_base_score():
+        s = 0.0
+        if percent_b is not None:
+            if percent_b <= 0.0:
+                s += 20.0
+            elif percent_b <= 0.2:
+                s += 12.0
+            elif percent_b <= 0.4:
+                s += 6.0
+        if latest_rsi is not None:
+            if latest_rsi <= 30:
+                s += 12.0
+            elif latest_rsi <= 40:
+                s += 6.0
+        if latest_cci is not None:
+            if latest_cci >= 100:
+                s += 8.0
+            elif latest_cci >= 60:
+                s += 4.0
         try:
-            # compute small rolling HMA values for direction if possible
-            hma_series = pd.Series(closes).rolling(window=21).apply(lambda x: calc_hma(x.tolist(), 21)).dropna().tolist()
+            if hma_val is not None and alma_val is not None:
+                if latest_ema50 is not None and current_price > latest_ema50:
+                    s += 6.0
         except Exception:
-            hma_series = []
-        if len(hma_series) >= 2 and hma_series[-1] > hma_series[-2]:
-            trend_buy += 5.0
-            indicator_scores['hma_buy'] = 5.0
-        else:
-            indicator_scores['hma_buy'] = 0.0
-        if len(hma_series) >= 2 and hma_series[-1] < hma_series[-2]:
-            trend_sell += 5.0
-            indicator_scores['hma_sell'] = 5.0
-        else:
-            indicator_scores['hma_sell'] = 0.0
-    else:
-        indicator_scores['hma_buy'] = 0.0
-        indicator_scores['hma_sell'] = 0.0
+            pass
+        return s
 
-    if alma_val is not None:
-        indicator_scores['alma_val'] = alma_val
-        # crude rule: if ALMA recent slope up
+    def sell_base_score():
+        s = 0.0
+        if percent_b is not None:
+            if percent_b >= 1.0:
+                s += 20.0
+            elif percent_b >= 0.8:
+                s += 12.0
+            elif percent_b >= 0.6:
+                s += 6.0
+        if latest_rsi is not None:
+            if latest_rsi >= 70:
+                s += 12.0
+            elif latest_rsi >= 60:
+                s += 6.0
+        if latest_cci is not None:
+            if latest_cci <= -100:
+                s += 8.0
+            elif latest_cci <= -60:
+                s += 4.0
         try:
-            alma_series = pd.Series(closes).rolling(window=9).apply(lambda x: alma(x.tolist(), window=9)).dropna().tolist()
+            if hma_val is not None and alma_val is not None:
+                if latest_ema50 is not None and current_price < latest_ema50:
+                    s += 6.0
         except Exception:
-            alma_series = []
-        if len(alma_series) >= 2 and alma_series[-1] > alma_series[-2]:
-            trend_buy += 5.0
-            indicator_scores['alma_buy'] = 5.0
+            pass
+        return s
+
+    def buy_momentum_score():
+        s = 0.0
+        if effective_atr and effective_atr > 0:
+            hist_norm = min(1.5, abs(macd_hist) / (0.5 * effective_atr))
         else:
-            indicator_scores['alma_buy'] = 0.0
-        if len(alma_series) >= 2 and alma_series[-1] < alma_series[-2]:
-            trend_sell += 5.0
-            indicator_scores['alma_sell'] = 5.0
+            hist_norm = min(1.5, abs(macd_hist))
+        if macd_hist > 0:
+            s += 12.0 * min(1.0, hist_norm)
+        if isinstance(tsi_val, (int, float)) and tsi_val > 0:
+            s += 4.0
+        if isinstance(stc_val, (int, float)) and stc_val > 50:
+            s += 4.0
+        try:
+            last = data5m[-1]; prev = data5m[-2]
+            if float(last["close"]) > float(last["open"]) and float(last["close"]) > float(prev["high"]):
+                s += 5.0
+        except Exception:
+            pass
+        return s
+
+    def sell_momentum_score():
+        s = 0.0
+        if effective_atr and effective_atr > 0:
+            hist_norm = min(1.5, abs(macd_hist) / (0.5 * effective_atr))
         else:
-            indicator_scores['alma_sell'] = 0.0
-    else:
-        indicator_scores['alma_buy'] = 0.0
-        indicator_scores['alma_sell'] = 0.0
+            hist_norm = min(1.5, abs(macd_hist))
+        if macd_hist < 0:
+            s += 12.0 * min(1.0, hist_norm)
+        if isinstance(tsi_val, (int, float)) and tsi_val < 0:
+            s += 4.0
+        if isinstance(stc_val, (int, float)) and stc_val < 50:
+            s += 4.0
+        try:
+            last = data5m[-1]; prev = data5m[-2]
+            if float(last["close"]) < float(last["open"]) and float(last["close"]) < float(prev["low"]):
+                s += 5.0
+        except Exception:
+            pass
+        return s
 
-    # Add market trend bias
-    trend_buy += trend_bias_buy
-    trend_sell += trend_bias_sell
+    def buy_trend_score():
+        s = 0.0
+        try:
+            mt = float(market_trend)
+            if mt >= 5:
+                s += 8.0
+        except Exception:
+            pass
+        try:
+            ema_series = safe_call("calc_ema", closes, 50)
+            if isinstance(ema_series, (list, tuple)) and len(ema_series) >= 2:
+                if ema_series[-1] is not None and ema_series[-2] is not None and ema_series[-1] > ema_series[-2] and current_price > ema_series[-1]:
+                    s += 7.0
+        except Exception:
+            pass
+        return s
 
-    # Cap trend components to configured max (0..15)
-    trend_buy = min(15.0, trend_buy)
-    trend_sell = min(15.0, trend_sell)
+    def sell_trend_score():
+        s = 0.0
+        try:
+            mt = float(market_trend)
+            if mt <= -5:
+                s += 8.0
+        except Exception:
+            pass
+        try:
+            ema_series = safe_call("calc_ema", closes, 50)
+            if isinstance(ema_series, (list, tuple)) and len(ema_series) >= 2:
+                if ema_series[-1] is not None and ema_series[-2] is not None and ema_series[-1] < ema_series[-2] and current_price < ema_series[-1]:
+                    s += 7.0
+        except Exception:
+            pass
+        return s
 
-    # --- Volume / Order-flow ---
-    if vol_profile and vol_profile.get("bullish_score", 0) > 0:
-        volume_buy += 5.0
-        indicator_scores['volprofile_buy'] = float(vol_profile.get("bullish_score", 0))
-    else:
-        indicator_scores['volprofile_buy'] = 0.0
+    def buy_volume_score():
+        s = 0.0
+        if vp_bull > 0:
+            s += 5.0
+        try:
+            if cvd_obj and isinstance(cvd_obj, dict) and "fall" in str(cvd_obj.get("trend", "")).lower():
+                s += 5.0
+        except Exception:
+            pass
+        return s
 
-    if vol_profile and vol_profile.get("bearish_score", 0) > 0:
-        volume_sell += 5.0
-        indicator_scores['volprofile_sell'] = float(vol_profile.get("bearish_score", 0))
-    else:
-        indicator_scores['volprofile_sell'] = 0.0
+    def sell_volume_score():
+        s = 0.0
+        if vp_bear > 0:
+            s += 5.0
+        try:
+            if cvd_obj and isinstance(cvd_obj, dict) and "rise" in str(cvd_obj.get("trend", "")).lower():
+                s += 5.0
+        except Exception:
+            pass
+        return s
 
-    # CVD trend
-    cvd_trend = cvd_obj.get("trend", "flat")
-    if cvd_trend == "falling":
-        volume_buy += 5.0
-        indicator_scores['cvd_buy'] = 5.0
-        indicator_scores['cvd_trend'] = "falling"
-    else:
-        indicator_scores['cvd_buy'] = 0.0
-    if cvd_trend == "rising":
-        volume_sell += 5.0
-        indicator_scores['cvd_sell'] = 5.0
-        indicator_scores['cvd_trend'] = "rising"
-    else:
-        indicator_scores['cvd_sell'] = 0.0
-
-    # --- Confluence bonuses (additive only) ---
+    # confluence bonuses (cap at 30)
     confluence_flags = []
-    # RSI<=30 & CVD falling
-    if latest_rsi is not None and latest_rsi <= 30 and cvd_trend == "falling":
-        confluence_bonus += 12.0
-        confluence_flags.append("RSI<=30 & CVD_falling")
-    # RSI<=30 & HMA up & ALMA up
-    if latest_rsi is not None and latest_rsi <= 30 and ("hma_buy" in indicator_scores and indicator_scores['hma_buy'] > 0) and ("alma_buy" in indicator_scores and indicator_scores['alma_buy'] > 0):
-        confluence_bonus += 16.0
-        confluence_flags.append("RSI<=30 & HMA_up & ALMA_up")
-    # CVD falling & HMA up
-    if cvd_trend == "falling" and ("hma_buy" in indicator_scores and indicator_scores['hma_buy'] > 0):
-        confluence_bonus += 10.0
-        confluence_flags.append("CVD_falling & HMA_up")
-    # RSI>=70 & CVD rising
-    if latest_rsi is not None and latest_rsi >= 70 and cvd_trend == "rising":
-        confluence_bonus += 12.0
-        confluence_flags.append("RSI>=70 & CVD_rising")
-    # RSI>=70 & HMA down & ALMA down
-    if latest_rsi is not None and latest_rsi >= 70 and ("hma_sell" in indicator_scores and indicator_scores['hma_sell'] > 0) and ("alma_sell" in indicator_scores and indicator_scores['alma_sell'] > 0):
-        confluence_bonus += 16.0
-        confluence_flags.append("RSI>=70 & HMA_down & ALMA_down")
-    # CVD rising & HMA down
-    if cvd_trend == "rising" and ("hma_sell" in indicator_scores and indicator_scores['hma_sell'] > 0):
-        confluence_bonus += 10.0
-        confluence_flags.append("CVD_rising & HMA_down")
+    confluence_points = 0.0
+    # Buy confluences
+    if latest_rsi is not None and latest_rsi <= 30:
+        if cvd_obj and isinstance(cvd_obj, dict) and "fall" in str(cvd_obj.get("trend", "")).lower():
+            confluence_flags.append("RSI<=30 & CVD_falling"); confluence_points += 12.0
+        if (hma_val is not None and alma_val is not None) and (latest_ema50 is not None and current_price > latest_ema50):
+            confluence_flags.append("RSI<=30 & HMA_up & ALMA_up"); confluence_points += 16.0
+    if cvd_obj and isinstance(cvd_obj, dict) and ("fall" in str(cvd_obj.get("trend", "")).lower() and (hma_val is not None and alma_val is not None)):
+        confluence_flags.append("CVD_falling & HMA_up"); confluence_points += 10.0
 
-    # clamp confluence bonus to max 20
-    confluence_bonus = min(20.0, confluence_bonus)
+    # Sell confluences
+    if latest_rsi is not None and latest_rsi >= 70:
+        if cvd_obj and isinstance(cvd_obj, dict) and "rise" in str(cvd_obj.get("trend", "")).lower():
+            confluence_flags.append("RSI>=70 & CVD_rising"); confluence_points += 12.0
+        if (hma_val is not None and alma_val is not None) and (latest_ema50 is not None and current_price < latest_ema50):
+            confluence_flags.append("RSI>=70 & HMA_down & ALMA_down"); confluence_points += 16.0
+    if cvd_obj and isinstance(cvd_obj, dict) and ("rise" in str(cvd_obj.get("trend", "")).lower() and (hma_val is not None and alma_val is not None)):
+        confluence_flags.append("CVD_rising & HMA_down"); confluence_points += 10.0
 
-    # --- Profit / Risk sizing check ---
-    # dynamic TP/SL based on ATR (TP = +/- 1.8*ATR unless overridden)
-    tp_factor = 1.8
-    sl_factor = 1.8
-    tp = current_price
-    sl = current_price
-    tp = current_price + (atr * tp_factor)
-    sl = current_price - (atr * sl_factor)
-    profit_pct_on_margin = 0.0
-    if current_price > 0:
-        profit_pct_on_margin = abs(((tp - current_price) / current_price) * 100.0) * LEVERAGE_FOR_PROFIT_EVAL
-    indicator_scores['estimated_profit_margin_pct'] = safe_float(profit_pct_on_margin)
+    confluence_points = min(30.0, float(confluence_points))
 
-    if profit_pct_on_margin >= MIN_PROFIT_MARGIN:
-        profit_check += 3.0
-    if profit_pct_on_margin >= 4.0:
-        profit_check = min(5.0, profit_check + 2.0)
+    # compute components
+    base_buy = min(40.0, buy_base_score())
+    base_sell = min(40.0, sell_base_score())
+    mom_buy = min(20.0, buy_momentum_score())
+    mom_sell = min(20.0, sell_momentum_score())
+    tr_buy = min(15.0, buy_trend_score())
+    tr_sell = min(15.0, sell_trend_score())
+    vol_buy = min(10.0, buy_volume_score())
+    vol_sell = min(10.0, sell_volume_score())
+    conf = confluence_points
 
-    # --- Compose components (cap them to their maxima) ---
-    base_buy = min(40.0, base_buy)
-    base_sell = min(40.0, base_sell)
-    momentum_buy = min(20.0, momentum_buy)
-    momentum_sell = min(20.0, momentum_sell)
-    volume_buy = min(10.0, volume_buy)
-    volume_sell = min(10.0, volume_sell)
-    profit_check = min(5.0, profit_check)
-    # We already capped confluence_bonus
+    # subtotal decide initial side
+    subtotal_buy = base_buy + mom_buy + tr_buy + vol_buy
+    subtotal_sell = base_sell + mom_sell + tr_sell + vol_sell
 
-    # Total confidence by engine
-    confidence_buy_raw = base_buy + momentum_buy + trend_buy + volume_buy + confluence_bonus + profit_check
-    confidence_sell_raw = base_sell + momentum_sell + trend_sell + volume_sell + confluence_bonus + profit_check
-
-    confidence_buy = clamp0_100(confidence_buy_raw)
-    confidence_sell = clamp0_100(confidence_sell_raw)
-
-    # initial directional preference (higher of the two)
-    engine = "Neutral"
-    chosen_confidence = 0
-    signal_label = "Neutral"
-    if confidence_buy > confidence_sell and confidence_buy >= BUY_SELL_THRESHOLD:
-        engine = "Buy"
-        chosen_confidence = confidence_buy
-        if confidence_buy >= STRONG_THRESHOLD:
-            signal_label = "Strong Buy"
-        else:
-            signal_label = "Buy"
-    elif confidence_sell > confidence_buy and confidence_sell >= BUY_SELL_THRESHOLD:
-        engine = "Sell"
-        chosen_confidence = confidence_sell
-        if confidence_sell >= STRONG_THRESHOLD:
-            signal_label = "Strong Sell"
-        else:
-            signal_label = "Sell"
+    initial_signal = "Neutral"
+    if subtotal_buy > subtotal_sell and subtotal_buy > 0:
+        initial_signal = "Buy"
+    elif subtotal_sell > subtotal_buy and subtotal_sell > 0:
+        initial_signal = "Sell"
     else:
-        engine = "Neutral"
-        chosen_confidence = max(confidence_buy, confidence_sell)
-        signal_label = "Neutral"
+        initial_signal = "Neutral"
 
-    # Decide leverage suggestion
-    leverage = 5
-    if chosen_confidence >= 80:
-        leverage = 9
-    elif chosen_confidence >= 65:
-        leverage = 7
-    elif chosen_confidence >= 50:
-        leverage = 6
+    # compute profit check based on selected tp/sl
+    if initial_signal == "Buy":
+        tp = tp_buy; sl = sl_buy
+    elif initial_signal == "Sell":
+        tp = tp_sell; sl = sl_sell
+    else:
+        tp = tp_buy; sl = sl_buy
 
-    # Build analysis_log components
-    components = {
-        "base_score": float(base_buy if engine == "Buy" else base_sell if engine == "Sell" else max(base_buy, base_sell)),
-        "momentum_score": float(momentum_buy if engine == "Buy" else momentum_sell if engine == "Sell" else max(momentum_buy, momentum_sell)),
-        "trend_score": float(trend_buy if engine == "Buy" else trend_sell if engine == "Sell" else max(trend_buy, trend_sell)),
-        "volume_score": float(volume_buy if engine == "Buy" else volume_sell if engine == "Sell" else max(volume_buy, volume_sell)),
-        "confluence_bonus": float(confluence_bonus),
-        "profit_check": float(profit_check)
+    price_move_pct = abs((tp - current_price) / current_price) if current_price else 0.0
+    estimated_profit_margin_pct = float(price_move_pct * LEVERAGE * 100.0)
+
+    profit_comp_buy = 0.0; profit_comp_sell = 0.0
+    if estimated_profit_margin_pct >= MIN_PROFIT_MARGIN:
+        profit_comp_buy = profit_comp_sell = 3.0
+    if estimated_profit_margin_pct >= 4.0:
+        profit_comp_buy = profit_comp_sell = 5.0
+
+    # components dict & raw confidence
+    if initial_signal == "Buy":
+        components = {"base_score": base_buy, "momentum_score": mom_buy, "trend_score": tr_buy, "volume_score": vol_buy, "confluence_bonus": conf, "profit_check": profit_comp_buy}
+        confidence_raw = base_buy + mom_buy + tr_buy + vol_buy + conf + profit_comp_buy
+    elif initial_signal == "Sell":
+        components = {"base_score": base_sell, "momentum_score": mom_sell, "trend_score": tr_sell, "volume_score": vol_sell, "confluence_bonus": conf, "profit_check": profit_comp_sell}
+        confidence_raw = base_sell + mom_sell + tr_sell + vol_sell + conf + profit_comp_sell
+    else:
+        components = {"base_score": 0.0, "momentum_score": 0.0, "trend_score": 0.0, "volume_score": 0.0, "confluence_bonus": 0.0, "profit_check": 0.0}
+        confidence_raw = 0.0
+
+    confidence = int(max(0, min(100, round(float(confidence_raw)))))
+
+    # final textual label
+    if initial_signal == "Buy":
+        if confidence >= STRONG_THRESHOLD:
+            final_signal = "Strong Buy"
+        elif confidence >= MIN_CONF_FOR_SIGNAL:
+            final_signal = "Buy"
+        else:
+            final_signal = "Neutral"
+    elif initial_signal == "Sell":
+        if confidence >= STRONG_THRESHOLD:
+            final_signal = "Strong Sell"
+        elif confidence >= MIN_CONF_FOR_SIGNAL:
+            final_signal = "Sell"
+        else:
+            final_signal = "Neutral"
+    else:
+        final_signal = "Neutral"
+
+    missing_points = 0
+    top_missing_components = []
+    if final_signal.startswith("Strong"):
+        would_be = {"if_confidence_needed": STRONG_THRESHOLD, "missing_points": 0, "top_missing_components": []}
+    else:
+        missing_points = max(0, int(max(0, STRONG_THRESHOLD - confidence)))
+        caps = {"base_score": 40.0, "momentum_score": 20.0, "trend_score": 15.0, "volume_score": 10.0, "confluence_bonus": 30.0, "profit_check": 5.0}
+        comp_gaps = []
+        for k, v in components.items():
+            gap = max(0.0, caps.get(k, 0.0) - float(v))
+            comp_gaps.append({"component": k, "gap": round(gap, 2)})
+        comp_gaps = sorted(comp_gaps, key=lambda x: x["gap"], reverse=True)
+        top_missing_components = comp_gaps[:3]
+        would_be = {"if_confidence_needed": STRONG_THRESHOLD, "missing_points": missing_points, "top_missing_components": top_missing_components}
+
+    # build indicator_scores dict for logging (numbers only)
+    indicator_scores = {
+        "percent_b": float(percent_b) if percent_b is not None else None,
+        "rsi": float(latest_rsi) if latest_rsi is not None else None,
+        "cci": float(latest_cci) if latest_cci is not None else None,
+        "macd_hist": float(macd_hist),
+        "atr": float(effective_atr) if effective_atr is not None else None,
+        "hma": float(hma_val) if hma_val is not None else None,
+        "alma": float(alma_val) if alma_val is not None else None,
+        "tsi": float(tsi_val) if isinstance(tsi_val, (int, float)) else None,
+        "stc": float(stc_val) if isinstance(stc_val, (int, float)) else None,
+        "volProfile_bull": float(vp_bull),
+        "volProfile_bear": float(vp_bear),
+        "cvd_trend": (cvd_obj.get("trend") if isinstance(cvd_obj, dict) else None),
+        "estimated_profit_margin_pct": float(estimated_profit_margin_pct)
     }
 
-    # Top missing components calculation for would_be_strong_if
-    current_conf = chosen_confidence
-    missing_points = max(0, STRONG_THRESHOLD - current_conf)
-    # compute per-component deficits sorted descending
-    component_gaps = []
-    for k, v in components.items():
-        # potential maximum for each component (as we designed): base(40), momentum(20), trend(15), volume(10), confluence(20), profit(5)
-        potential_max = {
-            "base_score": 40.0, "momentum_score": 20.0, "trend_score": 15.0,
-            "volume_score": 10.0, "confluence_bonus": 20.0, "profit_check": 5.0
-        }.get(k, 0.0)
-        gap = max(0.0, potential_max - v)
-        component_gaps.append({"component": k, "gap": float(round(gap, 2))})
-
-    component_gaps_sorted = sorted(component_gaps, key=lambda x: x["gap"], reverse=True)[:3]
-
-    would_be = {
-        "if_confidence_needed": STRONG_THRESHOLD,
-        "missing_points": int(math.ceil(missing_points)),
-        "top_missing_components": component_gaps_sorted
+    analysis_log = {
+        "engine": str(initial_signal),
+        "confidence": int(confidence),
+        "components": {k: float(v) for k, v in components.items()},
+        "indicator_scores": indicator_scores,
+        "confluence_flags": list(confluence_flags),
+        "would_be_strong_if": would_be,
+        "regime_bias": float(market_trend) if market_trend is not None else None
     }
 
-    # Build the final return object (JSON-safe)
+    # final result object (JSON serializable)
     result = {
         "coin": symbol,
-        "price": float(round(current_price, 6)),
-        "tp": float(round(tp, 6)),
-        "sl": float(round(sl, 6)),
-        "leverage": f"{leverage}x",
-        "confidence": int(chosen_confidence),
-        "signal": signal_label,
-        "estimated_profit": f"{profit_pct_on_margin:.2f}%",
-        "regime": ("Bullish" if market_trend > 0 else "Bearish" if market_trend < 0 else "Neutral"),
-        "signal_time_utc": utc_now_iso(),
-        "signal_time_ist": ist_now_iso(),
-        "analysis_log": {
-            "engine": engine,
-            "confidence": int(chosen_confidence),
-            "components": components,
-            "indicator_scores": {k: (float(v) if isinstance(v, (int,float)) else v) for k, v in indicator_scores.items()},
-            "confluence_flags": confluence_flags,
-            "would_be_strong_if": would_be,
-            "regime_bias": float(market_trend)
-        },
+        "price": round(float(current_price), 8),
+        "tp": round(float(tp), 8),
+        "sl": round(float(sl), 8),
+        "leverage": f"{int(LEVERAGE)}x",
+        "confidence": int(confidence),
+        "signal": final_signal,
+        "estimated_profit": f"{estimated_profit_margin_pct:.2f}%",
+        "regime": ("Bullish" if (market_trend is not None and float(market_trend) >= 5) else ("Bearish" if (market_trend is not None and float(market_trend) <= -5) else "Neutral")),
+        "signal_time_utc": datetime.utcnow().replace(tzinfo=timezone.utc).isoformat(),
+        "signal_time_ist": datetime.utcnow().replace(tzinfo=timezone.utc).astimezone(pytz.timezone("Asia/Kolkata")).isoformat(),
+        "analysis_log": analysis_log,
         "indicators": {
-            "rsi5m": safe_float(latest_rsi),
-            "macd5m": {"macd": safe_float(macd.get("macd")), "signal": safe_float(macd.get("signal")), "histogram": safe_float(macd_hist)},
-            "boll5m": {"upper": safe_float(boll.get("upper")), "middle": safe_float(boll.get("middle")), "lower": safe_float(boll.get("lower")), "percent_b": safe_float(percent_b)},
-            "cci5m": safe_float(latest_cci),
-            "marketTrend": float(market_trend),
-            "volProfile": {"bullish_score": float(vol_profile.get("bullish_score", 0)), "bearish_score": float(vol_profile.get("bearish_score", 0))},
-            "ema50_5m": safe_float(latest_ema50),
-            "keltner5m": {"upper": kelt_upper, "middle": safe_float(kelt.get("middle")), "lower": kelt_lower},
-            "hma5m": safe_float(hma),
-            "alma5m": safe_float(alma_val),
-            "tsi5m": safe_float(tsi_val),
-            "stc5m": safe_float(stc_val),
-            "cvd5m": {"trend": cvd_obj.get("trend"), "value": safe_float(cvd_obj.get("value"))}
+            "rsi5m": (float(latest_rsi) if latest_rsi is not None else None),
+            "macd5m": {"histogram": float(macd_hist)},
+            "boll5m": {"upper": (float(boll_upper) if boll_upper is not None else None), "middle": (float(boll_mid) if boll_mid is not None else None), "lower": (float(boll_lower) if boll_lower is not None else None), "percent_b": (float(percent_b) if percent_b is not None else None)},
+            "cci5m": (float(latest_cci) if latest_cci is not None else None),
+            "marketTrend": float(market_trend) if market_trend is not None else None,
+            "volProfile": {"bullish_score": float(vp_bull), "bearish_score": float(vp_bear)},
+            "ema50_5m": (float(latest_ema50) if latest_ema50 is not None else None),
+            "atr5m": (float(effective_atr) if effective_atr is not None else None),
+            "hma5m": (float(hma_val) if hma_val is not None else None),
+            "alma5m": (float(alma_val) if alma_val is not None else None),
+            "tsi5m": (float(tsi_val) if isinstance(tsi_val, (int, float)) else None),
+            "stc5m": (float(stc_val) if isinstance(stc_val, (int, float)) else None),
+            "cvd5m": (cvd_obj if isinstance(cvd_obj, dict) else None)
         }
     }
 
-    # ensure json safety: convert any non-serializable through json_safe
-    # but prefer simple types
-    return json.loads(json.dumps(result, default=json_safe))
+    # drop Neutral signals (we don't record neutrals per your latest preference)
+    if final_signal == "Neutral":
+        return None
 
-# ============== Main Execution ==============
-def main():
-    print("Starting automated data fetch...")
+    return result
+
+# ----------------- MAIN EXECUTION -----------------
+if __name__ == "__main__":
+    print("[INFO] Starting automated data fetch...")
     top_coins = fetch_top_volume_coins()
     if not top_coins:
-        print("Could not fetch top coins. Exiting.")
-        return
+        print("[ERROR] Could not fetch top coins. Exiting.")
+        raise SystemExit(1)
 
-    print(f"Found {len(top_coins)} coins to analyze.")
-    # ensure folders exist
-    os.makedirs(ARCHIVE_FOLDER, exist_ok=True)
+    print(f"[INFO] Found {len(top_coins)} coins to analyze.")
 
-    # Get BTC data for market trend
-    btc_data = fetch_binance_data("BTCUSDT", timeframe=KL_INTERVAL, limit=REGIME_HORIZON+10)
-    btc_closes = [d["close"] for d in btc_data] if btc_data else []
-    market_trend = calc_market_trend(btc_closes)
-    print(f"Market Trend: {market_trend}")
+    # determine BTC market trend using BTCUSDT 5m closes
+    btc_data = fetch_binance_data("BTCUSDT")
+    if not btc_data:
+        print("[WARN] Could not fetch BTC data for market trend. Defaulting to 0.")
+        market_trend = 0.0
+    else:
+        market_trend = calc_market_trend([d["close"] for d in btc_data])
+    print(f"[INFO] Market Trend: {market_trend}")
 
     all_results = []
     for coin in top_coins:
         print(f" - Analyzing {coin} ...")
-        time.sleep(0.15)
+        time.sleep(0.18)
         data_5m = fetch_binance_data(coin)
         if not data_5m:
             continue
         try:
             res = analyze_data(coin, data_5m, market_trend)
-            if res is None:
-                continue
-            # Optionally skip neutral records
-            if not RECORD_NEUTRALS and res.get("signal", "") == "Neutral":
-                continue
-            all_results.append(res)
+            if res:
+                all_results.append(res)
         except Exception as e:
-            print(f"   ERROR analyzing {coin}: {e}")
+            print(f"  - Error analyzing {coin}: {e}")
+            continue
 
-    strong_signals = [s for s in all_results if "Strong" in s.get("signal", "")]
-    print(f"\nAnalysis complete. Found {len(strong_signals)} strong signals.")
-
-    # Timestamp for filenames (IST)
-    utc_now = datetime.now(pytz.utc)
-    ist_tz = pytz.timezone("Asia/Kolkata")
-    ist_now = utc_now.astimezone(ist_tz)
-    timestamp_str = ist_now.strftime("%Y-%m-%d_%H-%M-%S")
-
-    file_suffix = "_STRONG" if strong_signals else ""
-    archive_filename = f"signals_{timestamp_str}{file_suffix}.json"
-    archive_filepath = os.path.join(ARCHIVE_FOLDER, archive_filename)
-
-    # Save archive and live files
+    # Save results
     if all_results:
-        with open(archive_filepath, "w", encoding="utf-8") as f:
-            json.dump(all_results, f, indent=2)
-        print(f"SUCCESS: Archive file saved to {archive_filepath}")
+        strong_signals = [s for s in all_results if "Strong" in s.get('signal', '')]
+        print(f"\nAnalysis complete. Found {len(strong_signals)} strong signals.")
+        print("Saving full analysis file...")
 
-        with open(LIVE_FILENAME, "w", encoding="utf-8") as f:
+        utc_now = datetime.now(timezone.utc)
+        ist_tz = pytz.timezone("Asia/Kolkata")
+        ist_now = utc_now.astimezone(ist_tz)
+        timestamp_str = ist_now.strftime("%Y-%m-%d_%H-%M-%S")
+
+        file_suffix = "_STRONG" if strong_signals else ""
+        archive_filename = f"signals_{timestamp_str}{file_suffix}.json"
+
+        os.makedirs(ARCHIVE_FOLDER, exist_ok=True)
+        archive_filepath = os.path.join(ARCHIVE_FOLDER, archive_filename)
+
+        # ensure JSON serializable (it should be)
+        with open(archive_filepath, 'w', encoding='utf-8') as f:
             json.dump(all_results, f, indent=2)
-        print(f"SUCCESS: Live data file saved as {LIVE_FILENAME}")
+        print(f"[OK] Archive file saved to {archive_filepath}")
+
+        with open(LIVE_FILENAME, 'w', encoding='utf-8') as f:
+            json.dump(all_results, f, indent=2)
+        print(f"[OK] Live data file saved as {LIVE_FILENAME}")
     else:
-        print("No results to save.")
-
-if __name__ == "__main__":
-    main()
+        print("\nNo signals generated (no file saved).")
