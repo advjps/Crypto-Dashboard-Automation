@@ -1,0 +1,13 @@
+BACKTEST REPORT FOR: signals_2025-09-06_16-39-36.json
+Processed at UTC: 2025-09-07T15:29:53.416489
+
+--- BUY SIGNALS ---
+ (none)
+
+--- SELL SIGNALS ---
+AAVEUSDT     Sell              42 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+PYTHUSDT     Sell              49 Success      dur: 106 ttp: 106 tsl:None est:   6.04%
+1000BONKUSDT Sell              44 Success      dur:  35 ttp:  35 tsl:None est:   5.04%
+TRXUSDT      Sell              46 Success      dur: 229 ttp: 229 tsl:None est:   5.04%
+OPUSDT       Sell              41 Fail         dur: 215 ttp:None tsl: 215 est:   5.04%
+LINEAUSDT    Sell              45 Success      dur:   9 ttp:   9 tsl:None est:  11.20%

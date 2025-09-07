@@ -1,0 +1,25 @@
+BACKTEST REPORT FOR: signals_2025-09-06_15-41-07.json
+Processed at UTC: 2025-09-07T15:29:33.893797
+
+--- BUY SIGNALS ---
+SOMIUSDT     Buy               40 Success      dur:  10 ttp:  10 tsl:None est:  11.20%
+BCHUSDT      Buy               59 Fail         dur:  15 ttp:None tsl:  15 est:   5.04%
+
+--- SELL SIGNALS ---
+SOLUSDT      Sell              44 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+XRPUSDT      Sell              53 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+DOGEUSDT     Sell              51 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+BIOUSDT      Sell              51 Success      dur:  29 ttp:  29 tsl:None est:  11.20%
+LINKUSDT     Sell              41 Fail         dur: 115 ttp:None tsl: 115 est:   5.04%
+SUIUSDT      Sell              53 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+1000PEPEUSDT Sell              58 Fail         dur: 119 ttp:None tsl: 119 est:   5.04%
+ADAUSDT      Sell              52 Fail         dur: 173 ttp:None tsl: 173 est:   5.04%
+WIFUSDT      Sell              52 Fail         dur: 237 ttp:None tsl: 237 est:   5.04%
+LTCUSDT      Sell              43 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+FILUSDT      Sell              40 Fail         dur: 249 ttp:None tsl: 249 est:   5.04%
+EIGENUSDT    Sell              50 Fail         dur: 231 ttp:None tsl: 231 est:   5.04%
+1000SHIBUSDT Sell              50 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+MITOUSDT     Sell              45 Fail         dur:   6 ttp:None tsl:   6 est:   8.59%
+MYXUSDT      Sell              44 Fail         dur:   9 ttp:None tsl:   9 est:   5.04%
+ETHFIUSDT    Sell              51 Fail         dur:  34 ttp:None tsl:  34 est:   5.04%
+ETCUSDT      Sell              57 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%

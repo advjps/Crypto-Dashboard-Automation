@@ -1,0 +1,23 @@
+BACKTEST REPORT FOR: signals_2025-09-06_19-23-51_STRONG.json
+Processed at UTC: 2025-09-07T15:30:35.052089
+
+--- BUY SIGNALS ---
+ENAUSDT      Buy               40 Success      dur:  30 ttp:  30 tsl:None est:   5.85%
+BCHUSDT      Buy               40 Success      dur: 170 ttp: 170 tsl:None est:   5.04%
+NMRUSDT      Buy               44 Success      dur:  13 ttp:  13 tsl:None est:  11.20%
+BNBUSDT      Buy               41 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+AVAXUSDT     Buy               43 Success      dur:  27 ttp:  27 tsl:None est:   5.04%
+MITOUSDT     Buy               41 Fail         dur:   9 ttp:None tsl:   9 est:  11.20%
+PYTHUSDT     Buy               42 Success      dur:  11 ttp:  11 tsl:None est:   5.04%
+PIPPINUSDT   Buy               40 Success      dur:  81 ttp:  81 tsl:None est:  11.20%
+AAVEUSDT     Buy               41 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+TRXUSDT      Buy               62 Fail         dur: 110 ttp:None tsl: 110 est:   5.04%
+DOLOUSDT     Buy               41 Fail         dur:  39 ttp:None tsl:  39 est:  11.20%
+MYXUSDT      Buy               54 Success      dur:  36 ttp:  36 tsl:None est:   5.25%
+XPLUSDT      Strong Buy        67 Success      dur:  51 ttp:  51 tsl:None est:  11.20%
+TIAUSDT      Buy               41 Success      dur:  13 ttp:  13 tsl:None est:   5.04%
+TAUSDT       Buy               40 Success      dur:   8 ttp:   8 tsl:None est:  11.20%
+QUSDT        Buy               40 Fail         dur:  17 ttp:None tsl:  17 est:  11.20%
+
+--- SELL SIGNALS ---
+ (none)

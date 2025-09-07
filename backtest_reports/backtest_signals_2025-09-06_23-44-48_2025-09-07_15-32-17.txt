@@ -1,0 +1,16 @@
+BACKTEST REPORT FOR: signals_2025-09-06_23-44-48.json
+Processed at UTC: 2025-09-07T15:32:17.154443
+
+--- BUY SIGNALS ---
+TAUSDT       Buy               50 Success      dur:   7 ttp:   7 tsl:None est:  11.20%
+
+--- SELL SIGNALS ---
+WLFIUSDT     Sell              44 Fail         dur:  11 ttp:None tsl:  11 est:  11.20%
+MITOUSDT     Sell              40 Fail         dur:   9 ttp:None tsl:   9 est:  11.20%
+DOLOUSDT     Sell              46 Fail         dur:  23 ttp:None tsl:  23 est:  11.20%
+LINEAUSDT    Sell              42 Success      dur:  54 ttp:  54 tsl:None est:  11.20%
+TAKEUSDT     Sell              45 Success      dur:   4 ttp:   4 tsl:None est:  11.20%
+ARIAUSDT     Sell              40 Fail         dur:  11 ttp:None tsl:  11 est:  11.20%
+EIGENUSDT    Sell              41 Success      dur: 103 ttp: 103 tsl:None est:   5.04%
+IDOLUSDT     Sell              41 Fail         dur:   9 ttp:None tsl:   9 est:  11.20%
+GPSUSDT      Sell              41 Success      dur:  65 ttp:  65 tsl:None est:  11.20%

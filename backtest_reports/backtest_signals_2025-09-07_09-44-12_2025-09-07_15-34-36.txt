@@ -1,0 +1,26 @@
+BACKTEST REPORT FOR: signals_2025-09-07_09-44-12.json
+Processed at UTC: 2025-09-07T15:34:36.677163
+
+--- BUY SIGNALS ---
+ETHUSDT      Buy               40 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+BTCUSDT      Buy               46 Success      dur: 254 ttp: 254 tsl:None est:   5.04%
+DOGEUSDT     Buy               41 Success      dur: 249 ttp: 249 tsl:None est:   5.04%
+XRPUSDT      Buy               54 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+PYTHUSDT     Buy               40 Fail         dur:  10 ttp:None tsl:  10 est:   6.30%
+SUIUSDT      Buy               46 Success      dur: 234 ttp: 234 tsl:None est:   5.04%
+REDUSDT      Buy               44 Success      dur:  36 ttp:  36 tsl:None est:   8.98%
+HYPEUSDT     Buy               41 Success      dur: 244 ttp: 244 tsl:None est:   5.04%
+LTCUSDT      Buy               41 Success      dur: 104 ttp: 104 tsl:None est:   5.04%
+AAVEUSDT     Buy               40 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+TAKEUSDT     Buy               47 Success      dur:  11 ttp:  11 tsl:None est:  11.20%
+XPLUSDT      Buy               42 Success      dur:   9 ttp:   9 tsl:None est:   6.56%
+FILUSDT      Buy               40 Success      dur:  96 ttp:  96 tsl:None est:   5.04%
+EIGENUSDT    Buy               42 Success      dur:   3 ttp:   3 tsl:None est:   9.26%
+CRVUSDT      Buy               40 Success      dur:  98 ttp:  98 tsl:None est:   5.04%
+ARIAUSDT     Buy               50 Success      dur:  36 ttp:  36 tsl:None est:  11.20%
+DOTUSDT      Buy               54 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+OMNIUSDT     Buy               49 Success      dur:  47 ttp:  47 tsl:None est:   5.04%
+UNIUSDT      Buy               40 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+
+--- SELL SIGNALS ---
+JELLYJELLYUSDT Sell              43 Success      dur:  15 ttp:  15 tsl:None est:   8.47%

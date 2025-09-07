@@ -1,0 +1,16 @@
+BACKTEST REPORT FOR: signals_2025-09-07_03-24-01_STRONG.json
+Processed at UTC: 2025-09-07T15:32:58.798795
+
+--- BUY SIGNALS ---
+WLDUSDT      Buy               44 Fail         dur:  11 ttp:None tsl:  11 est:   5.10%
+USELESSUSDT  Buy               40 Fail         dur:  77 ttp:None tsl:  77 est:  10.51%
+
+--- SELL SIGNALS ---
+NMRUSDT      Sell              49 Success      dur:  80 ttp:  80 tsl:None est:  11.20%
+PYTHUSDT     Sell              45 Fail         dur:  13 ttp:None tsl:  13 est:  11.20%
+TRXUSDT      Strong Sell       65 Success      dur:   3 ttp:   3 tsl:None est:   5.92%
+LTCUSDT      Sell              43 Fail         dur: 233 ttp:None tsl: 233 est:   5.04%
+XPLUSDT      Sell              49 Fail         dur:   8 ttp:None tsl:   8 est:   7.45%
+ARIAUSDT     Sell              41 Success      dur:  11 ttp:  11 tsl:None est:   9.92%
+JELLYJELLYUSDT Sell              40 Success      dur:  21 ttp:  21 tsl:None est:   8.58%
+LPTUSDT      Sell              41 Success      dur:  64 ttp:  64 tsl:None est:   5.04%

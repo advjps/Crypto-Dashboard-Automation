@@ -1,0 +1,12 @@
+BACKTEST REPORT FOR: signals_2025-09-07_04-40-54.json
+Processed at UTC: 2025-09-07T15:33:12.727201
+
+--- BUY SIGNALS ---
+WLFIUSDT     Buy               40 Success      dur:   7 ttp:   7 tsl:None est:  10.15%
+
+--- SELL SIGNALS ---
+TAUSDT       Sell              50 Success      dur:  34 ttp:  34 tsl:None est:  11.20%
+AAVEUSDT     Sell              43 Fail         dur: 128 ttp:None tsl: 128 est:   5.04%
+MEMEUSDT     Sell              41 Fail         dur: 119 ttp:None tsl: 119 est:   5.04%
+USELESSUSDT  Sell              40 Success      dur:  65 ttp:  65 tsl:None est:   9.12%
+LPTUSDT      Sell              41 Fail         dur:  57 ttp:None tsl:  57 est:   5.04%

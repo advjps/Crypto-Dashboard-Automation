@@ -1,0 +1,38 @@
+BACKTEST REPORT FOR: signals_2025-09-06_19-40-02.json
+Processed at UTC: 2025-09-07T15:31:03.363236
+
+--- BUY SIGNALS ---
+DOGEUSDT     Buy               41 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+LINKUSDT     Buy               41 Fail         dur:  97 ttp:None tsl:  97 est:   5.04%
+1000PEPEUSDT Buy               44 Fail         dur: 116 ttp:None tsl: 116 est:   5.04%
+BCHUSDT      Buy               41 Success      dur: 153 ttp: 153 tsl:None est:   5.04%
+AVAXUSDT     Buy               53 Success      dur: 164 ttp: 164 tsl:None est:   5.04%
+MITOUSDT     Buy               51 Fail         dur:  28 ttp:None tsl:  28 est:  11.20%
+FARTCOINUSDT Buy               46 Fail         dur:  67 ttp:None tsl:  67 est:   5.04%
+LTCUSDT      Buy               40 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+PYTHUSDT     Buy               53 Fail         dur:  23 ttp:None tsl:  23 est:   6.18%
+WIFUSDT      Buy               43 Success      dur: 166 ttp: 166 tsl:None est:   5.04%
+ARBUSDT      Buy               42 Fail         dur:  87 ttp:None tsl:  87 est:   5.04%
+PENGUUSDT    Buy               46 Success      dur:  22 ttp:  22 tsl:None est:   5.04%
+BTRUSDT      Buy               46 Success      dur:  35 ttp:  35 tsl:None est:  10.64%
+TRXUSDT      Buy               62 Fail         dur: 129 ttp:None tsl: 129 est:   5.04%
+1000BONKUSDT Buy               45 Fail         dur: 103 ttp:None tsl: 103 est:   5.04%
+EIGENUSDT    Buy               53 Fail         dur:  61 ttp:None tsl:  61 est:   5.04%
+FILUSDT      Buy               45 Success      dur: 163 ttp: 163 tsl:None est:   5.04%
+1000SHIBUSDT Buy               49 Fail         dur: 132 ttp:None tsl: 132 est:   5.04%
+JELLYJELLYUSDT Buy               40 Fail         dur:  28 ttp:None tsl:  28 est:  11.20%
+UNIUSDT      Buy               44 Fail         dur: 115 ttp:None tsl: 115 est:   5.04%
+WLDUSDT      Buy               42 Success      dur: 166 ttp: 166 tsl:None est:   5.04%
+CRVUSDT      Buy               49 Success      dur:   9 ttp:   9 tsl:None est:   5.04%
+OPUSDT       Buy               49 Fail         dur: 116 ttp:None tsl: 116 est:   5.04%
+XPLUSDT      Buy               59 Success      dur:  34 ttp:  34 tsl:None est:  11.20%
+LDOUSDT      Buy               51 Fail         dur:  63 ttp:None tsl:  63 est:   5.04%
+TIAUSDT      Buy               53 Success      dur: 164 ttp: 164 tsl:None est:   5.04%
+NEARUSDT     Buy               47 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+ONDOUSDT     Buy               48 Fail         dur: 132 ttp:None tsl: 132 est:   5.04%
+SEIUSDT      Buy               44 Fail         dur: 131 ttp:None tsl: 131 est:   5.04%
+ETHFIUSDT    Buy               50 Fail         dur:  61 ttp:None tsl:  61 est:   5.04%
+
+--- SELL SIGNALS ---
+AAVEUSDT     Sell              42 Success      dur:  97 ttp:  97 tsl:None est:   5.04%
+DOTUSDT      Sell              40 Success      dur: 102 ttp: 102 tsl:None est:   5.04%

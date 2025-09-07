@@ -1,0 +1,12 @@
+BACKTEST REPORT FOR: signals_2025-09-07_04-24-04.json
+Processed at UTC: 2025-09-07T15:33:07.528840
+
+--- BUY SIGNALS ---
+ (none)
+
+--- SELL SIGNALS ---
+BTCUSDT      Sell              44 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+BIOUSDT      Sell              41 Success      dur:  26 ttp:  26 tsl:None est:   7.99%
+PUMPUSDT     Sell              42 Fail         dur:  86 ttp:None tsl:  86 est:   5.14%
+ADAUSDT      Sell              41 Fail         dur: 175 ttp:None tsl: 175 est:   5.04%
+FARTCOINUSDT Sell              45 Fail         dur: 173 ttp:None tsl: 173 est:   5.04%

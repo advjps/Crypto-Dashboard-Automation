@@ -1,0 +1,29 @@
+BACKTEST REPORT FOR: signals_2025-09-07_11-23-33.json
+Processed at UTC: 2025-09-07T15:35:36.436999
+
+--- BUY SIGNALS ---
+WLFIUSDT     Buy               40 Success      dur:  13 ttp:  13 tsl:None est:  11.20%
+PUMPUSDT     Buy               43 Success      dur: 176 ttp: 176 tsl:None est:   6.94%
+BNBUSDT      Buy               41 Success      dur: 136 ttp: 136 tsl:None est:   5.04%
+LINKUSDT     Buy               42 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+SUIUSDT      Buy               45 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+1000PEPEUSDT Buy               48 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+WLDUSDT      Buy               52 Fail         dur:  17 ttp:None tsl:  17 est:   9.26%
+AVAXUSDT     Buy               48 Fail         dur: 226 ttp:None tsl: 226 est:   5.04%
+LTCUSDT      Buy               48 Success      dur: 208 ttp: 208 tsl:None est:   5.04%
+WIFUSDT      Buy               52 Fail         dur:  22 ttp:None tsl:  22 est:   5.04%
+ARBUSDT      Buy               44 Fail         dur:  44 ttp:None tsl:  44 est:   5.04%
+PENGUUSDT    Buy               42 Fail         dur:  63 ttp:None tsl:  63 est:   5.04%
+XPLUSDT      Buy               44 Success      dur:  25 ttp:  25 tsl:None est:  11.20%
+MEMEUSDT     Buy               40 Success      dur:  16 ttp:  16 tsl:None est:   5.04%
+EIGENUSDT    Buy               41 Fail         dur:  66 ttp:None tsl:  66 est:   7.30%
+FILUSDT      Buy               53 Fail         dur:   4 ttp:None tsl:   4 est:   5.04%
+1000BONKUSDT Buy               47 Fail         dur:  23 ttp:None tsl:  23 est:   5.04%
+TIAUSDT      Buy               43 Fail         dur:  35 ttp:None tsl:  35 est:   5.04%
+CRVUSDT      Buy               40 Success      dur: 151 ttp: 151 tsl:None est:   5.04%
+ARIAUSDT     Buy               41 Success      dur:  26 ttp:  26 tsl:None est:  11.04%
+UNIUSDT      Buy               49 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+DOTUSDT      Buy               46 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+
+--- SELL SIGNALS ---
+ (none)

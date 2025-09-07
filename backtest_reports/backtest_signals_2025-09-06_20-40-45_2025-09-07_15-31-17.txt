@@ -1,0 +1,17 @@
+BACKTEST REPORT FOR: signals_2025-09-06_20-40-45.json
+Processed at UTC: 2025-09-07T15:31:17.981607
+
+--- BUY SIGNALS ---
+NMRUSDT      Buy               48 Success      dur:   3 ttp:   3 tsl:None est:  11.20%
+PUMPUSDT     Buy               44 Fail         dur:  36 ttp:None tsl:  36 est:   7.87%
+ADAUSDT      Buy               40 Fail         dur: 144 ttp:None tsl: 144 est:   5.04%
+ARIAUSDT     Buy               43 Fail         dur:  21 ttp:None tsl:  21 est:  11.20%
+DOLOUSDT     Buy               42 Success      dur:  14 ttp:  14 tsl:None est:  11.20%
+BTRUSDT      Buy               42 Fail         dur:   7 ttp:None tsl:   7 est:   9.47%
+TRXUSDT      Buy               54 Fail         dur: 255 ttp:None tsl: 255 est:   5.04%
+1000SHIBUSDT Buy               40 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+MEMEUSDT     Buy               44 Fail         dur:  33 ttp:None tsl:  33 est:   9.34%
+GPSUSDT      Buy               41 Fail         dur:   6 ttp:None tsl:   6 est:  11.20%
+
+--- SELL SIGNALS ---
+ (none)

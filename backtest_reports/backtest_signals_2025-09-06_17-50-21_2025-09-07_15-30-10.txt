@@ -1,0 +1,24 @@
+BACKTEST REPORT FOR: signals_2025-09-06_17-50-21.json
+Processed at UTC: 2025-09-07T15:30:10.117411
+
+--- BUY SIGNALS ---
+BTCUSDT      Buy               47 Fail         dur: 242 ttp:None tsl: 242 est:   5.04%
+MUSDT        Buy               41 Success      dur:   5 ttp:   5 tsl:None est:  11.20%
+LINKUSDT     Buy               40 Fail         dur:  79 ttp:None tsl:  79 est:   5.04%
+SUIUSDT      Buy               43 Fail         dur: 242 ttp:None tsl: 242 est:   5.04%
+1000PEPEUSDT Buy               44 Fail         dur: 225 ttp:None tsl: 225 est:   5.04%
+ADAUSDT      Buy               40 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+PUMPUSDT     Buy               41 Fail         dur:  43 ttp:None tsl:  43 est:   8.66%
+BNBUSDT      Buy               45 Fail         dur: 242 ttp:None tsl: 242 est:   5.04%
+LTCUSDT      Buy               45 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+PENGUUSDT    Buy               44 Success      dur: 121 ttp: 121 tsl:None est:   5.04%
+MITOUSDT     Buy               42 Success      dur:   2 ttp:   2 tsl:None est:  11.20%
+FILUSDT      Buy               42 Success      dur: 274 ttp: 274 tsl:None est:   5.04%
+UNIUSDT      Buy               45 Fail         dur: 225 ttp:None tsl: 225 est:   5.04%
+NEARUSDT     Buy               42 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
+IDOLUSDT     Buy               40 Fail         dur:  19 ttp:None tsl:  19 est:  11.20%
+LINEAUSDT    Buy               40 Success      dur:  22 ttp:  22 tsl:None est:  11.20%
+XPLUSDT      Buy               40 Fail         dur:  69 ttp:None tsl:  69 est:   7.69%
+
+--- SELL SIGNALS ---
+ (none)
