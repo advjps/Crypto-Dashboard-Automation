@@ -1,9 +1,0 @@
-BACKTEST REPORT FOR: signals_2025-09-06_17-24-01.json
-Processed at UTC: 2025-09-07T15:29:54.942569
-
---- BUY SIGNALS ---
- (none)
-
---- SELL SIGNALS ---
-ADAUSDT      Sell              41 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
-SEIUSDT      Sell              40 Inconclusive dur: 300 ttp:None tsl:None est:   5.04%
