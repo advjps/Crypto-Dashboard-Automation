@@ -1,0 +1,5 @@
+Section,Total,Success,Fail,Inconclusive,WinRate,AvgConfidence
+Strong Buy,1,1,0,0,100.0,67.0
+Buy,313,149,102,62,59.36254980079681,45.03514376996805
+Strong Sell,2,1,0,1,100.0,65.0
+Sell,176,58,84,34,40.845070422535215,46.52840909090909
