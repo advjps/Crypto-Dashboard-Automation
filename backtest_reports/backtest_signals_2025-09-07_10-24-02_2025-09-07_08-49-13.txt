@@ -1,0 +1,31 @@
+BACKTEST REPORT FOR: signals_2025-09-07_10-24-02.json
+Processed at UTC: 2025-09-07T08:49:13.513129
+
+--- BUY SIGNALS ---
+ETHUSDT    Buy               42 Inconclusive    236    nan    nan      5.04%
+BTCUSDT    Buy               41 Success         218  218.0    nan      5.04%
+SOMIUSDT   Buy               41 Success           8    8.0    nan     11.20%
+ENAUSDT    Buy               41 Success          27   27.0    nan      5.04%
+DOGEUSDT   Buy               49 Inconclusive    236    nan    nan      5.04%
+PUMPUSDT   Buy               40 Fail             48    nan   48.0      7.57%
+LINKUSDT   Buy               42 Fail            130    nan  130.0      5.04%
+SUIUSDT    Buy               41 Success         206  206.0    nan      5.04%
+1000PEPEUSDT Buy               47 Success          65   65.0    nan      5.04%
+ADAUSDT    Buy               40 Inconclusive    236    nan    nan      5.04%
+TAUSDT     Buy               44 Success          20   20.0    nan     11.20%
+AVAXUSDT   Buy               45 Inconclusive    235    nan    nan      5.04%
+REDUSDT    Buy               45 Fail             29    nan   29.0      9.32%
+LINEAUSDT  Buy               50 Fail             47    nan   47.0     11.20%
+TAKEUSDT   Buy               52 Success          10   10.0    nan     11.20%
+XPLUSDT    Buy               47 Fail              4    nan    4.0      7.56%
+TRUMPUSDT  Buy               47 Inconclusive    236    nan    nan      5.04%
+MEMEUSDT   Buy               42 Success          75   75.0    nan      5.04%
+HEMIUSDT   Buy               47 Success          18   18.0    nan      9.21%
+MYXUSDT    Buy               41 Success           6    6.0    nan     11.20%
+TIAUSDT    Buy               44 Fail            125    nan  125.0      5.04%
+CRVUSDT    Buy               44 Success          67   67.0    nan      5.04%
+ARIAUSDT   Buy               41 Success         128  128.0    nan     11.20%
+PIPPINUSDT Buy               47 Success           7    7.0    nan      7.72%
+
+--- SELL SIGNALS ---
+ (none)

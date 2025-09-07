@@ -1,0 +1,12 @@
+BACKTEST REPORT FOR: signals_2025-09-07_04-40-54.json
+Processed at UTC: 2025-09-07T08:47:36.500284
+
+--- BUY SIGNALS ---
+WLFIUSDT   Buy               40 Success           7      7   None     10.15%
+
+--- SELL SIGNALS ---
+TAUSDT     Sell              50 Success          34   34.0    nan     11.20%
+AAVEUSDT   Sell              43 Fail            128    nan  128.0      5.04%
+MEMEUSDT   Sell              41 Fail            119    nan  119.0      5.04%
+USELESSUSDT Sell              40 Success          65   65.0    nan      9.12%
+LPTUSDT    Sell              41 Fail             57    nan   57.0      5.04%

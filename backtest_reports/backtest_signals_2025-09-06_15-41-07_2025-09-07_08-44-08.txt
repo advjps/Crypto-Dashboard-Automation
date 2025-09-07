@@ -1,0 +1,25 @@
+BACKTEST REPORT FOR: signals_2025-09-06_15-41-07.json
+Processed at UTC: 2025-09-07T08:44:08.766055
+
+--- BUY SIGNALS ---
+SOMIUSDT   Buy               40 Success          10   10.0    nan     11.20%
+BCHUSDT    Buy               59 Fail             15    nan   15.0      5.04%
+
+--- SELL SIGNALS ---
+SOLUSDT    Sell              44 Inconclusive    300    nan    nan      5.04%
+XRPUSDT    Sell              53 Inconclusive    300    nan    nan      5.04%
+DOGEUSDT   Sell              51 Inconclusive    300    nan    nan      5.04%
+BIOUSDT    Sell              51 Success          29   29.0    nan     11.20%
+LINKUSDT   Sell              41 Fail            115    nan  115.0      5.04%
+SUIUSDT    Sell              53 Inconclusive    300    nan    nan      5.04%
+1000PEPEUSDT Sell              58 Fail            119    nan  119.0      5.04%
+ADAUSDT    Sell              52 Fail            173    nan  173.0      5.04%
+WIFUSDT    Sell              52 Fail            237    nan  237.0      5.04%
+LTCUSDT    Sell              43 Inconclusive    300    nan    nan      5.04%
+FILUSDT    Sell              40 Fail            249    nan  249.0      5.04%
+EIGENUSDT  Sell              50 Fail            231    nan  231.0      5.04%
+1000SHIBUSDT Sell              50 Inconclusive    300    nan    nan      5.04%
+MITOUSDT   Sell              45 Fail              6    nan    6.0      8.59%
+MYXUSDT    Sell              44 Fail              9    nan    9.0      5.04%
+ETHFIUSDT  Sell              51 Fail             34    nan   34.0      5.04%
+ETCUSDT    Sell              57 Inconclusive    300    nan    nan      5.04%

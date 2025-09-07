@@ -1,0 +1,18 @@
+BACKTEST REPORT FOR: signals_2025-09-07_02-39-58.json
+Processed at UTC: 2025-09-07T08:47:15.339151
+
+--- BUY SIGNALS ---
+1000PEPEUSDT Buy               41 Success         253  253.0    nan      5.04%
+PIPPINUSDT Buy               40 Fail             87    nan   87.0      6.80%
+UNIUSDT    Buy               40 Success         213  213.0    nan      5.04%
+HEMIUSDT   Buy               41 Fail              8    nan    8.0     11.20%
+
+--- SELL SIGNALS ---
+BTCUSDT    Sell              41 Inconclusive    300    nan    nan      5.04%
+PTBUSDT    Sell              62 Success          18   18.0    nan     11.20%
+TAUSDT     Sell              42 Fail             25    nan   25.0     11.20%
+TRXUSDT    Sell              60 Success          38   38.0    nan      5.04%
+XPLUSDT    Sell              54 Success          45   45.0    nan      8.63%
+IDOLUSDT   Sell              60 Fail             19    nan   19.0     10.29%
+QUSDT      Sell              45 Success          61   61.0    nan     11.20%
+1000SHIBUSDT Sell              46 Fail            240    nan  240.0      5.04%

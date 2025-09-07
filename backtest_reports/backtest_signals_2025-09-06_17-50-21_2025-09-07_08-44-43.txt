@@ -1,0 +1,24 @@
+BACKTEST REPORT FOR: signals_2025-09-06_17-50-21.json
+Processed at UTC: 2025-09-07T08:44:43.772430
+
+--- BUY SIGNALS ---
+BTCUSDT    Buy               47 Fail            242    nan  242.0      5.04%
+MUSDT      Buy               41 Success           5    5.0    nan     11.20%
+LINKUSDT   Buy               40 Fail             79    nan   79.0      5.04%
+SUIUSDT    Buy               43 Fail            242    nan  242.0      5.04%
+1000PEPEUSDT Buy               44 Fail            225    nan  225.0      5.04%
+ADAUSDT    Buy               40 Inconclusive    300    nan    nan      5.04%
+PUMPUSDT   Buy               41 Fail             43    nan   43.0      8.66%
+BNBUSDT    Buy               45 Fail            242    nan  242.0      5.04%
+LTCUSDT    Buy               45 Inconclusive    300    nan    nan      5.04%
+PENGUUSDT  Buy               44 Success         121  121.0    nan      5.04%
+MITOUSDT   Buy               42 Success           2    2.0    nan     11.20%
+FILUSDT    Buy               42 Success         274  274.0    nan      5.04%
+UNIUSDT    Buy               45 Fail            225    nan  225.0      5.04%
+NEARUSDT   Buy               42 Inconclusive    300    nan    nan      5.04%
+IDOLUSDT   Buy               40 Fail             19    nan   19.0     11.20%
+LINEAUSDT  Buy               40 Success          22   22.0    nan     11.20%
+XPLUSDT    Buy               40 Fail             69    nan   69.0      7.69%
+
+--- SELL SIGNALS ---
+ (none)

@@ -1,0 +1,19 @@
+BACKTEST REPORT FOR: signals_2025-09-07_09-24-54.json
+Processed at UTC: 2025-09-07T08:48:37.977447
+
+--- BUY SIGNALS ---
+WLFIUSDT   Buy               49 Fail              7    nan    7.0     11.20%
+NMRUSDT    Buy               46 Success         168  168.0    nan     11.20%
+MUSDT      Buy               41 Fail             69    nan   69.0     11.20%
+DOGEUSDT   Buy               49 Success         266  266.0    nan      5.04%
+HYPEUSDT   Buy               40 Success         263  263.0    nan      5.04%
+DOLOUSDT   Buy               50 Fail              8    nan    8.0     11.20%
+TAKEUSDT   Buy               41 Success          30   30.0    nan     11.20%
+MEMEUSDT   Buy               40 Success          30   30.0    nan      5.04%
+1000BONKUSDT Buy               40 Success          80   80.0    nan      5.04%
+SAPIENUSDT Buy               42 Success          34   34.0    nan     11.20%
+EIGENUSDT  Buy               42 Fail              5    nan    5.0      8.59%
+TRUMPUSDT  Buy               50 Inconclusive    294    nan    nan      5.04%
+
+--- SELL SIGNALS ---
+PTBUSDT    Sell              55 Fail             46   None     46     11.20%

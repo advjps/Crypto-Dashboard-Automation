@@ -1,0 +1,10 @@
+BACKTEST REPORT FOR: signals_2025-09-07_01-59-53.json
+Processed at UTC: 2025-09-07T08:46:50.601874
+
+--- BUY SIGNALS ---
+PYTHUSDT   Buy               40 Fail             42   None     42     11.20%
+
+--- SELL SIGNALS ---
+API3USDT   Sell              50 Fail             51    nan   51.0     11.20%
+TRXUSDT    Sell              40 Success          29   29.0    nan      5.04%
+IDOLUSDT   Sell              41 Success          24   24.0    nan     10.50%

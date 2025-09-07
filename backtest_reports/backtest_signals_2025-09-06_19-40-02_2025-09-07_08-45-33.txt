@@ -1,0 +1,38 @@
+BACKTEST REPORT FOR: signals_2025-09-06_19-40-02.json
+Processed at UTC: 2025-09-07T08:45:33.830911
+
+--- BUY SIGNALS ---
+DOGEUSDT   Buy               41 Inconclusive    300    nan    nan      5.04%
+LINKUSDT   Buy               41 Fail             97    nan   97.0      5.04%
+1000PEPEUSDT Buy               44 Fail            116    nan  116.0      5.04%
+BCHUSDT    Buy               41 Success         153  153.0    nan      5.04%
+AVAXUSDT   Buy               53 Success         164  164.0    nan      5.04%
+MITOUSDT   Buy               51 Fail             28    nan   28.0     11.20%
+FARTCOINUSDT Buy               46 Fail             67    nan   67.0      5.04%
+LTCUSDT    Buy               40 Inconclusive    300    nan    nan      5.04%
+PYTHUSDT   Buy               53 Fail             23    nan   23.0      6.18%
+WIFUSDT    Buy               43 Success         166  166.0    nan      5.04%
+ARBUSDT    Buy               42 Fail             87    nan   87.0      5.04%
+PENGUUSDT  Buy               46 Success          22   22.0    nan      5.04%
+BTRUSDT    Buy               46 Success          35   35.0    nan     10.64%
+TRXUSDT    Buy               62 Fail            129    nan  129.0      5.04%
+1000BONKUSDT Buy               45 Fail            103    nan  103.0      5.04%
+EIGENUSDT  Buy               53 Fail             61    nan   61.0      5.04%
+FILUSDT    Buy               45 Success         163  163.0    nan      5.04%
+1000SHIBUSDT Buy               49 Fail            132    nan  132.0      5.04%
+JELLYJELLYUSDT Buy               40 Fail             28    nan   28.0     11.20%
+UNIUSDT    Buy               44 Fail            115    nan  115.0      5.04%
+WLDUSDT    Buy               42 Success         166  166.0    nan      5.04%
+CRVUSDT    Buy               49 Success           9    9.0    nan      5.04%
+OPUSDT     Buy               49 Fail            116    nan  116.0      5.04%
+XPLUSDT    Buy               59 Success          34   34.0    nan     11.20%
+LDOUSDT    Buy               51 Fail             63    nan   63.0      5.04%
+TIAUSDT    Buy               53 Success         164  164.0    nan      5.04%
+NEARUSDT   Buy               47 Inconclusive    300    nan    nan      5.04%
+ONDOUSDT   Buy               48 Fail            132    nan  132.0      5.04%
+SEIUSDT    Buy               44 Fail            131    nan  131.0      5.04%
+ETHFIUSDT  Buy               50 Fail             61    nan   61.0      5.04%
+
+--- SELL SIGNALS ---
+AAVEUSDT   Sell              42 Success          97     97   None      5.04%
+DOTUSDT    Sell              40 Success         102    102   None      5.04%

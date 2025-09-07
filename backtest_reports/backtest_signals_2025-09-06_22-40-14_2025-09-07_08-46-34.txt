@@ -1,0 +1,14 @@
+BACKTEST REPORT FOR: signals_2025-09-06_22-40-14.json
+Processed at UTC: 2025-09-07T08:46:34.584244
+
+--- BUY SIGNALS ---
+AVAXUSDT   Buy               45 Fail             31   None     31      5.04%
+WLDUSDT    Buy               43 Fail             32   None     32      5.04%
+
+--- SELL SIGNALS ---
+MITOUSDT   Sell              40 Success          42   42.0    nan     11.20%
+PYTHUSDT   Sell              45 Success          20   20.0    nan     11.20%
+TAUSDT     Sell              61 Success           4    4.0    nan     11.20%
+JELLYJELLYUSDT Sell              40 Success         123  123.0    nan     11.20%
+XPLUSDT    Sell              42 Fail             53    nan   53.0      8.68%
+MEMEUSDT   Sell              42 Fail            219    nan  219.0      8.41%
