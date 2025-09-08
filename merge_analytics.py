@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-# merge_analytics.py  (robust aggregator)
+# merge_analytics.py  (updated for 10A flattened analytics)
 # Usage: python merge_analytics.py
 
 import os
 import glob
 import json
-import re
 from datetime import datetime
 import pytz
 import pandas as pd
@@ -19,94 +18,120 @@ def ist_timestamp():
     return datetime.now(ist).strftime("%Y-%m-%d_%H-%M-%S")
 
 def load_all_csvs():
-    # Load all CSVs in analytics/, EXCLUDING the merged all_signals.csv itself
+    # accept any csv in analytics/ (previously some were signals_*.csv, some backtest_*.csv)
     files = sorted(glob.glob(os.path.join(ANALYTICS_DIR, "*.csv")))
-    files = [f for f in files if os.path.abspath(f) != os.path.abspath(ALL_SIGNALS_CSV)]
     if not files:
         print(f"[INFO] No per-file analytics CSVs found in {ANALYTICS_DIR}/")
         return pd.DataFrame()
     frames = []
     for f in files:
         try:
-            df = pd.read_csv(f)
+            df = pd.read_csv(f, dtype=object)  # read as object to avoid coercion surprises
             df["__source_file"] = os.path.basename(f)
             frames.append(df)
         except Exception as e:
             print(f"[WARN] Skipped {f}: {e}")
     if not frames:
         return pd.DataFrame()
+    # concat tolerant to different columns
     return pd.concat(frames, ignore_index=True, sort=False)
 
 def normalize_col(df, colnames):
     """
     Given dataframe 'df' and a list of possible column names in priority,
-    returns series using first existing column (case-insensitive) and sets .name appropriately.
-    If none present, returns an empty Series with name=None.
+    returns series and its actual column name using first existing column (case-insensitive).
+    If not found returns (pd.Series with None, None)
     """
     if df is None or df.empty:
-        return pd.Series([], name=None)
+        return (pd.Series([None]*0), None)
     cols_lower = {c.lower(): c for c in df.columns}
     for c in colnames:
-        if c is None:
-            continue
         if c.lower() in cols_lower:
             real = cols_lower[c.lower()]
-            s = df[real]
-            s.name = real
-            return s
-    # not found -> return series of NAs
-    s = pd.Series([None] * len(df))
-    s.name = None
-    return s
+            return (df[real], real)
+    return (pd.Series([None]*len(df)), None)
 
 def winrate(success, fail):
     denom = (success or 0) + (fail or 0)
     return (success / denom * 100.0) if denom > 0 else 0.0
 
+def safe_int(x):
+    try:
+        return int(float(x))
+    except Exception:
+        return None
+
+def parse_would_be_strong_col(val):
+    if not val or (isinstance(val, float) and pd.isna(val)):
+        return {}
+    try:
+        if isinstance(val, str):
+            return json.loads(val)
+        else:
+            return dict(val)
+    except Exception:
+        # try eval-like fallback
+        try:
+            return json.loads(str(val).replace("'", '"'))
+        except Exception:
+            return {}
+
 def summarize_bucket(df, bucket_name):
-    # case-insensitive matching for Signal column
-    signal_series = normalize_col(df, ["Signal", "signal"])
-    if signal_series.name is None:
+    signal_ser, signal_col = normalize_col(df, ["Signal", "signal"])
+    outcome_ser, outcome_col = normalize_col(df, ["Outcome", "outcome"])
+    conf_ser, conf_col = normalize_col(df, ["Confidence", "confidence"])
+    if signal_col is None:
         return {"Total": 0, "Success": 0, "Fail": 0, "Inconclusive": 0, "WinRate": 0.0, "AvgConfidence": 0.0}
-    outcome_series = normalize_col(df, ["Outcome", "outcome"])
-    conf_series = normalize_col(df, ["Confidence", "confidence"])
-    mask = signal_series.astype(str).str.strip().str.lower() == bucket_name.lower()
+    mask = signal_ser.astype(str).str.strip().str.lower() == bucket_name.lower()
     sub = df[mask].copy()
     if sub.empty:
         return {"Total": 0, "Success": 0, "Fail": 0, "Inconclusive": 0, "WinRate": 0.0, "AvgConfidence": 0.0}
-    # outcome mapping (be defensive)
-    if outcome_series.name and outcome_series.name in sub.columns:
-        succ = (sub[outcome_series.name].astype(str).str.strip().str.lower() == "success").sum()
-        fail = (sub[outcome_series.name].astype(str).str.strip().str.lower() == "fail").sum()
-        inconc = (sub[outcome_series.name].astype(str).str.strip().str.lower() == "inconclusive").sum()
-    else:
-        succ = fail = inconc = 0
+    succ = 0; fail = 0; inconc = 0
+    if outcome_col:
+        out = sub[outcome_col].astype(str).str.strip().str.lower()
+        succ = (out == "success").sum()
+        fail = (out == "fail").sum()
+        inconc = (out == "inconclusive").sum()
     wr = winrate(int(succ), int(fail))
     avg_conf = 0.0
-    if conf_series.name and conf_series.name in sub.columns:
-        avg_conf = pd.to_numeric(sub[conf_series.name], errors="coerce").dropna().mean() or 0.0
-    return {"Total": int(len(sub)), "Success": int(succ), "Fail": int(fail), "Inconclusive": int(inconc), "WinRate": wr, "AvgConfidence": float(avg_conf)}
+    if conf_col:
+        avg_conf = pd.to_numeric(sub[conf_col], errors="coerce").dropna().astype(float).mean()
+        if pd.isna(avg_conf):
+            avg_conf = 0.0
+    return {"Total": int(len(sub)), "Success": int(succ), "Fail": int(fail), "Inconclusive": int(inconc), "WinRate": wr, "AvgConfidence": float(avg_conf or 0.0)}
 
 def regime_summary(df):
-    outcome_series = normalize_col(df, ["Outcome", "outcome"])
-    conf_series = normalize_col(df, ["Confidence", "confidence"])
-    regime_series = normalize_col(df, ["Regime", "regime"])
-    if df.empty or regime_series.name is None:
+    if df.empty:
+        return pd.DataFrame()
+    outcome_ser, outcome_col = normalize_col(df, ["Outcome", "outcome"])
+    conf_ser, conf_col = normalize_col(df, ["Confidence", "confidence"])
+    regime_ser, regime_col = normalize_col(df, ["Regime", "regime"])
+    if regime_col is None:
         return pd.DataFrame()
     rows = []
-    for regime, g in df.groupby(regime_series.name):
-        reg_label = regime if regime not in (None, "", float("nan")) else "Unknown"
-        if outcome_series.name and outcome_series.name in g.columns:
-            succ = (g[outcome_series.name].astype(str).str.strip().str.lower() == "success").sum()
-            fail = (g[outcome_series.name].astype(str).str.strip().str.lower() == "fail").sum()
-            inc = (g[outcome_series.name].astype(str).str.strip().str.lower() == "inconclusive").sum()
-        else:
-            succ = fail = inc = 0
+    for regime, g in df.groupby(regime_ser.fillna("Unknown")):
+        if regime in (None, "", float("nan")):
+            regime = "Unknown"
+        succ = fail = inc = 0
+        if outcome_col:
+            out = g[outcome_col].astype(str).str.strip().str.lower()
+            succ = (out == "success").sum()
+            fail = (out == "fail").sum()
+            inc = (out == "inconclusive").sum()
         wr = winrate(int(succ), int(fail))
-        avg_conf = pd.to_numeric(g[conf_series.name], errors="coerce").dropna().mean() if conf_series.name and conf_series.name in g.columns else 0.0
+        avg_conf = 0.0
+        if conf_col:
+            avg_conf = pd.to_numeric(g[conf_col], errors="coerce").dropna().astype(float).mean()
+            if pd.isna(avg_conf):
+                avg_conf = 0.0
         rows.append({
-            "Regime": str(reg_label), "Total": int(len(g)), "Success": int(succ), "Fail": int(fail),
-            "Inconclusive": int(inc), "WinRate": wr, "AvgConfidence": float(avg_conf or 0.0)
+            "Regime": str(regime),
+            "Total": int(len(g)),
+            "Success": int(succ),
+            "Fail": int(fail),
+            "Inconclusive": int(inc),
+            "WinRate": wr,
+            "AvgConfidence": float(avg_conf or 0.0)
         })
     return pd.DataFrame(rows).sort_values(["Regime"])
 
@@ -114,39 +139,73 @@ def deserved_summary(df):
     if df.empty:
         return pd.DataFrame()
     out = []
-    # tolerant list of possible deserved-strong columns (case/underscore variations)
-    possible_flags = ["DeservedStrongBuy", "deservedstrongbuy", "DeservedStrongSell", "deservedstrongsell",
-                      "DeservedStrong_Buy", "DeservedStrong_Sell", "deserved_strong_buy", "deserved_strong_sell"]
-    # find matches in df columns (case-insensitive)
-    found = []
-    for pc in possible_flags:
-        matches = [c for c in df.columns if c.lower() == pc.lower()]
-        for m in matches:
-            if m not in found:
-                found.append(m)
-    if not found:
+    # find columns that could indicate deserved strong flags
+    possible_flags = [c for c in df.columns if c.lower().startswith("deserved") or c.lower().startswith("deservedstrong")]
+    if not possible_flags:
         return pd.DataFrame()
-    outcome_series = normalize_col(df, ["Outcome", "outcome"])
-    conf_series = normalize_col(df, ["Confidence", "confidence"])
-    for flag_col in found:
-        sub = df[pd.to_numeric(df[flag_col], errors="coerce").fillna(0).astype(int) == 1].copy()
-        if sub.empty:
-            succ = fail = inc = 0
-            avg_conf = 0.0
-        else:
-            if outcome_series.name and outcome_series.name in sub.columns:
-                succ = (sub[outcome_series.name].astype(str).str.strip().str.lower() == "success").sum()
-                fail = (sub[outcome_series.name].astype(str).str.strip().str.lower() == "fail").sum()
-                inc = (sub[outcome_series.name].astype(str).str.strip().str.lower() == "inconclusive").sum()
-            else:
-                succ = fail = inc = 0
-            avg_conf = pd.to_numeric(sub[conf_series.name], errors="coerce").dropna().mean() if conf_series.name and conf_series.name in sub.columns else 0.0
-
+    outcome_ser, outcome_col = normalize_col(df, ["Outcome", "outcome"])
+    conf_ser, conf_col = normalize_col(df, ["Confidence", "confidence"])
+    for flag_col in possible_flags:
+        try:
+            sub = df[pd.to_numeric(df[flag_col], errors="coerce").fillna(0).astype(int) == 1].copy()
+        except Exception:
+            # fallback: check string "1" or "true"
+            sub = df[sub := (df[flag_col].astype(str).str.strip().str.lower().isin(["1","true"]))].copy()
+        succ = fail = inc = 0
+        if not sub.empty and outcome_col:
+            out_s = sub[outcome_col].astype(str).str.strip().str.lower()
+            succ = (out_s == "success").sum()
+            fail = (out_s == "fail").sum()
+            inc = (out_s == "inconclusive").sum()
+        wr = winrate(int(succ), int(fail))
+        avg_conf = 0.0
+        if not sub.empty and conf_col:
+            avg_conf = pd.to_numeric(sub[conf_col], errors="coerce").dropna().astype(float).mean()
+            if pd.isna(avg_conf):
+                avg_conf = 0.0
         out.append({
-            "Group": flag_col, "Total": int(len(sub)), "Success": int(succ), "Fail": int(fail),
-            "Inconclusive": int(inc), "WinRate": winrate(int(succ), int(fail)), "AvgConfidence": float(avg_conf or 0.0)
+            "Group": flag_col,
+            "Total": int(len(sub)),
+            "Success": int(succ),
+            "Fail": int(fail),
+            "Inconclusive": int(inc),
+            "WinRate": wr,
+            "AvgConfidence": float(avg_conf or 0.0)
         })
+    if not out:
+        return pd.DataFrame()
     return pd.DataFrame(out)
+
+def expand_would_be_strong(df):
+    """
+    If a WOULD_BE_STRONG column exists (stringified JSON), expand into WOULD__missing_points and top components.
+    """
+    col_candidates = [c for c in df.columns if c.upper() == "WOULD_BE_STRONG" or c.upper().endswith("WOULD_BE_STRONG")]
+    if not col_candidates:
+        return df
+    col = col_candidates[0]
+    missing_list = []
+    top1 = []
+    top2 = []
+    top3 = []
+    parsed_vals = []
+    for v in df[col].fillna("").tolist():
+        parsed = parse_would_be_strong_col(v)
+        parsed_vals.append(parsed)
+        missing_list.append(parsed.get("missing_points") if isinstance(parsed, dict) else None)
+        tops = parsed.get("top_missing_components") if isinstance(parsed, dict) else []
+        if isinstance(tops, list) and tops:
+            top1.append(tops[0].get("component") + ":" + str(tops[0].get("gap")) if isinstance(tops[0], dict) else str(tops[0]))
+            top2.append(tops[1].get("component") + ":" + str(tops[1].get("gap")) if len(tops) > 1 and isinstance(tops[1], dict) else (tops[1] if len(tops) > 1 else None))
+            top3.append(tops[2].get("component") + ":" + str(tops[2].get("gap")) if len(tops) > 2 and isinstance(tops[2], dict) else (tops[2] if len(tops) > 2 else None))
+        else:
+            top1.append(None); top2.append(None); top3.append(None)
+
+    df["WOULD__missing_points"] = missing_list
+    df["WOULD__top1"] = top1
+    df["WOULD__top2"] = top2
+    df["WOULD__top3"] = top3
+    return df
 
 def main():
     df = load_all_csvs()
@@ -154,50 +213,39 @@ def main():
         print("[INFO] Nothing to merge. Exiting.")
         return
 
-    # Normalize common names to consistent columns for downstream code readability (do not delete originals)
-    if "Signal" not in df.columns and "signal" in df.columns:
-        df["Signal"] = df["signal"]
-    if "Outcome" not in df.columns and "outcome" in df.columns:
-        df["Outcome"] = df["outcome"]
-    if "Confidence" not in df.columns and "confidence" in df.columns:
-        df["Confidence"] = df["confidence"]
-    if "Regime" not in df.columns and "regime" in df.columns:
-        df["Regime"] = df["regime"]
+    # some CSVs may include WOULD_BE_STRONG as JSON string; expand it for analytics convenience
+    df = expand_would_be_strong(df)
 
-    # Create binary FLAG__ columns globally if CONFLUENCE_FLAGS present
-    if "CONFLUENCE_FLAGS" in df.columns:
-        df["CONFLUENCE_FLAGS"] = df["CONFLUENCE_FLAGS"].fillna("")
-        all_flags = set()
-        for s in df["CONFLUENCE_FLAGS"].unique():
-            if not s:
-                continue
-            parts = [p.strip() for p in str(s).split(";") if p.strip()]
-            for p in parts:
-                all_flags.add(p)
-        for fl in sorted(all_flags):
-            col = "FLAG__" + re.sub(r'[^0-9A-Za-z]+', '_', fl).strip('_')
-            if col not in df.columns:
-                df[col] = df["CONFLUENCE_FLAGS"].apply(lambda x: 1 if fl in (x or "") else 0)
+    # normalize common column names to consistent casing (not strictly required but convenient)
+    # i.e., ensure there's 'Signal', 'Outcome', 'Confidence', 'Regime' present by case-insensitive rename
+    col_map = {}
+    for desired in ["Signal","Outcome","Confidence","Regime","Coin","Estimated_profit","signal_time_utc","signal_time_ist"]:
+        # find existing
+        matches = [c for c in df.columns if c.lower() == desired.lower()]
+        if matches:
+            col_map[matches[0]] = desired
+    if col_map:
+        df = df.rename(columns=col_map)
 
-    # Save merged all_signals.csv
+    # Save combined file
     try:
         df.to_csv(ALL_SIGNALS_CSV, index=False)
         print(f"[OK] Wrote {ALL_SIGNALS_CSV} with {len(df)} rows.")
     except Exception as e:
-        print(f"[ERROR] Could not write {ALL_SIGNALS_CSV}: {e}")
+        print(f"[ERROR] Could not write all_signals.csv: {e}")
         return
 
-    # --- Global bucket summary (by Signal) ---
+    # Build bucket summary
     buckets = ["Strong Buy", "Buy", "Strong Sell", "Sell"]
     rows = []
     for b in buckets:
         rows.append({"Section": b, **summarize_bucket(df, b)})
     bucket_df = pd.DataFrame(rows)
 
-    # --- Regime summary ---
+    # Regime summary
     regime_df = regime_summary(df)
 
-    # --- DeservedStrong summaries (analysis-only) ---
+    # Deserved strong (if any)
     deserved_df = deserved_summary(df)
 
     # Save CSV summaries
@@ -209,7 +257,7 @@ def main():
     regime_df.to_csv(regime_csv, index=False)
     deserved_df.to_csv(deserved_csv, index=False)
 
-    # Human-readable summary.txt
+    # Human readable summary text
     summary_txt = os.path.join(ANALYTICS_DIR, f"summary_{stamp}.txt")
     with open(summary_txt, "w", encoding="utf-8") as f:
         f.write("============== GLOBAL SUMMARY ==============\n\n")
