@@ -1,0 +1,15 @@
+===== BACKTEST REPORT FOR: signals_2025-09-08_10-57-26.json =====
+Signal Generation Time (UTC): 2025-09-09T17:25:15.227881
+
+--- BUY SIGNALS ---
+MITOUSDT   Buy             Conf: 45 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=20
+XNYUSDT    Buy             Conf: 43 Outcome:Fail         Dur(min):  21 TTP:None TSL:  21 Est:   5.04% missing_pts=22
+
+--- SELL SIGNALS ---
+SOLUSDT    Sell            Conf: 42 Outcome:Fail         Dur(min): 296 TTP:None TSL: 296 Est:   5.04% missing_pts=23
+WLFIUSDT   Sell            Conf: 45 Outcome:Success      Dur(min):  35 TTP:  35 TSL:None Est:   5.04% missing_pts=20
+PUMPUSDT   Sell            Conf: 63 Outcome:Success      Dur(min):   9 TTP:   9 TSL:None Est:   5.04% missing_pts=2
+PTBUSDT    Sell            Conf: 49 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=16
+BCHUSDT    Sell            Conf: 42 Outcome:Success      Dur(min):  46 TTP:  46 TSL:None Est:   5.04% missing_pts=23
+SOONUSDT   Sell            Conf: 47 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=18
+SPKUSDT    Sell            Conf: 45 Outcome:Success      Dur(min):   5 TTP:   5 TSL:None Est:   5.04% missing_pts=20

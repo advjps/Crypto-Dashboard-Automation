@@ -1,0 +1,28 @@
+===== BACKTEST REPORT FOR: signals_2025-09-09_09-28-18.json =====
+Signal Generation Time (UTC): 2025-09-09T17:32:22.036069
+
+--- BUY SIGNALS ---
+WLDUSDT    Buy             Conf: 40 Outcome:Success      Dur(min):   8 TTP:   8 TSL:None Est:   5.04% missing_pts=25
+1000PEPEUSDT Buy             Conf: 43 Outcome:Success      Dur(min): 133 TTP: 133 TSL:None Est:   5.04% missing_pts=22
+LINKUSDT   Buy             Conf: 49 Outcome:Success      Dur(min): 125 TTP: 125 TSL:None Est:   5.04% missing_pts=16
+MUSDT      Buy             Conf: 54 Outcome:Success      Dur(min):  20 TTP:  20 TSL:None Est:   5.04% missing_pts=11
+ARBUSDT    Buy             Conf: 42 Outcome:Success      Dur(min):  26 TTP:  26 TSL:None Est:   5.04% missing_pts=23
+SPKUSDT    Buy             Conf: 41 Outcome:Success      Dur(min):   8 TTP:   8 TSL:None Est:   5.04% missing_pts=24
+SEIUSDT    Buy             Conf: 49 Outcome:Success      Dur(min): 123 TTP: 123 TSL:None Est:   5.04% missing_pts=16
+NEARUSDT   Buy             Conf: 40 Outcome:Success      Dur(min):  34 TTP:  34 TSL:None Est:   5.04% missing_pts=25
+TIAUSDT    Buy             Conf: 40 Outcome:Success      Dur(min): 119 TTP: 119 TSL:None Est:   5.04% missing_pts=25
+ONDOUSDT   Buy             Conf: 47 Outcome:Success      Dur(min): 119 TTP: 119 TSL:None Est:   5.04% missing_pts=18
+FETUSDT    Buy             Conf: 42 Outcome:Success      Dur(min):  68 TTP:  68 TSL:None Est:   5.04% missing_pts=23
+LDOUSDT    Buy             Conf: 43 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=22
+
+--- SELL SIGNALS ---
+DOGEUSDT   Sell            Conf: 41 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=24
+XRPUSDT    Sell            Conf: 41 Outcome:Fail         Dur(min): 276 TTP:None TSL: 276 Est:   5.04% missing_pts=24
+SUIUSDT    Sell            Conf: 41 Outcome:Fail         Dur(min): 162 TTP:None TSL: 162 Est:   5.04% missing_pts=24
+ADAUSDT    Sell            Conf: 43 Outcome:Fail         Dur(min): 208 TTP:None TSL: 208 Est:   5.04% missing_pts=22
+AVAXUSDT   Sell            Conf: 42 Outcome:Fail         Dur(min): 169 TTP:None TSL: 169 Est:   5.04% missing_pts=23
+AAVEUSDT   Sell            Conf: 41 Outcome:Fail         Dur(min): 202 TTP:None TSL: 202 Est:   5.04% missing_pts=24
+ATHUSDT    Sell            Conf: 41 Outcome:Success      Dur(min):   5 TTP:   5 TSL:None Est:   5.04% missing_pts=24
+GPSUSDT    Sell            Conf: 41 Outcome:Fail         Dur(min):  46 TTP:None TSL:  46 Est:   5.04% missing_pts=24
+FILUSDT    Sell            Conf: 44 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=21
+AIOTUSDT   Sell            Conf: 41 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=24

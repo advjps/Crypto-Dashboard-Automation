@@ -1,0 +1,12 @@
+===== BACKTEST REPORT FOR: signals_2025-09-08_01-55-46.json =====
+Signal Generation Time (UTC): 2025-09-09T17:22:24.749256
+
+--- BUY SIGNALS ---
+MUSDT      Buy             Conf: 54 Outcome:Success      Dur(min):  60 TTP:  60 TSL:None Est:   5.04% missing_pts=11
+REDUSDT    Buy             Conf: 45 Outcome:Success      Dur(min):  20 TTP:  20 TSL:None Est:   5.04% missing_pts=20
+BNBUSDT    Buy             Conf: 44 Outcome:Success      Dur(min): 174 TTP: 174 TSL:None Est:   5.04% missing_pts=21
+TAUSDT     Buy             Conf: 61 Outcome:Success      Dur(min):   5 TTP:   5 TSL:None Est:   5.04% missing_pts=4
+LINEAUSDT  Buy             Conf: 41 Outcome:Fail         Dur(min):  20 TTP:None TSL:  20 Est:   5.04% missing_pts=24
+
+--- SELL SIGNALS ---
+TAKEUSDT   Sell            Conf: 40 Outcome:Success      Dur(min):  14 TTP:  14 TSL:None Est:   5.04% missing_pts=25

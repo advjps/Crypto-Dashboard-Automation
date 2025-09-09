@@ -1,0 +1,24 @@
+===== BACKTEST REPORT FOR: signals_2025-09-09_14-59-48.json =====
+Signal Generation Time (UTC): 2025-09-09T17:35:12.835802
+
+--- BUY SIGNALS ---
+WLDUSDT    Buy             Conf: 40 Outcome:Success      Dur(min):   6 TTP:   6 TSL:None Est:   5.04% missing_pts=25
+TAUSDT     Buy             Conf: 40 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=25
+XNYUSDT    Buy             Conf: 54 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=11
+BNBUSDT    Buy             Conf: 40 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=25
+QUSDT      Buy             Conf: 42 Outcome:Fail         Dur(min):  12 TTP:None TSL:  12 Est:   5.04% missing_pts=23
+1000BONKUSDT Buy             Conf: 42 Outcome:Fail         Dur(min): 214 TTP:None TSL: 214 Est:   5.04% missing_pts=23
+ARKMUSDT   Buy             Conf: 42 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=23
+BCHUSDT    Buy             Conf: 43 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=22
+UNIUSDT    Buy             Conf: 45 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=20
+TRUMPUSDT  Buy             Conf: 41 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=24
+OGUSDT     Buy             Conf: 49 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=16
+NEARUSDT   Buy             Conf: 45 Outcome:Success      Dur(min):  31 TTP:  31 TSL:None Est:   5.04% missing_pts=20
+SEIUSDT    Buy             Conf: 44 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=21
+LDOUSDT    Buy             Conf: 40 Outcome:Fail         Dur(min): 274 TTP:None TSL: 274 Est:   5.04% missing_pts=25
+BIDUSDT    Buy             Conf: 47 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=18
+PYTHUSDT   Buy             Conf: 40 Outcome:Success      Dur(min):  36 TTP:  36 TSL:None Est:   5.04% missing_pts=25
+SPKUSDT    Buy             Conf: 49 Outcome:Fail         Dur(min): 275 TTP:None TSL: 275 Est:   5.04% missing_pts=16
+
+--- SELL SIGNALS ---
+    (none)

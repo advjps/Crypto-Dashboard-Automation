@@ -1,0 +1,22 @@
+===== BACKTEST REPORT FOR: signals_2025-09-08_12-29-56.json =====
+Signal Generation Time (UTC): 2025-09-09T17:25:48.305887
+
+--- BUY SIGNALS ---
+SOMIUSDT   Buy             Conf: 40 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=25
+DOGEUSDT   Buy             Conf: 40 Outcome:Success      Dur(min):  66 TTP:  66 TSL:None Est:   5.04% missing_pts=25
+ENAUSDT    Buy             Conf: 40 Outcome:Success      Dur(min):  35 TTP:  35 TSL:None Est:   5.04% missing_pts=25
+TAUSDT     Buy             Conf: 44 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=21
+1000PEPEUSDT Buy             Conf: 46 Outcome:Success      Dur(min):  28 TTP:  28 TSL:None Est:   5.04% missing_pts=19
+ADAUSDT    Buy             Conf: 49 Outcome:Success      Dur(min):  91 TTP:  91 TSL:None Est:   5.04% missing_pts=16
+REDUSDT    Buy             Conf: 44 Outcome:Success      Dur(min):  11 TTP:  11 TSL:None Est:   5.04% missing_pts=21
+AVAXUSDT   Buy             Conf: 58 Outcome:Success      Dur(min):   7 TTP:   7 TSL:None Est:   5.04% missing_pts=7
+FARTCOINUSDT Buy             Conf: 46 Outcome:Success      Dur(min):  15 TTP:  15 TSL:None Est:   5.04% missing_pts=19
+PENGUUSDT  Buy             Conf: 47 Outcome:Success      Dur(min):  14 TTP:  14 TSL:None Est:   5.04% missing_pts=18
+BCHUSDT    Buy             Conf: 54 Outcome:Success      Dur(min): 144 TTP: 144 TSL:None Est:   5.04% missing_pts=11
+PYTHUSDT   Buy             Conf: 49 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=16
+SOONUSDT   Buy             Conf: 44 Outcome:Fail         Dur(min): 170 TTP:None TSL: 170 Est:   5.04% missing_pts=21
+FILUSDT    Buy             Conf: 46 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=19
+LINEAUSDT  Buy             Conf: 41 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=24
+
+--- SELL SIGNALS ---
+    (none)

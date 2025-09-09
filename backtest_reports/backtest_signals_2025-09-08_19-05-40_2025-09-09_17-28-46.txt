@@ -1,0 +1,32 @@
+===== BACKTEST REPORT FOR: signals_2025-09-08_19-05-40.json =====
+Signal Generation Time (UTC): 2025-09-09T17:28:46.777015
+
+--- BUY SIGNALS ---
+XRPUSDT    Buy             Conf: 47 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=18
+DOGEUSDT   Buy             Conf: 60 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=5
+WLDUSDT    Buy             Conf: 49 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=16
+TAUSDT     Buy             Conf: 40 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=25
+1000PEPEUSDT Buy             Conf: 41 Outcome:Success      Dur(min): 101 TTP: 101 TSL:None Est:   5.04% missing_pts=24
+SUIUSDT    Buy             Conf: 45 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=20
+BNBUSDT    Buy             Conf: 42 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=23
+ADAUSDT    Buy             Conf: 47 Outcome:Success      Dur(min): 150 TTP: 150 TSL:None Est:   5.04% missing_pts=18
+MUSDT      Buy             Conf: 44 Outcome:Success      Dur(min):  97 TTP:  97 TSL:None Est:   5.04% missing_pts=21
+HYPEUSDT   Buy             Conf: 59 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=6
+PENGUUSDT  Buy             Conf: 58 Outcome:Success      Dur(min):  73 TTP:  73 TSL:None Est:   5.04% missing_pts=7
+FARTCOINUSDT Buy             Conf: 48 Outcome:Success      Dur(min): 172 TTP: 172 TSL:None Est:   5.04% missing_pts=17
+LTCUSDT    Buy             Conf: 41 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=24
+1000BONKUSDT Buy             Conf: 46 Outcome:Success      Dur(min):  52 TTP:  52 TSL:None Est:   5.04% missing_pts=19
+BIOUSDT    Buy             Conf: 44 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=21
+AAVEUSDT   Buy             Conf: 45 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=20
+IPUSDT     Buy             Conf: 45 Outcome:Success      Dur(min):   6 TTP:   6 TSL:None Est:   5.04% missing_pts=20
+MITOUSDT   Buy             Conf: 54 Outcome:Success      Dur(min):  61 TTP:  61 TSL:None Est:   5.04% missing_pts=11
+TRUMPUSDT  Buy             Conf: 40 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=25
+XLMUSDT    Buy             Conf: 49 Outcome:Success      Dur(min):  53 TTP:  53 TSL:None Est:   5.04% missing_pts=16
+TAKEUSDT   Buy             Conf: 41 Outcome:Success      Dur(min):   8 TTP:   8 TSL:None Est:   5.04% missing_pts=24
+TAOUSDT    Buy             Conf: 42 Outcome:Success      Dur(min):  86 TTP:  86 TSL:None Est:   5.04% missing_pts=23
+OGUSDT     Buy             Conf: 44 Outcome:Success      Dur(min):  36 TTP:  36 TSL:None Est:   5.04% missing_pts=21
+TIAUSDT    Buy             Conf: 43 Outcome:Success      Dur(min):  57 TTP:  57 TSL:None Est:   5.04% missing_pts=22
+CRVUSDT    Buy             Conf: 43 Outcome:Success      Dur(min):  89 TTP:  89 TSL:None Est:   5.04% missing_pts=22
+
+--- SELL SIGNALS ---
+SOMIUSDT   Sell            Conf: 42 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=23

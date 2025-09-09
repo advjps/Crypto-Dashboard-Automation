@@ -1,0 +1,17 @@
+===== BACKTEST REPORT FOR: signals_2025-09-09_04-27-32.json =====
+Signal Generation Time (UTC): 2025-09-09T17:31:03.803917
+
+--- BUY SIGNALS ---
+ENAUSDT    Buy             Conf: 43 Outcome:Success      Dur(min): 131 TTP: 131 TSL:None Est:   5.04% missing_pts=22
+WIFUSDT    Buy             Conf: 40 Outcome:Success      Dur(min):  52 TTP:  52 TSL:None Est:   5.04% missing_pts=25
+PTBUSDT    Buy             Conf: 41 Outcome:Success      Dur(min):   8 TTP:   8 TSL:None Est:   5.04% missing_pts=24
+SPKUSDT    Buy             Conf: 41 Outcome:Success      Dur(min):  85 TTP:  85 TSL:None Est:   5.04% missing_pts=24
+ATHUSDT    Buy             Conf: 44 Outcome:Success      Dur(min):   7 TTP:   7 TSL:None Est:   5.04% missing_pts=21
+SAPIENUSDT Buy             Conf: 43 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=22
+REDUSDT    Buy             Conf: 42 Outcome:Success      Dur(min):  61 TTP:  61 TSL:None Est:   5.04% missing_pts=23
+IPUSDT     Buy             Conf: 61 Outcome:Success      Dur(min): 174 TTP: 174 TSL:None Est:   5.04% missing_pts=4
+OGUSDT     Buy             Conf: 44 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=21
+
+--- SELL SIGNALS ---
+BNBUSDT    Sell            Conf: 40 Outcome:Success      Dur(min): 153 TTP: 153 TSL:None Est:   5.04% missing_pts=25
+TRXUSDT    Sell            Conf: 42 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=23

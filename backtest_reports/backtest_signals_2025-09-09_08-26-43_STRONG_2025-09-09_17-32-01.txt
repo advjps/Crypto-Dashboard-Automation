@@ -1,0 +1,47 @@
+===== BACKTEST REPORT FOR: signals_2025-09-09_08-26-43_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-09T17:32:01.991659
+
+--- BUY SIGNALS ---
+DOGEUSDT   Buy             Conf: 54 Outcome:Success      Dur(min):  35 TTP:  35 TSL:None Est:   5.04% missing_pts=11
+
+--- SELL SIGNALS ---
+SOLUSDT    Sell            Conf: 41 Outcome:Fail         Dur(min): 200 TTP:None TSL: 200 Est:   5.04% missing_pts=24
+XRPUSDT    Sell            Conf: 42 Outcome:Fail         Dur(min): 274 TTP:None TSL: 274 Est:   5.04% missing_pts=23
+WLFIUSDT   Strong Sell     Conf: 66 Outcome:Success      Dur(min):  31 TTP:  31 TSL:None Est:   5.04% missing_pts=0
+SOMIUSDT   Sell            Conf: 41 Outcome:Fail         Dur(min):   2 TTP:None TSL:   2 Est:   5.04% missing_pts=24
+OPENUSDT   Sell            Conf: 58 Outcome:Fail         Dur(min):   2 TTP:None TSL:   2 Est:   5.04% missing_pts=7
+ENAUSDT    Sell            Conf: 48 Outcome:Fail         Dur(min):  48 TTP:None TSL:  48 Est:   5.04% missing_pts=17
+SUIUSDT    Sell            Conf: 63 Outcome:Fail         Dur(min): 201 TTP:None TSL: 201 Est:   5.04% missing_pts=2
+1000PEPEUSDT Sell            Conf: 40 Outcome:Fail         Dur(min): 201 TTP:None TSL: 201 Est:   5.04% missing_pts=25
+LINKUSDT   Sell            Conf: 41 Outcome:Fail         Dur(min): 198 TTP:None TSL: 198 Est:   5.04% missing_pts=24
+ADAUSDT    Sell            Conf: 43 Outcome:Fail         Dur(min): 222 TTP:None TSL: 222 Est:   5.04% missing_pts=22
+PENGUUSDT  Sell            Conf: 40 Outcome:Fail         Dur(min):  86 TTP:None TSL:  86 Est:   5.04% missing_pts=25
+AVAXUSDT   Sell            Conf: 40 Outcome:Fail         Dur(min): 219 TTP:None TSL: 219 Est:   5.04% missing_pts=25
+FARTCOINUSDT Sell            Conf: 44 Outcome:Fail         Dur(min): 174 TTP:None TSL: 174 Est:   5.04% missing_pts=21
+LTCUSDT    Sell            Conf: 43 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=22
+WIFUSDT    Sell            Conf: 41 Outcome:Fail         Dur(min): 199 TTP:None TSL: 199 Est:   5.04% missing_pts=24
+AAVEUSDT   Sell            Conf: 40 Outcome:Fail         Dur(min): 249 TTP:None TSL: 249 Est:   5.04% missing_pts=25
+LINEAUSDT  Sell            Conf: 41 Outcome:Success      Dur(min):  23 TTP:  23 TSL:None Est:   5.04% missing_pts=24
+ARBUSDT    Sell            Conf: 41 Outcome:Fail         Dur(min): 100 TTP:None TSL: 100 Est:   5.04% missing_pts=24
+SPKUSDT    Sell            Conf: 42 Outcome:Fail         Dur(min):  75 TTP:None TSL:  75 Est:   5.04% missing_pts=23
+BIOUSDT    Sell            Conf: 42 Outcome:Fail         Dur(min): 270 TTP:None TSL: 270 Est:   5.04% missing_pts=23
+ARKMUSDT   Sell            Conf: 42 Outcome:Fail         Dur(min):  63 TTP:None TSL:  63 Est:   5.04% missing_pts=23
+OPUSDT     Sell            Conf: 40 Outcome:Fail         Dur(min): 188 TTP:None TSL: 188 Est:   5.04% missing_pts=25
+DOTUSDT    Sell            Conf: 42 Outcome:Fail         Dur(min): 259 TTP:None TSL: 259 Est:   5.04% missing_pts=23
+VIRTUALUSDT Sell            Conf: 44 Outcome:Fail         Dur(min):  72 TTP:None TSL:  72 Est:   5.04% missing_pts=21
+FILUSDT    Sell            Conf: 41 Outcome:Fail         Dur(min): 222 TTP:None TSL: 222 Est:   5.04% missing_pts=24
+TRUMPUSDT  Strong Sell     Conf: 65 Outcome:Fail         Dur(min): 262 TTP:None TSL: 262 Est:   5.04% missing_pts=0
+1000SHIBUSDT Sell            Conf: 41 Outcome:Fail         Dur(min): 259 TTP:None TSL: 259 Est:   5.04% missing_pts=24
+XLMUSDT    Sell            Conf: 42 Outcome:Fail         Dur(min): 256 TTP:None TSL: 256 Est:   5.04% missing_pts=23
+TAOUSDT    Sell            Conf: 63 Outcome:Fail         Dur(min): 230 TTP:None TSL: 230 Est:   5.04% missing_pts=2
+SEIUSDT    Sell            Conf: 63 Outcome:Fail         Dur(min): 197 TTP:None TSL: 197 Est:   5.04% missing_pts=2
+PYTHUSDT   Sell            Conf: 41 Outcome:Fail         Dur(min): 243 TTP:None TSL: 243 Est:   5.04% missing_pts=24
+TIAUSDT    Sell            Conf: 40 Outcome:Fail         Dur(min): 199 TTP:None TSL: 199 Est:   5.04% missing_pts=25
+SAPIENUSDT Sell            Conf: 45 Outcome:Fail         Dur(min):  11 TTP:None TSL:  11 Est:   5.04% missing_pts=20
+ONDOUSDT   Sell            Conf: 44 Outcome:Fail         Dur(min): 212 TTP:None TSL: 212 Est:   5.04% missing_pts=21
+SOONUSDT   Sell            Conf: 41 Outcome:Fail         Dur(min): 198 TTP:None TSL: 198 Est:   5.04% missing_pts=24
+FETUSDT    Sell            Conf: 44 Outcome:Fail         Dur(min): 199 TTP:None TSL: 199 Est:   5.04% missing_pts=21
+AI16ZUSDT  Sell            Conf: 46 Outcome:Success      Dur(min):  65 TTP:  65 TSL:None Est:   5.04% missing_pts=19
+ETCUSDT    Sell            Conf: 42 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=23
+TAKEUSDT   Strong Sell     Conf: 67 Outcome:Fail         Dur(min):  71 TTP:None TSL:  71 Est:   5.04% missing_pts=0
+LDOUSDT    Sell            Conf: 41 Outcome:Fail         Dur(min): 189 TTP:None TSL: 189 Est:   5.04% missing_pts=24

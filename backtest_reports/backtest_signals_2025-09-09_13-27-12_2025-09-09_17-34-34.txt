@@ -1,0 +1,19 @@
+===== BACKTEST REPORT FOR: signals_2025-09-09_13-27-12.json =====
+Signal Generation Time (UTC): 2025-09-09T17:34:34.417303
+
+--- BUY SIGNALS ---
+ETHUSDT    Buy             Conf: 40 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=25
+WLDUSDT    Buy             Conf: 40 Outcome:Success      Dur(min):   5 TTP:   5 TSL:None Est:   5.04% missing_pts=25
+DOGEUSDT   Buy             Conf: 40 Outcome:Success      Dur(min): 135 TTP: 135 TSL:None Est:   5.04% missing_pts=25
+OPENUSDT   Buy             Conf: 48 Outcome:Fail         Dur(min):   2 TTP:None TSL:   2 Est:   5.04% missing_pts=17
+TAUSDT     Buy             Conf: 45 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=20
+QUSDT      Buy             Conf: 43 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=22
+BCHUSDT    Buy             Conf: 42 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=23
+PTBUSDT    Buy             Conf: 41 Outcome:Success      Dur(min):   7 TTP:   7 TSL:None Est:   5.04% missing_pts=24
+OGUSDT     Buy             Conf: 40 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=25
+VIRTUALUSDT Buy             Conf: 40 Outcome:Success      Dur(min):  16 TTP:  16 TSL:None Est:   5.04% missing_pts=25
+FILUSDT    Buy             Conf: 40 Outcome:Success      Dur(min): 126 TTP: 126 TSL:None Est:   5.04% missing_pts=25
+SPKUSDT    Buy             Conf: 40 Outcome:Success      Dur(min):   7 TTP:   7 TSL:None Est:   5.04% missing_pts=25
+
+--- SELL SIGNALS ---
+PUMPUSDT   Sell            Conf: 41 Outcome:Success      Dur(min):  51 TTP:  51 TSL:None Est:   5.04% missing_pts=24

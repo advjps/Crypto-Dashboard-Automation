@@ -1,0 +1,22 @@
+===== BACKTEST REPORT FOR: signals_2025-09-08_21-28-34.json =====
+Signal Generation Time (UTC): 2025-09-09T17:30:06.044887
+
+--- BUY SIGNALS ---
+SOMIUSDT   Buy             Conf: 48 Outcome:Fail         Dur(min):   2 TTP:None TSL:   2 Est:   5.04% missing_pts=17
+ENAUSDT    Buy             Conf: 42 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=23
+1000PEPEUSDT Buy             Conf: 44 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=21
+BNBUSDT    Buy             Conf: 40 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=25
+HYPEUSDT   Buy             Conf: 40 Outcome:Fail         Dur(min): 261 TTP:None TSL: 261 Est:   5.04% missing_pts=25
+MUSDT      Buy             Conf: 43 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=22
+BCHUSDT    Buy             Conf: 44 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=21
+1000BONKUSDT Buy             Conf: 42 Outcome:Success      Dur(min):  28 TTP:  28 TSL:None Est:   5.04% missing_pts=23
+WIFUSDT    Buy             Conf: 43 Outcome:Success      Dur(min):  28 TTP:  28 TSL:None Est:   5.04% missing_pts=22
+BTRUSDT    Buy             Conf: 48 Outcome:Success      Dur(min):  12 TTP:  12 TSL:None Est:   5.04% missing_pts=17
+PTBUSDT    Buy             Conf: 61 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=4
+HEMIUSDT   Buy             Conf: 41 Outcome:Success      Dur(min):   8 TTP:   8 TSL:None Est:   5.04% missing_pts=24
+XLMUSDT    Buy             Conf: 40 Outcome:Inconclusive Dur(min): 300 TTP:None TSL:None Est:   5.04% missing_pts=25
+OGUSDT     Buy             Conf: 41 Outcome:Success      Dur(min):   8 TTP:   8 TSL:None Est:   5.04% missing_pts=24
+SEIUSDT    Buy             Conf: 47 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=18
+
+--- SELL SIGNALS ---
+    (none)
