@@ -1,0 +1,54 @@
+name: Filter CSV for HMA_GATEKEEPER_applied
+
+on:
+  workflow_dispatch: # Allows manual triggering
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+
+jobs:
+  filter-csv:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x' # Use the latest Python 3 version
+
+      # Step 3: Install dependencies
+      - name: Install pandas
+        run: pip install pandas
+
+      # Step 4: Create and run the Python script to filter the CSV
+      - name: Filter CSV
+        run: |
+          python - <<EOF
+          import pandas as pd
+
+          # Load the CSV
+          url = "https://raw.githubusercontent.com/advjps/Crypto-Dashboard-Automation/refs/heads/main/analytics/all_signals.csv"
+          df = pd.read_csv(url)
+
+          # Filter for HMA_GATEKEEPER_applied = TRUE
+          filtered_df = df[df['HMA_GATEKEEPER_applied'] == True]
+
+          # Save to a new CSV
+          filtered_df.to_csv("analytics/filtered_signals.csv", index=False)
+
+          print(f"Filtered CSV saved with {len(filtered_df)} rows and {len(filtered_df.columns)} columns.")
+          EOF
+
+      # Step 5: Commit and push the filtered CSV
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add analytics/filtered_signals.csv
+          git commit -m "Add filtered CSV for HMA_GATEKEEPER_applied = TRUE"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
