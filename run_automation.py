@@ -882,6 +882,33 @@ if __name__ == "__main__":
             res = analyze_data(coin, data_5m, market_trend)
             if res:
                 all_results.append(res)
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"  - Error analyzing {coin}: {e}")
+            continue
 
+    # Save results (if any)
+    if all_results:
+        strong_signals = [s for s in all_results if "Strong" in s.get('signal', '')]
+        print(f"\nAnalysis complete. Found {len(strong_signals)} strong signals.")
+        print("Saving full analysis file...")
+
+        utc_now = datetime.now(timezone.utc)
+        ist_tz = pytz.timezone("Asia/Kolkata")
+        ist_now = utc_now.astimezone(ist_tz)
+        timestamp_str = ist_now.strftime("%Y-%m-%d_%H-%M-%S")
+
+        file_suffix = "_STRONG" if strong_signals else ""
+        archive_filename = f"signals_{timestamp_str}{file_suffix}.json"
+
+        os.makedirs(ARCHIVE_FOLDER, exist_ok=True)
+        archive_filepath = os.path.join(ARCHIVE_FOLDER, archive_filename)
+
+        with open(archive_filepath, 'w', encoding='utf-8') as f:
+            json.dump(all_results, f, indent=2)
+        print(f"[OK] Archive file saved to {archive_filepath}")
+
+        with open(LIVE_FILENAME, 'w', encoding='utf-8') as f:
+            json.dump(all_results, f, indent=2)
+        print(f"[OK] Live data file saved as {LIVE_FILENAME}")
+    else:
+        print("\nNo signals generated (no file saved).")
