@@ -882,4 +882,5 @@ if __name__ == "__main__":
             res = analyze_data(coin, data_5m, market_trend)
             if res:
                 all_results.append(res)
-        except
+        except Exception:
+    pass
