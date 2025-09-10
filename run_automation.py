@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# run_automation.py (10A - Patched: 10th Amendment + HMA gatekeeper + fixed TP/SL as requested)
+# run_automation.py (10B - 10A + Supervisor Promoter Option 3)
 # Requirements: pandas, requests, pytz
 # Usage: python run_automation.py
 
@@ -35,8 +35,8 @@ LEVERAGE_FOR_PROFIT_EVAL = 7.0
 # TP_price_move_pct = 0.72% -> margin profit ~= 0.72 * leverage = 5.04% (with 7x)
 # SL_price_move_pct = 3.00% -> margin loss ~= 3.00 * leverage = 21.00%
 FORCE_FIXED_TP_SL = True
-TP_PRICE_MOVE_PCT = 0.72 / 100.0    # 0.0072
-SL_PRICE_MOVE_PCT = 3.00 / 100.0    # 0.03
+TP_PRICE_MOVE_PCT = 0.72 / 100.0    # 0.0072 (=0.72% price move)
+SL_PRICE_MOVE_PCT = 3.00 / 100.0    # 0.03   (=3% price move)
 
 # Keep ATR fallback & clamps (not used if FORCE_FIXED_TP_SL=True)
 TP_PCT_MIN, TP_PCT_MAX = 0.0072, 0.016
@@ -52,6 +52,14 @@ MIN_CONF_FOR_SIGNAL = 40
 HMA_GATEKEEPER_ENABLED = True
 HMA_GAP_THRESHOLD = 15            # points below STRONG threshold where gatekeeper applies
 HMA_GATEKEEPER_BOOST = 8         # additive boost if gatekeeper condition satisfied
+
+# Supervisor Promoter (Option 3) settings
+# Applies only to signals where hma_gate_applied == True and still below STRONG
+SUPERVISOR_ENABLED = True
+SUPERVISOR_BOOST = 7
+SUP_HIST_NORM_THRESH = 0.6
+SUP_HMA_SLOPE_PCT_THRESH = 0.15  # percent (e.g. 0.15 => 0.15%)
+# cvd_support: buy-supporting when cvd trend is 'falling' (hidden buy) ; sell-supporting when 'rising'
 
 # Regime hysteresis
 REGIME_HOLD_MINUTES = 60
@@ -240,11 +248,9 @@ def calc_tsi(values, r=25, s=13):
 
 def calc_stc(values):
     # STC is tuning-heavy; provide None if not implementable reliably
-    # returning None avoids accidental boolean/NA ambiguity
     return None
 
 def calc_cvd(values, volumes):
-    # Simple CVD stub: cumulative signed volume using price change sign
     try:
         if not values or not volumes:
             return None
@@ -332,7 +338,7 @@ def save_regime_state(state):
     except Exception:
         pass
 
-# ----------------- ANALYZE DATA (10A) -----------------
+# ----------------- ANALYZE DATA (10B) -----------------
 def analyze_data(symbol, data5m, market_trend):
     """
     Returns a JSON-serializable dict for the signal, or None if Neutral (we don't record neutrals).
@@ -396,14 +402,17 @@ def analyze_data(symbol, data5m, market_trend):
     hma_val = float(hma_series[-1]) if isinstance(hma_series, (list, tuple)) and hma_series[-1] is not None else None
     # compute hma slope (very simple last - prev)
     hma_slope = None
+    hma_slope_pct = None
     try:
         if isinstance(hma_series, (list, tuple)) and len(hma_series) >= 3:
             a = hma_series[-3]; b = hma_series[-2]; c = hma_series[-1]
             if a is not None and b is not None and c is not None:
-                # slope sign based on last segment
                 hma_slope = (c - b)
+                if hma_val and hma_val != 0:
+                    hma_slope_pct = (hma_slope / hma_val) * 100.0
     except Exception:
         hma_slope = None
+        hma_slope_pct = None
 
     alma_series = safe_call(calc_alma, closes, 9, 0.85, 6)
     alma_val = float(alma_series[-1]) if isinstance(alma_series, (list, tuple)) and alma_series[-1] is not None else None
@@ -417,11 +426,10 @@ def analyze_data(symbol, data5m, market_trend):
         tp_pct = TP_PRICE_MOVE_PCT
         sl_pct = SL_PRICE_MOVE_PCT
     else:
-        # ATR adaptive with clamp (use ATR-derived pct but enforce min)
         effective_atr = atr if (atr and atr > 0) else (current_price * 0.002)
         tp_pct_from_atr = (effective_atr * TP_ATR_FACTOR) / current_price if current_price else TP_PCT_MIN
         tp_pct = max(TP_PCT_MIN, min(TP_PCT_MAX, tp_pct_from_atr))
-        tp_pct = max(tp_pct, TP_PRICE_MOVE_PCT)  # enforce minimum requested tp pct
+        tp_pct = max(tp_pct, TP_PRICE_MOVE_PCT)
         sl_pct_from_atr = (effective_atr * SL_ATR_FACTOR) / current_price if current_price else SL_PCT_MIN
         sl_pct = max(SL_PCT_MIN, min(SL_PCT_MAX, sl_pct_from_atr))
 
@@ -431,7 +439,6 @@ def analyze_data(symbol, data5m, market_trend):
     sl_sell = current_price + (sl_pct * current_price)
 
     # --- Scoring engines (Buy / Sell separate) ---
-    # Base score (price+oscillators)
     def buy_base_score():
         s = 0.0
         if percent_b is not None:
@@ -496,7 +503,6 @@ def analyze_data(symbol, data5m, market_trend):
             s += 4.0
         if isinstance(stc_val, (int, float)) and stc_val > 50:
             s += 4.0
-        # thrust check
         try:
             last = data5m[-1]; prev = data5m[-2]
             if float(last["close"]) > float(last["open"]) and float(last["close"]) > float(prev["high"]):
@@ -661,27 +667,73 @@ def analyze_data(symbol, data5m, market_trend):
     hma_gate_info = {}
     if HMA_GATEKEEPER_ENABLED and initial_signal in ("Buy", "Sell"):
         if confidence < STRONG_THRESHOLD and confidence >= (STRONG_THRESHOLD - HMA_GAP_THRESHOLD):
-            # check HMA slope alignment
             aligned = False
             try:
                 if initial_signal == "Buy":
-                    # we want HMA slope > 0 (up) for buys
                     aligned = (hma_slope is not None and hma_slope > 0)
                 elif initial_signal == "Sell":
                     aligned = (hma_slope is not None and hma_slope < 0)
             except Exception:
                 aligned = False
             if aligned:
-                # apply boost but do not exceed STRONG_THRESHOLD + small margin
                 before_conf = confidence
                 confidence = int(min(100, confidence + HMA_GATEKEEPER_BOOST))
                 hma_gate_applied = True
-                hma_gate_info = {"applied": True, "before_confidence": before_conf, "after_confidence": confidence, "hma_slope": float(hma_slope) if hma_slope is not None else None}
+                hma_gate_info = {"applied": True, "before_confidence": before_conf, "after_confidence": confidence, "hma_slope": float(hma_slope) if hma_slope is not None else None, "hma_slope_pct": float(hma_slope_pct) if hma_slope_pct is not None else None}
             else:
-                hma_gate_info = {"applied": False, "reason": "hma_not_aligned", "hma_slope": float(hma_slope) if hma_slope is not None else None}
+                hma_gate_info = {"applied": False, "reason": "hma_not_aligned", "hma_slope": float(hma_slope) if hma_slope is not None else None, "hma_slope_pct": float(hma_slope_pct) if hma_slope_pct is not None else None}
         else:
-            # not in gate region or already strong
             hma_gate_info = {"applied": False, "reason": "not_in_gap_or_already_strong", "confidence": confidence}
+
+    # Supervisor Promoter (Option 3): apply only if HMA gatekeeper was applied and signal still not strong
+    supervisor_applied = False
+    supervisor_info = {}
+    if SUPERVISOR_ENABLED and hma_gate_applied and confidence < STRONG_THRESHOLD:
+        # compute hist_norm
+        try:
+            effective_atr_for_norm = atr if atr and atr > 0 else (current_price * 0.002)
+            hist_norm = min(1.5, abs(macd_hist) / (0.5 * effective_atr_for_norm)) if effective_atr_for_norm else min(1.5, abs(macd_hist))
+        except Exception:
+            hist_norm = 0.0
+        # determine cvd_support: for Buy -> cvd falling supports buy; for Sell -> cvd rising supports sell
+        cvd_support = False
+        try:
+            if initial_signal == "Buy" and cvd_trend and "fall" in str(cvd_trend).lower():
+                cvd_support = True
+            if initial_signal == "Sell" and cvd_trend and "rise" in str(cvd_trend).lower():
+                cvd_support = True
+        except Exception:
+            cvd_support = False
+        # compute hma_slope_pct (already attempted above); ensure numeric
+        hma_slope_pct_val = float(hma_slope_pct) if hma_slope_pct is not None else 0.0
+        # apply Option 3 condition
+        try:
+            cond_hist = (hist_norm >= SUP_HIST_NORM_THRESH)
+            cond_hma = (hma_slope_pct_val >= SUP_HMA_SLOPE_PCT_THRESH)
+            cond = (cond_hist and (cond_hma or cvd_support))
+            if cond:
+                before_conf = confidence
+                confidence = int(min(100, confidence + SUPERVISOR_BOOST))
+                supervisor_applied = True
+                supervisor_info = {
+                    "applied": True,
+                    "before_confidence": before_conf,
+                    "after_confidence": confidence,
+                    "hist_norm": float(hist_norm),
+                    "hma_slope_pct": float(hma_slope_pct_val),
+                    "cvd_support": bool(cvd_support),
+                    "rule": "hist_norm>=0.6 AND (hma_slope_pct>=0.15 OR cvd_support)"
+                }
+            else:
+                supervisor_info = {
+                    "applied": False,
+                    "hist_norm": float(hist_norm),
+                    "hma_slope_pct": float(hma_slope_pct_val),
+                    "cvd_support": bool(cvd_support),
+                    "reason": "conditions_not_met"
+                }
+        except Exception as e:
+            supervisor_info = {"applied": False, "error": str(e)}
 
     # final label
     if initial_signal == "Buy":
@@ -730,6 +782,8 @@ def analyze_data(symbol, data5m, market_trend):
         "volProfile_bear": float(vp_bear),
         "cvd_trend": cvd_trend,
         "cvd_value": float(cvd_value) if cvd_value is not None else None,
+        "hma_slope": float(hma_slope) if hma_slope is not None else None,
+        "hma_slope_pct": float(hma_slope_pct) if hma_slope_pct is not None else None,
         "estimated_profit_margin_pct": float(estimated_profit_margin_pct)
     }
 
@@ -742,7 +796,8 @@ def analyze_data(symbol, data5m, market_trend):
         "confluence_flags": list(confluence_flags),
         "would_be_strong_if": would_be,
         "regime_bias": float(market_trend) if market_trend is not None else None,
-        "hma_gatekeeper": hma_gate_info
+        "hma_gatekeeper": hma_gate_info,
+        "supervisor": supervisor_info
     }
 
     # Final result object
@@ -775,6 +830,7 @@ def analyze_data(symbol, data5m, market_trend):
             "atr5m": (float(atr) if atr is not None else None),
             "hma5m": (float(hma_val) if hma_val is not None else None),
             "hma_slope": (float(hma_slope) if hma_slope is not None else None),
+            "hma_slope_pct": (float(hma_slope_pct) if hma_slope_pct is not None else None),
             "alma5m": (float(alma_val) if alma_val is not None else None),
             "tsi5m": (float(tsi_val) if isinstance(tsi_val, (int, float)) else None),
             "stc5m": (float(stc_val) if isinstance(stc_val, (int, float)) else None),
@@ -810,9 +866,7 @@ if __name__ == "__main__":
     state = load_regime_state()
     prev_regime = state.get("regime")
     prev_ts = state.get("ts")
-    # If regime is same as previous for short-run we keep it to avoid flipflop
     regime_name = ("Bullish" if (market_trend is not None and float(market_trend) >= 5) else ("Bearish" if (market_trend is not None and float(market_trend) <= -5) else "Neutral"))
-    # store regime state (simple)
     save_regime_state({"regime": regime_name, "ts": datetime.utcnow().replace(tzinfo=timezone.utc).isoformat()})
 
     print(f"[INFO] Market Trend: {market_trend} ({regime_name})")
@@ -828,33 +882,4 @@ if __name__ == "__main__":
             res = analyze_data(coin, data_5m, market_trend)
             if res:
                 all_results.append(res)
-        except Exception as e:
-            print(f"  - Error analyzing {coin}: {e}")
-            continue
-
-    # Save results (if any)
-    if all_results:
-        strong_signals = [s for s in all_results if "Strong" in s.get('signal', '')]
-        print(f"\nAnalysis complete. Found {len(strong_signals)} strong signals.")
-        print("Saving full analysis file...")
-
-        utc_now = datetime.now(timezone.utc)
-        ist_tz = pytz.timezone("Asia/Kolkata")
-        ist_now = utc_now.astimezone(ist_tz)
-        timestamp_str = ist_now.strftime("%Y-%m-%d_%H-%M-%S")
-
-        file_suffix = "_STRONG" if strong_signals else ""
-        archive_filename = f"signals_{timestamp_str}{file_suffix}.json"
-
-        os.makedirs(ARCHIVE_FOLDER, exist_ok=True)
-        archive_filepath = os.path.join(ARCHIVE_FOLDER, archive_filename)
-
-        with open(archive_filepath, 'w', encoding='utf-8') as f:
-            json.dump(all_results, f, indent=2)
-        print(f"[OK] Archive file saved to {archive_filepath}")
-
-        with open(LIVE_FILENAME, 'w', encoding='utf-8') as f:
-            json.dump(all_results, f, indent=2)
-        print(f"[OK] Live data file saved as {LIVE_FILENAME}")
-    else:
-        print("\nNo signals generated (no file saved).")
+        except
