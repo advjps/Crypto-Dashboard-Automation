@@ -1,0 +1,2028 @@
+[
+  {
+    "coin": "ETHUSDT",
+    "price": 4329.04,
+    "tp": 4360.209088,
+    "sl": 4199.1688,
+    "leverage": "7x",
+    "confidence": 43,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:07:41.442633+00:00",
+    "signal_time_ist": "2025-09-10T17:37:41.442648+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 43,
+      "components": {
+        "base_score": 8.0,
+        "momentum_score": 4.675803834881132,
+        "trend_score": 15.0,
+        "volume_score": 10.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.6968522377585249,
+        "rsi": 55.36083499025184,
+        "cci": 118.6391728758842,
+        "macd_hist": 0.11766286682823557,
+        "atr": 4.17859245260772,
+        "hma": 4326.40125,
+        "alma": null,
+        "tsi": 8.485558291363018,
+        "stc": null,
+        "volProfile_bull": 3.0,
+        "volProfile_bear": 0.0,
+        "cvd_trend": "falling",
+        "cvd_value": -15388.644999999993,
+        "hma_slope": 0.012031249999381544,
+        "hma_slope_pct": 0.00027808909308588847,
+        "estimated_profit_margin_pct": 5.039999999999943
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 22,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 32.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 15.32
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 43
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 55.36083499025184,
+      "macd5m": {
+        "macd": 1.2368974753144357,
+        "signal": 1.1192346084862002,
+        "histogram": 0.11766286682823557
+      },
+      "boll5m": {
+        "upper": 4331.55478114436,
+        "middle": 4327.407,
+        "lower": 4323.25921885564,
+        "percent_b": 0.6968522377585249
+      },
+      "cci5m": 118.6391728758842,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 3.0,
+        "bearish_score": 0.0
+      },
+      "ema50_5m": 4324.28663457399,
+      "atr5m": 4.17859245260772,
+      "hma5m": 4326.40125,
+      "hma_slope": 0.012031249999381544,
+      "hma_slope_pct": 0.00027808909308588847,
+      "alma5m": null,
+      "tsi5m": 8.485558291363018,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "falling",
+        "value": -15388.644999999993
+      }
+    }
+  },
+  {
+    "coin": "XRPUSDT",
+    "price": 2.9715,
+    "tp": 2.9928948,
+    "sl": 2.882355,
+    "leverage": "7x",
+    "confidence": 41,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:07:48.608744+00:00",
+    "signal_time_ist": "2025-09-10T17:37:48.608757+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 41,
+      "components": {
+        "base_score": 8.0,
+        "momentum_score": 8.371180725714122,
+        "trend_score": 15.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.8414681072041635,
+        "rsi": 58.1257612343201,
+        "cci": 143.76472267828692,
+        "macd_hist": 0.0006428102596624202,
+        "atr": 0.0035293544696387933,
+        "hma": 2.9695453125,
+        "alma": null,
+        "tsi": 8.460285578107868,
+        "stc": null,
+        "volProfile_bull": 3.0,
+        "volProfile_bear": 0.0,
+        "cvd_trend": "rising",
+        "cvd_value": 5763003.899999999,
+        "hma_slope": -2.8125000000045475e-05,
+        "hma_slope_pct": -0.0009471146940124514,
+        "estimated_profit_margin_pct": 5.039999999999986
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 24,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 32.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 11.63
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 41
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 58.1257612343201,
+      "macd5m": {
+        "macd": 0.000953439549333357,
+        "signal": 0.00031062928967093674,
+        "histogram": 0.0006428102596624202
+      },
+      "boll5m": {
+        "upper": 2.9733918822856764,
+        "middle": 2.9674249999999995,
+        "lower": 2.9614581177143227,
+        "percent_b": 0.8414681072041635
+      },
+      "cci5m": 143.76472267828692,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 3.0,
+        "bearish_score": 0.0
+      },
+      "ema50_5m": 2.967082280093738,
+      "atr5m": 0.0035293544696387933,
+      "hma5m": 2.9695453125,
+      "hma_slope": -2.8125000000045475e-05,
+      "hma_slope_pct": -0.0009471146940124514,
+      "alma5m": null,
+      "tsi5m": 8.460285578107868,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "rising",
+        "value": 5763003.899999999
+      }
+    }
+  },
+  {
+    "coin": "BAKEUSDT",
+    "price": 0.1679,
+    "tp": 0.16910888,
+    "sl": 0.162863,
+    "leverage": "7x",
+    "confidence": 40,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:07:49.801414+00:00",
+    "signal_time_ist": "2025-09-10T17:37:49.801428+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 40,
+      "components": {
+        "base_score": 6.0,
+        "momentum_score": 4.0,
+        "trend_score": 15.0,
+        "volume_score": 10.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.2781492196838747,
+        "rsi": 50.862865770799836,
+        "cci": -107.78767823911475,
+        "macd_hist": -0.004583791628988686,
+        "atr": 0.016486633535975122,
+        "hma": 0.183484375,
+        "alma": null,
+        "tsi": 16.947154638005564,
+        "stc": null,
+        "volProfile_bull": 3.0,
+        "volProfile_bear": 0.0,
+        "cvd_trend": "falling",
+        "cvd_value": -82964884.0,
+        "hma_slope": -0.0022515624999999984,
+        "hma_slope_pct": -1.2271140253768194,
+        "estimated_profit_margin_pct": 5.039999999999982
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 25,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 34.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 16.0
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 40
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 50.862865770799836,
+      "macd5m": {
+        "macd": 0.00936930735899208,
+        "signal": 0.013953098987980765,
+        "histogram": -0.004583791628988686
+      },
+      "boll5m": {
+        "upper": 0.2087835841900028,
+        "middle": 0.18046500000000001,
+        "lower": 0.15214641580999722,
+        "percent_b": 0.2781492196838747
+      },
+      "cci5m": -107.78767823911475,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 3.0,
+        "bearish_score": 0.0
+      },
+      "ema50_5m": 0.14755239580177093,
+      "atr5m": 0.016486633535975122,
+      "hma5m": 0.183484375,
+      "hma_slope": -0.0022515624999999984,
+      "hma_slope_pct": -1.2271140253768194,
+      "alma5m": null,
+      "tsi5m": 16.947154638005564,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "falling",
+        "value": -82964884.0
+      }
+    }
+  },
+  {
+    "coin": "WLFIUSDT",
+    "price": 0.2084,
+    "tp": 0.20990048,
+    "sl": 0.202148,
+    "leverage": "7x",
+    "confidence": 41,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:07:52.199481+00:00",
+    "signal_time_ist": "2025-09-10T17:37:52.199495+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 41,
+      "components": {
+        "base_score": 12.0,
+        "momentum_score": 4.0,
+        "trend_score": 15.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.05994777380637524,
+        "rsi": 48.16611927718042,
+        "cci": -110.89866156787359,
+        "macd_hist": -0.00037096564108081,
+        "atr": 0.001385830487995274,
+        "hma": 0.20994374999999998,
+        "alma": null,
+        "tsi": 15.29712755057268,
+        "stc": null,
+        "volProfile_bull": 0.0,
+        "volProfile_bear": 3.0,
+        "cvd_trend": "falling",
+        "cvd_value": -77509.0,
+        "hma_slope": -0.0002390625000000257,
+        "hma_slope_pct": -0.113869786549981,
+        "estimated_profit_margin_pct": 5.039999999999996
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 24,
+        "top_missing_components": [
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "base_score",
+            "gap": 28.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 16.0
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 41
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 48.16611927718042,
+      "macd5m": {
+        "macd": 0.0005688266913464468,
+        "signal": 0.0009397923324272568,
+        "histogram": -0.00037096564108081
+      },
+      "boll5m": {
+        "upper": 0.21085666308627418,
+        "middle": 0.20955,
+        "lower": 0.2082433369137258,
+        "percent_b": 0.05994777380637524
+      },
+      "cci5m": -110.89866156787359,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 0.0,
+        "bearish_score": 3.0
+      },
+      "ema50_5m": 0.20726022375439124,
+      "atr5m": 0.001385830487995274,
+      "hma5m": 0.20994374999999998,
+      "hma_slope": -0.0002390625000000257,
+      "hma_slope_pct": -0.113869786549981,
+      "alma5m": null,
+      "tsi5m": 15.29712755057268,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "falling",
+        "value": -77509.0
+      }
+    }
+  },
+  {
+    "coin": "OPENUSDT",
+    "price": 1.1504,
+    "tp": 1.15868288,
+    "sl": 1.115888,
+    "leverage": "7x",
+    "confidence": 54,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:07:53.404889+00:00",
+    "signal_time_ist": "2025-09-10T17:37:53.404920+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 54,
+      "components": {
+        "base_score": 24.0,
+        "momentum_score": 0.0,
+        "trend_score": 8.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 12.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.0961326086369731,
+        "rsi": 27.712165445694893,
+        "cci": -135.8114233907527,
+        "macd_hist": -0.002625012659244391,
+        "atr": 0.015899712473395715,
+        "hma": 1.1610953125,
+        "alma": null,
+        "tsi": -39.071467061558025,
+        "stc": null,
+        "volProfile_bull": 0.0,
+        "volProfile_bear": 3.0,
+        "cvd_trend": "falling",
+        "cvd_value": -12886300.0,
+        "hma_slope": -0.008142187500000286,
+        "hma_slope_pct": -0.701250570245523,
+        "estimated_profit_margin_pct": 5.040000000000062
+      },
+      "confluence_flags": [
+        "RSI<=30 & CVD_falling"
+      ],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 11,
+        "top_missing_components": [
+          {
+            "component": "momentum_score",
+            "gap": 20.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 18.0
+          },
+          {
+            "component": "base_score",
+            "gap": 16.0
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "hma_not_aligned",
+        "hma_slope": -0.008142187500000286,
+        "hma_slope_pct": -0.701250570245523
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 27.712165445694893,
+      "macd5m": {
+        "macd": -0.020163915692551715,
+        "signal": -0.017538903033307324,
+        "histogram": -0.002625012659244391
+      },
+      "boll5m": {
+        "upper": 1.232356663448378,
+        "middle": 1.18702,
+        "lower": 1.141683336551622,
+        "percent_b": 0.0961326086369731
+      },
+      "cci5m": -135.8114233907527,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 0.0,
+        "bearish_score": 3.0
+      },
+      "ema50_5m": 1.2132487669894094,
+      "atr5m": 0.015899712473395715,
+      "hma5m": 1.1610953125,
+      "hma_slope": -0.008142187500000286,
+      "hma_slope_pct": -0.701250570245523,
+      "alma5m": null,
+      "tsi5m": -39.071467061558025,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "falling",
+        "value": -12886300.0
+      }
+    }
+  },
+  {
+    "coin": "AVAXUSDT",
+    "price": 26.944,
+    "tp": 27.1379968,
+    "sl": 26.13568,
+    "leverage": "7x",
+    "confidence": 43,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:07:55.773719+00:00",
+    "signal_time_ist": "2025-09-10T17:37:55.773731+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 43,
+      "components": {
+        "base_score": 8.0,
+        "momentum_score": 10.175622631741106,
+        "trend_score": 15.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.9401192669043517,
+        "rsi": 69.3056363242504,
+        "cci": 189.1524271019273,
+        "macd_hist": 0.022244479570412833,
+        "atr": 0.08644756027448418,
+        "hma": 26.841812499999996,
+        "alma": null,
+        "tsi": 23.631472024090574,
+        "stc": null,
+        "volProfile_bull": 3.0,
+        "volProfile_bear": 0.0,
+        "cvd_trend": "rising",
+        "cvd_value": 543686.0,
+        "hma_slope": 0.019656249999997044,
+        "hma_slope_pct": 0.07322996537583684,
+        "estimated_profit_margin_pct": 5.04000000000002
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 22,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 32.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 9.82
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 43
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 69.3056363242504,
+      "macd5m": {
+        "macd": 0.06317260227641697,
+        "signal": 0.040928122706004134,
+        "histogram": 0.022244479570412833
+      },
+      "boll5m": {
+        "upper": 26.967952605246385,
+        "middle": 26.767950000000003,
+        "lower": 26.56794739475362,
+        "percent_b": 0.9401192669043517
+      },
+      "cci5m": 189.1524271019273,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 3.0,
+        "bearish_score": 0.0
+      },
+      "ema50_5m": 26.712709246364565,
+      "atr5m": 0.08644756027448418,
+      "hma5m": 26.841812499999996,
+      "hma_slope": 0.019656249999997044,
+      "hma_slope_pct": 0.07322996537583684,
+      "alma5m": null,
+      "tsi5m": 23.631472024090574,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "rising",
+        "value": 543686.0
+      }
+    }
+  },
+  {
+    "coin": "AVNTUSDT",
+    "price": 0.28499,
+    "tp": 0.28704193,
+    "sl": 0.2764403,
+    "leverage": "7x",
+    "confidence": 46,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:07:59.365499+00:00",
+    "signal_time_ist": "2025-09-10T17:37:59.365512+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 46,
+      "components": {
+        "base_score": 12.0,
+        "momentum_score": 4.0,
+        "trend_score": 15.0,
+        "volume_score": 10.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.08541487416053857,
+        "rsi": 44.485472261526624,
+        "cci": -130.9576164939253,
+        "macd_hist": -0.004873118140611453,
+        "atr": 0.013782068057104677,
+        "hma": 0.2862290625,
+        "alma": null,
+        "tsi": 6.5387820331524305,
+        "stc": null,
+        "volProfile_bull": 3.0,
+        "volProfile_bear": 0.0,
+        "cvd_trend": "falling",
+        "cvd_value": -28200062.0,
+        "hma_slope": -0.005046249999999974,
+        "hma_slope_pct": -1.7630110499348661,
+        "estimated_profit_margin_pct": 5.039999999999952
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 19,
+        "top_missing_components": [
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "base_score",
+            "gap": 28.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 16.0
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 46
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 44.485472261526624,
+      "macd5m": {
+        "macd": 0.0026231017209720764,
+        "signal": 0.0074962198615835295,
+        "histogram": -0.004873118140611453
+      },
+      "boll5m": {
+        "upper": 0.3308466403517975,
+        "middle": 0.305777,
+        "lower": 0.28070735964820254,
+        "percent_b": 0.08541487416053857
+      },
+      "cci5m": -130.9576164939253,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 3.0,
+        "bearish_score": 0.0
+      },
+      "ema50_5m": 0.28066440432583634,
+      "atr5m": 0.013782068057104677,
+      "hma5m": 0.2862290625,
+      "hma_slope": -0.005046249999999974,
+      "hma_slope_pct": -1.7630110499348661,
+      "alma5m": null,
+      "tsi5m": 6.5387820331524305,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "falling",
+        "value": -28200062.0
+      }
+    }
+  },
+  {
+    "coin": "PUMPUSDT",
+    "price": 0.005427,
+    "tp": 0.00546607,
+    "sl": 0.00526419,
+    "leverage": "7x",
+    "confidence": 49,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:08:06.667346+00:00",
+    "signal_time_ist": "2025-09-10T17:38:06.667359+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 49,
+      "components": {
+        "base_score": 8.0,
+        "momentum_score": 16.01583683510097,
+        "trend_score": 15.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 1.0461925762881046,
+        "rsi": 63.92224977894203,
+        "cci": 172.9656921004703,
+        "macd_hist": 1.1652225645342747e-05,
+        "atr": 3.986030776672149e-05,
+        "hma": 0.005375875,
+        "alma": null,
+        "tsi": 8.092386892606687,
+        "stc": null,
+        "volProfile_bull": 3.0,
+        "volProfile_bear": 0.0,
+        "cvd_trend": "rising",
+        "cvd_value": 1425420079.0,
+        "hma_slope": 1.1874999999998866e-05,
+        "hma_slope_pct": 0.22089427302530038,
+        "estimated_profit_margin_pct": 5.040000000000024
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 16,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 32.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "volume_score",
+            "gap": 5.0
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 49
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 63.92224977894203,
+      "macd5m": {
+        "macd": 1.1473836133834604e-05,
+        "signal": -1.7838951150814356e-07,
+        "histogram": 1.1652225645342747e-05
+      },
+      "boll5m": {
+        "upper": 0.005420187728684829,
+        "middle": 0.005346450000000001,
+        "lower": 0.005272712271315172,
+        "percent_b": 1.0461925762881046
+      },
+      "cci5m": 172.9656921004703,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 3.0,
+        "bearish_score": 0.0
+      },
+      "ema50_5m": 0.0053446294131883594,
+      "atr5m": 3.986030776672149e-05,
+      "hma5m": 0.005375875,
+      "hma_slope": 1.1874999999998866e-05,
+      "hma_slope_pct": 0.22089427302530038,
+      "alma5m": null,
+      "tsi5m": 8.092386892606687,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "rising",
+        "value": 1425420079.0
+      }
+    }
+  },
+  {
+    "coin": "PENGUUSDT",
+    "price": 0.033897,
+    "tp": 0.03414106,
+    "sl": 0.03288009,
+    "leverage": "7x",
+    "confidence": 44,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:08:12.820178+00:00",
+    "signal_time_ist": "2025-09-10T17:38:12.820191+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 44,
+      "components": {
+        "base_score": 8.0,
+        "momentum_score": 11.073134405325394,
+        "trend_score": 15.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 1.1412754836730215,
+        "rsi": 60.81588204514835,
+        "cci": 222.30067666961807,
+        "macd_hist": 2.712591615038814e-05,
+        "atr": 0.00010719703272801749,
+        "hma": 0.0337304375,
+        "alma": null,
+        "tsi": -1.3394747189868428,
+        "stc": null,
+        "volProfile_bull": 3.0,
+        "volProfile_bear": 0.0,
+        "cvd_trend": "rising",
+        "cvd_value": 6852743.0,
+        "hma_slope": 1.8749999999997935e-05,
+        "hma_slope_pct": 0.05558777587749324,
+        "estimated_profit_margin_pct": 5.039999999999934
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 21,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 32.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 8.93
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 44
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 60.81588204514835,
+      "macd5m": {
+        "macd": -3.036576384403411e-06,
+        "signal": -3.016249253479155e-05,
+        "histogram": 2.712591615038814e-05
+      },
+      "boll5m": {
+        "upper": 0.03385850189520663,
+        "middle": 0.033722249999999995,
+        "lower": 0.03358599810479336,
+        "percent_b": 1.1412754836730215
+      },
+      "cci5m": 222.30067666961807,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 3.0,
+        "bearish_score": 0.0
+      },
+      "ema50_5m": 0.03378184734879063,
+      "atr5m": 0.00010719703272801749,
+      "hma5m": 0.0337304375,
+      "hma_slope": 1.8749999999997935e-05,
+      "hma_slope_pct": 0.05558777587749324,
+      "alma5m": null,
+      "tsi5m": -1.3394747189868428,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "rising",
+        "value": 6852743.0
+      }
+    }
+  },
+  {
+    "coin": "1000SATSUSDT",
+    "price": 4.4e-05,
+    "tp": 4.432e-05,
+    "sl": 4.268e-05,
+    "leverage": "7x",
+    "confidence": 40,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:08:25.088003+00:00",
+    "signal_time_ist": "2025-09-10T17:38:25.088017+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 40,
+      "components": {
+        "base_score": 4.0,
+        "momentum_score": 5.661403966454343,
+        "trend_score": 15.0,
+        "volume_score": 10.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.6805297702176049,
+        "rsi": 54.644237289912176,
+        "cci": 62.16931216931286,
+        "macd_hist": 4.240716403758182e-08,
+        "atr": 6.12597512376249e-07,
+        "hma": 4.328437499999999e-05,
+        "alma": null,
+        "tsi": 0.14385005393364203,
+        "stc": null,
+        "volProfile_bull": 3.0,
+        "volProfile_bear": 0.0,
+        "cvd_trend": "falling",
+        "cvd_value": -26002527961.0,
+        "hma_slope": 5.312499999999621e-08,
+        "hma_slope_pct": 0.12273482059056233,
+        "estimated_profit_margin_pct": 5.039999999999948
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 25,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 36.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 14.34
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 40
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 54.644237289912176,
+      "macd5m": {
+        "macd": 4.5270690649356206e-09,
+        "signal": -3.78800949726462e-08,
+        "histogram": 4.240716403758182e-08
+      },
+      "boll5m": {
+        "upper": 4.453973602229804e-05,
+        "middle": 4.3695e-05,
+        "lower": 4.285026397770196e-05,
+        "percent_b": 0.6805297702176049
+      },
+      "cci5m": 62.16931216931286,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 3.0,
+        "bearish_score": 0.0
+      },
+      "ema50_5m": 4.370908518679319e-05,
+      "atr5m": 6.12597512376249e-07,
+      "hma5m": 4.328437499999999e-05,
+      "hma_slope": 5.312499999999621e-08,
+      "hma_slope_pct": 0.12273482059056233,
+      "alma5m": null,
+      "tsi5m": 0.14385005393364203,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "falling",
+        "value": -26002527961.0
+      }
+    }
+  },
+  {
+    "coin": "TIAUSDT",
+    "price": 1.7819,
+    "tp": 1.79472968,
+    "sl": 1.728443,
+    "leverage": "7x",
+    "confidence": 44,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:08:27.475066+00:00",
+    "signal_time_ist": "2025-09-10T17:38:27.475080+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 44,
+      "components": {
+        "base_score": 8.0,
+        "momentum_score": 10.843395355933303,
+        "trend_score": 15.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.8149817169154128,
+        "rsi": 59.60647293794218,
+        "cci": 123.4153047197232,
+        "macd_hist": 0.0014930742190658861,
+        "atr": 0.005236257646069354,
+        "hma": 1.7811031249999998,
+        "alma": null,
+        "tsi": 9.237143460037913,
+        "stc": null,
+        "volProfile_bull": 0.0,
+        "volProfile_bear": 3.0,
+        "cvd_trend": "falling",
+        "cvd_value": -252254.0,
+        "hma_slope": 0.0010734374999996632,
+        "hma_slope_pct": 0.0602681273718872,
+        "estimated_profit_margin_pct": 5.040000000000025
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 21,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 32.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 9.16
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 44
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 59.60647293794218,
+      "macd5m": {
+        "macd": 0.0016727481418539192,
+        "signal": 0.00017967392278803293,
+        "histogram": 0.0014930742190658861
+      },
+      "boll5m": {
+        "upper": 1.7863700662249924,
+        "middle": 1.7742900000000001,
+        "lower": 1.762209933775008,
+        "percent_b": 0.8149817169154128
+      },
+      "cci5m": 123.4153047197232,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 0.0,
+        "bearish_score": 3.0
+      },
+      "ema50_5m": 1.777304381747885,
+      "atr5m": 0.005236257646069354,
+      "hma5m": 1.7811031249999998,
+      "hma_slope": 0.0010734374999996632,
+      "hma_slope_pct": 0.0602681273718872,
+      "alma5m": null,
+      "tsi5m": 9.237143460037913,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "falling",
+        "value": -252254.0
+      }
+    }
+  },
+  {
+    "coin": "OGUSDT",
+    "price": 22.952,
+    "tp": 23.1172544,
+    "sl": 22.26344,
+    "leverage": "7x",
+    "confidence": 43,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:08:31.105754+00:00",
+    "signal_time_ist": "2025-09-10T17:38:31.105768+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 43,
+      "components": {
+        "base_score": 8.0,
+        "momentum_score": 10.223544132986373,
+        "trend_score": 15.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.9260038749131947,
+        "rsi": 60.92596806320697,
+        "cci": 162.66461103616416,
+        "macd_hist": 0.00767447200331399,
+        "atr": 0.15053590885191798,
+        "hma": 22.930124999999997,
+        "alma": null,
+        "tsi": 9.93669539490703,
+        "stc": null,
+        "volProfile_bull": 3.0,
+        "volProfile_bear": 0.0,
+        "cvd_trend": "rising",
+        "cvd_value": 43338.2,
+        "hma_slope": 0.002874999999995964,
+        "hma_slope_pct": 0.012538091266384133,
+        "estimated_profit_margin_pct": 5.039999999999953
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 22,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 32.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 9.78
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 43
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 60.92596806320697,
+      "macd5m": {
+        "macd": 0.03901946767597764,
+        "signal": 0.03134499567266365,
+        "histogram": 0.00767447200331399
+      },
+      "boll5m": {
+        "upper": 22.982475356941592,
+        "middle": 22.77655,
+        "lower": 22.57062464305841,
+        "percent_b": 0.9260038749131947
+      },
+      "cci5m": 162.66461103616416,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 3.0,
+        "bearish_score": 0.0
+      },
+      "ema50_5m": 22.764739686267497,
+      "atr5m": 0.15053590885191798,
+      "hma5m": 22.930124999999997,
+      "hma_slope": 0.002874999999995964,
+      "hma_slope_pct": 0.012538091266384133,
+      "alma5m": null,
+      "tsi5m": 9.93669539490703,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "rising",
+        "value": 43338.2
+      }
+    }
+  },
+  {
+    "coin": "1000BONKUSDT",
+    "price": 0.023078,
+    "tp": 0.02324416,
+    "sl": 0.02238566,
+    "leverage": "7x",
+    "confidence": 43,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:08:33.472035+00:00",
+    "signal_time_ist": "2025-09-10T17:38:33.472049+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 43,
+      "components": {
+        "base_score": 8.0,
+        "momentum_score": 9.619822308882252,
+        "trend_score": 15.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.9239340816062322,
+        "rsi": 60.2802912782463,
+        "cci": 130.08130081300527,
+        "macd_hist": 1.5912299454735666e-05,
+        "atr": 6.79550288111534e-05,
+        "hma": 0.022991421875,
+        "alma": null,
+        "tsi": 2.117315110625966,
+        "stc": null,
+        "volProfile_bull": 3.0,
+        "volProfile_bear": 0.0,
+        "cvd_trend": "rising",
+        "cvd_value": 98882995.0,
+        "hma_slope": 1.7171874999999392e-05,
+        "hma_slope_pct": 0.07468818193741832,
+        "estimated_profit_margin_pct": 5.0399999999999725
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 22,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 32.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 10.38
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 43
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 60.2802912782463,
+      "macd5m": {
+        "macd": 5.226045127766643e-06,
+        "signal": -1.0686254326969023e-05,
+        "histogram": 1.5912299454735666e-05
+      },
+      "boll5m": {
+        "upper": 0.023093996063819903,
+        "middle": 0.022988849999999998,
+        "lower": 0.022883703936180094,
+        "percent_b": 0.9239340816062322
+      },
+      "cci5m": 130.08130081300527,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 3.0,
+        "bearish_score": 0.0
+      },
+      "ema50_5m": 0.022999862803778044,
+      "atr5m": 6.79550288111534e-05,
+      "hma5m": 0.022991421875,
+      "hma_slope": 1.7171874999999392e-05,
+      "hma_slope_pct": 0.07468818193741832,
+      "alma5m": null,
+      "tsi5m": 2.117315110625966,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "rising",
+        "value": 98882995.0
+      }
+    }
+  },
+  {
+    "coin": "PTBUSDT",
+    "price": 0.05822,
+    "tp": 0.05863918,
+    "sl": 0.0564734,
+    "leverage": "7x",
+    "confidence": 54,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:08:41.892220+00:00",
+    "signal_time_ist": "2025-09-10T17:38:41.892234+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 54,
+      "components": {
+        "base_score": 24.0,
+        "momentum_score": 0.0,
+        "trend_score": 8.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 12.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.10486101401344734,
+        "rsi": 19.35599095567764,
+        "cci": -127.54597099979182,
+        "macd_hist": -0.00014173930729221912,
+        "atr": 0.0009334227869154743,
+        "hma": 0.05846953125,
+        "alma": null,
+        "tsi": -62.90250034834415,
+        "stc": null,
+        "volProfile_bull": 0.0,
+        "volProfile_bear": 3.0,
+        "cvd_trend": "falling",
+        "cvd_value": -104116173.0,
+        "hma_slope": -0.000425781249999993,
+        "hma_slope_pct": -0.7282104728691373,
+        "estimated_profit_margin_pct": 5.040000000000036
+      },
+      "confluence_flags": [
+        "RSI<=30 & CVD_falling"
+      ],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 11,
+        "top_missing_components": [
+          {
+            "component": "momentum_score",
+            "gap": 20.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 18.0
+          },
+          {
+            "component": "base_score",
+            "gap": 16.0
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "hma_not_aligned",
+        "hma_slope": -0.000425781249999993,
+        "hma_slope_pct": -0.7282104728691373
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 19.35599095567764,
+      "macd5m": {
+        "macd": -0.001852503532624672,
+        "signal": -0.0017107642253324528,
+        "histogram": -0.00014173930729221912
+      },
+      "boll5m": {
+        "upper": 0.06480998327824707,
+        "middle": 0.061129,
+        "lower": 0.05744801672175294,
+        "percent_b": 0.10486101401344734
+      },
+      "cci5m": -127.54597099979182,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 0.0,
+        "bearish_score": 3.0
+      },
+      "ema50_5m": 0.06408165357751498,
+      "atr5m": 0.0009334227869154743,
+      "hma5m": 0.05846953125,
+      "hma_slope": -0.000425781249999993,
+      "hma_slope_pct": -0.7282104728691373,
+      "alma5m": null,
+      "tsi5m": -62.90250034834415,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "falling",
+        "value": -104116173.0
+      }
+    }
+  },
+  {
+    "coin": "MITOUSDT",
+    "price": 0.22567,
+    "tp": 0.22729482,
+    "sl": 0.2188999,
+    "leverage": "7x",
+    "confidence": 42,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:08:43.097624+00:00",
+    "signal_time_ist": "2025-09-10T17:38:43.097638+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 42,
+      "components": {
+        "base_score": 4.0,
+        "momentum_score": 12.657401640227697,
+        "trend_score": 15.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.7937413895144414,
+        "rsi": 54.745776729284906,
+        "cci": 94.80726193468153,
+        "macd_hist": 0.0008284838624610268,
+        "atr": 0.002296718290933039,
+        "hma": 0.22535078125,
+        "alma": null,
+        "tsi": 0.2793577898039286,
+        "stc": null,
+        "volProfile_bull": 0.0,
+        "volProfile_bear": 3.0,
+        "cvd_trend": "falling",
+        "cvd_value": -2860137.0,
+        "hma_slope": 0.001096093749999999,
+        "hma_slope_pct": 0.4863944752798584,
+        "estimated_profit_margin_pct": 5.03999999999999
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 23,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 36.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 7.34
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 42
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 54.745776729284906,
+      "macd5m": {
+        "macd": 6.288816558427945e-05,
+        "signal": -0.0007655956968767474,
+        "histogram": 0.0008284838624610268
+      },
+      "boll5m": {
+        "upper": 0.22791591490742447,
+        "middle": 0.22247150000000002,
+        "lower": 0.21702708509257557,
+        "percent_b": 0.7937413895144414
+      },
+      "cci5m": 94.80726193468153,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 0.0,
+        "bearish_score": 3.0
+      },
+      "ema50_5m": 0.2255515782961448,
+      "atr5m": 0.002296718290933039,
+      "hma5m": 0.22535078125,
+      "hma_slope": 0.001096093749999999,
+      "hma_slope_pct": 0.4863944752798584,
+      "alma5m": null,
+      "tsi5m": 0.2793577898039286,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "falling",
+        "value": -2860137.0
+      }
+    }
+  },
+  {
+    "coin": "VIRTUALUSDT",
+    "price": 1.2678,
+    "tp": 1.27692816,
+    "sl": 1.229766,
+    "leverage": "7x",
+    "confidence": 44,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:08:45.629362+00:00",
+    "signal_time_ist": "2025-09-10T17:38:45.629375+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 44,
+      "components": {
+        "base_score": 8.0,
+        "momentum_score": 6.198116492433805,
+        "trend_score": 15.0,
+        "volume_score": 10.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.8494865769476377,
+        "rsi": 57.088921444289475,
+        "cci": 107.12871287128559,
+        "macd_hist": 0.0011721477316831725,
+        "atr": 0.0045387248843639875,
+        "hma": 1.263421875,
+        "alma": null,
+        "tsi": -2.710421325368599,
+        "stc": null,
+        "volProfile_bull": 3.0,
+        "volProfile_bear": 0.0,
+        "cvd_trend": "falling",
+        "cvd_value": -1010422.4000000006,
+        "hma_slope": 0.0007921874999998746,
+        "hma_slope_pct": 0.06270174006603096,
+        "estimated_profit_margin_pct": 5.039999999999967
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 21,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 32.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 13.8
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 44
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 57.088921444289475,
+      "macd5m": {
+        "macd": -0.00034920845201247275,
+        "signal": -0.0015213561836956453,
+        "histogram": 0.0011721477316831725
+      },
+      "boll5m": {
+        "upper": 1.270401247473297,
+        "middle": 1.26176,
+        "lower": 1.253118752526703,
+        "percent_b": 0.8494865769476377
+      },
+      "cci5m": 107.12871287128559,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 3.0,
+        "bearish_score": 0.0
+      },
+      "ema50_5m": 1.2653512570490424,
+      "atr5m": 0.0045387248843639875,
+      "hma5m": 1.263421875,
+      "hma_slope": 0.0007921874999998746,
+      "hma_slope_pct": 0.06270174006603096,
+      "alma5m": null,
+      "tsi5m": -2.710421325368599,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "falling",
+        "value": -1010422.4000000006
+      }
+    }
+  },
+  {
+    "coin": "LDOUSDT",
+    "price": 1.2037,
+    "tp": 1.21236664,
+    "sl": 1.167589,
+    "leverage": "7x",
+    "confidence": 40,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:08:51.688297+00:00",
+    "signal_time_ist": "2025-09-10T17:38:51.688311+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 40,
+      "components": {
+        "base_score": 8.0,
+        "momentum_score": 6.54071429266395,
+        "trend_score": 15.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.8348311352833239,
+        "rsi": 55.890644224736626,
+        "cci": 107.22017063542869,
+        "macd_hist": 0.0003170451166200711,
+        "atr": 0.002994859682118586,
+        "hma": 1.2019953125,
+        "alma": null,
+        "tsi": 0.9747543929487247,
+        "stc": null,
+        "volProfile_bull": 3.0,
+        "volProfile_bear": 0.0,
+        "cvd_trend": "rising",
+        "cvd_value": 466620.0,
+        "hma_slope": -9.687499999988525e-05,
+        "hma_slope_pct": -0.008059515623101504,
+        "estimated_profit_margin_pct": 5.03999999999997
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 25,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 32.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 13.46
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 40
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 55.890644224736626,
+      "macd5m": {
+        "macd": 0.00010724666963546348,
+        "signal": -0.00020979844698460758,
+        "histogram": 0.0003170451166200711
+      },
+      "boll5m": {
+        "upper": 1.2047975703429838,
+        "middle": 1.201475,
+        "lower": 1.1981524296570163,
+        "percent_b": 0.8348311352833239
+      },
+      "cci5m": 107.22017063542869,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 3.0,
+        "bearish_score": 0.0
+      },
+      "ema50_5m": 1.20174092921292,
+      "atr5m": 0.002994859682118586,
+      "hma5m": 1.2019953125,
+      "hma_slope": -9.687499999988525e-05,
+      "hma_slope_pct": -0.008059515623101504,
+      "alma5m": null,
+      "tsi5m": 0.9747543929487247,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "rising",
+        "value": 466620.0
+      }
+    }
+  },
+  {
+    "coin": "1000SHIBUSDT",
+    "price": 0.012931,
+    "tp": 0.0130241,
+    "sl": 0.01254307,
+    "leverage": "7x",
+    "confidence": 40,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:08:52.898161+00:00",
+    "signal_time_ist": "2025-09-10T17:38:52.898174+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 40,
+      "components": {
+        "base_score": 8.0,
+        "momentum_score": 11.715768921809572,
+        "trend_score": 15.0,
+        "volume_score": 0.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.8418865029216507,
+        "rsi": 58.371111263422385,
+        "cci": 127.07052380473382,
+        "macd_hist": 6.6541904960143276e-06,
+        "atr": 2.0697946442243823e-05,
+        "hma": 0.012928828125,
+        "alma": null,
+        "tsi": 6.06283192121253,
+        "stc": null,
+        "volProfile_bull": 0.0,
+        "volProfile_bear": 3.0,
+        "cvd_trend": "rising",
+        "cvd_value": 69644571.0,
+        "hma_slope": 5.562500000000359e-06,
+        "hma_slope_pct": 0.04302400763797267,
+        "estimated_profit_margin_pct": 5.039999999999991
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 25,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 32.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "volume_score",
+            "gap": 10.0
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 40
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 58.371111263422385,
+      "macd5m": {
+        "macd": 4.530608546996634e-06,
+        "signal": -2.123581949017693e-06,
+        "histogram": 6.6541904960143276e-06
+      },
+      "boll5m": {
+        "upper": 0.012945521672443436,
+        "middle": 0.0128996,
+        "lower": 0.012853678327556566,
+        "percent_b": 0.8418865029216507
+      },
+      "cci5m": 127.07052380473382,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 0.0,
+        "bearish_score": 3.0
+      },
+      "ema50_5m": 0.012915415679145479,
+      "atr5m": 2.0697946442243823e-05,
+      "hma5m": 0.012928828125,
+      "hma_slope": 5.562500000000359e-06,
+      "hma_slope_pct": 0.04302400763797267,
+      "alma5m": null,
+      "tsi5m": 6.06283192121253,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "rising",
+        "value": 69644571.0
+      }
+    }
+  },
+  {
+    "coin": "SOONUSDT",
+    "price": 0.34153,
+    "tp": 0.34398902,
+    "sl": 0.3312841,
+    "leverage": "7x",
+    "confidence": 48,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:08:54.070574+00:00",
+    "signal_time_ist": "2025-09-10T17:38:54.070588+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 48,
+      "components": {
+        "base_score": 8.0,
+        "momentum_score": 14.50332449229743,
+        "trend_score": 15.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 0.834791205406122,
+        "rsi": 55.15624335310638,
+        "cci": 107.0932584608897,
+        "macd_hist": 0.0005338943450009053,
+        "atr": 0.0023283134218154353,
+        "hma": 0.3409762500000001,
+        "alma": null,
+        "tsi": 1.2266845561971023,
+        "stc": null,
+        "volProfile_bull": 0.0,
+        "volProfile_bear": 3.0,
+        "cvd_trend": "falling",
+        "cvd_value": -1942668.0,
+        "hma_slope": 0.00027171875000009393,
+        "hma_slope_pct": 0.07968846803849061,
+        "estimated_profit_margin_pct": 5.03999999999996
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 17,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 32.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 5.5
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 48
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 55.15624335310638,
+      "macd5m": {
+        "macd": 0.00012608958219062494,
+        "signal": -0.0004078047628102803,
+        "histogram": 0.0005338943450009053
+      },
+      "boll5m": {
+        "upper": 0.3429008545026595,
+        "middle": 0.33875200000000005,
+        "lower": 0.3346031454973406,
+        "percent_b": 0.834791205406122
+      },
+      "cci5m": 107.0932584608897,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 0.0,
+        "bearish_score": 3.0
+      },
+      "ema50_5m": 0.3414896071517642,
+      "atr5m": 0.0023283134218154353,
+      "hma5m": 0.3409762500000001,
+      "hma_slope": 0.00027171875000009393,
+      "hma_slope_pct": 0.07968846803849061,
+      "alma5m": null,
+      "tsi5m": 1.2266845561971023,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "falling",
+        "value": -1942668.0
+      }
+    }
+  },
+  {
+    "coin": "PLUMEUSDT",
+    "price": 0.11186,
+    "tp": 0.11266539,
+    "sl": 0.1085042,
+    "leverage": "7x",
+    "confidence": 44,
+    "signal": "Buy",
+    "estimated_profit": "5.04%",
+    "regime": "Bullish",
+    "signal_time_utc": "2025-09-10T12:08:56.457103+00:00",
+    "signal_time_ist": "2025-09-10T17:38:56.457117+05:30",
+    "analysis_log": {
+      "engine": "Buy",
+      "confidence": 44,
+      "components": {
+        "base_score": 8.0,
+        "momentum_score": 11.442150854425773,
+        "trend_score": 15.0,
+        "volume_score": 5.0,
+        "confluence_bonus": 0.0,
+        "profit_check": 5.0
+      },
+      "indicator_scores": {
+        "percent_b": 1.1695682065597242,
+        "rsi": 55.747307447549126,
+        "cci": 193.84279092772948,
+        "macd_hist": 0.0004607959268099057,
+        "atr": 0.0017166785586587294,
+        "hma": 0.10818265625000001,
+        "alma": null,
+        "tsi": -16.655966286754026,
+        "stc": null,
+        "volProfile_bull": 0.0,
+        "volProfile_bear": 3.0,
+        "cvd_trend": "falling",
+        "cvd_value": -3952621.0,
+        "hma_slope": 0.0001893750000000055,
+        "hma_slope_pct": 0.1750511649135122,
+        "estimated_profit_margin_pct": 5.0400000000000125
+      },
+      "confluence_flags": [],
+      "would_be_strong_if": {
+        "if_confidence_needed": 65,
+        "missing_points": 21,
+        "top_missing_components": [
+          {
+            "component": "base_score",
+            "gap": 32.0
+          },
+          {
+            "component": "confluence_bonus",
+            "gap": 30.0
+          },
+          {
+            "component": "momentum_score",
+            "gap": 8.56
+          }
+        ]
+      },
+      "regime_bias": 10.0,
+      "hma_gatekeeper": {
+        "applied": false,
+        "reason": "not_in_gap_or_already_strong",
+        "confidence": 44
+      },
+      "supervisor": {}
+    },
+    "indicators": {
+      "rsi5m": 55.747307447549126,
+      "macd5m": {
+        "macd": -0.001052134322872475,
+        "signal": -0.0015129302496823807,
+        "histogram": 0.0004607959268099057
+      },
+      "boll5m": {
+        "upper": 0.11115951025937436,
+        "middle": 0.109094,
+        "lower": 0.10702848974062563,
+        "percent_b": 1.1695682065597242
+      },
+      "cci5m": 193.84279092772948,
+      "marketTrend": 10.0,
+      "volProfile": {
+        "bullish_score": 0.0,
+        "bearish_score": 3.0
+      },
+      "ema50_5m": 0.1113272191563464,
+      "atr5m": 0.0017166785586587294,
+      "hma5m": 0.10818265625000001,
+      "hma_slope": 0.0001893750000000055,
+      "hma_slope_pct": 0.1750511649135122,
+      "alma5m": null,
+      "tsi5m": -16.655966286754026,
+      "stc5m": null,
+      "cvd5m": {
+        "trend": "falling",
+        "value": -3952621.0
+      }
+    }
+  }
+]
