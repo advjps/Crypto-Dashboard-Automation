@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# backtest.py  (10A - compatible)
+# backtest.py  (10B-compatible)
 # Usage: python backtest.py
 # Produces per-json CSVs in analytics/ and .txt reports in backtest_reports/
 
@@ -110,42 +110,67 @@ def flatten_indicator_dict(indicators):
                 flat[col] = v
     return flat
 
+def safe_col_name(s):
+    if s is None:
+        return "None"
+    s = str(s)
+    # replace non-alnum by underscore
+    return "".join([c if c.isalnum() else "_" for c in s])
+
 def flatten_analysis_scores(analysis_log):
     """
     Extract indicator_scores and components from analysis_log into flat mapping.
     - SCORE__{name} for indicator_scores
     - COMP__{name} for components
-    - CONFL__confluence_flags (semicolon joined)
+    - CONFL__flags (semicolon joined)
     - WOULD_BE_STRONG -> JSON string
     - HMA_GATEKEEPER__... fields flattened if present
+    - SUPERVISOR__... fields flattened if present
     """
     flat = {}
     if not isinstance(analysis_log, dict):
+        # ensure canonical fields exist to avoid missing columns later
+        flat.setdefault("ANALYSIS__engine", None)
+        flat.setdefault("ANALYSIS__confidence", None)
+        flat.setdefault("CONFL__flags", "")
+        flat.setdefault("WOULD_BE_STRONG", "")
+        flat.setdefault("HMA_GATEKEEPER__applied", None)
+        flat.setdefault("SUPERVISOR__applied", None)
         return flat
 
     # components
     comps = analysis_log.get("components") or {}
-    for k, v in (comps.items() if isinstance(comps, dict) else []):
-        col = f"COMP__{str(k)}"
-        flat[col] = v
+    if isinstance(comps, dict):
+        for k, v in comps.items():
+            col = f"COMP__{str(k)}"
+            flat[col] = v
 
     # indicator_scores
     ind_scores = analysis_log.get("indicator_scores") or {}
-    for k, v in (ind_scores.items() if isinstance(ind_scores, dict) else []):
-        col = f"SCORE__{str(k)}"
-        if isinstance(v, (dict, list)):
-            flat[col] = json.dumps(v)
-        else:
-            flat[col] = v
+    if isinstance(ind_scores, dict):
+        for k, v in ind_scores.items():
+            col = f"SCORE__{str(k)}"
+            if isinstance(v, (dict, list)):
+                flat[col] = json.dumps(v)
+            else:
+                flat[col] = v
 
     # confluence flags
     flags = analysis_log.get("confluence_flags") or []
     if isinstance(flags, (list, tuple)):
-        flat["CONFL__flags"] = ";".join([str(x) for x in flags]) if flags else ""
+        try:
+            joined = ";".join([str(x) for x in flags]) if flags else ""
+            flat["CONFL__flags"] = joined
+        except Exception:
+            flat["CONFL__flags"] = ""
         # also create individual binary columns for each flag for easier analytics (prefix CONFL_FLAG__)
-        for f in flags:
-            col = f"CONFL_FLAG__{str(f).replace(' ','_').replace('&','and').replace('/','_')}"
-            flat[col] = 1
+        try:
+            for f in flags:
+                fname = safe_col_name(f)
+                col = f"CONFL_FLAG__{fname}"
+                flat[col] = 1
+        except Exception:
+            pass
     else:
         flat["CONFL__flags"] = ""
 
@@ -156,7 +181,7 @@ def flatten_analysis_scores(analysis_log):
     # hma_gatekeeper info
     hma = analysis_log.get("hma_gatekeeper")
     if isinstance(hma, dict):
-        for k,v in hma.items():
+        for k, v in hma.items():
             col = f"HMA_GATEKEEPER__{str(k)}"
             flat[col] = v
     else:
@@ -166,13 +191,32 @@ def flatten_analysis_scores(analysis_log):
         flat.setdefault("HMA_GATEKEEPER__after_confidence", None)
         flat.setdefault("HMA_GATEKEEPER__reason", None)
         flat.setdefault("HMA_GATEKEEPER__hma_slope", None)
+        flat.setdefault("HMA_GATEKEEPER__hma_slope_pct", None)
 
-    # keep original confidence in case
+    # supervisor info (10B)
+    sup = analysis_log.get("supervisor")
+    if isinstance(sup, dict):
+        for k, v in sup.items():
+            col = f"SUPERVISOR__{str(k)}"
+            flat[col] = v
+    else:
+        # default supervisor cols to avoid missing columns
+        flat.setdefault("SUPERVISOR__applied", None)
+        flat.setdefault("SUPERVISOR__before_confidence", None)
+        flat.setdefault("SUPERVISOR__after_confidence", None)
+        flat.setdefault("SUPERVISOR__hist_norm", None)
+        flat.setdefault("SUPERVISOR__hma_slope_pct", None)
+        flat.setdefault("SUPERVISOR__cvd_support", None)
+        flat.setdefault("SUPERVISOR__rule", None)
+        flat.setdefault("SUPERVISOR__reason", None)
+
+    # keep original confidence & engine
     try:
         flat["ANALYSIS__engine"] = analysis_log.get("engine")
         flat["ANALYSIS__confidence"] = analysis_log.get("confidence")
     except Exception:
-        pass
+        flat.setdefault("ANALYSIS__engine", None)
+        flat.setdefault("ANALYSIS__confidence", None)
 
     return flat
 
@@ -339,7 +383,7 @@ def evaluate_signal_outcome(signal_obj):
     flat_ind = flatten_indicator_dict(indicators)
     row.update(flat_ind)
 
-    # flatten analysis_log components/scores/confluence/would_be/hma_gatekeeper
+    # flatten analysis_log components/scores/confluence/would_be/hma_gatekeeper/supervisor
     row.update(flatten_analysis_scores(analysis_log))
 
     return row
@@ -383,7 +427,18 @@ def write_text_report(json_filename, rows, out_txt_path):
                             missing = f" missing_pts={mp}"
                 except Exception:
                     missing = ""
-                lines.append(f"{coin:10} {sig:15} Conf:{str(conf):>3} Outcome:{outcome:12} Dur(min):{str(dur):>4} TTP:{str(ttp):>4} TSL:{str(tsl):>4} Est:{str(est):>8}{missing}")
+                # include brief hma_gatekeeper/supervisor markers
+                hg = it.get("HMA_GATEKEEPER__applied")
+                sup = it.get("SUPERVISOR__applied")
+                extras = ""
+                try:
+                    if hg:
+                        extras += " HMA_gate"
+                    if sup:
+                        extras += " SUP"
+                except Exception:
+                    pass
+                lines.append(f"{coin:10} {sig:15} Conf:{str(conf):>3} Outcome:{outcome:12} Dur(min):{str(dur):>4} TTP:{str(ttp):>4} TSL:{str(tsl):>4} Est:{str(est):>8}{missing}{extras}")
         lines.append("")
 
     dump_section("BUY SIGNALS", buys)
