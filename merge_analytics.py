@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# merge_analytics.py  (updated for 10A flattened analytics)
+# merge_analytics.py  (updated for 10B flattened analytics)
 # Usage: python merge_analytics.py
 
 import os
@@ -150,7 +150,11 @@ def deserved_summary(df):
             sub = df[pd.to_numeric(df[flag_col], errors="coerce").fillna(0).astype(int) == 1].copy()
         except Exception:
             # fallback: check string "1" or "true"
-            sub = df[sub := (df[flag_col].astype(str).str.strip().str.lower().isin(["1","true"]))].copy()
+            try:
+                mask = df[flag_col].astype(str).str.strip().str.lower().isin(["1","true"])
+                sub = df[mask].copy()
+            except Exception:
+                sub = pd.DataFrame()
         succ = fail = inc = 0
         if not sub.empty and outcome_col:
             out_s = sub[outcome_col].astype(str).str.strip().str.lower()
@@ -207,6 +211,35 @@ def expand_would_be_strong(df):
     df["WOULD__top3"] = top3
     return df
 
+def supervisor_summary(df):
+    """
+    Produce a short summary on supervisor effects (SUPERVISOR__applied).
+    """
+    # find supervisor applied column (case-insensitive)
+    sup_cols = [c for c in df.columns if c.upper().startswith("SUPERVISOR__APPLIED")]
+    if not sup_cols:
+        # sometimes column may be all lower-case or different; try broader match
+        sup_cols = [c for c in df.columns if "supervisor" in c.lower() and "appl" in c.lower()]
+    if not sup_cols:
+        return pd.DataFrame()
+    col = sup_cols[0]
+    try:
+        sub = df[df[col].notnull()].copy()
+        # coerce to boolean-like
+        sub_true = sub[sub[col].astype(str).str.strip().str.lower().isin(["true","1","yes","y"])]
+        outcome_ser, outcome_col = normalize_col(df, ["Outcome", "outcome"])
+        succ = fail = inc = 0
+        if not sub_true.empty and outcome_col:
+            out_s = sub_true[outcome_col].astype(str).str.strip().str.lower()
+            succ = (out_s == "success").sum()
+            fail = (out_s == "fail").sum()
+            inc = (out_s == "inconclusive").sum()
+        total = len(sub_true)
+        wr = winrate(int(succ), int(fail))
+        return pd.DataFrame([{"Supervisor_applied_count": int(total), "Success": int(succ), "Fail": int(fail), "Inconclusive": int(inc), "WinRate": wr}])
+    except Exception:
+        return pd.DataFrame()
+
 def main():
     df = load_all_csvs()
     if df.empty:
@@ -248,14 +281,21 @@ def main():
     # Deserved strong (if any)
     deserved_df = deserved_summary(df)
 
+    # Supervisor summary
+    sup_df = supervisor_summary(df)
+
     # Save CSV summaries
     stamp = ist_timestamp()
     bucket_csv = os.path.join(ANALYTICS_DIR, f"summary_by_signal_{stamp}.csv")
     regime_csv = os.path.join(ANALYTICS_DIR, f"summary_by_regime_{stamp}.csv")
     deserved_csv = os.path.join(ANALYTICS_DIR, f"summary_deserved_{stamp}.csv")
+    supervisor_csv = os.path.join(ANALYTICS_DIR, f"summary_supervisor_{stamp}.csv")
+
     bucket_df.to_csv(bucket_csv, index=False)
     regime_df.to_csv(regime_csv, index=False)
     deserved_df.to_csv(deserved_csv, index=False)
+    if not sup_df.empty:
+        sup_df.to_csv(supervisor_csv, index=False)
 
     # Human readable summary text
     summary_txt = os.path.join(ANALYTICS_DIR, f"summary_{stamp}.txt")
@@ -287,11 +327,23 @@ def main():
             f.write(deserved_df.to_string(index=False, formatters={
                 "WinRate": lambda x: f"{x:6.2f}%",
                 "AvgConfidence": lambda x: f"{x:6.2f}"
+            }) + "\n\n")
+        else:
+            f.write("(no data)\n\n")
+
+        f.write("Supervisor Summary (10B)\n")
+        f.write("-------------------------------------------\n")
+        if not sup_df.empty:
+            f.write(sup_df.to_string(index=False, formatters={
+                "WinRate": lambda x: f"{x:6.2f}%"
             }) + "\n")
         else:
             f.write("(no data)\n")
 
-    print(f"[OK] Wrote summaries:\n - {bucket_csv}\n - {regime_csv}\n - {deserved_csv}\n - {summary_txt}")
+    out_msgs = [f" - {bucket_csv}", f" - {regime_csv}", f" - {deserved_csv}", f" - {summary_txt}"]
+    if not sup_df.empty:
+        out_msgs.append(f" - {supervisor_csv}")
+    print(f"[OK] Wrote summaries:\n" + "\n".join(out_msgs))
 
 if __name__ == "__main__":
     main()
