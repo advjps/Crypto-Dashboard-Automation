@@ -24,6 +24,9 @@ proxies = {"http": proxy_url, "https": proxy_url} if "YOUR_IP" not in PROXY_IP e
 
 # ----------------- GENERAL CONFIG -----------------
 LIVE_FILENAME = "live_signals.json"
+# If True -> save JSONs only when there is at least one "Strong" signal in the results.
+# If False -> save JSONs whenever there are any signals (previous behaviour).
+SAVE_ONLY_IF_STRONG = True
 ARCHIVE_FOLDER = "data_archive"
 TOP_LIMIT = 70
 BINANCE_FAPI = "https://fapi.binance.com"
@@ -886,29 +889,42 @@ if __name__ == "__main__":
             print(f"  - Error analyzing {coin}: {e}")
             continue
 
-    # Save results (if any)
-    if all_results:
-        strong_signals = [s for s in all_results if "Strong" in s.get('signal', '')]
-        print(f"\nAnalysis complete. Found {len(strong_signals)} strong signals.")
-        print("Saving full analysis file...")
-
-        utc_now = datetime.now(timezone.utc)
-        ist_tz = pytz.timezone("Asia/Kolkata")
-        ist_now = utc_now.astimezone(ist_tz)
-        timestamp_str = ist_now.strftime("%Y-%m-%d_%H-%M-%S")
-
-        file_suffix = "_STRONG" if strong_signals else ""
-        archive_filename = f"signals_{timestamp_str}{file_suffix}.json"
-
-        os.makedirs(ARCHIVE_FOLDER, exist_ok=True)
-        archive_filepath = os.path.join(ARCHIVE_FOLDER, archive_filename)
-
-        with open(archive_filepath, 'w', encoding='utf-8') as f:
-            json.dump(all_results, f, indent=2)
-        print(f"[OK] Archive file saved to {archive_filepath}")
-
-        with open(LIVE_FILENAME, 'w', encoding='utf-8') as f:
-            json.dump(all_results, f, indent=2)
-        print(f"[OK] Live data file saved as {LIVE_FILENAME}")
-    else:
+# ------------------ Save results (conditional) ------------------
+    if not all_results:
         print("\nNo signals generated (no file saved).")
+    else:
+        # detect strong signals (case-insensitive)
+        strong_signals = [s for s in all_results if isinstance(s.get("signal", None), str) and s.get("signal").lower().startswith("strong")]
+        count_strong = len(strong_signals)
+
+        if SAVE_ONLY_IF_STRONG and count_strong == 0:
+            print(f"\nFound {len(all_results)} signals but no Strong signals. Per configuration (SAVE_ONLY_IF_STRONG=True) not saving any JSON.")
+        else:
+            # create IST timestamp like before
+            utc_now = datetime.now(timezone.utc)
+            ist_tz = pytz.timezone("Asia/Kolkata")
+            ist_now = utc_now.astimezone(ist_tz)
+            timestamp_str = ist_now.strftime("%Y-%m-%d_%H-%M-%S")
+
+            file_suffix = "_STRONG" if count_strong > 0 else ""
+            archive_filename = f"signals_{timestamp_str}{file_suffix}.json"
+
+            os.makedirs(ARCHIVE_FOLDER, exist_ok=True)
+            archive_filepath = os.path.join(ARCHIVE_FOLDER, archive_filename)
+
+            try:
+                with open(archive_filepath, 'w', encoding='utf-8') as f:
+                    json.dump(all_results, f, indent=2)
+                print(f"[OK] Archive file saved to {archive_filepath}")
+            except Exception as e:
+                print(f"[ERROR] Failed to write archive file: {e}")
+
+            try:
+                with open(LIVE_FILENAME, 'w', encoding='utf-8') as f:
+                    json.dump(all_results, f, indent=2)
+                print(f"[OK] Live data file saved as {LIVE_FILENAME}")
+            except Exception as e:
+                print(f"[WARN] Could not write live file {LIVE_FILENAME}: {e}")
+
+            print(f"\nAnalysis complete. Found {count_strong} strong signals out of {len(all_results)} total.")
+
