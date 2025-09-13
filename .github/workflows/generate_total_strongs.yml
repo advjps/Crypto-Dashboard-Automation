@@ -1,0 +1,89 @@
+name: Manual: Generate TotalStrong CSV
+
+on:
+  workflow_dispatch:
+    inputs:
+      script_path:
+        description: 'Path to the script that generates TotalStrong CSV (relative to repo root).'
+        required: false
+        default: 'generate_total_strongs.py'
+
+permissions:
+  contents: write
+
+jobs:
+  total-strong:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Show repo root for debugging
+        run: |
+          echo "=== Repo root listing ==="
+          ls -la
+          echo "=== analytics/ listing (if any) ==="
+          ls -la analytics || true
+
+      - name: Ensure analytics folder exists
+        run: mkdir -p analytics
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas pytz requests
+
+      - name: Run provided script (if present)
+        shell: bash
+        env:
+          SCRIPT_PATH: ${{ github.event.inputs.script_path }}
+        run: |
+          echo "Using script path: $SCRIPT_PATH"
+          if [ -f "$SCRIPT_PATH" ]; then
+            echo "Found $SCRIPT_PATH — running it now"
+            python "$SCRIPT_PATH"
+            rc=$?
+            echo "Script exit code: $rc"
+            if [ $rc -ne 0 ]; then
+              echo "Script exited with non-zero code $rc"
+              exit $rc
+            fi
+          else
+            echo "ERROR: Script not found at '$SCRIPT_PATH'"
+            echo "Please push the script to the repo or pass the correct path when running the workflow."
+            echo "Repo root listing:"
+            ls -la
+            exit 2
+          fi
+
+      - name: Show analytics folder contents after run
+        run: |
+          echo "=== analytics/ listing after script run ==="
+          ls -la analytics || true
+          echo "=== grep for TotalStrong_*.csv ==="
+          ls -la analytics/TotalStrong_*.csv || echo "No TotalStrong CSV found"
+
+      - name: Commit TotalStrong CSV back to repo (if any)
+        shell: bash
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          if ls analytics/TotalStrong_*.csv 1> /dev/null 2>&1; then
+            git add analytics/TotalStrong_*.csv
+            if git diff --staged --quiet; then
+              echo "No new TotalStrong CSV changes to commit."
+            else
+              git commit -m "Add/update TotalStrong CSV [skip ci]" || echo "git commit failed (no changes)"
+              git push origin HEAD || echo "git push failed"
+            fi
+          else
+            echo "No TotalStrong CSV to commit."
+          fi
