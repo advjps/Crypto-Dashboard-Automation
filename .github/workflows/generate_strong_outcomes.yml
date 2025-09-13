@@ -18,32 +18,15 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests pandas pytz
+          pip install requests pandas
 
-      - name: Run strongoutcome.py with IST timestamp
-        run: |
-          # Generate IST timestamp
-          IST_TS=$(python - <<'PYCODE'
-import pytz, datetime
-ist = pytz.timezone("Asia/Kolkata")
-now = datetime.datetime.now(ist)
-print(now.strftime("%Y-%m-%d_%H-%M-%S_IST"))
-PYCODE
-)
-          echo "IST_TS=$IST_TS" >> $GITHUB_ENV
-
-          # Run script and rename outputs with timestamp
-          python strongoutcome.py
-          mkdir -p analytics
-          if [ -f analytics/strongoutcome_detailed.csv ]; then
-            mv analytics/strongoutcome_detailed.csv analytics/strongoutcome_detailed_${IST_TS}.csv
-          fi
-          if [ -f analytics/strongoutcome_summary.csv ]; then
-            mv analytics/strongoutcome_summary.csv analytics/strongoutcome_summary_${IST_TS}.csv
-          fi
+      - name: Run strongoutcome.py
+        run: python strongoutcome.py
 
       - name: Upload Strong Outcome CSVs
         uses: actions/upload-artifact@v4
         with:
           name: strongoutcome-reports
-          path: analytics/strongoutcome_*.csv
+          path: |
+            analytics/strongoutcome_detailed.csv
+            analytics/strongoutcome_summary.csv
