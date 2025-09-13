@@ -1,0 +1,14 @@
+===== BACKTEST REPORT FOR: signals_2025-09-10_23-10-19.json =====
+Signal Generation Time (UTC): 2025-09-13T02:21:20.910687
+
+--- BUY SIGNALS ---
+ETHUSDT    Buy             Conf: 41 Outcome:Success      Dur(min): 583 TTP: 583 TSL:None Est:   5.04% missing_pts=24
+OMNIUSDT   Buy             Conf: 41 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=24
+TIAUSDT    Buy             Conf: 54 Outcome:Success      Dur(min): 357 TTP: 357 TSL:None Est:   5.04% missing_pts=11
+MUSDT      Buy             Conf: 40 Outcome:Success      Dur(min):  45 TTP:  45 TSL:None Est:   5.04% missing_pts=25
+OGUSDT     Buy             Conf: 49 Outcome:Success      Dur(min): 126 TTP: 126 TSL:None Est:   5.04% missing_pts=16
+PLUMEUSDT  Buy             Conf: 44 Outcome:Success      Dur(min): 141 TTP: 141 TSL:None Est:   5.04% missing_pts=21
+ETHFIUSDT  Buy             Conf: 46 Outcome:Success      Dur(min): 267 TTP: 267 TSL:None Est:   5.04% missing_pts=19
+
+--- SELL SIGNALS ---
+BIDUSDT    Sell            Conf: 41 Outcome:Success      Dur(min):  10 TTP:  10 TSL:None Est:   5.04% missing_pts=24

@@ -1,0 +1,20 @@
+===== BACKTEST REPORT FOR: signals_2025-09-11_16-12-51_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-13T02:30:00.384942
+
+--- BUY SIGNALS ---
+BCHUSDT    Buy             Conf: 42 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=23
+
+--- SELL SIGNALS ---
+MYXUSDT    Sell            Conf: 41 Outcome:Success      Dur(min):  16 TTP:  16 TSL:None Est:   5.04% missing_pts=24
+DOGEUSDT   Sell            Conf: 44 Outcome:Success      Dur(min): 109 TTP: 109 TSL:None Est:   5.04% missing_pts=21
+BAKEUSDT   Sell            Conf: 40 Outcome:Fail         Dur(min):  21 TTP:None TSL:  21 Est:   5.04% missing_pts=25
+WLDUSDT    Sell            Conf: 45 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=20
+NAORISUSDT Sell            Conf: 40 Outcome:Success      Dur(min):  15 TTP:  15 TSL:None Est:   5.04% missing_pts=25
+ENAUSDT    Sell            Conf: 43 Outcome:Success      Dur(min):  64 TTP:  64 TSL:None Est:   5.04% missing_pts=22
+PUMPUSDT   Sell            Conf: 45 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=20
+HYPEUSDT   Sell            Conf: 63 Outcome:Success      Dur(min):  44 TTP:  44 TSL:None Est:   5.04% missing_pts=2 HMA_gate
+SOMIUSDT   Sell            Conf: 48 Outcome:Success      Dur(min):   7 TTP:   7 TSL:None Est:   5.04% missing_pts=17
+PENGUUSDT  Sell            Conf: 46 Outcome:Success      Dur(min):  49 TTP:  49 TSL:None Est:   5.04% missing_pts=19
+ACEUSDT    Sell            Conf: 47 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=18
+OMNIUSDT   Strong Sell     Conf: 67 Outcome:Success      Dur(min):  84 TTP:  84 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+TRUMPUSDT  Sell            Conf: 44 Outcome:Success      Dur(min): 108 TTP: 108 TSL:None Est:   5.04% missing_pts=21

@@ -1,0 +1,14 @@
+===== BACKTEST REPORT FOR: signals_2025-09-11_19-24-06.json =====
+Signal Generation Time (UTC): 2025-09-13T02:31:56.545754
+
+--- BUY SIGNALS ---
+FORMUSDT   Buy             Conf: 54 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=11
+
+--- SELL SIGNALS ---
+MYXUSDT    Sell            Conf: 42 Outcome:Success      Dur(min):  11 TTP:  11 TSL:None Est:   5.04% missing_pts=23
+BAKEUSDT   Sell            Conf: 41 Outcome:Fail         Dur(min):  15 TTP:None TSL:  15 Est:   5.04% missing_pts=24
+ENAUSDT    Sell            Conf: 41 Outcome:Success      Dur(min):  13 TTP:  13 TSL:None Est:   5.04% missing_pts=24
+SOMIUSDT   Sell            Conf: 45 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=20
+BCHUSDT    Sell            Conf: 43 Outcome:Success      Dur(min):  76 TTP:  76 TSL:None Est:   5.04% missing_pts=22
+XNYUSDT    Sell            Conf: 43 Outcome:Success      Dur(min):  11 TTP:  11 TSL:None Est:   5.04% missing_pts=22
+KAITOUSDT  Sell            Conf: 51 Outcome:Success      Dur(min):  26 TTP:  26 TSL:None Est:   5.04% missing_pts=14

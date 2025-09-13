@@ -1,0 +1,16 @@
+===== BACKTEST REPORT FOR: signals_2025-09-11_01-53-59.json =====
+Signal Generation Time (UTC): 2025-09-13T02:23:04.156435
+
+--- BUY SIGNALS ---
+WUSDT      Buy             Conf: 41 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=24
+BCHUSDT    Buy             Conf: 45 Outcome:Success      Dur(min): 466 TTP: 466 TSL:None Est:   5.04% missing_pts=20
+
+--- SELL SIGNALS ---
+MYXUSDT    Sell            Conf: 40 Outcome:Success      Dur(min):   9 TTP:   9 TSL:None Est:   5.04% missing_pts=25
+WLDUSDT    Sell            Conf: 50 Outcome:Success      Dur(min):  71 TTP:  71 TSL:None Est:   5.04% missing_pts=15
+KAITOUSDT  Sell            Conf: 41 Outcome:Fail         Dur(min): 219 TTP:None TSL: 219 Est:   5.04% missing_pts=24
+1000SATSUSDT Sell            Conf: 41 Outcome:Success      Dur(min): 261 TTP: 261 TSL:None Est:   5.04% missing_pts=24
+OMNIUSDT   Sell            Conf: 45 Outcome:Fail         Dur(min): 217 TTP:None TSL: 217 Est:   5.04% missing_pts=20
+PTBUSDT    Sell            Conf: 59 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=6 HMA_gate
+BIDUSDT    Sell            Conf: 40 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=25
+ARKMUSDT   Sell            Conf: 50 Outcome:Fail         Dur(min): 213 TTP:None TSL: 213 Est:   5.04% missing_pts=15

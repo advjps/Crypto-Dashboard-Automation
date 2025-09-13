@@ -1,0 +1,25 @@
+===== BACKTEST REPORT FOR: signals_2025-09-11_03-23-27_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-13T02:24:17.868788
+
+--- BUY SIGNALS ---
+MYXUSDT    Buy             Conf: 48 Outcome:Success      Dur(min):  12 TTP:  12 TSL:None Est:   5.04% missing_pts=17
+BAKEUSDT   Buy             Conf: 41 Outcome:Success      Dur(min):   5 TTP:   5 TSL:None Est:   5.04% missing_pts=24
+AVAXUSDT   Buy             Conf: 48 Outcome:Success      Dur(min): 372 TTP: 372 TSL:None Est:   5.04% missing_pts=17
+LINKUSDT   Buy             Conf: 60 Outcome:Success      Dur(min): 196 TTP: 196 TSL:None Est:   5.04% missing_pts=5 HMA_gate
+HYPEUSDT   Buy             Conf: 44 Outcome:Success      Dur(min):  12 TTP:  12 TSL:None Est:   5.04% missing_pts=21
+ADAUSDT    Buy             Conf: 44 Outcome:Success      Dur(min): 332 TTP: 332 TSL:None Est:   5.04% missing_pts=21
+FARTCOINUSDT Buy             Conf: 40 Outcome:Success      Dur(min): 148 TTP: 148 TSL:None Est:   5.04% missing_pts=25
+ONDOUSDT   Buy             Conf: 45 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=20
+IPUSDT     Buy             Conf: 40 Outcome:Success      Dur(min): 173 TTP: 173 TSL:None Est:   5.04% missing_pts=25
+XNYUSDT    Buy             Conf: 45 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=20
+WUSDT      Buy             Conf: 40 Outcome:Success      Dur(min):  25 TTP:  25 TSL:None Est:   5.04% missing_pts=25
+1000BONKUSDT Buy             Conf: 42 Outcome:Success      Dur(min): 157 TTP: 157 TSL:None Est:   5.04% missing_pts=23
+MUSDT      Strong Buy      Conf: 66 Outcome:Success      Dur(min):   7 TTP:   7 TSL:None Est:   5.04% missing_pts=0 HMA_gate SUP
+UNIUSDT    Buy             Conf: 46 Outcome:Success      Dur(min): 198 TTP: 198 TSL:None Est:   5.04% missing_pts=19
+NEARUSDT   Buy             Conf: 40 Outcome:Success      Dur(min):  64 TTP:  64 TSL:None Est:   5.04% missing_pts=25
+TAOUSDT    Buy             Conf: 48 Outcome:Success      Dur(min):  69 TTP:  69 TSL:None Est:   5.04% missing_pts=17
+BIOUSDT    Buy             Conf: 42 Outcome:Success      Dur(min): 221 TTP: 221 TSL:None Est:   5.04% missing_pts=23
+NMRUSDT    Buy             Conf: 54 Outcome:Success      Dur(min):   8 TTP:   8 TSL:None Est:   5.04% missing_pts=11
+
+--- SELL SIGNALS ---
+    (none)

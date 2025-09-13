@@ -1,0 +1,25 @@
+===== BACKTEST REPORT FOR: signals_2025-09-11_17-09-42_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-13T02:30:35.711421
+
+--- BUY SIGNALS ---
+    (none)
+
+--- SELL SIGNALS ---
+LINEAUSDT  Sell            Conf: 40 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=25
+WLDUSDT    Sell            Conf: 58 Outcome:Success      Dur(min):  11 TTP:  11 TSL:None Est:   5.04% missing_pts=7 HMA_gate
+AVNTUSDT   Sell            Conf: 44 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=21
+HYPEUSDT   Sell            Conf: 63 Outcome:Fail         Dur(min): 281 TTP:None TSL: 281 Est:   5.04% missing_pts=2 HMA_gate
+SOMIUSDT   Sell            Conf: 44 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=21
+OPENUSDT   Sell            Conf: 58 Outcome:Success      Dur(min):   7 TTP:   7 TSL:None Est:   5.04% missing_pts=7 HMA_gate
+FARTCOINUSDT Sell            Conf: 63 Outcome:Success      Dur(min):  51 TTP:  51 TSL:None Est:   5.04% missing_pts=2 HMA_gate
+PENGUUSDT  Strong Sell     Conf: 66 Outcome:Success      Dur(min):  51 TTP:  51 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+ACEUSDT    Sell            Conf: 43 Outcome:Success      Dur(min):   5 TTP:   5 TSL:None Est:   5.04% missing_pts=22
+XNYUSDT    Sell            Conf: 44 Outcome:Success      Dur(min):   6 TTP:   6 TSL:None Est:   5.04% missing_pts=21
+WIFUSDT    Sell            Conf: 64 Outcome:Success      Dur(min):  51 TTP:  51 TSL:None Est:   5.04% missing_pts=1 HMA_gate
+1000BONKUSDT Sell            Conf: 42 Outcome:Success      Dur(min):  51 TTP:  51 TSL:None Est:   5.04% missing_pts=23
+SAPIENUSDT Sell            Conf: 41 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=24
+BBUSDT     Sell            Conf: 42 Outcome:Success      Dur(min):  24 TTP:  24 TSL:None Est:   5.04% missing_pts=23
+NEARUSDT   Sell            Conf: 40 Outcome:Success      Dur(min):  51 TTP:  51 TSL:None Est:   5.04% missing_pts=25
+XLMUSDT    Sell            Conf: 44 Outcome:Success      Dur(min):  51 TTP:  51 TSL:None Est:   5.04% missing_pts=21
+SEIUSDT    Sell            Conf: 47 Outcome:Success      Dur(min):  51 TTP:  51 TSL:None Est:   5.04% missing_pts=18
+BSWUSDT    Sell            Conf: 46 Outcome:Success      Dur(min):   7 TTP:   7 TSL:None Est:   5.04% missing_pts=19

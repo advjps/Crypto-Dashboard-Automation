@@ -1,0 +1,21 @@
+===== BACKTEST REPORT FOR: signals_2025-09-11_07-11-11.json =====
+Signal Generation Time (UTC): 2025-09-13T02:25:48.172221
+
+--- BUY SIGNALS ---
+MYXUSDT    Buy             Conf: 48 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=17
+BAKEUSDT   Buy             Conf: 47 Outcome:Fail         Dur(min):   1 TTP:None TSL:   1 Est:   5.04% missing_pts=18
+LINEAUSDT  Buy             Conf: 46 Outcome:Success      Dur(min):  18 TTP:  18 TSL:None Est:   5.04% missing_pts=19
+HYPEUSDT   Buy             Conf: 40 Outcome:Fail         Dur(min): 521 TTP:None TSL: 521 Est:   5.04% missing_pts=25
+SOMIUSDT   Buy             Conf: 40 Outcome:Fail         Dur(min): 120 TTP:None TSL: 120 Est:   5.04% missing_pts=25
+XNYUSDT    Buy             Conf: 44 Outcome:Success      Dur(min):  14 TTP:  14 TSL:None Est:   5.04% missing_pts=21
+PTBUSDT    Buy             Conf: 49 Outcome:Fail         Dur(min):   4 TTP:None TSL:   4 Est:   5.04% missing_pts=16
+BSWUSDT    Buy             Conf: 41 Outcome:Success      Dur(min):   8 TTP:   8 TSL:None Est:   5.04% missing_pts=24
+OGUSDT     Buy             Conf: 49 Outcome:Fail         Dur(min):  66 TTP:None TSL:  66 Est:   5.04% missing_pts=16
+LDOUSDT    Buy             Conf: 42 Outcome:Success      Dur(min):   5 TTP:   5 TSL:None Est:   5.04% missing_pts=23
+ETHFIUSDT  Buy             Conf: 44 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=21
+BIOUSDT    Buy             Conf: 42 Outcome:Success      Dur(min):  46 TTP:  46 TSL:None Est:   5.04% missing_pts=23
+BBUSDT     Buy             Conf: 45 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=20
+SEIUSDT    Buy             Conf: 42 Outcome:Success      Dur(min):  19 TTP:  19 TSL:None Est:   5.04% missing_pts=23
+
+--- SELL SIGNALS ---
+    (none)

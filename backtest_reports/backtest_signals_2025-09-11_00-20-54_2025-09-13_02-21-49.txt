@@ -1,0 +1,23 @@
+===== BACKTEST REPORT FOR: signals_2025-09-11_00-20-54.json =====
+Signal Generation Time (UTC): 2025-09-13T02:21:49.932732
+
+--- BUY SIGNALS ---
+LTCUSDT    Buy             Conf: 41 Outcome:Success      Dur(min): 263 TTP: 263 TSL:None Est:   5.04% missing_pts=24
+
+--- SELL SIGNALS ---
+ETHUSDT    Sell            Conf: 45 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=20
+BTCUSDT    Sell            Conf: 46 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=19
+DOGEUSDT   Sell            Conf: 44 Outcome:Success      Dur(min):  36 TTP:  36 TSL:None Est:   5.04% missing_pts=21
+XRPUSDT    Sell            Conf: 42 Outcome:Success      Dur(min):  48 TTP:  48 TSL:None Est:   5.04% missing_pts=23
+BNBUSDT    Sell            Conf: 40 Outcome:Success      Dur(min):  49 TTP:  49 TSL:None Est:   5.04% missing_pts=25
+SUIUSDT    Sell            Conf: 46 Outcome:Success      Dur(min):  46 TTP:  46 TSL:None Est:   5.04% missing_pts=19
+LINKUSDT   Sell            Conf: 40 Outcome:Success      Dur(min):  37 TTP:  37 TSL:None Est:   5.04% missing_pts=25
+ADAUSDT    Sell            Conf: 43 Outcome:Success      Dur(min):  35 TTP:  35 TSL:None Est:   5.04% missing_pts=22
+PYTHUSDT   Sell            Conf: 49 Outcome:Success      Dur(min):  30 TTP:  30 TSL:None Est:   5.04% missing_pts=16
+TAUSDT     Sell            Conf: 50 Outcome:Success      Dur(min):   5 TTP:   5 TSL:None Est:   5.04% missing_pts=15
+1000BONKUSDT Sell            Conf: 40 Outcome:Success      Dur(min):  34 TTP:  34 TSL:None Est:   5.04% missing_pts=25
+WUSDT      Sell            Conf: 41 Outcome:Fail         Dur(min):  79 TTP:None TSL:  79 Est:   5.04% missing_pts=24
+PTBUSDT    Sell            Conf: 64 Outcome:Success      Dur(min):  10 TTP:  10 TSL:None Est:   5.04% missing_pts=1 HMA_gate
+TRUMPUSDT  Sell            Conf: 41 Outcome:Success      Dur(min):  46 TTP:  46 TSL:None Est:   5.04% missing_pts=24
+NEARUSDT   Sell            Conf: 41 Outcome:Success      Dur(min):  32 TTP:  32 TSL:None Est:   5.04% missing_pts=24
+LDOUSDT    Sell            Conf: 41 Outcome:Success      Dur(min):  30 TTP:  30 TSL:None Est:   5.04% missing_pts=24

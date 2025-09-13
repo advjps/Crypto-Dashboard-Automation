@@ -1,0 +1,16 @@
+===== BACKTEST REPORT FOR: signals_2025-09-11_20-13-10_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-13T02:32:03.130860
+
+--- BUY SIGNALS ---
+ETHUSDT    Buy             Conf: 41 Outcome:Success      Dur(min): 511 TTP: 511 TSL:None Est:   5.04% missing_pts=24
+BTCUSDT    Buy             Conf: 41 Outcome:Success      Dur(min): 507 TTP: 507 TSL:None Est:   5.04% missing_pts=24
+WLFIUSDT   Buy             Conf: 46 Outcome:Success      Dur(min):  37 TTP:  37 TSL:None Est:   5.04% missing_pts=19
+LTCUSDT    Buy             Conf: 41 Outcome:Success      Dur(min): 263 TTP: 263 TSL:None Est:   5.04% missing_pts=24
+ONDOUSDT   Buy             Conf: 40 Outcome:Success      Dur(min): 219 TTP: 219 TSL:None Est:   5.04% missing_pts=25
+TAUSDT     Buy             Conf: 43 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=22
+PYTHUSDT   Buy             Conf: 49 Outcome:Success      Dur(min):   6 TTP:   6 TSL:None Est:   5.04% missing_pts=16
+HIFIUSDT   Buy             Conf: 47 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=18
+DAMUSDT    Strong Buy      Conf: 68 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=0 HMA_gate SUP
+
+--- SELL SIGNALS ---
+    (none)

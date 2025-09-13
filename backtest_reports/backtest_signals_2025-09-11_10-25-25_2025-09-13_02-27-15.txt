@@ -1,0 +1,13 @@
+===== BACKTEST REPORT FOR: signals_2025-09-11_10-25-25.json =====
+Signal Generation Time (UTC): 2025-09-13T02:27:15.631177
+
+--- BUY SIGNALS ---
+ADAUSDT    Buy             Conf: 40 Outcome:Success      Dur(min): 456 TTP: 456 TSL:None Est:   5.04% missing_pts=25
+HIFIUSDT   Buy             Conf: 40 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=25
+NMRUSDT    Buy             Conf: 49 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=16
+PTBUSDT    Buy             Conf: 42 Outcome:Success      Dur(min):  15 TTP:  15 TSL:None Est:   5.04% missing_pts=23
+SAPIENUSDT Buy             Conf: 46 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=19
+FILUSDT    Buy             Conf: 46 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=19
+
+--- SELL SIGNALS ---
+    (none)

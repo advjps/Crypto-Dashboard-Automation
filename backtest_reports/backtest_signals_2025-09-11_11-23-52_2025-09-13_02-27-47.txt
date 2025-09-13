@@ -1,0 +1,18 @@
+===== BACKTEST REPORT FOR: signals_2025-09-11_11-23-52.json =====
+Signal Generation Time (UTC): 2025-09-13T02:27:47.468576
+
+--- BUY SIGNALS ---
+AVAXUSDT   Buy             Conf: 44 Outcome:Success      Dur(min): 242 TTP: 242 TSL:None Est:   5.04% missing_pts=21
+NMRUSDT    Buy             Conf: 41 Outcome:Success      Dur(min):   5 TTP:   5 TSL:None Est:   5.04% missing_pts=24
+XNYUSDT    Buy             Conf: 42 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=23
+WUSDT      Buy             Conf: 54 Outcome:Success      Dur(min):  37 TTP:  37 TSL:None Est:   5.04% missing_pts=11
+BSWUSDT    Buy             Conf: 44 Outcome:Fail         Dur(min):  12 TTP:None TSL:  12 Est:   5.04% missing_pts=21
+TAOUSDT    Buy             Conf: 47 Outcome:Success      Dur(min):  60 TTP:  60 TSL:None Est:   5.04% missing_pts=18
+LDOUSDT    Buy             Conf: 49 Outcome:Fail         Dur(min): 398 TTP:None TSL: 398 Est:   5.04% missing_pts=16
+NEARUSDT   Buy             Conf: 41 Outcome:Success      Dur(min):  48 TTP:  48 TSL:None Est:   5.04% missing_pts=24
+PROVEUSDT  Buy             Conf: 54 Outcome:Success      Dur(min):  28 TTP:  28 TSL:None Est:   5.04% missing_pts=11
+EIGENUSDT  Buy             Conf: 40 Outcome:Success      Dur(min):  33 TTP:  33 TSL:None Est:   5.04% missing_pts=25
+TRXUSDT    Buy             Conf: 47 Outcome:Success      Dur(min): 320 TTP: 320 TSL:None Est:   5.04% missing_pts=18
+
+--- SELL SIGNALS ---
+    (none)

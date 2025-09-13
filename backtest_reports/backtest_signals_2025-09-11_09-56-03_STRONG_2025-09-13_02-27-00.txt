@@ -1,0 +1,21 @@
+===== BACKTEST REPORT FOR: signals_2025-09-11_09-56-03_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-13T02:27:00.246507
+
+--- BUY SIGNALS ---
+ETHUSDT    Buy             Conf: 42 Outcome:Success      Dur(min): 163 TTP: 163 TSL:None Est:   5.04% missing_pts=23
+MYXUSDT    Buy             Conf: 49 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=16
+BAKEUSDT   Buy             Conf: 41 Outcome:Fail         Dur(min):   2 TTP:None TSL:   2 Est:   5.04% missing_pts=24
+NAORISUSDT Buy             Conf: 44 Outcome:Fail         Dur(min):   1 TTP:None TSL:   1 Est:   5.04% missing_pts=21
+PUMPUSDT   Buy             Conf: 42 Outcome:Success      Dur(min):   5 TTP:   5 TSL:None Est:   5.04% missing_pts=23
+XNYUSDT    Buy             Conf: 43 Outcome:Fail         Dur(min):  14 TTP:None TSL:  14 Est:   5.04% missing_pts=22
+1000SATSUSDT Buy             Conf: 41 Outcome:Success      Dur(min):  38 TTP:  38 TSL:None Est:   5.04% missing_pts=24
+BCHUSDT    Buy             Conf: 49 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=16
+MUSDT      Buy             Conf: 45 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=20
+TAUSDT     Buy             Conf: 62 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=3
+NMRUSDT    Strong Buy      Conf: 68 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=0 HMA_gate SUP
+LDOUSDT    Buy             Conf: 46 Outcome:Success      Dur(min):  76 TTP:  76 TSL:None Est:   5.04% missing_pts=19
+SEIUSDT    Buy             Conf: 40 Outcome:Success      Dur(min): 149 TTP: 149 TSL:None Est:   5.04% missing_pts=25
+ETCUSDT    Buy             Conf: 41 Outcome:Success      Dur(min): 155 TTP: 155 TSL:None Est:   5.04% missing_pts=24
+
+--- SELL SIGNALS ---
+    (none)

@@ -1,0 +1,38 @@
+===== BACKTEST REPORT FOR: signals_2025-09-12_13-04-31_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-13T02:39:52.190136
+
+--- BUY SIGNALS ---
+LTCUSDT    Buy             Conf: 45 Outcome:Success      Dur(min): 404 TTP: 404 TSL:None Est:   5.04% missing_pts=20
+CRVUSDT    Buy             Conf: 45 Outcome:Success      Dur(min): 223 TTP: 223 TSL:None Est:   5.04% missing_pts=20
+
+--- SELL SIGNALS ---
+BTCUSDT    Sell            Conf: 48 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=17
+DOGEUSDT   Sell            Conf: 58 Outcome:Fail         Dur(min): 521 TTP:None TSL: 521 Est:   5.04% missing_pts=7 HMA_gate
+XRPUSDT    Sell            Conf: 48 Outcome:Success      Dur(min): 274 TTP: 274 TSL:None Est:   5.04% missing_pts=17
+HOLOUSDT   Sell            Conf: 41 Outcome:Success      Dur(min):  28 TTP:  28 TSL:None Est:   5.04% missing_pts=24
+ENAUSDT    Sell            Conf: 41 Outcome:Success      Dur(min):  43 TTP:  43 TSL:None Est:   5.04% missing_pts=24
+LINKUSDT   Sell            Conf: 46 Outcome:Success      Dur(min):  45 TTP:  45 TSL:None Est:   5.04% missing_pts=19
+AVAXUSDT   Sell            Conf: 48 Outcome:Success      Dur(min):  43 TTP:  43 TSL:None Est:   5.04% missing_pts=17
+HYPEUSDT   Sell            Conf: 48 Outcome:Success      Dur(min): 122 TTP: 122 TSL:None Est:   5.04% missing_pts=17
+SUIUSDT    Sell            Conf: 47 Outcome:Success      Dur(min): 152 TTP: 152 TSL:None Est:   5.04% missing_pts=18
+BNBUSDT    Sell            Conf: 49 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=16
+ADAUSDT    Sell            Conf: 45 Outcome:Success      Dur(min): 122 TTP: 122 TSL:None Est:   5.04% missing_pts=20
+1000PEPEUSDT Sell            Conf: 47 Outcome:Success      Dur(min): 124 TTP: 124 TSL:None Est:   5.04% missing_pts=18
+AVNTUSDT   Strong Sell     Conf: 70 Outcome:Success      Dur(min):  24 TTP:  24 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+BCHUSDT    Sell            Conf: 43 Outcome:Success      Dur(min):  78 TTP:  78 TSL:None Est:   5.04% missing_pts=22
+ARBUSDT    Sell            Conf: 49 Outcome:Success      Dur(min): 114 TTP: 114 TSL:None Est:   5.04% missing_pts=16
+OGUSDT     Sell            Conf: 41 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=24
+WIFUSDT    Sell            Conf: 59 Outcome:Success      Dur(min):  41 TTP:  41 TSL:None Est:   5.04% missing_pts=6 HMA_gate
+DOTUSDT    Sell            Conf: 47 Outcome:Success      Dur(min):  61 TTP:  61 TSL:None Est:   5.04% missing_pts=18
+XLMUSDT    Sell            Conf: 41 Outcome:Success      Dur(min): 138 TTP: 138 TSL:None Est:   5.04% missing_pts=24
+SEIUSDT    Sell            Conf: 44 Outcome:Success      Dur(min):  43 TTP:  43 TSL:None Est:   5.04% missing_pts=21
+TAOUSDT    Sell            Conf: 49 Outcome:Success      Dur(min): 121 TTP: 121 TSL:None Est:   5.04% missing_pts=16
+TIAUSDT    Sell            Conf: 43 Outcome:Success      Dur(min): 114 TTP: 114 TSL:None Est:   5.04% missing_pts=22
+HBARUSDT   Sell            Conf: 60 Outcome:Success      Dur(min):  43 TTP:  43 TSL:None Est:   5.04% missing_pts=5 HMA_gate
+PUMPBTCUSDT Sell            Conf: 40 Outcome:Success      Dur(min):  32 TTP:  32 TSL:None Est:   5.04% missing_pts=25
+TRXUSDT    Sell            Conf: 41 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=24
+LDOUSDT    Sell            Conf: 48 Outcome:Success      Dur(min):  43 TTP:  43 TSL:None Est:   5.04% missing_pts=17
+XAIUSDT    Sell            Conf: 51 Outcome:Success      Dur(min): 118 TTP: 118 TSL:None Est:   5.04% missing_pts=14
+FILUSDT    Sell            Conf: 49 Outcome:Success      Dur(min):  91 TTP:  91 TSL:None Est:   5.04% missing_pts=16
+ETCUSDT    Sell            Conf: 44 Outcome:Success      Dur(min): 257 TTP: 257 TSL:None Est:   5.04% missing_pts=21
+EIGENUSDT  Sell            Conf: 45 Outcome:Success      Dur(min): 151 TTP: 151 TSL:None Est:   5.04% missing_pts=20
