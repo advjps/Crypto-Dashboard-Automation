@@ -27,7 +27,7 @@ ANALYTICS_DIR = "analytics"
 BINANCE_FAPI = "https://fapi.binance.com"
 
 # lookahead & fetch config
-LOOKAHEAD_MINUTES = 300  # user-configurable
+LOOKAHEAD_MINUTES = 600  # user-configurable
 LOOKAHEAD_MS = LOOKAHEAD_MINUTES * 60 * 1000
 KLINE_LIMIT = 1000
 REQUEST_TIMEOUT = 30
