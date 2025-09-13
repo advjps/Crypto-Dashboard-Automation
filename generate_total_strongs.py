@@ -29,10 +29,10 @@ jobs:
           # If your repo needs other env vars, you can add them here
           TZ: 'UTC'
 
-     - name: Commit TotalStrong CSV back to repo
-       run: |
-         git config user.name "github-actions"
-         git config user.email "github-actions@github.com"
-         git add analytics/TotalStrong_*.csv
-         git commit -m "Add TotalStrong CSV [skip ci]" || echo "No changes to commit"
-         git push
+      - name: Commit TotalStrong CSV back to repo
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add analytics/TotalStrong_*.csv
+          git commit -m "Add TotalStrong CSV [skip ci]" || echo "No changes to commit"
+          git push
