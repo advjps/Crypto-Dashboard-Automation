@@ -1,0 +1,36 @@
+name: Generate TotalStrong CSV
+
+# Manual trigger and daily schedule. Adjust schedule cron to your preferred UTC time.
+on:
+  workflow_dispatch: {}
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas pytz
+
+      - name: Run generate_total_strongs.py
+        run: |
+          python generate_total_strongs.py
+        env:
+          # No secrets required for the script, it's file-only
+          # If your repo needs other env vars, you can add them here
+          TZ: 'UTC'
+
+      - name: Upload TotalStrong CSV artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: total-strong-csv
+          path: analytics/TotalStrong_*.csv
