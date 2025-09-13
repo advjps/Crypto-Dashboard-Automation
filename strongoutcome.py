@@ -10,7 +10,7 @@ import pandas as pd
 from datetime import datetime, timezone, timedelta
 
 # -------- CONFIG --------
-DATA_FILE = os.path.join("analytics", "total_strong_signals.csv")
+DATA_FILE = os.path.join("analytics", "TotalStrong_*.csv")
 OUT_DETAILED = os.path.join("analytics", "strongoutcome_detailed.csv")
 OUT_SUMMARY = os.path.join("analytics", "strongoutcome_summary.csv")
 
