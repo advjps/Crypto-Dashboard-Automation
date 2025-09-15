@@ -1,0 +1,18 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_19-39-05_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:22:05.817993
+
+--- BUY SIGNALS ---
+FUSDT      Buy             Conf: 40 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=25
+BIOUSDT    Buy             Conf: 43 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=22
+
+--- SELL SIGNALS ---
+WLFIUSDT   Strong Sell     Conf: 66 Outcome:Success      Dur(min):   9 TTP:   9 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+AVNTUSDT   Sell            Conf: 42 Outcome:Success      Dur(min):  10 TTP:  10 TSL:None Est:   5.04% missing_pts=23
+WLDUSDT    Sell            Conf: 42 Outcome:Success      Dur(min):  15 TTP:  15 TSL:None Est:   5.04% missing_pts=23
+BNBUSDT    Sell            Conf: 41 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=24
+OPENUSDT   Sell            Conf: 41 Outcome:Success      Dur(min):   9 TTP:   9 TSL:None Est:   5.04% missing_pts=24
+UBUSDT     Sell            Conf: 40 Outcome:Success      Dur(min):  17 TTP:  17 TSL:None Est:   5.04% missing_pts=25
+QUSDT      Sell            Conf: 42 Outcome:Fail         Dur(min):   8 TTP:None TSL:   8 Est:   5.04% missing_pts=23
+MUSDT      Sell            Conf: 45 Outcome:Success      Dur(min):   9 TTP:   9 TSL:None Est:   5.04% missing_pts=20
+BTRUSDT    Sell            Conf: 45 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=20
+YGGUSDT    Sell            Conf: 49 Outcome:Fail         Dur(min): 146 TTP:None TSL: 146 Est:   5.04% missing_pts=16

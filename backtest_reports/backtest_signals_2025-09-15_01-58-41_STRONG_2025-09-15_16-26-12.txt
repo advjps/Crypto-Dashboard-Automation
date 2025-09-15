@@ -1,0 +1,18 @@
+===== BACKTEST REPORT FOR: signals_2025-09-15_01-58-41_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:26:12.992769
+
+--- BUY SIGNALS ---
+BTCUSDT    Buy             Conf: 40 Outcome:Success      Dur(min): 569 TTP: 569 TSL:None Est:   5.04% missing_pts=25
+PUMPUSDT   Strong Buy      Conf: 67 Outcome:Fail         Dur(min):  10 TTP:None TSL:  10 Est:   5.04% missing_pts=0
+MYXUSDT    Buy             Conf: 45 Outcome:Fail         Dur(min):  21 TTP:None TSL:  21 Est:   5.04% missing_pts=20
+BNBUSDT    Buy             Conf: 41 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=24
+ENAUSDT    Buy             Conf: 41 Outcome:Success      Dur(min):  66 TTP:  66 TSL:None Est:   5.04% missing_pts=24
+MOODENGUSDT Buy             Conf: 40 Outcome:Fail         Dur(min): 163 TTP:None TSL: 163 Est:   5.04% missing_pts=25
+UBUSDT     Buy             Conf: 45 Outcome:Fail         Dur(min):  29 TTP:None TSL:  29 Est:   5.04% missing_pts=20
+AAVEUSDT   Buy             Conf: 41 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=24
+ETHFIUSDT  Buy             Conf: 42 Outcome:Success      Dur(min): 133 TTP: 133 TSL:None Est:   5.04% missing_pts=23
+EIGENUSDT  Buy             Conf: 45 Outcome:Fail         Dur(min): 281 TTP:None TSL: 281 Est:   5.04% missing_pts=20
+LDOUSDT    Buy             Conf: 43 Outcome:Success      Dur(min):  79 TTP:  79 TSL:None Est:   5.04% missing_pts=22
+
+--- SELL SIGNALS ---
+    (none)

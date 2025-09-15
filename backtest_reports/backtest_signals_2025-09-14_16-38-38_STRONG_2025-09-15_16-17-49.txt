@@ -1,0 +1,22 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_16-38-38_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:17:49.277418
+
+--- BUY SIGNALS ---
+PUMPUSDT   Buy             Conf: 43 Outcome:Success      Dur(min):  17 TTP:  17 TSL:None Est:   5.04% missing_pts=22
+SOMIUSDT   Buy             Conf: 44 Outcome:Success      Dur(min):  13 TTP:  13 TSL:None Est:   5.04% missing_pts=21
+1000PEPEUSDT Buy             Conf: 40 Outcome:Fail         Dur(min): 104 TTP:None TSL: 104 Est:   5.04% missing_pts=25
+WLDUSDT    Strong Buy      Conf: 65 Outcome:Fail         Dur(min):  32 TTP:None TSL:  32 Est:   5.04% missing_pts=0 HMA_gate SUP
+ENAUSDT    Buy             Conf: 46 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=19
+OPENUSDT   Buy             Conf: 62 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=3
+UNIUSDT    Buy             Conf: 41 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=24
+QUSDT      Buy             Conf: 49 Outcome:Fail         Dur(min):   2 TTP:None TSL:   2 Est:   5.04% missing_pts=16
+HOLOUSDT   Buy             Conf: 44 Outcome:Success      Dur(min):   6 TTP:   6 TSL:None Est:   5.04% missing_pts=21
+BAKEUSDT   Buy             Conf: 44 Outcome:Fail         Dur(min):  23 TTP:None TSL:  23 Est:   5.04% missing_pts=21
+PUMPBTCUSDT Buy             Conf: 43 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=22
+EIGENUSDT  Buy             Conf: 49 Outcome:Fail         Dur(min): 104 TTP:None TSL: 104 Est:   5.04% missing_pts=16
+YGGUSDT    Buy             Conf: 44 Outcome:Fail         Dur(min):  13 TTP:None TSL:  13 Est:   5.04% missing_pts=21
+TRXUSDT    Buy             Conf: 44 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=21
+ATHUSDT    Buy             Conf: 41 Outcome:Success      Dur(min):  13 TTP:  13 TSL:None Est:   5.04% missing_pts=24
+
+--- SELL SIGNALS ---
+    (none)

@@ -1,0 +1,25 @@
+===== BACKTEST REPORT FOR: signals_2025-09-13_17-03-12_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:09:26.216538
+
+--- BUY SIGNALS ---
+ADAUSDT    Buy             Conf: 40 Outcome:Success      Dur(min):  27 TTP:  27 TSL:None Est:   5.04% missing_pts=25
+MOODENGUSDT Buy             Conf: 42 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=23
+BAKEUSDT   Buy             Conf: 44 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=21
+PUMPBTCUSDT Buy             Conf: 44 Outcome:Fail         Dur(min):   3 TTP:None TSL:   3 Est:   5.04% missing_pts=21
+PENGUUSDT  Buy             Conf: 46 Outcome:Success      Dur(min):  15 TTP:  15 TSL:None Est:   5.04% missing_pts=19
+SOMIUSDT   Buy             Conf: 49 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=16
+1000SHIBUSDT Buy             Conf: 46 Outcome:Success      Dur(min):  27 TTP:  27 TSL:None Est:   5.04% missing_pts=19
+HOLOUSDT   Buy             Conf: 40 Outcome:Success      Dur(min):  26 TTP:  26 TSL:None Est:   5.04% missing_pts=25
+LINEAUSDT  Buy             Conf: 49 Outcome:Success      Dur(min):  18 TTP:  18 TSL:None Est:   5.04% missing_pts=16
+VELVETUSDT Buy             Conf: 57 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=8
+OPENUSDT   Strong Buy      Conf: 68 Outcome:Success      Dur(min):  11 TTP:  11 TSL:None Est:   5.04% missing_pts=0 HMA_gate SUP
+ARBUSDT    Buy             Conf: 40 Outcome:Success      Dur(min): 116 TTP: 116 TSL:None Est:   5.04% missing_pts=25
+ONDOUSDT   Buy             Conf: 40 Outcome:Success      Dur(min):  16 TTP:  16 TSL:None Est:   5.04% missing_pts=25
+BIOUSDT    Buy             Conf: 49 Outcome:Success      Dur(min):   6 TTP:   6 TSL:None Est:   5.04% missing_pts=16
+OPUSDT     Buy             Conf: 40 Outcome:Success      Dur(min):  17 TTP:  17 TSL:None Est:   5.04% missing_pts=25
+ETHFIUSDT  Buy             Conf: 42 Outcome:Success      Dur(min):  11 TTP:  11 TSL:None Est:   5.04% missing_pts=23
+TAOUSDT    Buy             Conf: 40 Outcome:Success      Dur(min):  62 TTP:  62 TSL:None Est:   5.04% missing_pts=25
+NMRUSDT    Buy             Conf: 40 Outcome:Success      Dur(min):   8 TTP:   8 TSL:None Est:   5.04% missing_pts=25
+
+--- SELL SIGNALS ---
+    (none)

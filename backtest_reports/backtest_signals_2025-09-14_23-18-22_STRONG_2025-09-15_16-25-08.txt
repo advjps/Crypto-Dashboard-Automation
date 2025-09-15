@@ -1,0 +1,33 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_23-18-22_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:25:08.341238
+
+--- BUY SIGNALS ---
+ETHUSDT    Buy             Conf: 45 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=20
+SOLUSDT    Buy             Conf: 45 Outcome:Fail         Dur(min): 346 TTP:None TSL: 346 Est:   5.04% missing_pts=20
+BTCUSDT    Buy             Conf: 42 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=23
+DOGEUSDT   Strong Buy      Conf: 67 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=0 HMA_gate SUP
+WLFIUSDT   Buy             Conf: 44 Outcome:Fail         Dur(min): 322 TTP:None TSL: 322 Est:   5.04% missing_pts=21
+1000PEPEUSDT Buy             Conf: 42 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=23
+AVAXUSDT   Buy             Conf: 44 Outcome:Success      Dur(min): 293 TTP: 293 TSL:None Est:   5.04% missing_pts=21
+SUIUSDT    Buy             Conf: 44 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=21
+BNBUSDT    Buy             Conf: 44 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=21
+ENAUSDT    Buy             Conf: 45 Outcome:Success      Dur(min): 227 TTP: 227 TSL:None Est:   5.04% missing_pts=20
+ADAUSDT    Buy             Conf: 44 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=21
+QUSDT      Buy             Conf: 54 Outcome:Fail         Dur(min):   8 TTP:None TSL:   8 Est:   5.04% missing_pts=11
+HOLOUSDT   Buy             Conf: 44 Outcome:Success      Dur(min):  15 TTP:  15 TSL:None Est:   5.04% missing_pts=21
+PUMPBTCUSDT Buy             Conf: 54 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=11
+WIFUSDT    Buy             Conf: 48 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=17
+ARBUSDT    Buy             Conf: 42 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=23
+AAVEUSDT   Buy             Conf: 48 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=17
+1000SHIBUSDT Buy             Conf: 44 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=21
+MUSDT      Buy             Conf: 43 Outcome:Success      Dur(min): 198 TTP: 198 TSL:None Est:   5.04% missing_pts=22
+FILUSDT    Buy             Conf: 41 Outcome:Success      Dur(min): 504 TTP: 504 TSL:None Est:   5.04% missing_pts=24
+MITOUSDT   Strong Buy      Conf: 68 Outcome:Fail         Dur(min):   1 TTP:None TSL:   1 Est:   5.04% missing_pts=0 HMA_gate SUP
+HBARUSDT   Buy             Conf: 58 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=7 HMA_gate
+NEARUSDT   Buy             Conf: 41 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=24
+ATHUSDT    Buy             Conf: 48 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=17
+TIAUSDT    Buy             Conf: 49 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=16
+CRVUSDT    Buy             Conf: 44 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=21
+
+--- SELL SIGNALS ---
+YGGUSDT    Sell            Conf: 40 Outcome:Success      Dur(min):  16 TTP:  16 TSL:None Est:   5.04% missing_pts=25

@@ -1,0 +1,58 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_17-03-37_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:19:07.427239
+
+--- BUY SIGNALS ---
+ETHUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+SOLUSDT    Buy             Conf: 44 Outcome:Success      Dur(min): 379 TTP: 379 TSL:None Est:   5.04% missing_pts=21
+DOGEUSDT   Buy             Conf: 62 Outcome:Fail         Dur(min): 185 TTP:None TSL: 185 Est:   5.04% missing_pts=3
+XRPUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+1000PEPEUSDT Buy             Conf: 62 Outcome:Fail         Dur(min): 197 TTP:None TSL: 197 Est:   5.04% missing_pts=3
+WLFIUSDT   Buy             Conf: 49 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=16
+AVNTUSDT   Buy             Conf: 41 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=24
+WLDUSDT    Buy             Conf: 44 Outcome:Fail         Dur(min): 195 TTP:None TSL: 195 Est:   5.04% missing_pts=21
+SUIUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+BNBUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+AVAXUSDT   Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+ENAUSDT    Buy             Conf: 44 Outcome:Success      Dur(min): 276 TTP: 276 TSL:None Est:   5.04% missing_pts=21
+ADAUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+UBUSDT     Buy             Conf: 54 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=11
+LINKUSDT   Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+HYPEUSDT   Buy             Conf: 44 Outcome:Success      Dur(min): 155 TTP: 155 TSL:None Est:   5.04% missing_pts=21
+BIOUSDT    Buy             Conf: 40 Outcome:Success      Dur(min):  28 TTP:  28 TSL:None Est:   5.04% missing_pts=25
+HUSDT      Buy             Conf: 44 Outcome:Success      Dur(min):   7 TTP:   7 TSL:None Est:   5.04% missing_pts=21
+MOODENGUSDT Buy             Conf: 48 Outcome:Success      Dur(min):  34 TTP:  34 TSL:None Est:   5.04% missing_pts=17
+LTCUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+FARTCOINUSDT Buy             Conf: 62 Outcome:Fail         Dur(min): 188 TTP:None TSL: 188 Est:   5.04% missing_pts=3
+UNIUSDT    Strong Buy      Conf: 67 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=0
+TRUMPUSDT  Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+PENGUUSDT  Buy             Conf: 62 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=3
+WIFUSDT    Buy             Conf: 62 Outcome:Fail         Dur(min): 197 TTP:None TSL: 197 Est:   5.04% missing_pts=3
+HOLOUSDT   Buy             Conf: 44 Outcome:Success      Dur(min):   2 TTP:   2 TSL:None Est:   5.04% missing_pts=21
+1000BONKUSDT Buy             Conf: 62 Outcome:Fail         Dur(min): 196 TTP:None TSL: 196 Est:   5.04% missing_pts=3
+1000SHIBUSDT Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+DOTUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+AAVEUSDT   Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+PUMPBTCUSDT Buy             Conf: 48 Outcome:Fail         Dur(min):   1 TTP:None TSL:   1 Est:   5.04% missing_pts=17
+ARBUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+ONDOUSDT   Buy             Conf: 44 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=21
+ETHFIUSDT  Buy             Conf: 54 Outcome:Fail         Dur(min): 195 TTP:None TSL: 195 Est:   5.04% missing_pts=11
+EIGENUSDT  Buy             Conf: 54 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=11
+YGGUSDT    Buy             Conf: 62 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=3
+FILUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+XLMUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+NEARUSDT   Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+HBARUSDT   Buy             Conf: 62 Outcome:Success      Dur(min): 313 TTP: 313 TSL:None Est:   5.04% missing_pts=3
+PNUTUSDT   Buy             Conf: 62 Outcome:Success      Dur(min):  27 TTP:  27 TSL:None Est:   5.04% missing_pts=3
+ETCUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+SEIUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+CRVUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+OPUSDT     Buy             Conf: 62 Outcome:Success      Dur(min):  57 TTP:  57 TSL:None Est:   5.04% missing_pts=3
+MANAUSDT   Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+APTUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+TRXUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+TIAUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+LDOUSDT    Buy             Conf: 62 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=3
+TAOUSDT    Buy             Conf: 62 Outcome:Success      Dur(min): 356 TTP: 356 TSL:None Est:   5.04% missing_pts=3
+
+--- SELL SIGNALS ---
+BTCUSDT    Sell            Conf: 45 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=20

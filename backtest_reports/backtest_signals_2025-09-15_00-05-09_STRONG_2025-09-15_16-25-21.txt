@@ -1,0 +1,13 @@
+===== BACKTEST REPORT FOR: signals_2025-09-15_00-05-09_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:25:21.440969
+
+--- BUY SIGNALS ---
+PUMPUSDT   Buy             Conf: 40 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=25
+HIFIUSDT   Buy             Conf: 41 Outcome:Fail         Dur(min):   1 TTP:None TSL:   1 Est:   5.04% missing_pts=24
+QUSDT      Buy             Conf: 53 Outcome:Success      Dur(min):   5 TTP:   5 TSL:None Est:   5.04% missing_pts=12
+BTRUSDT    Buy             Conf: 54 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=11
+PUMPBTCUSDT Buy             Conf: 54 Outcome:Success      Dur(min):  15 TTP:  15 TSL:None Est:   5.04% missing_pts=11
+MITOUSDT   Strong Buy      Conf: 67 Outcome:Fail         Dur(min):   1 TTP:None TSL:   1 Est:   5.04% missing_pts=0 HMA_gate SUP
+
+--- SELL SIGNALS ---
+    (none)

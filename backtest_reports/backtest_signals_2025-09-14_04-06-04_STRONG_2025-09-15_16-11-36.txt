@@ -1,0 +1,22 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_04-06-04_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:11:36.963076
+
+--- BUY SIGNALS ---
+SOLUSDT    Buy             Conf: 43 Outcome:Success      Dur(min):  42 TTP:  42 TSL:None Est:   5.04% missing_pts=22
+WLFIUSDT   Buy             Conf: 47 Outcome:Success      Dur(min):  18 TTP:  18 TSL:None Est:   5.04% missing_pts=18
+WLDUSDT    Buy             Conf: 41 Outcome:Success      Dur(min):  57 TTP:  57 TSL:None Est:   5.04% missing_pts=24
+FUSDT      Buy             Conf: 43 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=22
+LINEAUSDT  Buy             Conf: 42 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=23
+OPENUSDT   Buy             Conf: 40 Outcome:Success      Dur(min):   9 TTP:   9 TSL:None Est:   5.04% missing_pts=25
+HOLOUSDT   Buy             Conf: 45 Outcome:Success      Dur(min):  55 TTP:  55 TSL:None Est:   5.04% missing_pts=20
+ETHFIUSDT  Buy             Conf: 41 Outcome:Success      Dur(min):  19 TTP:  19 TSL:None Est:   5.04% missing_pts=24
+FILUSDT    Buy             Conf: 41 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=24
+BSWUSDT    Strong Buy      Conf: 67 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=0
+LDOUSDT    Buy             Conf: 42 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=23
+
+--- SELL SIGNALS ---
+1000PEPEUSDT Sell            Conf: 41 Outcome:Success      Dur(min): 136 TTP: 136 TSL:None Est:   5.04% missing_pts=24
+ADAUSDT    Sell            Conf: 40 Outcome:Success      Dur(min): 138 TTP: 138 TSL:None Est:   5.04% missing_pts=25
+ENAUSDT    Sell            Conf: 64 Outcome:Success      Dur(min): 136 TTP: 136 TSL:None Est:   5.04% missing_pts=1 HMA_gate
+LINKUSDT   Sell            Conf: 41 Outcome:Success      Dur(min): 322 TTP: 322 TSL:None Est:   5.04% missing_pts=24
+PNUTUSDT   Sell            Conf: 42 Outcome:Success      Dur(min): 146 TTP: 146 TSL:None Est:   5.04% missing_pts=23

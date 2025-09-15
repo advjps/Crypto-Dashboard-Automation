@@ -1,0 +1,9 @@
+===== BACKTEST REPORT FOR: signals_2025-09-13_23-18-06_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:10:08.760463
+
+--- BUY SIGNALS ---
+PUMPUSDT   Buy             Conf: 47 Outcome:Success      Dur(min):  23 TTP:  23 TSL:None Est:   5.04% missing_pts=18
+LTCUSDT    Strong Buy      Conf: 65 Outcome:Fail         Dur(min): 588 TTP:None TSL: 588 Est:   5.04% missing_pts=0 HMA_gate SUP
+
+--- SELL SIGNALS ---
+AVNTUSDT   Sell            Conf: 45 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=20

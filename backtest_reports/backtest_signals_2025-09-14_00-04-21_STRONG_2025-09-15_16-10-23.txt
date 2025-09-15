@@ -1,0 +1,21 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_00-04-21_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:10:23.898512
+
+--- BUY SIGNALS ---
+ARIAUSDT   Buy             Conf: 40 Outcome:Success      Dur(min):   7 TTP:   7 TSL:None Est:   5.04% missing_pts=25
+
+--- SELL SIGNALS ---
+ETHUSDT    Sell            Conf: 40 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=25
+SOLUSDT    Sell            Conf: 41 Outcome:Fail         Dur(min): 438 TTP:None TSL: 438 Est:   5.04% missing_pts=24
+HIFIUSDT   Sell            Conf: 41 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=24
+XRPUSDT    Sell            Conf: 40 Outcome:Success      Dur(min): 410 TTP: 410 TSL:None Est:   5.04% missing_pts=25
+MYXUSDT    Strong Sell     Conf: 68 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+AVAXUSDT   Sell            Conf: 40 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=25
+SUIUSDT    Sell            Conf: 40 Outcome:Success      Dur(min): 583 TTP: 583 TSL:None Est:   5.04% missing_pts=25
+BNBUSDT    Sell            Conf: 40 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=25
+LINKUSDT   Sell            Conf: 40 Outcome:Success      Dur(min): 582 TTP: 582 TSL:None Est:   5.04% missing_pts=25
+PUMPBTCUSDT Sell            Conf: 45 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=20
+LINEAUSDT  Sell            Conf: 61 Outcome:Fail         Dur(min):  66 TTP:None TSL:  66 Est:   5.04% missing_pts=4 HMA_gate
+FARTCOINUSDT Sell            Conf: 40 Outcome:Fail         Dur(min): 288 TTP:None TSL: 288 Est:   5.04% missing_pts=25
+YGGUSDT    Sell            Conf: 44 Outcome:Fail         Dur(min):  61 TTP:None TSL:  61 Est:   5.04% missing_pts=21
+TAOUSDT    Sell            Conf: 40 Outcome:Success      Dur(min): 387 TTP: 387 TSL:None Est:   5.04% missing_pts=25

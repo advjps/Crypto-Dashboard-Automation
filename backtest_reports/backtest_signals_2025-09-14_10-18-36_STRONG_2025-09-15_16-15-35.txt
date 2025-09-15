@@ -1,0 +1,12 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_10-18-36_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:15:35.654613
+
+--- BUY SIGNALS ---
+WLFIUSDT   Buy             Conf: 42 Outcome:Success      Dur(min):  68 TTP:  68 TSL:None Est:   5.04% missing_pts=23
+AVAXUSDT   Buy             Conf: 49 Outcome:Success      Dur(min):  23 TTP:  23 TSL:None Est:   5.04% missing_pts=16
+HUSDT      Strong Buy      Conf: 66 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=0 HMA_gate SUP
+BIOUSDT    Buy             Conf: 42 Outcome:Success      Dur(min):  14 TTP:  14 TSL:None Est:   5.04% missing_pts=23
+
+--- SELL SIGNALS ---
+ENAUSDT    Sell            Conf: 40 Outcome:Success      Dur(min):  82 TTP:  82 TSL:None Est:   5.04% missing_pts=25
+MOODENGUSDT Sell            Conf: 40 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=25

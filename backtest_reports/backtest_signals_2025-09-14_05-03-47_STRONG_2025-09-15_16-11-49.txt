@@ -1,0 +1,19 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_05-03-47_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:11:49.868359
+
+--- BUY SIGNALS ---
+MYXUSDT    Buy             Conf: 44 Outcome:Success      Dur(min):   8 TTP:   8 TSL:None Est:   5.04% missing_pts=21
+WLFIUSDT   Buy             Conf: 42 Outcome:Success      Dur(min):  11 TTP:  11 TSL:None Est:   5.04% missing_pts=23
+WLDUSDT    Buy             Conf: 45 Outcome:Success      Dur(min):  22 TTP:  22 TSL:None Est:   5.04% missing_pts=20
+LINEAUSDT  Buy             Conf: 42 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=23
+FARTCOINUSDT Buy             Conf: 42 Outcome:Success      Dur(min):  35 TTP:  35 TSL:None Est:   5.04% missing_pts=23
+BIOUSDT    Strong Buy      Conf: 68 Outcome:Fail         Dur(min):  49 TTP:None TSL:  49 Est:   5.04% missing_pts=0 HMA_gate SUP
+HOLOUSDT   Buy             Conf: 43 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=22
+EIGENUSDT  Buy             Conf: 41 Outcome:Success      Dur(min):  14 TTP:  14 TSL:None Est:   5.04% missing_pts=24
+XLMUSDT    Buy             Conf: 44 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=21
+FILUSDT    Buy             Conf: 41 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=24
+VELVETUSDT Buy             Conf: 42 Outcome:Fail         Dur(min):  28 TTP:None TSL:  28 Est:   5.04% missing_pts=23
+OPUSDT     Buy             Conf: 44 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=21
+
+--- SELL SIGNALS ---
+HBARUSDT   Sell            Conf: 40 Outcome:Success      Dur(min):  88 TTP:  88 TSL:None Est:   5.04% missing_pts=25

@@ -1,0 +1,40 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_12-08-32_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:16:07.969817
+
+--- BUY SIGNALS ---
+    (none)
+
+--- SELL SIGNALS ---
+BTCUSDT    Sell            Conf: 58 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=7 HMA_gate
+XRPUSDT    Sell            Conf: 42 Outcome:Success      Dur(min): 289 TTP: 289 TSL:None Est:   5.04% missing_pts=23
+SUIUSDT    Sell            Conf: 44 Outcome:Success      Dur(min): 303 TTP: 303 TSL:None Est:   5.04% missing_pts=21
+FUSDT      Sell            Conf: 63 Outcome:Fail         Dur(min):  25 TTP:None TSL:  25 Est:   5.04% missing_pts=2 HMA_gate
+ADAUSDT    Sell            Conf: 48 Outcome:Success      Dur(min): 281 TTP: 281 TSL:None Est:   5.04% missing_pts=17
+ENAUSDT    Sell            Conf: 45 Outcome:Success      Dur(min):  95 TTP:  95 TSL:None Est:   5.04% missing_pts=20
+LINKUSDT   Sell            Conf: 44 Outcome:Success      Dur(min):  75 TTP:  75 TSL:None Est:   5.04% missing_pts=21
+LTCUSDT    Sell            Conf: 46 Outcome:Success      Dur(min): 289 TTP: 289 TSL:None Est:   5.04% missing_pts=19
+TRUMPUSDT  Strong Sell     Conf: 65 Outcome:Success      Dur(min): 280 TTP: 280 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+PENGUUSDT  Sell            Conf: 41 Outcome:Success      Dur(min): 289 TTP: 289 TSL:None Est:   5.04% missing_pts=24
+1000SHIBUSDT Sell            Conf: 47 Outcome:Success      Dur(min): 295 TTP: 295 TSL:None Est:   5.04% missing_pts=18
+1000BONKUSDT Sell            Conf: 48 Outcome:Success      Dur(min): 295 TTP: 295 TSL:None Est:   5.04% missing_pts=17
+AAVEUSDT   Sell            Conf: 42 Outcome:Success      Dur(min): 295 TTP: 295 TSL:None Est:   5.04% missing_pts=23
+ARBUSDT    Sell            Conf: 43 Outcome:Success      Dur(min):  89 TTP:  89 TSL:None Est:   5.04% missing_pts=22
+ONDOUSDT   Sell            Conf: 47 Outcome:Success      Dur(min): 294 TTP: 294 TSL:None Est:   5.04% missing_pts=18
+ETHFIUSDT  Sell            Conf: 41 Outcome:Success      Dur(min):  70 TTP:  70 TSL:None Est:   5.04% missing_pts=24
+MUSDT      Sell            Conf: 41 Outcome:Success      Dur(min): 164 TTP: 164 TSL:None Est:   5.04% missing_pts=24
+XLMUSDT    Sell            Conf: 48 Outcome:Success      Dur(min): 280 TTP: 280 TSL:None Est:   5.04% missing_pts=17
+PNUTUSDT   Sell            Conf: 44 Outcome:Success      Dur(min):  74 TTP:  74 TSL:None Est:   5.04% missing_pts=21
+HBARUSDT   Sell            Conf: 48 Outcome:Success      Dur(min): 294 TTP: 294 TSL:None Est:   5.04% missing_pts=17
+NEARUSDT   Sell            Conf: 42 Outcome:Success      Dur(min): 277 TTP: 277 TSL:None Est:   5.04% missing_pts=23
+SEIUSDT    Sell            Conf: 58 Outcome:Success      Dur(min): 294 TTP: 294 TSL:None Est:   5.04% missing_pts=7 HMA_gate
+BCHUSDT    Sell            Conf: 41 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=24
+ETCUSDT    Sell            Conf: 46 Outcome:Success      Dur(min): 288 TTP: 288 TSL:None Est:   5.04% missing_pts=19
+OPUSDT     Sell            Conf: 49 Outcome:Success      Dur(min):  74 TTP:  74 TSL:None Est:   5.04% missing_pts=16
+CRVUSDT    Sell            Conf: 48 Outcome:Success      Dur(min): 279 TTP: 279 TSL:None Est:   5.04% missing_pts=17
+TIAUSDT    Sell            Conf: 43 Outcome:Success      Dur(min): 247 TTP: 247 TSL:None Est:   5.04% missing_pts=22
+TRXUSDT    Sell            Conf: 43 Outcome:Success      Dur(min): 437 TTP: 437 TSL:None Est:   5.04% missing_pts=22
+APTUSDT    Sell            Conf: 40 Outcome:Success      Dur(min): 285 TTP: 285 TSL:None Est:   5.04% missing_pts=25
+MANAUSDT   Sell            Conf: 59 Outcome:Success      Dur(min):  70 TTP:  70 TSL:None Est:   5.04% missing_pts=6 HMA_gate
+LDOUSDT    Sell            Conf: 48 Outcome:Success      Dur(min):   8 TTP:   8 TSL:None Est:   5.04% missing_pts=17
+TAOUSDT    Sell            Conf: 59 Outcome:Success      Dur(min):   8 TTP:   8 TSL:None Est:   5.04% missing_pts=6 HMA_gate
+XPINUSDT   Sell            Conf: 45 Outcome:Fail         Dur(min):  11 TTP:None TSL:  11 Est:   5.04% missing_pts=20

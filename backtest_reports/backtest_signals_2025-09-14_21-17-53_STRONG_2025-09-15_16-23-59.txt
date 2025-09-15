@@ -1,0 +1,16 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_21-17-53_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:23:59.517473
+
+--- BUY SIGNALS ---
+PUMPUSDT   Buy             Conf: 42 Outcome:Success      Dur(min):  15 TTP:  15 TSL:None Est:   5.04% missing_pts=23
+
+--- SELL SIGNALS ---
+HIFIUSDT   Sell            Conf: 45 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=20
+LINEAUSDT  Sell            Conf: 45 Outcome:Success      Dur(min):   6 TTP:   6 TSL:None Est:   5.04% missing_pts=20
+FUSDT      Sell            Conf: 41 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=24
+QUSDT      Sell            Conf: 42 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=23
+HUSDT      Strong Sell     Conf: 66 Outcome:Success      Dur(min):   8 TTP:   8 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+LTCUSDT    Sell            Conf: 41 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=24
+BTRUSDT    Sell            Conf: 41 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=24
+TRUMPUSDT  Sell            Conf: 41 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=24
+BAKEUSDT   Sell            Conf: 42 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=23

@@ -1,0 +1,56 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_17-17-53_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:19:57.595335
+
+--- BUY SIGNALS ---
+HIFIUSDT   Buy             Conf: 40 Outcome:Fail         Dur(min):  16 TTP:None TSL:  16 Est:   5.04% missing_pts=25
+
+--- SELL SIGNALS ---
+ETHUSDT    Sell            Conf: 46 Outcome:Success      Dur(min): 170 TTP: 170 TSL:None Est:   5.04% missing_pts=19
+SOLUSDT    Sell            Conf: 46 Outcome:Success      Dur(min): 129 TTP: 129 TSL:None Est:   5.04% missing_pts=19
+BTCUSDT    Sell            Conf: 49 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=16
+DOGEUSDT   Sell            Conf: 44 Outcome:Success      Dur(min):  63 TTP:  63 TSL:None Est:   5.04% missing_pts=21
+XRPUSDT    Strong Sell     Conf: 68 Outcome:Success      Dur(min):  65 TTP:  65 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+1000PEPEUSDT Strong Sell     Conf: 69 Outcome:Success      Dur(min):  65 TTP:  65 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+WLFIUSDT   Sell            Conf: 40 Outcome:Success      Dur(min):  38 TTP:  38 TSL:None Est:   5.04% missing_pts=25
+MYXUSDT    Sell            Conf: 42 Outcome:Success      Dur(min):   5 TTP:   5 TSL:None Est:   5.04% missing_pts=23
+WLDUSDT    Strong Sell     Conf: 65 Outcome:Success      Dur(min): 181 TTP: 181 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+SUIUSDT    Strong Sell     Conf: 69 Outcome:Success      Dur(min):  65 TTP:  65 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+BNBUSDT    Strong Sell     Conf: 67 Outcome:Success      Dur(min): 171 TTP: 171 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+AVAXUSDT   Strong Sell     Conf: 67 Outcome:Success      Dur(min):  57 TTP:  57 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+ENAUSDT    Sell            Conf: 45 Outcome:Success      Dur(min): 113 TTP: 113 TSL:None Est:   5.04% missing_pts=20
+ADAUSDT    Strong Sell     Conf: 69 Outcome:Success      Dur(min):  54 TTP:  54 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+UBUSDT     Sell            Conf: 58 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=7 HMA_gate
+LINKUSDT   Strong Sell     Conf: 69 Outcome:Success      Dur(min):  63 TTP:  63 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+HYPEUSDT   Sell            Conf: 45 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=20
+BIOUSDT    Sell            Conf: 46 Outcome:Success      Dur(min):   5 TTP:   5 TSL:None Est:   5.04% missing_pts=19
+MOODENGUSDT Sell            Conf: 48 Outcome:Success      Dur(min):  12 TTP:  12 TSL:None Est:   5.04% missing_pts=17
+LTCUSDT    Strong Sell     Conf: 66 Outcome:Success      Dur(min):  63 TTP:  63 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+FARTCOINUSDT Strong Sell     Conf: 69 Outcome:Success      Dur(min):  52 TTP:  52 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+UNIUSDT    Sell            Conf: 60 Outcome:Success      Dur(min):  62 TTP:  62 TSL:None Est:   5.04% missing_pts=5 HMA_gate
+PENGUUSDT  Strong Sell     Conf: 69 Outcome:Success      Dur(min):  63 TTP:  63 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+TRUMPUSDT  Strong Sell     Conf: 68 Outcome:Success      Dur(min): 128 TTP: 128 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+WIFUSDT    Strong Sell     Conf: 69 Outcome:Success      Dur(min):  53 TTP:  53 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+1000BONKUSDT Strong Sell     Conf: 69 Outcome:Success      Dur(min):  52 TTP:  52 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+1000SHIBUSDT Strong Sell     Conf: 69 Outcome:Success      Dur(min):  64 TTP:  64 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+DOTUSDT    Strong Sell     Conf: 69 Outcome:Success      Dur(min):  52 TTP:  52 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+AAVEUSDT   Strong Sell     Conf: 69 Outcome:Success      Dur(min):  79 TTP:  79 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+ARBUSDT    Strong Sell     Conf: 69 Outcome:Success      Dur(min):  53 TTP:  53 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+ONDOUSDT   Sell            Conf: 49 Outcome:Success      Dur(min):  52 TTP:  52 TSL:None Est:   5.04% missing_pts=16
+ETHFIUSDT  Sell            Conf: 46 Outcome:Success      Dur(min):  50 TTP:  50 TSL:None Est:   5.04% missing_pts=19
+EIGENUSDT  Sell            Conf: 43 Outcome:Success      Dur(min):  53 TTP:  53 TSL:None Est:   5.04% missing_pts=22
+YGGUSDT    Strong Sell     Conf: 69 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+FILUSDT    Strong Sell     Conf: 69 Outcome:Success      Dur(min):  53 TTP:  53 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+XLMUSDT    Strong Sell     Conf: 69 Outcome:Success      Dur(min):  64 TTP:  64 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+NEARUSDT   Strong Sell     Conf: 69 Outcome:Success      Dur(min): 128 TTP: 128 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+HBARUSDT   Strong Sell     Conf: 69 Outcome:Success      Dur(min):  64 TTP:  64 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+PNUTUSDT   Strong Sell     Conf: 69 Outcome:Success      Dur(min): 128 TTP: 128 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+ETCUSDT    Strong Sell     Conf: 68 Outcome:Success      Dur(min):  64 TTP:  64 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+SEIUSDT    Strong Sell     Conf: 69 Outcome:Success      Dur(min):  64 TTP:  64 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+CRVUSDT    Sell            Conf: 64 Outcome:Success      Dur(min):  53 TTP:  53 TSL:None Est:   5.04% missing_pts=1 HMA_gate
+OPUSDT     Strong Sell     Conf: 69 Outcome:Success      Dur(min):  64 TTP:  64 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+MANAUSDT   Strong Sell     Conf: 66 Outcome:Success      Dur(min):  52 TTP:  52 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+TRXUSDT    Strong Sell     Conf: 69 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=0 HMA_gate
+TIAUSDT    Strong Sell     Conf: 69 Outcome:Success      Dur(min):  63 TTP:  63 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+APTUSDT    Strong Sell     Conf: 69 Outcome:Success      Dur(min):  63 TTP:  63 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+LDOUSDT    Strong Sell     Conf: 69 Outcome:Success      Dur(min):  53 TTP:  53 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+TAOUSDT    Strong Sell     Conf: 66 Outcome:Success      Dur(min): 128 TTP: 128 TSL:None Est:   5.04% missing_pts=0 HMA_gate

@@ -1,0 +1,21 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_19-06-20_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:21:38.987217
+
+--- BUY SIGNALS ---
+ARBUSDT    Buy             Conf: 46 Outcome:Success      Dur(min): 232 TTP: 232 TSL:None Est:   5.04% missing_pts=19
+
+--- SELL SIGNALS ---
+BTCUSDT    Strong Sell     Conf: 69 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=0 HMA_gate
+XRPUSDT    Sell            Conf: 58 Outcome:Success      Dur(min):  62 TTP:  62 TSL:None Est:   5.04% missing_pts=7 HMA_gate
+WLFIUSDT   Strong Sell     Conf: 66 Outcome:Success      Dur(min):  10 TTP:  10 TSL:None Est:   5.04% missing_pts=0 HMA_gate
+SUIUSDT    Sell            Conf: 58 Outcome:Success      Dur(min):  67 TTP:  67 TSL:None Est:   5.04% missing_pts=7 HMA_gate
+BNBUSDT    Sell            Conf: 41 Outcome:Success      Dur(min):  65 TTP:  65 TSL:None Est:   5.04% missing_pts=24
+AVAXUSDT   Sell            Conf: 48 Outcome:Success      Dur(min):  20 TTP:  20 TSL:None Est:   5.04% missing_pts=17
+ADAUSDT    Sell            Conf: 60 Outcome:Success      Dur(min):  62 TTP:  62 TSL:None Est:   5.04% missing_pts=5 HMA_gate
+FARTCOINUSDT Sell            Conf: 45 Outcome:Success      Dur(min):  20 TTP:  20 TSL:None Est:   5.04% missing_pts=20
+AAVEUSDT   Sell            Conf: 40 Outcome:Success      Dur(min):  65 TTP:  65 TSL:None Est:   5.04% missing_pts=25
+BAKEUSDT   Sell            Conf: 50 Outcome:Success      Dur(min):  16 TTP:  16 TSL:None Est:   5.04% missing_pts=15
+FILUSDT    Sell            Conf: 49 Outcome:Success      Dur(min):  20 TTP:  20 TSL:None Est:   5.04% missing_pts=16
+XLMUSDT    Sell            Conf: 59 Outcome:Success      Dur(min):  43 TTP:  43 TSL:None Est:   5.04% missing_pts=6 HMA_gate
+ETCUSDT    Sell            Conf: 60 Outcome:Success      Dur(min):  61 TTP:  61 TSL:None Est:   5.04% missing_pts=5 HMA_gate
+XPINUSDT   Sell            Conf: 45 Outcome:Fail         Dur(min):   2 TTP:None TSL:   2 Est:   5.04% missing_pts=20

@@ -1,0 +1,17 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_14-40-14_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:16:57.033471
+
+--- BUY SIGNALS ---
+BTCUSDT    Buy             Conf: 42 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=23
+PUMPUSDT   Buy             Conf: 49 Outcome:Success      Dur(min):  21 TTP:  21 TSL:None Est:   5.04% missing_pts=16
+HIFIUSDT   Buy             Conf: 49 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=16
+UBUSDT     Buy             Conf: 41 Outcome:Fail         Dur(min):   1 TTP:None TSL:   1 Est:   5.04% missing_pts=24
+BIOUSDT    Strong Buy      Conf: 66 Outcome:Fail         Dur(min):   7 TTP:None TSL:   7 Est:   5.04% missing_pts=0 HMA_gate SUP
+1000SHIBUSDT Buy             Conf: 59 Outcome:Success      Dur(min):  26 TTP:  26 TSL:None Est:   5.04% missing_pts=6 HMA_gate
+QUSDT      Buy             Conf: 45 Outcome:Fail         Dur(min):   2 TTP:None TSL:   2 Est:   5.04% missing_pts=20
+YGGUSDT    Buy             Conf: 62 Outcome:Success      Dur(min):  11 TTP:  11 TSL:None Est:   5.04% missing_pts=3
+NAORISUSDT Buy             Conf: 44 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=21
+XPINUSDT   Buy             Conf: 41 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=24
+
+--- SELL SIGNALS ---
+    (none)

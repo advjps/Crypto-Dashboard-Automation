@@ -1,0 +1,14 @@
+===== BACKTEST REPORT FOR: signals_2025-09-14_23-43-26_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:25:15.366211
+
+--- BUY SIGNALS ---
+DOGEUSDT   Buy             Conf: 41 Outcome:Inconclusive Dur(min): 600 TTP:None TSL:None Est:   5.04% missing_pts=24
+MYXUSDT    Buy             Conf: 43 Outcome:Fail         Dur(min):   9 TTP:None TSL:   9 Est:   5.04% missing_pts=22
+QUSDT      Buy             Conf: 54 Outcome:Fail         Dur(min):   5 TTP:None TSL:   5 Est:   5.04% missing_pts=11
+MOODENGUSDT Buy             Conf: 42 Outcome:Success      Dur(min):  23 TTP:  23 TSL:None Est:   5.04% missing_pts=23
+PUMPBTCUSDT Buy             Conf: 54 Outcome:Success      Dur(min):   9 TTP:   9 TSL:None Est:   5.04% missing_pts=11
+BAKEUSDT   Strong Buy      Conf: 65 Outcome:Fail         Dur(min):  25 TTP:None TSL:  25 Est:   5.04% missing_pts=0 HMA_gate SUP
+ATHUSDT    Buy             Conf: 43 Outcome:Success      Dur(min):  27 TTP:  27 TSL:None Est:   5.04% missing_pts=22
+
+--- SELL SIGNALS ---
+    (none)

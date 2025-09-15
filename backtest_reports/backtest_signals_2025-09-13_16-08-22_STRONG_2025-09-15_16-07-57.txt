@@ -1,0 +1,24 @@
+===== BACKTEST REPORT FOR: signals_2025-09-13_16-08-22_STRONG.json =====
+Signal Generation Time (UTC): 2025-09-15T16:07:57.292056
+
+--- BUY SIGNALS ---
+AVAXUSDT   Buy             Conf: 54 Outcome:Success      Dur(min):  61 TTP:  61 TSL:None Est:   5.04% missing_pts=11
+UBUSDT     Buy             Conf: 46 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=19
+PUMPUSDT   Buy             Conf: 48 Outcome:Success      Dur(min):  11 TTP:  11 TSL:None Est:   5.04% missing_pts=17
+ARIAUSDT   Buy             Conf: 44 Outcome:Success      Dur(min):  13 TTP:  13 TSL:None Est:   5.04% missing_pts=21
+NAORISUSDT Buy             Conf: 44 Outcome:Fail         Dur(min):  37 TTP:None TSL:  37 Est:   5.04% missing_pts=21
+FARTCOINUSDT Strong Buy      Conf: 65 Outcome:Success      Dur(min): 128 TTP: 128 TSL:None Est:   5.04% missing_pts=0 HMA_gate SUP
+1000BONKUSDT Buy             Conf: 43 Outcome:Success      Dur(min): 155 TTP: 155 TSL:None Est:   5.04% missing_pts=22
+HOLOUSDT   Buy             Conf: 42 Outcome:Success      Dur(min):  81 TTP:  81 TSL:None Est:   5.04% missing_pts=23
+DOTUSDT    Buy             Conf: 45 Outcome:Success      Dur(min):  13 TTP:  13 TSL:None Est:   5.04% missing_pts=20
+MUSDT      Buy             Conf: 43 Outcome:Success      Dur(min):  39 TTP:  39 TSL:None Est:   5.04% missing_pts=22
+VELVETUSDT Buy             Conf: 55 Outcome:Success      Dur(min):   6 TTP:   6 TSL:None Est:   5.04% missing_pts=10
+YGGUSDT    Buy             Conf: 49 Outcome:Success      Dur(min):   1 TTP:   1 TSL:None Est:   5.04% missing_pts=16
+PTBUSDT    Buy             Conf: 45 Outcome:Success      Dur(min):  12 TTP:  12 TSL:None Est:   5.04% missing_pts=20
+BSWUSDT    Buy             Conf: 54 Outcome:Success      Dur(min):  18 TTP:  18 TSL:None Est:   5.04% missing_pts=11
+FUSDT      Buy             Conf: 43 Outcome:Success      Dur(min):   3 TTP:   3 TSL:None Est:   5.04% missing_pts=22
+ETCUSDT    Buy             Conf: 40 Outcome:Success      Dur(min):  98 TTP:  98 TSL:None Est:   5.04% missing_pts=25
+VOXELUSDT  Buy             Conf: 40 Outcome:Success      Dur(min):   4 TTP:   4 TSL:None Est:   5.04% missing_pts=25
+
+--- SELL SIGNALS ---
+    (none)
