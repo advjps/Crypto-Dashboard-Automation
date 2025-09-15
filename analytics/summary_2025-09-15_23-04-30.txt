@@ -1,0 +1,24 @@
+============== GLOBAL SUMMARY ==============
+
+By Signal Bucket
+-------------------------------------------
+    Section  Total  Success  Fail  Inconclusive WinRate AvgConfidence
+ Strong Buy     79       44    29             6  60.27%         67.13
+        Buy    712      443   130           139  77.31%         46.87
+Strong Sell    106       90     8             8  91.84%         67.55
+       Sell    487      355    45            87  88.75%         47.25
+
+By Regime
+-------------------------------------------
+ Regime  Total  Success  Fail  Inconclusive WinRate AvgConfidence
+Bearish    618      469    55            94  89.50%         51.16
+Bullish    766      463   157           146  74.68%         48.60
+
+Deserved Strong (Analysis-only)
+-------------------------------------------
+(no data)
+
+Supervisor Summary (10B)
+-------------------------------------------
+ Supervisor_applied_count  Success  Fail  Inconclusive WinRate
+                       73       43    26             4  62.32%
